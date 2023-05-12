@@ -9,6 +9,7 @@ import {
   validateChangePassToken,
   validateBearerToken,
   recoverPassword,
+  updatePassword
 } from "../services/authentication";
 import {
   AuthContextType,
@@ -153,9 +154,36 @@ const AuthProvider = ({ children }: AuthContextType) => {
     );
   };
 
+  const changeUserPassword=async(userData:FormikValues):Promise<void>=>{
+    setLoading({
+      message: "Updating password...",
+      visible: true,
+    });
+    const token = location.pathname.split("/")[2];
+    await updatePassword(userData, token).then(
+      (res: ServerResponseSuccess | ServerResponseFail) => {
+        setLoading({
+          message: "",
+          visible: false,
+        });
+        setToast({
+          message: res.message,
+          type:
+            res.typeStatus === "Error"
+              ? "error"
+              : res.typeStatus === "Warning"
+              ? "warning"
+              : "success",
+          visible: true,
+        });
+      }
+    );
+  }
+
   React.useEffect(() => {
     checkIsUserAuth();
-  }, [auth]);
+    console.log("auht");
+  }, []);
 
   return (
     <AuthContext.Provider
@@ -167,6 +195,7 @@ const AuthProvider = ({ children }: AuthContextType) => {
         createAccount,
         checkChangePassToken,
         sendRequestPassword,
+        changeUserPassword
       }}
     >
       {children}

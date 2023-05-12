@@ -22,7 +22,7 @@ export const fields: Field[] = [
   },
   {
     type: "password",
-    name: "password",
+    name: "confirmPassword",
     label: "Confirm password *",
     placeholder: "Enter your password",
     icon: faLock,

@@ -11,7 +11,7 @@ import LoginImage from "../../assets/login-image.svg";
 
 const ChangePassword = (): JSX.Element => {
   const { isValidating } = useApp();
-  const { checkChangePassToken } = useAuth();
+  const { checkChangePassToken, changeUserPassword } = useAuth();
 
   React.useEffect(() => {
     checkChangePassToken();
@@ -39,7 +39,7 @@ const ChangePassword = (): JSX.Element => {
             cols="1"
             recover
             form="recover"
-            action={(values: FormikValues) => console.log(values)}
+            action={(values: FormikValues) => changeUserPassword(values)}
           />
           <h2 className="font-montserrat text-darkGray font-medium text-[16px]">
             Return to

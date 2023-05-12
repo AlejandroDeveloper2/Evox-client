@@ -79,7 +79,7 @@ const validateBearerToken = async (token: string): Promise<boolean> => {
   return response;
 };
 
-const recoverPassword = async (userData: FormikValues)=>{
+const recoverPassword = async (userData: FormikValues) => {
   const axiosClient = getAxiosClient("evoxAPI");
   let response: ServerResponseSuccess | ServerResponseFail = {
     message: "",
@@ -87,8 +87,8 @@ const recoverPassword = async (userData: FormikValues)=>{
   };
   try {
     const { data } = await axiosClient.post<
-    ServerResponseSuccess | ServerResponseFail
-  >(`/auth/recover`, userData);
+      ServerResponseSuccess | ServerResponseFail
+    >(`/auth/recover`, userData);
     response = data;
   } catch (error: any) {
     response = error.response.data;
@@ -96,4 +96,21 @@ const recoverPassword = async (userData: FormikValues)=>{
   return response;
 }
 
-export { authenticateUser, registerUser, validateChangePassToken, validateBearerToken, recoverPassword };
+const updatePassword = async (userData: FormikValues, token: string) => {
+  const axiosClient = getAxiosClient("evoxAPI");
+  let response: ServerResponseSuccess | ServerResponseFail = {
+    message: "",
+    typeStatus: "Success",
+  };
+  try {
+    const { data } = await axiosClient.patch<
+      ServerResponseSuccess | ServerResponseFail
+    >(`/auth/passwordChange/${token}`, userData);
+    response = data;
+  } catch (error: any) {
+    response = error.response.data;
+  }
+  return response;
+}
+
+export { authenticateUser, registerUser, validateChangePassToken, validateBearerToken, recoverPassword, updatePassword };
