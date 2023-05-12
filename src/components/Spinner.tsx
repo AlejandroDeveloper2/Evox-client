@@ -6,7 +6,7 @@ const Spinner = (): JSX.Element => {
     <div className="flex justify-center items-center gap-3">
       <svg
         aria-hidden="true"
-        className="w-8 h-8 mr-2 text-white animate-spin dark:text-gray-600 fill-secondaryColor"
+        className="w-8 h-8 mr-2 text-white animate-spin dark:text-gray-600 fill-lightBlue"
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

@@ -5,6 +5,7 @@ import {
   AppContextType,
   Country,
   Functions,
+  LoaderProps,
   SpinnerProps,
   ToastProps,
   UserIP,
@@ -31,6 +32,12 @@ const AppProvider = ({ children }: AppContextType) => {
     visible: false,
   });
   const [isMenuVisible, setIsMenuVisible] = React.useState<boolean>(false);
+  /*Loader props */
+  const [isValidating, setIsValidating] = React.useState<boolean>(false);
+  const [loader, setLoader] = React.useState<LoaderProps>({
+    message: "",
+    loading: false,
+  });
 
   const getCountriesData = async () => {
     const countriesData = await getAllCountries();
@@ -70,9 +77,13 @@ const AppProvider = ({ children }: AppContextType) => {
         loading,
         toast,
         isMenuVisible,
+        isValidating,
+        loader,
         setLoading,
         setToast,
         toggleLateralMenu,
+        setIsValidating,
+        setLoader,
       }}
     >
       {children}

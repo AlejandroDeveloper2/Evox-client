@@ -1,7 +1,13 @@
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 
 import { Layout, ProtectedLayout } from "./layout";
-import { UserRegister, Login, RecoverPassword, UserDashboard } from "./pages";
+import {
+  UserRegister,
+  Login,
+  RecoverPassword,
+  UserDashboard,
+  ChangePassword,
+} from "./pages";
 import { AppProvider, AuthProvider, ThemeProvider } from "./context";
 
 function App() {
@@ -36,18 +42,24 @@ function App() {
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             logIn={function (): Promise<void> {
               throw new Error("Function not implemented.");
-            } }
+            }}
             logOut={function (): void {
               throw new Error("Function not implemented.");
-            } } createAccount={function (): void {
+            }}
+            createAccount={function (): Promise<void> {
               throw new Error("Function not implemented.");
-            } }          >
+            }}
+          >
             <Routes>
               <Route path="/" element={<Layout />}>
                 <Route index element={<UserRegister />} />
                 <Route path="/:userName" element={<UserRegister />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/recoverPassword" element={<RecoverPassword />} />
+                <Route
+                  path="/changePassword/:token"
+                  element={<ChangePassword />}
+                />
               </Route>
               <Route path="/dashboard" element={<ProtectedLayout />}>
                 <Route index element={<UserDashboard />} />

@@ -34,6 +34,11 @@ export interface RecoverPassFormValues {
   email: string;
 }
 
+export interface ChangePasswordFormValues {
+  password: string;
+  confirmPassword: string;
+}
+
 export interface Field {
   type: string;
   name: string;
@@ -110,9 +115,13 @@ export interface AppContextType {
   loading: SpinnerProps;
   toast: ToastProps;
   isMenuVisible: boolean;
+  isValidating: boolean;
+  loader: LoaderProps;
   setLoading: React.Dispatch<React.SetStateAction<SpinnerProps>>;
   setToast: React.Dispatch<React.SetStateAction<ToastProps>>;
   toggleLateralMenu: () => void;
+  setIsValidating: React.Dispatch<React.SetStateAction<boolean>>;
+  setLoader: React.Dispatch<React.SetStateAction<LoaderProps>>;
 }
 
 export interface AuthContextType {
@@ -172,11 +181,16 @@ export interface ServerResponseSuccess {
   typeStatus: "Success";
 }
 
-export interface ServerResponseFail{
+export interface ServerResponseFail {
   message: string;
-  typeStatus:"Error" | "Warning";
+  typeStatus: "Error" | "Warning";
 }
 
-export interface LoginReasponse extends ServerResponseFail{
+export interface LoginReasponse extends ServerResponseFail {
   token: string;
+}
+
+export interface LoaderProps {
+  message: string;
+  loading: boolean;
 }
