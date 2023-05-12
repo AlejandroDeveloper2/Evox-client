@@ -19,13 +19,14 @@ const useForm = (
   fields: FieldType[],
   buttons: CustomButtonProps[],
   form: FormType,
-  hasCaptcha?: boolean
+  action: (values:FormikValues)=>void,
+  hasCaptcha?: boolean,
 ): FormHook => {
   const [isCaptchaChecked, setIsCaptchaChecked] =
     React.useState<boolean>(false);
   const captcha = React.useRef<ReCAPTCHA>(null);
   const location = useLocation();
-  const { userIP, setLoading, setToast } = useApp();
+  const { userIP } = useApp();
 
   const renderFormInputs = (config: RenderInputProps): JSX.Element[] => {
     return fields.map((field, index) => (
@@ -75,24 +76,8 @@ const useForm = (
     formikHelpers: FormikHelpers<FormikValues>
   ): void => {
     const newValues = setFormValues(values, form, { location, userIp: userIP });
-    setLoading({
-      message: "Checking data...",
-      visible: true,
-    });
-
-    setTimeout(() => {
-      setToast({
-        message: "User logged successfully!",
-        type: "success",
-        visible: true,
-      });
-      setLoading({
-        message: "",
-        visible: false,
-      });
-    }, 2000);
+    action(newValues);
     captcha.current?.reset();
-    console.log(newValues);
     formikHelpers.resetForm();
   };
 

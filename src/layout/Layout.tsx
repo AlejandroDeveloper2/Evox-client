@@ -21,7 +21,7 @@ const Layout = () => {
         <Toast />
         <Outlet />
       </div>
-      <footer className="w-full flex justify-center items-center p-5  bg-gradient-to-r from-blue via-purple to-lightBlue rounded-t-[10px] lg:absolute lg:bottom-0">
+      <footer className="w-full flex justify-center items-center p-5  bg-gradient-to-r from-blue via-purple to-lightBlue rounded-t-[10px]">
         <h3 className="text-white text-[12px] md:text-[14px] font-montserrat text-center">
           All rights reserved© 2023
         </h3>

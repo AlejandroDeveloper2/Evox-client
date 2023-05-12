@@ -34,10 +34,10 @@ const toggleButton = (
       ? true
       : false
     : type === "button"
-    ? false
-    : Object.keys(errors).length > 0 || Object.values(values).includes("")
-    ? true
-    : false;
+      ? false
+      : Object.keys(errors).length > 0 || Object.values(values).includes("")
+        ? true
+        : false;
   return disable;
 };
 
@@ -51,6 +51,7 @@ const setFormValues = (
 
   if (form === "register") {
     const newUserID = formatUserID(values.identification);
+    delete values.confirmPassword
     newValues = {
       ...values,
       identification: newUserID,
@@ -78,10 +79,10 @@ const setToastColor = (
     type === "success"
       ? "bg-success"
       : type === "error"
-      ? "bg-error"
-      : type === "warning"
-      ? "bg-warning"
-      : "bg-secondaryColor";
+        ? "bg-error"
+        : type === "warning"
+          ? "bg-warning"
+          : "bg-secondaryColor";
   return color;
 };
 

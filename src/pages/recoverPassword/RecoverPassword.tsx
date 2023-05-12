@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router-dom";
+import { FormikValues } from "formik";
+
 import { initialvalues, fields, getFormButtons } from "./constans";
 import { validationSchema } from "./validationSchema";
 
@@ -24,6 +26,7 @@ const RecoverPassword = (): JSX.Element => {
         cols="1"
         recover
         form="recover"
+        action={(values: FormikValues) => console.log(values)}
       />
     </div>
   );

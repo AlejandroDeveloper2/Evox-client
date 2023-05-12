@@ -18,7 +18,6 @@ export interface RegisterFormValues {
   identification: string;
   country: string;
   countryOfResidence: string;
-  emailVerified: boolean;
   invitationLink: string;
   referral: string;
 }
@@ -67,6 +66,7 @@ export interface CustomFormProps {
   login?: boolean;
   recover?: boolean;
   form: FormType;
+  action: (values: FormikValues) => void;
 }
 
 export interface SpinnerProps {
@@ -119,8 +119,9 @@ export interface AuthContextType {
   children?: JSX.Element | JSX.Element[];
   auth: UserAuth | null;
   isAuth: boolean;
-  logIn: (userData: LoginFormValues) => Promise<void>;
+  logIn: (userData: FormikValues) => Promise<void>;
   logOut: () => void;
+  createAccount: (userData: FormikValues) => Promise<void>;
 }
 
 export interface ThemeContextType {

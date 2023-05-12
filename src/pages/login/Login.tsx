@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
+import { FormikValues } from "formik";
 
 import { initialvalues, fields, buttons } from "./constans";
 import { validationSchema } from "./validationSchema";
+import { useAuth } from "../../hooks";
 
 import { CustomForm } from "../../components";
 import LoginImage from "../../assets/login-image.svg";
 
 const Login = () => {
+  const { logIn } = useAuth();
   return (
     <div className="w-full bg-white flex justify-center items-center flex-col gap-1 pb-6  rounded-t-[20px] relative">
       <img
@@ -24,6 +27,7 @@ const Login = () => {
         cols="1"
         login
         form="login"
+        action={(values:FormikValues)=>logIn(values)}
       />
       <h2 className="font-montserrat text-darkGray font-medium text-[16px]">
         Don't you have an account?{" "}

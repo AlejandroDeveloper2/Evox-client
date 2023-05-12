@@ -19,7 +19,6 @@ export const initialvalues: RegisterFormValues = {
   identification: "",
   country: "",
   countryOfResidence: "",
-  emailVerified: false,
   invitationLink: "",
   referral: "",
 };

@@ -1,8 +1,9 @@
 import React from "react";
 import { decodeToken } from "react-jwt";
+import { FormikValues } from "formik";
 
-import { authenticateUser } from "../services/authentication";
-import { AuthContextType, LoginFormValues, UserAuth } from "../types";
+import { authenticateUser, registerUser } from "../services/authentication";
+import { AuthContextType, UserAuth } from "../types";
 import { useApp } from "../hooks";
 
 const AuthContext = React.createContext<AuthContextType>({} as AuthContextType);
@@ -13,7 +14,7 @@ const AuthProvider = ({ children }: AuthContextType) => {
 
   const { setToast, setLoading } = useApp();
 
-  const logIn = async (userData: LoginFormValues): Promise<void> => {
+  const logIn = async (userData: FormikValues): Promise<void> => {
     setLoading({
       message: "Checking user credentials...",
       visible: true,
@@ -48,6 +49,32 @@ const AuthProvider = ({ children }: AuthContextType) => {
     setAuth(null);
   };
 
+  const createAccount = async (userData: FormikValues): Promise<void> => {
+    setLoading({
+      message: "Creating Account...",
+      visible: true,
+    });
+    await registerUser(userData)
+      .then((res) => {
+        setLoading({
+          message: "",
+          visible: false,
+        });
+        setToast({
+          message: res,
+          type: "success",
+          visible: true,
+        });
+      })
+      .catch((error) => {
+        setToast({
+          message: error,
+          type: "error",
+          visible: true,
+        });
+      });
+  };
+
   React.useEffect(() => {
     checkIsUserAuth();
   }, [auth]);
@@ -59,6 +86,7 @@ const AuthProvider = ({ children }: AuthContextType) => {
         isAuth,
         logIn,
         logOut,
+        createAccount,
       }}
     >
       {children}
