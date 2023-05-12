@@ -23,7 +23,8 @@ export const validationSchema = yup.object().shape({
     .string()
     .required(isRequiredMessage)
     .min(3, "Username must be at least 3 characters!"),
-  fullname: yup.string().required(isRequiredMessage),
+  fullName: yup.string().required(isRequiredMessage),
+  phone:yup.string().required(isRequiredMessage),
   typeOfIdentification: yup
     .string()
     .required(isRequiredMessage)

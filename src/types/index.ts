@@ -13,13 +13,13 @@ export interface RegisterFormValues {
   password: string;
   confirmPassword: string;
   username: string;
-  fullname: string;
+  fullName: string;
+  phone: string;
   typeOfIdentification: string;
   identification: string;
   country: string;
   countryOfResidence: string;
-  invitationLink: string;
-  referral: string;
+  invitationLink?: string;
 }
 
 export interface LoginFormValues {
@@ -165,4 +165,18 @@ export interface UserAuth {
 
 export interface Role {
   authority: string;
+}
+
+export interface ServerResponseSuccess {
+  message: string;
+  typeStatus: "Success";
+}
+
+export interface ServerResponseFail{
+  message: string;
+  typeStatus:"Error" | "Warning";
+}
+
+export interface LoginReasponse extends ServerResponseFail{
+  token: string;
 }

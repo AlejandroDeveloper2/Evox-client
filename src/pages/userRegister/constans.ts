@@ -5,6 +5,7 @@ import {
   faLock,
   faUser,
   faLocationDot,
+  faPhone
 } from "@fortawesome/free-solid-svg-icons";
 
 import { Field, CustomButtonProps, RegisterFormValues } from "../../types";
@@ -14,13 +15,13 @@ export const initialvalues: RegisterFormValues = {
   password: "",
   confirmPassword: "",
   username: "",
-  fullname: "",
+  fullName: "",
+  phone:"",
   typeOfIdentification: "",
   identification: "",
   country: "",
   countryOfResidence: "",
   invitationLink: "",
-  referral: "",
 };
 
 export const fields: Field[] = [
@@ -58,10 +59,18 @@ export const fields: Field[] = [
   },
   {
     type: "text",
-    name: "fullname",
+    name: "fullName",
     label: "Fullname *",
     placeholder: "Enter your fullname",
     icon: faUser,
+    as: "input",
+  },
+  {
+    type: "text",
+    name: "phone",
+    label: "Phone *",
+    placeholder: "Enter your phone number",
+    icon: faPhone,
     as: "input",
   },
   {

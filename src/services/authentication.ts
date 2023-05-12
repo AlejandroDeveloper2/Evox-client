@@ -1,32 +1,38 @@
 import getAxiosClient from "../config/axiosClient";
-import { LoginFormValues, RegisterFormValues } from "../types";
+import { LoginFormValues, RegisterFormValues, ServerResponseFail, ServerResponseSuccess, LoginReasponse } from "../types";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const authenticateUser = async (
   userCredentials: LoginFormValues | any
-): Promise<any> => {
+): Promise<LoginReasponse> => {
   const axiosClient = getAxiosClient("evoxAPI");
-  let response:any;
+  let response: LoginReasponse = {
+    message: "",
+    typeStatus: "Error",
+    token: ""
+  };
   try {
-    const { data } = await axiosClient.post("/auth/login", userCredentials);
-    response = data;
-    console.log(response.token);
-  } catch (error) {
-    console.log(error);
-  }
-  return response.token;
-};
-
-const registerUser = async (userData: RegisterFormValues | any): Promise<string> => {
-  const axiosClient = getAxiosClient("evoxAPI");
-  let response = "";
-  try {
-    console.log(userData)
-    const { data } = await axiosClient.post("/auth/create", userData);
+    const { data } = await axiosClient.post<LoginReasponse>("/auth/login", userCredentials);
     response = data;
     console.log(response);
-  } catch (error) {
-    console.log(error);
+  } catch (error: any) {
+    response = error.response.data
+  }
+  return response;
+};
+
+const registerUser = async (userData: RegisterFormValues | any): Promise<ServerResponseSuccess | ServerResponseFail> => {
+  const axiosClient = getAxiosClient("evoxAPI");
+  let response: ServerResponseSuccess | ServerResponseFail = {
+    message: "",
+    typeStatus: "Success"
+  };
+  try {
+    console.log(userData)
+    const { data } = await axiosClient.post<ServerResponseSuccess | ServerResponseFail>("/auth/create", userData);
+    response = data;
+  } catch (error: any) {
+    response = error.response.data
   }
   return response;
 };

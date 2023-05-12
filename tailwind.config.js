@@ -12,7 +12,7 @@ export default {
       purple: "#e00d96",
       error: "#E3502F",
       success: "#19C486",
-      warning: "#FCF993",
+      warning: "#BB8711",
     },
     extend: {
       fontFamily: {

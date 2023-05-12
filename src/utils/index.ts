@@ -51,12 +51,16 @@ const setFormValues = (
 
   if (form === "register") {
     const newUserID = formatUserID(values.identification);
+    const invitationLink = location?.pathname.split("/")[1] ? location?.pathname.split("/")[1] : null
     delete values.confirmPassword
-    newValues = {
+    delete values.invitationLink
+    newValues = invitationLink ? {
       ...values,
       identification: newUserID,
       invitationLink: `https://evox/ref/${values.username}`,
-      referral: location?.pathname.split("/")[1],
+    } : {
+      ...values,
+      identification: newUserID,
     };
     return newValues;
   }

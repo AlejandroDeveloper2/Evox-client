@@ -3,7 +3,13 @@ import { decodeToken } from "react-jwt";
 import { FormikValues } from "formik";
 
 import { authenticateUser, registerUser } from "../services/authentication";
-import { AuthContextType, UserAuth } from "../types";
+import {
+  AuthContextType,
+  ServerResponseFail,
+  ServerResponseSuccess,
+  LoginReasponse,
+  UserAuth,
+} from "../types";
 import { useApp } from "../hooks";
 
 const AuthContext = React.createContext<AuthContextType>({} as AuthContextType);
@@ -19,23 +25,24 @@ const AuthProvider = ({ children }: AuthContextType) => {
       message: "Checking user credentials...",
       visible: true,
     });
-    await authenticateUser(userData)
-      .then((token) => {
-        setLoading({
-          message: "",
-          visible: false,
-        });
-        const userAuth = decodeToken<UserAuth>(token);
-        localStorage.setItem("token", token);
-        setAuth(userAuth);
-      })
-      .catch((error) => {
+    await authenticateUser(userData).then((res: LoginReasponse) => {
+      setLoading({
+        message: "",
+        visible: false,
+      });
+     
+      if (!res.token) {
         setToast({
-          message: error.message,
-          type: "error",
+          message: res.message,
+          type: res.typeStatus === "Error" ? "error" : "warning",
           visible: true,
         });
-      });
+      }else{
+        const userAuth = decodeToken<UserAuth>(res.token);
+        localStorage.setItem("token", res.token);
+        setAuth(userAuth);
+      }
+    });
   };
 
   const checkIsUserAuth = (): void => {
@@ -55,21 +62,14 @@ const AuthProvider = ({ children }: AuthContextType) => {
       visible: true,
     });
     await registerUser(userData)
-      .then((res) => {
+      .then((res: ServerResponseSuccess | ServerResponseFail) => {
         setLoading({
           message: "",
           visible: false,
         });
         setToast({
-          message: res,
-          type: "success",
-          visible: true,
-        });
-      })
-      .catch((error) => {
-        setToast({
-          message: error,
-          type: "error",
+          message: res.message,
+          type: res.typeStatus === "Error" ? "error" : res.typeStatus === "Warning" ? "warning" :"success",
           visible: true,
         });
       });
