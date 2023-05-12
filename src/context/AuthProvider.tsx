@@ -1,12 +1,14 @@
 import React from "react";
 import { decodeToken } from "react-jwt";
 import { FormikValues } from "formik";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import {
   authenticateUser,
   registerUser,
   validateChangePassToken,
+  validateBearerToken,
+  recoverPassword,
 } from "../services/authentication";
 import {
   AuthContextType,
@@ -25,6 +27,7 @@ const AuthProvider = ({ children }: AuthContextType) => {
 
   const { setToast, setLoading, setIsValidating, setLoader } = useApp();
   const location = useLocation();
+  const navigate = useNavigate();
 
   const logIn = async (userData: FormikValues): Promise<void> => {
     setLoading({
@@ -51,15 +54,26 @@ const AuthProvider = ({ children }: AuthContextType) => {
     });
   };
 
-  const checkIsUserAuth = (): void => {
+  const checkIsUserAuth = async (): Promise<void> => {
     const token = localStorage.getItem("token");
-    if (token) setIsAuth(true);
-    else setIsAuth(false);
+    if (token) {
+      await validateBearerToken(token).then((res) => {
+        setIsAuth(res);
+        if (res) {
+          const userAuth = decodeToken<UserAuth>(token);
+          setAuth(userAuth);
+          navigate("/dashboard");
+        } else {
+          navigate("/login");
+        }
+      });
+    }
   };
 
   const logOut = (): void => {
     localStorage.removeItem("token");
     setAuth(null);
+    setIsAuth(false);
   };
 
   const createAccount = async (userData: FormikValues): Promise<void> => {
@@ -97,6 +111,7 @@ const AuthProvider = ({ children }: AuthContextType) => {
     });
 
     await validateChangePassToken(token).then((res: boolean) => {
+      console.log(res);
       if (res) {
         setIsValidating(false);
         setLoader({
@@ -112,14 +127,35 @@ const AuthProvider = ({ children }: AuthContextType) => {
     });
   };
 
+  const sendRequestPassword = async (userData: FormikValues): Promise<void> => {
+    setLoading({
+      message: "Sending request...",
+      visible: true,
+    });
+    await recoverPassword(userData).then(
+      (res: ServerResponseSuccess | ServerResponseFail) => {
+        console.log(res);
+        setLoading({
+          message: "",
+          visible: false,
+        });
+        setToast({
+          message: res.message,
+          type:
+            res.typeStatus === "Error"
+              ? "error"
+              : res.typeStatus === "Warning"
+              ? "warning"
+              : "success",
+          visible: true,
+        });
+      }
+    );
+  };
+
   React.useEffect(() => {
     checkIsUserAuth();
   }, [auth]);
-
-  React.useEffect(() => {
-    checkChangePassToken();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <AuthContext.Provider
@@ -129,6 +165,8 @@ const AuthProvider = ({ children }: AuthContextType) => {
         logIn,
         logOut,
         createAccount,
+        checkChangePassToken,
+        sendRequestPassword,
       }}
     >
       {children}

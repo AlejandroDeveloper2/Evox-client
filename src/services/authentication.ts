@@ -1,3 +1,4 @@
+import { FormikValues } from "formik";
 import getAxiosClient from "../config/axiosClient";
 import {
   LoginFormValues,
@@ -51,24 +52,48 @@ const registerUser = async (
 const validateChangePassToken = async (token: string): Promise<boolean> => {
   const axiosClient = getAxiosClient("evoxAPI");
   let response = false;
+
   try {
     const { data } = await axiosClient(`/auth/validator/${token}`);
-    response = data.message;
+    response = data;
   } catch (error: any) {
     response = error.response.data.message;
   }
   return response;
 };
-const bearerToken = async (): Promise<boolean> => {
+const validateBearerToken = async (token: string): Promise<boolean> => {
   const axiosClient = getAxiosClient("evoxAPI");
   let response = false;
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
   try {
-    const { data } = await axiosClient(`/auth/validad`);
-    response = data.message;
+    const { data } = await axiosClient(`/auth/validate`, config);
+    response = data;
   } catch (error: any) {
-    response = error.response.data.message;
+    console.log(error)
   }
   return response;
 };
 
-export { authenticateUser, registerUser, validateChangePassToken, bearerToken };
+const recoverPassword = async (userData: FormikValues)=>{
+  const axiosClient = getAxiosClient("evoxAPI");
+  let response: ServerResponseSuccess | ServerResponseFail = {
+    message: "",
+    typeStatus: "Success",
+  };
+  try {
+    const { data } = await axiosClient.post<
+    ServerResponseSuccess | ServerResponseFail
+  >(`/auth/recover`, userData);
+    response = data;
+  } catch (error: any) {
+    response = error.response.data;
+  }
+  return response;
+}
+
+export { authenticateUser, registerUser, validateChangePassToken, validateBearerToken, recoverPassword };

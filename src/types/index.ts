@@ -131,6 +131,8 @@ export interface AuthContextType {
   logIn: (userData: FormikValues) => Promise<void>;
   logOut: () => void;
   createAccount: (userData: FormikValues) => Promise<void>;
+  checkChangePassToken:()=>Promise<void>;
+  sendRequestPassword:(userData: FormikValues)=> Promise<void>;
 }
 
 export interface ThemeContextType {

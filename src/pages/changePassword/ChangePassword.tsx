@@ -1,15 +1,22 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import { FormikValues } from "formik";
 
 import { initialvalues, fields, buttons } from "./constans";
 import { validationSchema } from "./validationSchema";
-import { useApp } from "../../hooks";
+import { useApp, useAuth } from "../../hooks";
 
 import { CustomForm, Loader } from "../../components";
 import LoginImage from "../../assets/login-image.svg";
 
 const ChangePassword = (): JSX.Element => {
   const { isValidating } = useApp();
+  const { checkChangePassToken } = useAuth();
+
+  React.useEffect(() => {
+    checkChangePassToken();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="w-full bg-white flex justify-center items-center flex-col gap-1 pb-6  rounded-t-[20px] relative">

@@ -2,13 +2,14 @@ import { faClose, faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { menuItems } from "./constans";
-import { useApp } from "../../hooks";
+import { useApp, useAuth } from "../../hooks";
 
 import { Avatar, MenuItem } from "..";
 import Logo from "../../assets/logo.png";
 
 const LateralMenu = (): JSX.Element => {
   const { isMenuVisible, toggleLateralMenu } = useApp();
+  const {logOut} = useAuth();
   return (
     <nav
       id="nav"
@@ -39,6 +40,7 @@ const LateralMenu = (): JSX.Element => {
         {menuItems.map((menuItem, index) => (
           <MenuItem key={index} {...menuItem} />
         ))}
+        <button onClick={logOut}>Exit</button>
       </ul>
     </nav>
   );
