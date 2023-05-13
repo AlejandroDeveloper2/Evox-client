@@ -7,12 +7,12 @@ import LogoDark from "../assets/logo-2.png";
 import { Toast, Toggle } from "../components";
 
 const Layout = () => {
-  const { isAuth } = useAuth();
+  const { auth } = useAuth();
   const { theme } = useTheme();
 
   return (
     <>
-      {isAuth ? (
+      {auth ? (
         <Navigate to="/dashboard" />
       ) : (
         <main

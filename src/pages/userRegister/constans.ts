@@ -66,7 +66,7 @@ export const fields: Field[] = [
     as: "input",
   },
   {
-    type: "text",
+    type: "number",
     name: "phone",
     label: "Phone *",
     placeholder: "Enter your phone number",

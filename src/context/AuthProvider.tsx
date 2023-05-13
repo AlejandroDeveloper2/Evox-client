@@ -66,6 +66,7 @@ const AuthProvider = ({ children }: AuthContextType) => {
           setAuth(userAuth);
           navigate("/dashboard");
         } else {
+          setAuth(null);
           navigate("/login");
         }
       });

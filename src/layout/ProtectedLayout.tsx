@@ -7,12 +7,12 @@ import { useApp, useAuth } from "../hooks";
 import { Header, LateralMenu, Footer } from "../components";
 
 const ProtectedLayout = (): JSX.Element => {
-  const { isAuth } = useAuth();
+  const { auth } = useAuth();
   const { toggleLateralMenu, isMenuVisible } = useApp();
 
   return (
     <>
-      {isAuth ? (
+      {auth ? (
         <main className="bg-primary-color dark:bg-mediumGray w-screen h-screen overflow-x-hidden relative">
           <Header pageName="Home" />
           <div className="flex h-auto relative w-full lg:w-3/4 shadow-lg mt-[5rem] mb-[1rem] mx-auto">
