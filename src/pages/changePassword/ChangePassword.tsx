@@ -19,7 +19,7 @@ const ChangePassword = (): JSX.Element => {
   }, []);
 
   return (
-    <div className="w-full bg-white flex justify-center items-center flex-col gap-1 pb-6  rounded-t-[20px] relative">
+    <div className="w-full bg-white flex justify-center items-center flex-col gap-1 pb-6  rounded-t-[20px] relative dark:bg-darkGray">
       <img
         src={LoginImage}
         alt="Login image"

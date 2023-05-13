@@ -26,7 +26,7 @@ export const getFormButtons = (
       type: "submit",
       label: "Send instructions",
       theme: {
-        bg: "bg-blue",
+        bg: "bg-blue dark:bg-purple",
         color: "text-white",
       },
     },

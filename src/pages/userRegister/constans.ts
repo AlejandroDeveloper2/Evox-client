@@ -5,7 +5,7 @@ import {
   faLock,
   faUser,
   faLocationDot,
-  faPhone
+  faPhone,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { Field, CustomButtonProps, RegisterFormValues } from "../../types";
@@ -16,7 +16,7 @@ export const initialvalues: RegisterFormValues = {
   confirmPassword: "",
   username: "",
   fullName: "",
-  phone:"",
+  phone: "",
   typeOfIdentification: "",
   identification: "",
   country: "",
@@ -121,7 +121,7 @@ export const buttons: CustomButtonProps[] = [
     type: "submit",
     label: "Create an account",
     theme: {
-      bg: "bg-blue",
+      bg: "bg-blue dark:bg-purple",
       color: "text-white",
     },
   },

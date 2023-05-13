@@ -11,7 +11,7 @@ import LoginImage from "../../assets/login-image.svg";
 const Login = () => {
   const { logIn } = useAuth();
   return (
-    <div className="w-full bg-white flex justify-center items-center flex-col gap-1 pb-6  rounded-t-[20px] relative">
+    <div className="w-full bg-white flex justify-center items-center flex-col gap-1 pb-6 relative dark:bg-darkGray">
       <img
         src={LoginImage}
         alt="Login image"
@@ -27,9 +27,9 @@ const Login = () => {
         cols="1"
         login
         form="login"
-        action={(values:FormikValues)=>logIn(values)}
+        action={(values: FormikValues) => logIn(values)}
       />
-      <h2 className="font-montserrat text-darkGray font-medium text-[16px]">
+      <h2 className="font-montserrat text-darkGray font-medium text-[16px] dark:text-white">
         Don't you have an account?{" "}
         <Link to="/" className="font-montserrat text-purple font-extrabold">
           {" "}

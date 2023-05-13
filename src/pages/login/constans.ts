@@ -34,7 +34,7 @@ export const buttons: CustomButtonProps[] = [
     type: "submit",
     label: "Login",
     theme: {
-      bg: "bg-blue",
+      bg: "bg-blue dark:bg-purple",
       color: "text-white",
     },
   },

@@ -9,11 +9,11 @@ const ProtectedLayout = (): JSX.Element => {
   return (
     <>
       {isAuth ? (
-        <main className="bg-primary-color w-screen h-screen overflow-x-hidden relative">
+        <main className="bg-primary-color dark:bg-mediumGray w-screen h-screen overflow-x-hidden relative">
           <Header pageName="Home" />
           <div className="flex h-full relative w-full lg:w-3/4 shadow-lg my-[5rem] mx-auto">
             <LateralMenu />
-            <div className="bg-white lg:w-[80%] w-full">
+            <div className="bg-white dark:bg-darkGray lg:w-[80%] w-full">
               <Outlet />
             </div>
           </div>

@@ -13,7 +13,7 @@ const UserRegister = () => {
   const { createAccount } = useAuth();
 
   return (
-    <div className="w-full bg-white dark:bg-darkGray flex justify-center items-center flex-col gap-1 pb-6 rounded-t-[20px] md:pb-[60px] relative">
+    <div className="w-full bg-white dark:bg-darkGray flex justify-center items-center flex-col gap-1 pb-6 md:pb-[60px] relative">
       <img
         src={RegisterImage}
         alt="Register image"
@@ -28,7 +28,7 @@ const UserRegister = () => {
         hasCaptcha
         cols="2"
         form="register"
-        action={(values: FormikValues)=>createAccount(values)}
+        action={(values: FormikValues) => createAccount(values)}
       />
       <h2 className="font-montserrat text-darkGray dark:text-white font-medium text-[16px]">
         Do you already have an account?{" "}

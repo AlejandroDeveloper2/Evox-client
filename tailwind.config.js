@@ -6,6 +6,7 @@ export default {
       darkGray: "#282828",
       "primary-color": "#e6e6e6",
       white: "#ffffff",
+      mediumGray: "#545454",
       lightBlue: "#00c9ec",
       blue: "#0f54f0",
       darkBlue: "#000036",

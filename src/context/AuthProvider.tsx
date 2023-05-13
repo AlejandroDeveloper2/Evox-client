@@ -9,7 +9,7 @@ import {
   validateChangePassToken,
   validateBearerToken,
   recoverPassword,
-  updatePassword
+  updatePassword,
 } from "../services/authentication";
 import {
   AuthContextType,
@@ -154,7 +154,7 @@ const AuthProvider = ({ children }: AuthContextType) => {
     );
   };
 
-  const changeUserPassword=async(userData:FormikValues):Promise<void>=>{
+  const changeUserPassword = async (userData: FormikValues): Promise<void> => {
     setLoading({
       message: "Updating password...",
       visible: true,
@@ -178,11 +178,11 @@ const AuthProvider = ({ children }: AuthContextType) => {
         });
       }
     );
-  }
+  };
 
   React.useEffect(() => {
     checkIsUserAuth();
-    console.log("auht");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -195,7 +195,7 @@ const AuthProvider = ({ children }: AuthContextType) => {
         createAccount,
         checkChangePassToken,
         sendRequestPassword,
-        changeUserPassword
+        changeUserPassword,
       }}
     >
       {children}

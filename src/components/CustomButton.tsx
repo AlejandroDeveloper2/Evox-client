@@ -11,7 +11,7 @@ const CustomButton = (props: CustomButtonProps): JSX.Element => {
       onClick={props.onClick}
       className={`${props.theme.color} ${
         props.disabled
-          ? "bg-blue bg-opacity-50"
+          ? "bg-blue dark:bg-purple dark:bg-opacity-40 bg-opacity-50"
           : `hover:bg-opacity-80 ${props.theme.bg}`
       } 
        w-full focus:ring-4 focus:ring-blue-300 font-medium 

@@ -55,7 +55,7 @@ const MenuItem = (props: MenuItemType): JSX.Element => {
           icon={rightIcon}
           className={`absolute top-4 right-2 ${
             !isSubitemsVisible ? "rotate-[0deg]" : "rotate-90"
-          } transition-transform`}
+          } transition-transform text-darkGray dark:text-white`}
         />
       )}
       {subItems && <SubItems {...props} />}

@@ -27,14 +27,14 @@ const CustomInput = (props: CustomInputProps): JSX.Element => {
         }`}
       >
         <span
-          className={`flex justify-center items-center py-3 ps-3 h-full bg-white`}
+          className={`flex justify-center items-center py-3 ps-3 h-full bg-white dark:bg-mediumGray`}
         >
           <FontAwesomeIcon
             icon={field.icon}
             className={`${
               errors[field.name] && touched[field.name]
                 ? "text-error"
-                : "text-darkGray"
+                : "text-darkGray dark:text-white"
             }`}
           />
         </span>
@@ -44,9 +44,8 @@ const CustomInput = (props: CustomInputProps): JSX.Element => {
             type={field.type}
             placeholder={field.placeholder}
             name={field.name}
-            className={`border-none outline-none py-3 px-4 w-full text-[14px] font-poppins ${
-              field.disabled && "text-darkGray dark:text-white"
-            }`}
+            className={`border-none outline-none py-3 px-4 w-full text-[14px] 
+            font-poppins bg-white dark:bg-mediumGray text-darkGray dark:text-white`}
             disabled={field.disabled ? field.disabled : false}
             value={
               field.name === "referral"
@@ -56,7 +55,11 @@ const CustomInput = (props: CustomInputProps): JSX.Element => {
           >
             <option value="">...Select...</option>
             {countries.map((country, i) => (
-              <option key={i} value={country.name.common}>
+              <option
+                key={i}
+                value={country.name.common}
+                className="text-darkGray dark:text-white font-poppins"
+              >
                 {country.name.common}
               </option>
             ))}
@@ -69,7 +72,7 @@ const CustomInput = (props: CustomInputProps): JSX.Element => {
             name={field.name}
             className={`border-none outline-none py-3 px-4 w-full text-[14px] font-poppins ${
               field.disabled && "text-darkGray"
-            }`}
+            } dark:bg-mediumGray bg-white dark:placeholder:text-primary-color dark:placeholder:text-opacity-60  dark:text-white`}
             disabled={field.disabled ? field.disabled : false}
             value={
               field.name === "referral"
