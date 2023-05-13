@@ -120,6 +120,12 @@ const UserDashboard = (): JSX.Element => {
           />
         </div>
       </section>
+      <section className="p-5 w-full">
+        <div className="rounded shadow-xl  w-full bg-primary-color p-2 flex justify-between">
+          <p>https://evox/ref/DiegoFelipe</p>
+          <button>Copiar</button>
+        </div>
+      </section>
     </div>
   );
 };
