@@ -8,6 +8,6 @@ export { default as LateralMenu } from "./lateralMenu/LateralMenu";
 export { default as Dropdown } from "./Dropdown";
 export { default as Avatar } from "./Avatar";
 export { default as MenuItem } from "./MenuItem";
-export { default as Footer } from "./Footer";
+export { default as Footer } from "./footer/Footer";
 export { default as Toggle } from "./Toggle";
 export { default as Loader } from "./Loader";

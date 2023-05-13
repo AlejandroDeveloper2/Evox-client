@@ -24,7 +24,7 @@ const AuthContext = React.createContext<AuthContextType>({} as AuthContextType);
 
 const AuthProvider = ({ children }: AuthContextType) => {
   const [auth, setAuth] = React.useState<UserAuth | null>(null);
-  const [isAuth, setIsAuth] = React.useState<boolean>(false);
+  const [isAuth, setIsAuth] = React.useState<boolean>(true);
 
   const { setToast, setLoading, setIsValidating, setLoader } = useApp();
   const location = useLocation();

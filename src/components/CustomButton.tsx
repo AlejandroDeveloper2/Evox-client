@@ -12,7 +12,7 @@ const CustomButton = (props: CustomButtonProps): JSX.Element => {
       className={`${props.theme.color} ${
         props.disabled
           ? "bg-blue dark:bg-purple dark:bg-opacity-40 bg-opacity-50"
-          : `hover:bg-opacity-80 ${props.theme.bg}`
+          : `hover:bg-opacity-80 dark:hover:bg-opacity-80 transition-all ${props.theme.bg}`
       } 
        w-full focus:ring-4 focus:ring-blue-300 font-medium 
        rounded-lg text-sm px-5 py-5 mr-2 mb-2 

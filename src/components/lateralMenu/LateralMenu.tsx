@@ -1,4 +1,4 @@
-import { faClose, faBars, faPowerOff } from "@fortawesome/free-solid-svg-icons";
+import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { menuItems } from "./constans";
@@ -9,7 +9,7 @@ import Logo from "../../assets/logo.png";
 import LogoDark from "../../assets/logo-2.png";
 
 const LateralMenu = (): JSX.Element => {
-  const { isMenuVisible, toggleLateralMenu } = useApp();
+  const { isMenuVisible } = useApp();
   const { logOut } = useAuth();
   const { theme } = useTheme();
 
@@ -20,17 +20,8 @@ const LateralMenu = (): JSX.Element => {
        ${
          isMenuVisible ? "translate-x-0" : "translate-x-[-100%]"
        } lg:translate-x-0
-      bg-primary-color dark:bg-mediumGray py-5 gap-5 lg:w-1/5 fixed top-[5rem] left-0 lg:relative lg:top-0`}
+      bg-primary-color dark:bg-mediumGray py-5 gap-5 lg:w-1/5 fixed top-[5rem] left-0 lg:relative lg:top-0 z-10`}
     >
-      <button
-        className="absolute right-[-2.5rem] top-0 w-10 h-10 bg-primary-color rounded-e-lg lg:hidden dark:bg-mediumGray"
-        onClick={toggleLateralMenu}
-      >
-        <FontAwesomeIcon
-          icon={isMenuVisible ? faClose : faBars}
-          className="text-darkGray dark:text-white"
-        />
-      </button>
       <div className="w-full h-[5rem] flex justify-center items-center">
         <img
           src={theme === "light" ? Logo : LogoDark}

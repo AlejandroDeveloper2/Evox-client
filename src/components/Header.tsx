@@ -8,7 +8,7 @@ import { Dropdown, Toggle } from ".";
 const Header = (props: HeaderProps): JSX.Element => {
   const { pageName } = props;
   return (
-    <div className="w-screen bg-white dark:bg-darkGray h-[5rem] flex justify-around items-center fixed z-10">
+    <div className="w-screen bg-white dark:bg-darkGray h-[5rem] flex justify-around items-center fixed z-20">
       <h1 className="text-darkGray dark:text-white text-[20px] md:text-[24px] text-center font-montserrat font-bold">
         {pageName}
       </h1>

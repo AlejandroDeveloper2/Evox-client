@@ -16,7 +16,7 @@ const Toast = (): JSX.Element => {
       className={`flex justify-start items-center gap-1 ${setToastColor(
         toast.type
       )} ${
-        toast.visible ? "translate-x-[0px]" : "translate-x-[100%]"
+        toast.visible ? "translate-x-[0px]" : "translate-x-[110%]"
       } transition-transform absolute bottom-2 md:bottom-[3rem] right-2 w-[80%] p-[25px] md:w-1/5 z-40 rounded-lg`}
     >
       <FontAwesomeIcon
