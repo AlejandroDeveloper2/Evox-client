@@ -10,6 +10,7 @@ import {
   validateBearerToken,
   recoverPassword,
   updatePassword,
+  activeAccount,
 } from "../services/authentication";
 import {
   AuthContextType,
@@ -24,7 +25,7 @@ const AuthContext = React.createContext<AuthContextType>({} as AuthContextType);
 
 const AuthProvider = ({ children }: AuthContextType) => {
   const [auth, setAuth] = React.useState<UserAuth | null>(null);
-  const [isAuth, setIsAuth] = React.useState<boolean>(true);
+  const [isAuth, setIsAuth] = React.useState<boolean>(false);
 
   const { setToast, setLoading, setIsValidating, setLoader } = useApp();
   const location = useLocation();
@@ -180,6 +181,33 @@ const AuthProvider = ({ children }: AuthContextType) => {
     );
   };
 
+  const validateAccount = async (): Promise<void> => {
+    const token = location.pathname.split("/")[2];
+
+    setIsValidating(true);
+    setLoader({
+      message: "Loading....",
+      loading: true,
+    });
+
+    await activeAccount(token).then(
+      (res: ServerResponseSuccess | ServerResponseFail) => {
+        if (res) {
+          setIsValidating(false);
+          setLoader({
+            message: res.message,
+            loading: false,
+          });
+        } else {
+          setLoader({
+            message: "Invalid Token!, please try again!",
+            loading: false,
+          });
+        }
+      }
+    );
+  };
+
   React.useEffect(() => {
     checkIsUserAuth();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -196,6 +224,7 @@ const AuthProvider = ({ children }: AuthContextType) => {
         checkChangePassToken,
         sendRequestPassword,
         changeUserPassword,
+        validateAccount,
       }}
     >
       {children}

@@ -7,6 +7,7 @@ import {
   RecoverPassword,
   UserDashboard,
   ChangePassword,
+  ActivateAccount,
 } from "./pages";
 import { AppProvider, AuthProvider, ThemeProvider } from "./context";
 
@@ -66,6 +67,9 @@ function App() {
             changeUserPassword={function (): Promise<void> {
               throw new Error("Function not implemented.");
             }}
+            validateAccount={function (): Promise<void> {
+              throw new Error("Function not implemented.");
+            }}
           >
             <Routes>
               <Route path="/" element={<Layout />}>
@@ -76,6 +80,10 @@ function App() {
                 <Route
                   path="/changePassword/:token"
                   element={<ChangePassword />}
+                />
+                <Route
+                  path="/activateAccount/:token"
+                  element={<ActivateAccount />}
                 />
               </Route>
               <Route path="/dashboard" element={<ProtectedLayout />}>

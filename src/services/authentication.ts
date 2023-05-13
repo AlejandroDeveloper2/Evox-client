@@ -113,6 +113,24 @@ const updatePassword = async (userData: FormikValues, token: string) => {
   return response;
 };
 
+const activeAccount = async (token: string) => {
+  const axiosClient = getAxiosClient("evoxAPI");
+  let response: ServerResponseSuccess | ServerResponseFail = {
+    message: "",
+    typeStatus: "Success",
+  };
+  //[3]
+  try {
+    const { data } = await axiosClient.get<
+      ServerResponseSuccess | ServerResponseFail
+    >(`/auth/activateAccount/${token}`);
+    response = data;
+  } catch (error: any) {
+    response = error.response.data;
+  }
+  return response;
+};
+
 export {
   authenticateUser,
   registerUser,
@@ -120,4 +138,5 @@ export {
   validateBearerToken,
   recoverPassword,
   updatePassword,
+  activeAccount,
 };
