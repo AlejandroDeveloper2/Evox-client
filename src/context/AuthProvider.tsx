@@ -192,18 +192,10 @@ const AuthProvider = ({ children }: AuthContextType) => {
 
     await activeAccount(token).then(
       (res: ServerResponseSuccess | ServerResponseFail) => {
-        if (res) {
-          setIsValidating(false);
-          setLoader({
-            message: res.message,
-            loading: false,
-          });
-        } else {
-          setLoader({
-            message: "Invalid Token!, please try again!",
-            loading: false,
-          });
-        }
+        setLoader({
+          message: res.message,
+          loading: false,
+        });
       }
     );
   };
