@@ -19,10 +19,18 @@ function App() {
         userIP={{ ip: "", country_name: "", browser_name: "" }}
         loading={{ message: "", visible: false }}
         toast={{ message: "", type: "success", visible: false }}
+        isValidating={false}
+        loader={{ message: "", loading: false }}
         setLoading={function (): void {
           throw new Error("Function not implemented.");
         }}
         setToast={function (): void {
+          throw new Error("Function not implemented.");
+        }}
+        setIsValidating={function (): void {
+          throw new Error("Function not implemented.");
+        }}
+        setLoader={function (): void {
           throw new Error("Function not implemented.");
         }}
         isMenuVisible={false}
@@ -47,6 +55,15 @@ function App() {
               throw new Error("Function not implemented.");
             }}
             createAccount={function (): Promise<void> {
+              throw new Error("Function not implemented.");
+            }}
+            checkChangePassToken={function (): Promise<void> {
+              throw new Error("Function not implemented.");
+            }}
+            sendRequestPassword={function (): Promise<void> {
+              throw new Error("Function not implemented.");
+            }}
+            changeUserPassword={function (): Promise<void> {
               throw new Error("Function not implemented.");
             }}
           >

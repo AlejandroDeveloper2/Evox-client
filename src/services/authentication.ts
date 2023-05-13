@@ -74,7 +74,7 @@ const validateBearerToken = async (token: string): Promise<boolean> => {
     const { data } = await axiosClient(`/auth/validate`, config);
     response = data;
   } catch (error: any) {
-    console.log(error)
+    console.log(error);
   }
   return response;
 };
@@ -94,7 +94,7 @@ const recoverPassword = async (userData: FormikValues) => {
     response = error.response.data;
   }
   return response;
-}
+};
 
 const updatePassword = async (userData: FormikValues, token: string) => {
   const axiosClient = getAxiosClient("evoxAPI");
@@ -111,6 +111,13 @@ const updatePassword = async (userData: FormikValues, token: string) => {
     response = error.response.data;
   }
   return response;
-}
+};
 
-export { authenticateUser, registerUser, validateChangePassToken, validateBearerToken, recoverPassword, updatePassword };
+export {
+  authenticateUser,
+  registerUser,
+  validateChangePassToken,
+  validateBearerToken,
+  recoverPassword,
+  updatePassword,
+};
