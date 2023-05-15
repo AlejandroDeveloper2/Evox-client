@@ -2,11 +2,11 @@ import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { menuItems } from "./constans";
-import { useApp, useAuth, useTheme } from "../../hooks";
+import { useApp, useAuth, useTheme } from "../../../hooks";
 
-import { Avatar, MenuItem } from "..";
-import Logo from "../../assets/logo.png";
-import LogoDark from "../../assets/logo-2.png";
+import { Avatar, MenuItem } from "../..";
+import Logo from "../../../assets/logo.png";
+import LogoDark from "../../../assets/logo-2.png";
 
 const LateralMenu = (): JSX.Element => {
   const { isMenuVisible } = useApp();

@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
-import { useApp } from "../hooks";
+import { useApp } from "../../hooks";
 
-import { Spinner } from ".";
+import { Spinner } from "..";
 
 const Loader = (): JSX.Element => {
   const { setIsValidating, loader } = useApp();

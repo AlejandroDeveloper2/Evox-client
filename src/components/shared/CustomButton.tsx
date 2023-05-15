@@ -1,7 +1,7 @@
-import { CustomButtonProps } from "../types";
-import { useApp } from "../hooks";
+import { CustomButtonProps } from "../../types";
+import { useApp } from "../../hooks";
 
-import { Spinner } from ".";
+import { Spinner } from "..";
 
 const CustomButton = (props: CustomButtonProps): JSX.Element => {
   const { loading } = useApp();
@@ -15,7 +15,7 @@ const CustomButton = (props: CustomButtonProps): JSX.Element => {
           : `hover:bg-opacity-80 dark:hover:bg-opacity-80 transition-all ${props.theme.bg}`
       } 
        w-full focus:ring-4 focus:ring-blue-300 font-medium 
-       rounded-lg text-sm px-5 py-5 mr-2 mb-2 
+       rounded-lg text-sm px-5 py-5
        focus:outline-none text-[18px] font-poppins cursor-pointer
         lg:rounded-xl lg:text-[20px] flex justify-center items-center gap-3
       `}

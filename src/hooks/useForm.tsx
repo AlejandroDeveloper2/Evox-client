@@ -11,7 +11,7 @@ import {
   FormType,
 } from "../types";
 import { toggleButton, setFormValues } from "../utils";
-import { useApp } from ".";
+import { useApp, useAuth } from ".";
 
 import { CustomButton, CustomInput } from "../components";
 
@@ -19,14 +19,15 @@ const useForm = (
   fields: FieldType[],
   buttons: CustomButtonProps[],
   form: FormType,
-  action: (values:FormikValues)=>void,
-  hasCaptcha?: boolean,
+  action: (values: FormikValues) => void,
+  hasCaptcha?: boolean
 ): FormHook => {
   const [isCaptchaChecked, setIsCaptchaChecked] =
     React.useState<boolean>(false);
   const captcha = React.useRef<ReCAPTCHA>(null);
   const location = useLocation();
   const { userIP } = useApp();
+  const { success } = useAuth();
 
   const renderFormInputs = (config: RenderInputProps): JSX.Element[] => {
     return fields.map((field, index) => (
@@ -78,7 +79,7 @@ const useForm = (
     const newValues = setFormValues(values, form, { location, userIp: userIP });
     action(newValues);
     captcha.current?.reset();
-    formikHelpers.resetForm();
+    if (success) formikHelpers.resetForm();
   };
 
   return {

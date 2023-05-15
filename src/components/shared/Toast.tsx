@@ -6,8 +6,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { useApp } from "../hooks";
-import { setToastColor } from "../utils";
+import { useApp } from "../../hooks";
+import { setToastColor } from "../../utils";
 
 const Toast = (): JSX.Element => {
   const { toast, setToast } = useApp();

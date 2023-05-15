@@ -1,6 +1,6 @@
 import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useTheme } from "../hooks";
+import { useTheme } from "../../hooks";
 
 const Toggle = (): JSX.Element => {
   const { theme, toggleTheme } = useTheme();

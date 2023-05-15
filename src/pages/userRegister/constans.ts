@@ -79,7 +79,8 @@ export const fields: Field[] = [
     label: "Type of identification *",
     placeholder: "Enter the type of identification",
     icon: faAddressCard,
-    as: "input",
+    as: "select",
+    selectName: "identification",
   },
   {
     type: "text",
@@ -96,6 +97,7 @@ export const fields: Field[] = [
     placeholder: "País emisor de tu identificación",
     icon: faEarthAmericas,
     as: "select",
+    selectName: "countries",
   },
   {
     type: "text",
@@ -104,6 +106,7 @@ export const fields: Field[] = [
     placeholder: "Choose your country",
     icon: faLocationDot,
     as: "select",
+    selectName: "countries",
   },
   {
     type: "text",

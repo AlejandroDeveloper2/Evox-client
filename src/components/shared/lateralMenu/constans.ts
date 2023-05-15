@@ -22,7 +22,7 @@ import {
   faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { MenuItem } from "../../types";
+import { MenuItem } from "../../../types";
 
 export const menuItems: MenuItem[] = [
   {

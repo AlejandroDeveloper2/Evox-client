@@ -47,6 +47,7 @@ export interface Field {
   icon: IconDefinition;
   disabled?: boolean;
   as: "input" | "textarea" | "select";
+  selectName?: "countries" | "identification";
 }
 
 export interface CustomButtonProps {
@@ -108,6 +109,13 @@ export interface CustomInputProps extends RenderInputProps {
   field: Field;
 }
 
+export interface Identification {
+  identification: {
+    name: string;
+    value: string;
+  };
+}
+
 export interface AppContextType {
   children?: JSX.Element | JSX.Element[];
   countries: Country[];
@@ -127,7 +135,7 @@ export interface AppContextType {
 export interface AuthContextType {
   children?: JSX.Element | JSX.Element[];
   auth: UserAuth | null;
-  isAuth: boolean;
+  success: boolean;
   logIn: (userData: FormikValues) => Promise<void>;
   logOut: () => void;
   createAccount: (userData: FormikValues) => Promise<void>;
@@ -170,8 +178,10 @@ export interface MenuItem {
 
 export interface UserAuth {
   sub: string;
+  fullName: string;
   state: boolean;
   roles: Role[];
+  refLink: string;
   iat: number;
   exp: number;
 }
@@ -197,4 +207,14 @@ export interface LoginReasponse extends ServerResponseFail {
 export interface LoaderProps {
   message: string;
   loading: boolean;
+}
+
+export interface SelectOptionsHook {
+  renderSelectOptions: () => JSX.Element[];
+}
+
+export interface ServiceCardProps {
+  serviceImage: string;
+  alt: string;
+  to: string;
 }

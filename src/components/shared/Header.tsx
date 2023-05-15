@@ -1,9 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell } from "@fortawesome/free-solid-svg-icons";
 
-import { HeaderProps } from "../types";
+import { HeaderProps } from "../../types";
 
-import { Dropdown, Toggle } from ".";
+import { Dropdown, Toggle } from "..";
 
 const Header = (props: HeaderProps): JSX.Element => {
   const { pageName } = props;

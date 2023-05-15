@@ -47,7 +47,6 @@ function App() {
         >
           <AuthProvider
             auth={null}
-            isAuth={false}
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             logIn={function (): Promise<void> {
               throw new Error("Function not implemented.");
@@ -70,6 +69,7 @@ function App() {
             validateAccount={function (): Promise<void> {
               throw new Error("Function not implemented.");
             }}
+            success={false}
           >
             <Routes>
               <Route path="/" element={<Layout />}>

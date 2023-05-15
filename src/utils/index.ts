@@ -9,17 +9,21 @@ interface FormConfig {
 }
 
 const formatUserID = (userID: string): string => {
-  const characters = [".", "-", ":", ","];
-  let idUserValues: string[] = [];
-  characters.forEach((character) => {
-    if (userID.includes(character)) {
-      idUserValues = userID.split(character);
+  let newUserID = "";
+  for (let index = 0; index < userID.length; index++) {
+    let element = userID[index];
+    if (
+      element === "." ||
+      element === "-" ||
+      element === ":" ||
+      element === ","
+    ) {
+      element = "";
     } else {
-      idUserValues = [userID];
+      newUserID += element;
     }
-  });
-  const formattedUserId = idUserValues.join("");
-  return formattedUserId;
+  }
+  return newUserID;
 };
 
 const toggleButton = (
@@ -60,10 +64,15 @@ const setFormValues = (
       ? {
           ...values,
           identification: newUserID,
-          invitationLink: `https://evox/ref/${values.username}`,
+          username: values.username.replace(/ /g, ""),
+          invitationLink: `https://evox/ref/${values.username.replace(
+            / /g,
+            ""
+          )}`,
         }
       : {
           ...values,
+          username: values.username.replace(/ /g, ""),
           identification: newUserID,
         };
     return newValues;
@@ -104,6 +113,7 @@ const setActiveMenuItem = (to: string, pathName: string): string[] => {
       : ["bg-white dark:bg-darkGray", "text-darkGray dark:text-white"];
   return activeStyles;
 };
+
 export {
   formatUserID,
   toggleButton,

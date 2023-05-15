@@ -25,7 +25,7 @@ const AuthContext = React.createContext<AuthContextType>({} as AuthContextType);
 
 const AuthProvider = ({ children }: AuthContextType) => {
   const [auth, setAuth] = React.useState<UserAuth | null>(null);
-  const [isAuth, setIsAuth] = React.useState<boolean>(false);
+  const [success, setSuccess] = React.useState<boolean>(false);
 
   const { setToast, setLoading, setIsValidating, setLoader } = useApp();
   const location = useLocation();
@@ -52,6 +52,7 @@ const AuthProvider = ({ children }: AuthContextType) => {
         const userAuth = decodeToken<UserAuth>(res.token);
         localStorage.setItem("token", res.token);
         setAuth(userAuth);
+        setSuccess(true);
       }
     });
   };
@@ -60,7 +61,6 @@ const AuthProvider = ({ children }: AuthContextType) => {
     const token = localStorage.getItem("token");
     if (token) {
       await validateBearerToken(token).then((res) => {
-        setIsAuth(res);
         if (res) {
           const userAuth = decodeToken<UserAuth>(token);
           setAuth(userAuth);
@@ -76,7 +76,6 @@ const AuthProvider = ({ children }: AuthContextType) => {
   const logOut = (): void => {
     localStorage.removeItem("token");
     setAuth(null);
-    setIsAuth(false);
   };
 
   const createAccount = async (userData: FormikValues): Promise<void> => {
@@ -100,6 +99,7 @@ const AuthProvider = ({ children }: AuthContextType) => {
               : "success",
           visible: true,
         });
+        if (res.typeStatus === "Success") setSuccess(true);
       }
     );
   };
@@ -137,7 +137,6 @@ const AuthProvider = ({ children }: AuthContextType) => {
     });
     await recoverPassword(userData).then(
       (res: ServerResponseSuccess | ServerResponseFail) => {
-        console.log(res);
         setLoading({
           message: "",
           visible: false,
@@ -152,6 +151,7 @@ const AuthProvider = ({ children }: AuthContextType) => {
               : "success",
           visible: true,
         });
+        if (res.typeStatus === "Success") setSuccess(true);
       }
     );
   };
@@ -178,13 +178,13 @@ const AuthProvider = ({ children }: AuthContextType) => {
               : "success",
           visible: true,
         });
+        if (res.typeStatus === "Success") setSuccess(true);
       }
     );
   };
 
   const validateAccount = async (): Promise<void> => {
     const token = location.pathname.split("/")[2];
-
     setIsValidating(true);
     setLoader({
       message: "Loading....",
@@ -193,6 +193,7 @@ const AuthProvider = ({ children }: AuthContextType) => {
 
     await activeAccount(token).then(
       (res: ServerResponseSuccess | ServerResponseFail) => {
+        setIsValidating(false);
         setLoader({
           message: res.message,
           loading: false,
@@ -210,7 +211,7 @@ const AuthProvider = ({ children }: AuthContextType) => {
     <AuthContext.Provider
       value={{
         auth,
-        isAuth,
+        success,
         logIn,
         logOut,
         createAccount,

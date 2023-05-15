@@ -22,18 +22,15 @@ const ActiveAccount = (): JSX.Element => {
         alt="Login image"
         className=" absolute hidden lg:block lg:left-[-12%] w-1/4 h-1/4 lg:animate-wiggle"
       />
-      {isValidating ? (
-        <Loader />
-      ) : (
-        <>
-          <h2 className="font-montserrat text-darkGray font-medium text-[16px]">
-            Return to
-            <Link to="/" className="font-montserrat text-purple font-extrabold">
-              {" "}
-              Log in
-            </Link>
-          </h2>
-        </>
+      <Loader />
+      {!isValidating && (
+        <h2 className="font-montserrat text-darkGray font-medium text-[16px]">
+          Return to
+          <Link to="/" className="font-montserrat text-purple font-extrabold">
+            {" "}
+            Log in
+          </Link>
+        </h2>
       )}
     </div>
   );

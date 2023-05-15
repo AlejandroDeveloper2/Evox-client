@@ -2,8 +2,8 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { setActiveMenuItem } from "../utils";
-import { MenuItem as MenuItemType } from "../types";
+import { setActiveMenuItem } from "../../utils";
+import { MenuItem as MenuItemType } from "../../types";
 
 const MenuItem = (props: MenuItemType): JSX.Element => {
   const { leftIcon, rightIcon, label, to, subItems } = props;

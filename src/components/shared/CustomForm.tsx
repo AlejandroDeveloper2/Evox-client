@@ -1,12 +1,18 @@
 import { Formik, Form } from "formik";
 import { Link } from "react-router-dom";
 
-import { CustomFormProps } from "../types";
-import { useForm } from "../hooks";
+import { CustomFormProps } from "../../types";
+import { useForm } from "../../hooks";
 
 const CustomForm = (props: CustomFormProps): JSX.Element => {
   const { renderFormInputs, renderFormButtons, renderReCaptcha, onSubmit } =
-    useForm(props.fields, props.buttons, props.form, props.action, props.hasCaptcha);
+    useForm(
+      props.fields,
+      props.buttons,
+      props.form,
+      props.action,
+      props.hasCaptcha
+    );
 
   return (
     <Formik

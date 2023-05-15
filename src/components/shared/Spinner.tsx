@@ -1,4 +1,4 @@
-import { useApp } from "../hooks";
+import { useApp } from "../../hooks";
 
 const Spinner = (): JSX.Element => {
   const { loading } = useApp();
