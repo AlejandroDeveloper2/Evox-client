@@ -55,20 +55,18 @@ const setFormValues = (
 
   if (form === "register") {
     const newUserID = formatUserID(values.identification);
-    const invitationLink = location?.pathname.split("/")[1]
-      ? location?.pathname.split("/")[1]
+    const referral = location?.pathname.split("/")[1].replace(/ /g, "");
+    const invitationLink = referral
+      ? `https://evox/ref/${location?.pathname.split("/")[1]}`
       : null;
     delete values.confirmPassword;
     delete values.invitationLink;
-    newValues = invitationLink
+    newValues = referral
       ? {
           ...values,
           identification: newUserID,
           username: values.username.replace(/ /g, ""),
-          invitationLink: `https://evox/ref/${values.username.replace(
-            / /g,
-            ""
-          )}`,
+          invitationLink: invitationLink,
         }
       : {
           ...values,

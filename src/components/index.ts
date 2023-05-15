@@ -16,3 +16,6 @@ export { default as Loader } from "./shared/Loader";
 
 /*Home components */
 export { default as Welcome } from "./home/Welcome";
+export { default as ServiceCard } from "./home/ServiceCard";
+export { default as InvitationLink } from "./home/InvitationLink";
+export { default as CountDown } from "./home/countDown/CountDown";

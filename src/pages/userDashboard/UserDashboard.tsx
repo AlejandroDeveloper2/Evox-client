@@ -1,21 +1,20 @@
-import { useAuth } from "../../hooks";
+import { InvitationLink, Welcome } from "../../components";
 
-import ImageEvoxMarketing from "../../assets/image-evox-marketing.png";
-import ImageEvoxFunds from "../../assets/image-evox-funds.png";
-import ImageEvoxAcademy from "../../assets/image-evox-academy.png";
-import ImageEvoxMAM from "../../assets/image-evox-MAM.png";
-import ImageEvoxMentory from "../../assets/image-evox-mentory.png";
-import ImageEvoxMarkets from "../../assets/image-evox-markets.png";
-import ImageEvoxSyntetics from "../../assets/image-evox-syntetics.png";
-import HomeImage1 from "../../assets/home-image-1.png";
-import CardImage from "../../assets/image-card.png";
-
-import { CustomButton, Welcome } from "../../components";
+import {
+  ImageEvoxMarketing,
+  ImageEvoxFunds,
+  ImageEvoxAcademy,
+  ImageEvoxMAM,
+  ImageEvoxMentory,
+  ImageEvoxMarkets,
+  ImageEvoxSyntetics,
+  HomeImage1,
+  CardImage,
+} from "../../assets";
 
 const UserDashboard = (): JSX.Element => {
-  const { auth } = useAuth();
   return (
-    <div className="w-full flex flex-col justify-center items-start pb-5 h-auto gap-10">
+    <div className="w-full flex flex-col justify-center items-start pb-10 h-auto gap-10">
       <div className="w-full bg-lightBlue dark:bg-purple h-[10rem]"></div>
       {/*
       <section className="w-full relative flex flex-col lg:grid lg:grid-cols-3 justify-center items-center gap-5 lg:flex-row">
@@ -27,20 +26,8 @@ const UserDashboard = (): JSX.Element => {
           </span>
         </h1>
         <div className="w-full flex gap-3 justify-center px-10 lg:flex-col lg:w-auto">
-          <div className="w-[10rem] h-[18rem] rounded-[20px] overflow-hidden">
-            <img
-              src={ImageEvoxMarketing}
-              alt="Evox Marketing"
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="w-[10rem] h-[18rem] rounded-[20px] overflow-hidden">
-            <img
-              src={ImageEvoxFunds}
-              alt="Evox Funds"
-              className="w-full h-full object-cover"
-            />
-          </div>
+          <ServiceCard to="/" serviceImage={ ImageEvoxMarketing } alt="Evox Marketing" />
+          <ServiceCard to="/" serviceImage={ ImageEvoxFunds } alt="Evox Funds" />
         </div>
         <div className="w-full flex flex-wrap lg:flex-col gap-3 justify-center lg:w-full px-10 lg:px-0">
           <h1 className=" hidden lg:block lg:text-[30px] text-[24px] font-montserrat text-center text-darkBlue dark:text-white font-normal">
@@ -51,44 +38,14 @@ const UserDashboard = (): JSX.Element => {
             </span>
           </h1>
           <div className="w-full grid grid-cols-2 auto-cols-max lg:grid-cols-3  gap-10 lg:gap-[10rem] justify-items-center">
-            <div className="w-[10rem] h-[18rem] rounded-[20px] overflow-hidden">
-              <img
-                src={ImageEvoxAcademy}
-                alt="Evox Academy"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="w-[10rem] h-[18rem] rounded-[20px] lg:mt-20 overflow-hidden">
-              <img
-                src={ImageEvoxMAM}
-                alt="Evox MAM Accounts"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="w-[10rem] h-[18rem] rounded-[20px] lg:w-[10rem] overflow-hidden">
-              <img
-                src={ImageEvoxMentory}
-                alt="Evox Mentory"
-                className="w-full h-full object-cover"
-              />
-            </div>
+            <ServiceCard to="/" serviceImage={ ImageEvoxAcademy } alt="Evox Academy" />
+            <ServiceCard to="/" serviceImage={ ImageEvoxMAM } alt="Evox MAM Accounts" />
+            <ServiceCard to="/" serviceImage={ ImageEvoxMentory } alt="Evox Mentory" />
           </div>
         </div>
         <div className="w-full flex gap-3 justify-center lg:absolute lg:top-0 lg:flex-col lg:right-10 lg:w-auto">
-          <div className="w-[10rem] h-[18rem] rounded-[20px] overflow-hidden">
-            <img
-              src={ImageEvoxMarkets}
-              alt="Evox Markets"
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="w-[10rem] h-[18rem] rounded-[20px] overflow-hidden">
-            <img
-              src={ImageEvoxSyntetics}
-              alt="Evox Syntetics"
-              className="w-full h-full object-cover"
-            />
-          </div>
+          <ServiceCard to="/" serviceImage={ ImageEvoxMarkets } alt="Evox Markets" />
+          <ServiceCard to="/" serviceImage={ ImageEvoxSyntetics } alt="Evox Syntetics" />
         </div>
       </section>
 
@@ -127,27 +84,12 @@ const UserDashboard = (): JSX.Element => {
       <Welcome />
       <section className="w-full px-10 flex flex-col gap-3">
         <h1
-          className="lg:text-[24px] text-[20px] text-center lg:text-left font-montserrat 
-          text-darkBlue dark:text-white font-extrabold"
+          className="lg:text-[24px] text-[20px] text-center lg:text-left 
+          font-montserrat text-darkBlue dark:text-white font-extrabold"
         >
           My invitation link
         </h1>
-        <div
-          className="rounded-xl shadow-xl  w-full bg-primary-color p-4 flex lg:justify-between 
-        dark:bg-mediumGray items-center lg:flex-row flex-col gap-3 lg:gap-0 justify-center"
-        >
-          <p className=" font-montserrat font-medium dark:text-white text-darkGray lg:text-[20px]">
-            {auth?.refLink}
-          </p>
-          <CustomButton
-            type="button"
-            label="Copy"
-            theme={{
-              bg: "bg-blue dark:bg-purple w-[5rem] lg:w-[6rem]",
-              color: "text-white",
-            }}
-          />
-        </div>
+        <InvitationLink />
       </section>
     </div>
   );

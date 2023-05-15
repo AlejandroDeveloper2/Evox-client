@@ -218,3 +218,8 @@ export interface ServiceCardProps {
   alt: string;
   to: string;
 }
+
+export interface CountDownElement {
+  value: number;
+  label: string;
+}
