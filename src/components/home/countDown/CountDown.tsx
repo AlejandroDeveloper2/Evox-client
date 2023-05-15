@@ -1,7 +1,9 @@
 import { getCountDownElements } from "./constans";
+import { useCountdown } from "../../../hooks";
 
 const CountDown = (): JSX.Element => {
-  const countDownElements = getCountDownElements();
+  const { timerValues } = useCountdown();
+  const countDownElements = getCountDownElements(timerValues);
   return (
     <div
       className="w-full bg-primary-color dark:bg-mediumGray h-[10rem] rounded-xl flex 

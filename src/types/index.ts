@@ -223,3 +223,7 @@ export interface CountDownElement {
   value: number;
   label: string;
 }
+
+export interface CountDownHook {
+  timerValues: number[];
+}

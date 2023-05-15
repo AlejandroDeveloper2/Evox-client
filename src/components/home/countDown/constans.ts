@@ -1,21 +1,23 @@
 import { CountDownElement } from "../../../types";
 
-export const getCountDownElements = (): CountDownElement[] => {
+export const getCountDownElements = (
+  timerValues: number[]
+): CountDownElement[] => {
   const countDownElements: CountDownElement[] = [
     {
-      value: 0,
+      value: timerValues[0],
       label: "Days",
     },
     {
-      value: 0,
+      value: timerValues[1],
       label: "Hours",
     },
     {
-      value: 0,
+      value: timerValues[2],
       label: "Minutes",
     },
     {
-      value: 0,
+      value: timerValues[3],
       label: "Seconds",
     },
   ];
