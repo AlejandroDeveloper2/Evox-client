@@ -97,7 +97,7 @@ const setToastColor = (
       ? "bg-error"
       : type === "warning"
       ? "bg-warning"
-      : "bg-secondaryColor";
+      : "bg-lightBlue";
   return color;
 };
 
@@ -111,6 +111,10 @@ const setActiveMenuItem = (to: string, pathName: string): string[] => {
       : ["bg-white dark:bg-darkGray", "text-darkGray dark:text-white"];
   return activeStyles;
 };
+
+// const copyToClipBoard = (e: Event):void=>{
+  
+// }
 
 export {
   formatUserID,

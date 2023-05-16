@@ -68,6 +68,7 @@ const AuthProvider = ({ children }: AuthContextType) => {
         } else {
           setAuth(null);
           navigate("/login");
+          localStorage.removeItem("token");
         }
       });
     }

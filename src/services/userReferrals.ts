@@ -11,7 +11,7 @@ const getUserReferrals = async (token: string): Promise<Referral[]> => {
   };
   let response: Referral[] = [];
   try {
-    const { data } = await axiosClient.get("/api/users/unilevel", config);
+    const { data } = await axiosClient("/auth/users/unilevel", config);
     response = data;
   } catch (error) {
     console.log(error);

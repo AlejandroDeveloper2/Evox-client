@@ -21,10 +21,10 @@ const EvoxServicesProvider = ({ children }: EvoxContextType) => {
         setIsValidating(false);
         setLoader({ loading: false, message: "" });
         setUserReferrals(res);
+        console.log(res);
       });
     }
   };
-
   useFetchData([{ function: getAllUserReferrals }]);
 
   return (

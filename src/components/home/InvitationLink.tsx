@@ -1,11 +1,13 @@
 import { faCopy } from "@fortawesome/free-solid-svg-icons";
 
-import { useAuth } from "../../hooks";
+import { useApp, useAuth } from "../../hooks";
 
 import { CustomButton } from "..";
 
 const InvitationLink = (): JSX.Element => {
   const { auth } = useAuth();
+  const { setToast } = useApp();
+
   return (
     <section className="w-full px-10 flex flex-col gap-3">
       <h1
@@ -30,6 +32,11 @@ const InvitationLink = (): JSX.Element => {
             aditionalStyles: "w-[5rem] lg:w-[6rem]",
           }}
           icon={faCopy}
+          onClick={()=>setToast({
+            message:"Link copied!",
+            type:"success",
+            visible: true,
+          })}
         />
       </div>
     </section>

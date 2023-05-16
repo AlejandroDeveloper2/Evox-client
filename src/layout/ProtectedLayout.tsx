@@ -4,16 +4,17 @@ import { Outlet, Navigate } from "react-router-dom";
 
 import { useApp, useAuth } from "../hooks";
 
-import { Header, LateralMenu, Footer } from "../components";
+import { Header, LateralMenu, Footer, Toast } from "../components";
 
 const ProtectedLayout = (): JSX.Element => {
   const { auth } = useAuth();
   const { toggleLateralMenu, isMenuVisible } = useApp();
 
   return (
-    <>
+    <>   
       {auth ? (
         <main className="bg-primary-color dark:bg-mediumGray w-screen h-screen overflow-x-hidden relative">
+          <Toast />
           <Header pageName="Home" />
           <div className="flex h-auto relative w-full lg:w-3/4 shadow-lg mt-[5rem] mb-[1rem] mx-auto">
             <LateralMenu />

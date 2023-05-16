@@ -10,11 +10,10 @@ const CountDown = (): JSX.Element => {
       flex-row gap-2 lg:gap-5 items-center justify-center shadow-xl px-3 lg:px-0"
     >
       {countDownElements.map((element, index) => (
-        <>
+        <div key={index} className="flex flex-row gap-2 lg:gap-5 items-center">
           <div
             className="lg:w-[7rem] lg:h-[7rem] dark:bg-purple  bg-blue rounded-lg flex 
             flex-col lg:gap-1 items-center justify-center w-[5rem] h-[5rem] gap-0"
-            key={index}
           >
             <h2 className="text-white lg:text-[40px] font-montserrat font-bold text-[20px]">
               {element.value}
@@ -31,7 +30,7 @@ const CountDown = (): JSX.Element => {
               :
             </span>
           )}
-        </>
+        </div>
       ))}
     </div>
   );

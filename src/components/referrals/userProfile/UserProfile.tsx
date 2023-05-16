@@ -1,11 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { getProfileItems } from "./constans";
-import { useAuth } from "../../../hooks";
+import { useAuth, useEvoxServices } from "../../../hooks";
 
 const UserProfile = (): JSX.Element => {
   const { auth } = useAuth();
-  const profileItems = getProfileItems();
+  const { userReferrals } = useEvoxServices();
+  const profileItems = getProfileItems(userReferrals, auth);
 
   return (
     <div className="bg-primary-color dark:bg-mediumGray lg:w-1/2 w-full rounded-xl p-10 flex flex-col gap-3 m-auto">
