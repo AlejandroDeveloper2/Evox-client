@@ -8,6 +8,7 @@ import {
   UserDashboard,
   ChangePassword,
   ActivateAccount,
+  Referrals,
 } from "./pages";
 import { AppProvider, AuthProvider, ThemeProvider } from "./context";
 
@@ -88,6 +89,7 @@ function App() {
               </Route>
               <Route path="/dashboard" element={<ProtectedLayout />}>
                 <Route index element={<UserDashboard />} />
+                <Route path="/dashboard/referrals" element={<Referrals />} />
               </Route>
             </Routes>
           </AuthProvider>

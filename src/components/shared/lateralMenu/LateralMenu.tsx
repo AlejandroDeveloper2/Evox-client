@@ -18,8 +18,10 @@ const LateralMenu = (): JSX.Element => {
       id="nav"
       className={`w-[60%] h-full flex flex-col justify-start items-center transition-transform 
        ${
-         isMenuVisible ? "translate-x-0" : "translate-x-[-100%]"
-       } lg:translate-x-0
+         isMenuVisible
+           ? "translate-x-0 lg:translate-x-0"
+           : "translate-x-[-100%] lg:translate-x-0"
+       } 
       bg-primary-color dark:bg-mediumGray py-5 gap-5 lg:w-1/5 fixed top-[5rem] left-0 lg:relative lg:top-0 z-10`}
     >
       <div className="w-full h-[5rem] flex justify-center items-center">
@@ -30,7 +32,7 @@ const LateralMenu = (): JSX.Element => {
         />
       </div>
       <Avatar />
-      <ul className="flex flex-col items-center justify-start gap-3 w-full overflow-y-scroll h-[60%] lg:h-auto">
+      <ul className="flex flex-col items-center justify-start gap-3 w-full overflow-y-scroll h-[50%] lg:h-auto">
         {menuItems.map((menuItem, index) => (
           <MenuItem key={index} {...menuItem} />
         ))}

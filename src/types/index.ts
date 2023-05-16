@@ -56,7 +56,9 @@ export interface CustomButtonProps {
   theme: {
     bg: string;
     color: string;
+    aditionalStyles?: string;
   };
+  icon?: IconDefinition;
   disabled?: boolean;
   onClick?: () => void;
 }
@@ -145,6 +147,11 @@ export interface AuthContextType {
   validateAccount: () => Promise<void>;
 }
 
+export interface EvoxContextType {
+  children?: JSX.Element | JSX.Element[];
+  userReferrals: Referral[];
+}
+
 export interface ThemeContextType {
   children?: JSX.Element | JSX.Element[];
   theme: string;
@@ -220,10 +227,18 @@ export interface ServiceCardProps {
 }
 
 export interface CountDownElement {
-  value: number;
+  value: string;
   label: string;
 }
 
 export interface CountDownHook {
   timerValues: number[];
+}
+
+export interface Referral {
+  parent: string | null;
+  refLink: string;
+  userName: string;
+  fullName: string;
+  status: boolean;
 }

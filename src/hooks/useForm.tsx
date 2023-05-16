@@ -45,6 +45,7 @@ const useForm = (
         theme={{
           bg: button.theme.bg,
           color: button.theme.color,
+          aditionalStyles: "w-full",
         }}
         disabled={toggleButton(
           errors,
@@ -79,7 +80,9 @@ const useForm = (
     const newValues = setFormValues(values, form, { location, userIp: userIP });
     action(newValues);
     captcha.current?.reset();
-    if (success) formikHelpers.resetForm();
+    if (success) {
+      formikHelpers.resetForm();
+    }
   };
 
   return {

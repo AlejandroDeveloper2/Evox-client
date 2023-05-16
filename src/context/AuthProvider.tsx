@@ -99,7 +99,10 @@ const AuthProvider = ({ children }: AuthContextType) => {
               : "success",
           visible: true,
         });
-        if (res.typeStatus === "Success") setSuccess(true);
+        if (res.typeStatus === "Success") {
+          setSuccess(true);
+          navigate("/login");
+        }
       }
     );
   };
@@ -114,7 +117,6 @@ const AuthProvider = ({ children }: AuthContextType) => {
     });
 
     await validateChangePassToken(token).then((res: boolean) => {
-      console.log(res);
       if (res) {
         setIsValidating(false);
         setLoader({
@@ -126,6 +128,9 @@ const AuthProvider = ({ children }: AuthContextType) => {
           message: "Invalid Token!, please try again!",
           loading: false,
         });
+        setTimeout(() => {
+          navigate("/login");
+        }, 3000);
       }
     });
   };
@@ -151,7 +156,9 @@ const AuthProvider = ({ children }: AuthContextType) => {
               : "success",
           visible: true,
         });
-        if (res.typeStatus === "Success") setSuccess(true);
+        if (res.typeStatus === "Success") {
+          setSuccess(true);
+        }
       }
     );
   };
@@ -178,7 +185,9 @@ const AuthProvider = ({ children }: AuthContextType) => {
               : "success",
           visible: true,
         });
-        if (res.typeStatus === "Success") setSuccess(true);
+        if (res.typeStatus === "Success") {
+          setSuccess(true);
+        }
       }
     );
   };

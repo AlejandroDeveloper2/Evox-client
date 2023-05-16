@@ -19,12 +19,12 @@ const ProtectedLayout = (): JSX.Element => {
             <LateralMenu />
             <div className="bg-white dark:bg-darkGray lg:w-[80%] w-full">
               <button
-                className="fixed right-2 bottom-2 w-10 h-10 bg-primary-color rounded-lg lg:hidden dark:bg-mediumGray z-10"
+                className="fixed right-2 bottom-2 w-10 h-10 bg-mediumGray rounded-lg lg:hidden dark:bg-white z-10"
                 onClick={toggleLateralMenu}
               >
                 <FontAwesomeIcon
                   icon={isMenuVisible ? faClose : faBars}
-                  className="text-darkGray dark:text-white"
+                  className="text-white dark:text-darkGray"
                 />
               </button>
               <Outlet />

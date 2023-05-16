@@ -8,3 +8,4 @@ export { default as ImageEvoxSyntetics } from "./image-evox-syntetics.png";
 export { default as HomeImage1 } from "./home-image-1.png";
 export { default as CardImage } from "./image-card.png";
 export { default as ImageHomeWelcome } from "./image-home-welcome.svg";
+export { default as EvoxBanner } from "./EvoxBanner.jpg";

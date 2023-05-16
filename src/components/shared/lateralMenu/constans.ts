@@ -20,6 +20,7 @@ import {
   faCoins,
   faClock,
   faCheck,
+  faUsersLine,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { MenuItem } from "../../../types";
@@ -30,6 +31,12 @@ export const menuItems: MenuItem[] = [
     rightIcon: null,
     label: "Home",
     to: "/dashboard",
+  },
+  {
+    leftIcon: faUsersLine,
+    rightIcon: null,
+    label: "Referrals",
+    to: "/dashboard/referrals",
   },
   {
     leftIcon: faSchool,

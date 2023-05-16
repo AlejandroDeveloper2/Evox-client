@@ -5,21 +5,27 @@ export const getCountDownElements = (
 ): CountDownElement[] => {
   const countDownElements: CountDownElement[] = [
     {
-      value: timerValues[0],
+      value: formatTimerValues(timerValues[0]),
       label: "Days",
     },
     {
-      value: timerValues[1],
+      value: formatTimerValues(timerValues[1]),
       label: "Hours",
     },
     {
-      value: timerValues[2],
+      value: formatTimerValues(timerValues[2]),
       label: "Minutes",
     },
     {
-      value: timerValues[3],
+      value: formatTimerValues(timerValues[3]),
       label: "Seconds",
     },
   ];
   return countDownElements;
+};
+
+const formatTimerValues = (timerValue: number): string => {
+  const formattedTimerValue =
+    timerValue < 10 ? `0${timerValue}` : timerValue.toString();
+  return formattedTimerValue;
 };
