@@ -20,6 +20,9 @@ export { default as ServiceCard } from "./home/ServiceCard";
 export { default as InvitationLink } from "./home/InvitationLink";
 export { default as CountDown } from "./home/countDown/CountDown";
 export { default as JoinChannelSection } from "./home/JoinChannelSection";
+export { default as ServicesList } from "./home/ServicesList";
+export { default as InfoCard } from "./home/InfoCard";
+export { default as AutomaticSystemsSection } from "./home/automaticSystemsSection/AutomaticSystemsSection";
 
 /* Referrals components */
 export { default as UserProfile } from "./referrals/userProfile/UserProfile";

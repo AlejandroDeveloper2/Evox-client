@@ -32,11 +32,13 @@ const InvitationLink = (): JSX.Element => {
             aditionalStyles: "w-[5rem] lg:w-[6rem]",
           }}
           icon={faCopy}
-          onClick={()=>setToast({
-            message:"Link copied!",
-            type:"success",
-            visible: true,
-          })}
+          onClick={() =>
+            setToast({
+              message: "Link copied!",
+              type: "success",
+              visible: true,
+            })
+          }
         />
       </div>
     </section>

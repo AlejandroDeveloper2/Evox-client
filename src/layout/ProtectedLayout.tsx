@@ -11,7 +11,7 @@ const ProtectedLayout = (): JSX.Element => {
   const { toggleLateralMenu, isMenuVisible } = useApp();
 
   return (
-    <>   
+    <>
       {auth ? (
         <main className="bg-primary-color dark:bg-mediumGray w-screen h-screen overflow-x-hidden relative">
           <Toast />
