@@ -1,4 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 import { useApp, useCountdown } from "../../hooks";
 
@@ -6,19 +9,17 @@ import {
   InvitationLink,
   Welcome,
   JoinChannelSection,
-  ServiceCard,
   Loader,
+  ServicesList,
+  InfoCard,
+  AutomaticSystemsSection,
 } from "../../components";
 
 import {
-  ImageEvoxMarketing,
-  ImageEvoxFunds,
-  ImageEvoxAcademy,
-  ImageEvoxMAM,
-  ImageEvoxMentory,
-  ImageEvoxMarkets,
-  ImageEvoxSyntetics,
-  CardImage,
+  EvoxAcademyImage1,
+  EvoxAcademyLogo,
+  HomeIllustration,
+  HomeIllustration2,
 } from "../../assets";
 
 const UserDashboard = (): JSX.Element => {
@@ -35,7 +36,7 @@ const UserDashboard = (): JSX.Element => {
   }, []);
 
   return (
-    <div className="w-full flex flex-col justify-center items-start pb-10 h-full gap-10">
+    <div className="w-full flex flex-col justify-center items-start py-10 h-full gap-10">
       {/* <div className="w-full bg-lightBlue dark:bg-purple h-[10rem]"></div> */}
       {timerValues[0] === 0 ? (
         <>
@@ -43,75 +44,99 @@ const UserDashboard = (): JSX.Element => {
             <Loader />
           ) : (
             <>
-              <section className="w-full relative flex flex-col lg:grid lg:grid-cols-3 justify-center items-center gap-5 lg:flex-row">
-                <h1 className=" lg:text-[30px] text-[24px] lg:hidden font-montserrat text-center text-darkBlue dark:text-white font-normal">
-                  How would you feel if you had{" "}
-                  <span className="text-[24px] lg:text-[30px] font-montserrat font-bold">
-                    {" "}
-                    more control over your money?{" "}
-                  </span>
-                </h1>
-                <div className="w-full flex gap-3 justify-center px-10 lg:flex-col lg:w-auto">
-                  <ServiceCard
-                    to="/"
-                    serviceImage={ImageEvoxMarketing}
-                    alt="Evox Marketing"
-                  />
-                  <ServiceCard
-                    to="/"
-                    serviceImage={ImageEvoxFunds}
-                    alt="Evox Funds"
-                  />
-                </div>
-                <div className="w-full flex flex-wrap lg:flex-col gap-3 justify-center lg:w-full px-10 lg:px-0">
-                  <h1 className=" hidden lg:block lg:text-[30px] text-[24px] font-montserrat text-center text-darkBlue dark:text-white font-normal">
-                    How would you feel if you had{" "}
-                    <span className="text-[24px] lg:text-[30px] font-montserrat font-bold">
-                      {" "}
-                      more control over your money?{" "}
-                    </span>
-                  </h1>
-                  <div className="w-full grid grid-cols-2 auto-cols-max lg:grid-cols-3  gap-10 lg:gap-[10rem] justify-items-center">
-                    <ServiceCard
-                      to="/"
-                      serviceImage={ImageEvoxAcademy}
-                      alt="Evox Academy"
-                    />
-                    <ServiceCard
-                      to="/"
-                      serviceImage={ImageEvoxMAM}
-                      alt="Evox MAM Accounts"
-                    />
-                    <ServiceCard
-                      to="/"
-                      serviceImage={ImageEvoxMentory}
-                      alt="Evox Mentory"
-                    />
-                  </div>
-                </div>
-                <div className="w-full flex gap-3 justify-center lg:absolute lg:top-0 lg:flex-col lg:right-10 lg:w-auto">
-                  <ServiceCard
-                    to="/"
-                    serviceImage={ImageEvoxMarkets}
-                    alt="Evox Markets"
-                  />
-                  <ServiceCard
-                    to="/"
-                    serviceImage={ImageEvoxSyntetics}
-                    alt="Evox Syntetics"
-                  />
-                </div>
-              </section>
+              <ServicesList />
               <JoinChannelSection />
               <section className="flex flex-col gap-10 items-center justify-center px-10 w-full">
-                <div className="block rounded-[20px] shadow-lg overflow-hidden">
-                  <img
-                    src={CardImage}
-                    alt="Evox Academy"
-                    className="object-cover w-full h-full"
-                  />
-                </div>
+                <InfoCard style="bg-gradient-to-r from-blue via-purple to-lightBlue dark:to-purple dark:from-white">
+                  <div className="flex flex-row gap-10 justify-center items-center">
+                    <div className=" flex flex-col gap-10 items-start justify-center">
+                      <img src={EvoxAcademyLogo} alt="Evox academy Logo" />
+                      <h3 className="text-white font-medium font-montserrat lg:text-[30px] text-[24] w-3/5">
+                        <span className="text-white font-extrabold">
+                          + 500 Hours
+                        </span>{" "}
+                        of pre-recorded trading classes
+                      </h3>
+                      <Link
+                        to="#"
+                        className="text-white lg:text-[20px] text-[16px] font-montserrat font-bold flex items-center justify-center gap-5"
+                      >
+                        Find out more <FontAwesomeIcon icon={faArrowRight} />
+                      </Link>
+                    </div>
+                    <div className="">
+                      <img src={EvoxAcademyImage1} alt="Evox academy Logo" />
+                    </div>
+                  </div>
+                </InfoCard>
               </section>
+              <section className="flex flex-col gap-10 items-center justify-center px-10 w-full">
+                <InfoCard style="bg-violet dark:bg-blue">
+                  <div
+                    className="flex flex-row flex-wrap lg:gap-20 items-center lg:justify-start 
+                  justify-center gap-5"
+                  >
+                    <div className="flex flex-col gap-1 lg:items-start items-center">
+                      <h2 className="text-white font-medium font-montserrat lg:text-[30px] text-[24]">
+                        Total Directs
+                      </h2>
+                      <span className="text-white font-extrabold font-poppins lg:text-[45px] text-[30px]">
+                        13
+                      </span>
+                    </div>
+                    <div className="flex flex-col gap-1 lg:items-start items-center">
+                      <h2 className="text-white font-medium font-montserrat lg:text-[30px] text-[24]">
+                        Total Customers
+                      </h2>
+                      <span className="text-white font-extrabold font-poppins lg:text-[45px] text-[30px]">
+                        42
+                      </span>
+                    </div>
+                    <img
+                      src={HomeIllustration}
+                      alt="Evox illustration"
+                      className="object-contain"
+                    />
+                  </div>
+                  <Link
+                    to="#"
+                    className="text-white lg:text-[20px] text-[16px] font-montserrat font-bold flex items-center justify-center gap-5"
+                  >
+                    See more <FontAwesomeIcon icon={faArrowRight} />
+                  </Link>
+                </InfoCard>
+                <InfoCard style="bg-blue dark:bg-purple">
+                  <div
+                    className="w-full flex flex-row flex-wrap lg:gap-20 items-center lg:justify-between 
+                    justify-center gap-5"
+                  >
+                    <div className="flex flex-col gap-1 lg:items-start items-center">
+                      <h2 className="text-white font-medium font-montserrat lg:text-[30px] text-[24]">
+                        Total Earnings
+                      </h2>
+                      <span className="text-white font-extrabold font-poppins lg:text-[45px] text-[30px]">
+                        850 USDT
+                      </span>
+                      <h2 className="text-white font-medium font-montserrat lg:text-[24px] text-[20px]">
+                        +150 this week
+                      </h2>
+                    </div>
+                    <img
+                      src={HomeIllustration2}
+                      alt="Evox illustration"
+                      className="object-contain"
+                    />
+                  </div>
+                  <Link
+                    to="#"
+                    className="text-white lg:text-[20px] text-[16px] font-montserrat font-bold flex items-center justify-center gap-5"
+                  >
+                    See full report <FontAwesomeIcon icon={faArrowRight} />
+                  </Link>
+                </InfoCard>
+              </section>
+              <AutomaticSystemsSection />
+              <InvitationLink />
             </>
           )}
         </>

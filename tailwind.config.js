@@ -15,6 +15,7 @@ export default {
       success: "#19C486",
       warning: "#BB8711",
       black: "#000000",
+      violet: "#9f4aed",
     },
     extend: {
       fontFamily: {

@@ -1,3 +1,4 @@
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { CustomButton } from "..";
 
 import { HomeImage1 } from "../../assets";
@@ -23,9 +24,10 @@ const JoinChannelSection = (): JSX.Element => {
             color: "text-white",
             aditionalStyles: "w-full lg:w-1/3",
           }}
+          icon={faPaperPlane}
         />
       </div>
-      <img src={HomeImage1} alt="Live Trading" />
+      <img src={HomeImage1} alt="Live Trading" className="animate-wiggle" />
     </section>
   );
 };
