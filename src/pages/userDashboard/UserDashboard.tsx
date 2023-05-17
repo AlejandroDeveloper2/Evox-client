@@ -31,6 +31,7 @@ const UserDashboard = (): JSX.Element => {
     setTimeout(() => {
       setIsValidating(false);
     }, 3000);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

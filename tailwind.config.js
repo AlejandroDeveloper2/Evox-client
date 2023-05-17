@@ -14,6 +14,7 @@ export default {
       error: "#E3502F",
       success: "#19C486",
       warning: "#BB8711",
+      black: "#000000",
     },
     extend: {
       fontFamily: {

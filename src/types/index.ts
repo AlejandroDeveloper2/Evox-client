@@ -180,6 +180,7 @@ export interface MenuItem {
   leftIcon: IconDefinition;
   label: string;
   to: string;
+  enabled: boolean;
   subItems?: MenuItem[];
 }
 
