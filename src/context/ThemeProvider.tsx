@@ -6,7 +6,11 @@ const ThemeContext = React.createContext<ThemeContextType>(
   {} as ThemeContextType
 );
 
-const ThemeProvider = ({ children }: ThemeContextType) => {
+interface Props {
+  children: JSX.Element[] | JSX.Element;
+}
+
+const ThemeProvider = ({ children }: Props) => {
   const [theme, setTheme] = React.useState<string>(
     localStorage.getItem("theme") ?? "light"
   );

@@ -1,7 +1,6 @@
 import {
   faUser,
   faLink,
-  faIdCardClip,
 } from "@fortawesome/free-solid-svg-icons";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
@@ -32,11 +31,6 @@ export const getProfileItems = (userReferrals: Referral[], auth: UserAuth | null
           icon: faUser,
           label: "Username :",
           value: referral.userName,
-        },
-        {
-          icon: faIdCardClip,
-          label: "Fullname :",
-          value: referral.fullName,
         },
       ]
     }

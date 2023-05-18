@@ -42,6 +42,7 @@ interface AuthContextType {
 interface EvoxContextType {
   children?: JSX.Element | JSX.Element[];
   userReferrals: Referral[];
+  getAllUserReferrals:()=>Promise<void>;
 }
 
 interface ThemeContextType {

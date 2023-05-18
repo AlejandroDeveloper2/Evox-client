@@ -112,9 +112,12 @@ const setActiveMenuItem = (to: string, pathName: string): string[] => {
   return activeStyles;
 };
 
-// const copyToClipBoard = (e: Event):void=>{
-  
-// }
+const formatDate = (date: string): string => {
+  const formattedDate = new Date(date).toLocaleString("en-US", {
+    weekday:"long", year:"numeric", month:"short", day:"numeric"
+  });
+  return formattedDate;
+}
 
 export {
   formatUserID,
@@ -122,4 +125,5 @@ export {
   setFormValues,
   setToastColor,
   setActiveMenuItem,
+  formatDate
 };

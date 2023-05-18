@@ -1,9 +1,12 @@
+import React from "react";
 import { UserProfile } from "../../components";
+
 import { useAuth, useEvoxServices } from "../../hooks";
+import { formatDate } from "../../utils";
 
 const Referrals = (): JSX.Element => {
   const { auth } = useAuth();
-  const { userReferrals } = useEvoxServices();
+  const { userReferrals, getAllUserReferrals } = useEvoxServices();
   const newUserReferrals = userReferrals.map((referral) => {
     if (referral.userName !== auth?.sub) {
       return referral;
@@ -11,6 +14,10 @@ const Referrals = (): JSX.Element => {
     return;
   });
   const newReferrals = newUserReferrals.filter((referral)=> referral !== undefined);
+
+  React.useEffect(()=>{
+    getAllUserReferrals();
+  },[]);
  
   return (
     <div className="relative overflow-x-auto p-10 flex flex-col items-start gap-5">
@@ -25,19 +32,16 @@ const Referrals = (): JSX.Element => {
         <thead className="text-xs text-white uppercase bg-blue dark:bg-mediumGray dark:text-white font-montserrat">
           <tr>
             <th scope="col" className="px-6 py-3">
-              Parent
-            </th>
-            <th scope="col" className="px-6 py-3">
               RefLink
             </th>
             <th scope="col" className="px-6 py-3">
               Username
             </th>
             <th scope="col" className="px-6 py-3">
-              Fullname
+              Status
             </th>
             <th scope="col" className="px-6 py-3">
-              Status
+              Register date
             </th>
           </tr>
         </thead>
@@ -51,13 +55,14 @@ const Referrals = (): JSX.Element => {
                 scope="row"
                 className="px-6 py-4 font-medium text-darkGray whitespace-nowrap dark:text-white"
               >
-                {referral?.parent}
+                {referral?.refLink}
               </th>
-              <td className="px-6 py-4">{referral?.refLink}</td>
               <td className="px-6 py-4">{referral?.userName}</td>
-              <td className="px-6 py-4">{referral?.fullName}</td>
               <td className="px-6 py-4">
                 {referral?.status ? "Active" : "Inactive"}
+              </td>
+              <td className="px-6 py-4">
+                { referral && formatDate(referral?.dateRegistered)}
               </td>
             </tr>
           ))}

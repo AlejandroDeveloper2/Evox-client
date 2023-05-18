@@ -84,6 +84,7 @@ interface Referral {
   userName: string;
   fullName: string;
   status: boolean;
+  dateRegistered:string;
 }
 
 export type {

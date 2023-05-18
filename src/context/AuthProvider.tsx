@@ -23,7 +23,11 @@ import { useApp } from "../hooks";
 
 const AuthContext = React.createContext<AuthContextType>({} as AuthContextType);
 
-const AuthProvider = ({ children }: AuthContextType) => {
+interface Props {
+  children: JSX.Element[] | JSX.Element;
+}
+
+const AuthProvider = ({ children }: Props) => {
   const [auth, setAuth] = React.useState<UserAuth | null>(null);
   const [success, setSuccess] = React.useState<boolean>(false);
 

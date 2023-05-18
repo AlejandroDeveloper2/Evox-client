@@ -15,7 +15,11 @@ import { getUserIPAddress } from "../services/userIpAddress";
 
 const AppContext = React.createContext<AppContextType>({} as AppContextType);
 
-const AppProvider = ({ children }: AppContextType) => {
+interface Props {
+  children: JSX.Element[] | JSX.Element;
+}
+
+const AppProvider = ({ children }: Props) => {
   const [countries, setCountries] = React.useState<Country[]>([]);
   const [userIP, setUserIP] = React.useState<UserIP>({
     ip: "",

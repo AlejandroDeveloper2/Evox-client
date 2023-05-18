@@ -5,12 +5,15 @@ import { faLock } from "@fortawesome/free-solid-svg-icons";
 
 import { setActiveMenuItem } from "../../utils";
 import { MenuItem as MenuItemType } from "../../types";
+import { useApp } from "../../hooks";
 
 const MenuItem = (props: MenuItemType): JSX.Element => {
   const { leftIcon, rightIcon, label, to, subItems } = props;
   const location = useLocation();
   const [isSubitemsVisible, setIsSubitemsVisible] =
     React.useState<boolean>(false);
+
+  const { toggleLateralMenu } = useApp();
 
   const SubItems = (props: MenuItemType): JSX.Element => {
     const { subItems } = props;
@@ -41,6 +44,7 @@ const MenuItem = (props: MenuItemType): JSX.Element => {
         props.enabled
           ? setIsSubitemsVisible(!isSubitemsVisible)
           : console.log("Blocked");
+        toggleLateralMenu();
       }}
     >
       <Link

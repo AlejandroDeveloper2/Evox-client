@@ -8,7 +8,7 @@ const getUserReferrals = async (token: string): Promise<Referral[]> => {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
-      //"Access-Control-Allow-Origin": "http://localhost:5173", // Agrega este encabezado
+      //  "Access-Control-Allow-Origin": "http://localhost:5173", // Agrega este encabezado
     },
   };
   let response: Referral[] = [];
