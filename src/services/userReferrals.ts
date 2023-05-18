@@ -8,12 +8,12 @@ const getUserReferrals = async (token: string): Promise<Referral[]> => {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
-      //  "Access-Control-Allow-Origin": "http://localhost:5173", // Agrega este encabezado
+      //"Access-Control-Allow-Origin": "http://localhost:5173", // Agrega este encabezado
     },
   };
   let response: Referral[] = [];
   try {
-    const { data } = await axiosClient.get("/api/users/unilevel", config);
+    const { data } = await axiosClient.get("/api/users/oe", config);
     response = data;
   } catch (error) {
     console.log(error);
