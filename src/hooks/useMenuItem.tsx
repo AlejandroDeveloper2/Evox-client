@@ -16,7 +16,7 @@ const useMenuItem = () => {
     const { subItems } = props;
     return (
       <ul
-        className={`flex-col items-center justify-start gap-1 w-full ${
+        className={`flex-col items-center justify-start gap-1 w-[80%] bg-white dark:bg-mediumGray py-5 ${
           !isSubitemsVisible ? "hidden" : "flex"
         } transition-all`}
       >

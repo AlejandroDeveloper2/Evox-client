@@ -233,6 +233,7 @@ const AuthProvider = ({ children }: Props) => {
         sendRequestPassword,
         changeUserPassword,
         validateAccount,
+        setAuth
       }}
     >
       {children}

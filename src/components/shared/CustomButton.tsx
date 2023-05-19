@@ -22,8 +22,10 @@ const CustomButton = (props: CustomButtonProps): JSX.Element => {
       `}
       disabled={props.disabled}
     >
-      {props.icon && (
+      {props.icon ? (
         <FontAwesomeIcon icon={props.icon} className={props.theme.color} />
+      ) : (
+        ""
       )}
       {loading.visible && props.type === "submit" ? <Spinner /> : props.label}
     </button>

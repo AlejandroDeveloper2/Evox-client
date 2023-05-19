@@ -13,7 +13,6 @@ export type {
   ServerResponseFail,
   LoginReasponse,
   Referral,
-  UserProfile,
   ProfileFormValues,
 } from "./dataTypes";
 

@@ -11,7 +11,7 @@ import {
   FormType,
 } from "../types";
 import { toggleButton, setFormValues } from "../utils";
-import { useApp, useAuth } from ".";
+import { useApp, useAuth, useUserProfile } from ".";
 
 import { CustomButton, CustomField } from "../components";
 
@@ -28,6 +28,7 @@ const useForm = (
   const location = useLocation();
   const { userIP } = useApp();
   const { success } = useAuth();
+  const { profilePhoto } = useUserProfile();
 
   const renderFormInputs = (config: RenderInputProps): JSX.Element[] => {
     return fields.map((field, index) => (
@@ -77,10 +78,10 @@ const useForm = (
     values: FormikValues,
     formikHelpers: FormikHelpers<FormikValues>
   ): void => {
-    const newValues = setFormValues(values, form, { location, userIp: userIP });
+    const newValues = setFormValues(values, form, { location, userIp: userIP, profileImageUrl:profilePhoto });
     action(newValues);
     captcha.current?.reset();
-    if (success) {
+    if (success && form !== "profile") {
       formikHelpers.resetForm();
     }
   };

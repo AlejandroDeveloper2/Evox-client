@@ -1,10 +1,11 @@
 import React from "react";
 import { FormikValues } from "formik";
 
-import { UserProfile, UserProfileContextType } from "../types";
+import { UserAuth, UserProfileContextType } from "../types";
 
-import { useApp } from "../hooks";
-import { uploadProfileImage } from "../services/userProfile";
+import { useApp, useAuth } from "../hooks";
+import { uploadProfileImage, updateUserProfile } from "../services/userProfile";
+import { decodeToken } from "react-jwt";
 
 const UserProfileContext = React.createContext<UserProfileContextType>(
   {} as UserProfileContextType
@@ -15,17 +16,9 @@ interface Props {
 }
 
 const UserProfileProvider = ({ children }: Props) => {
-  const [userProfile, setUserProfile] = React.useState<UserProfile | null>(
-    null
-  );
-  const [profilePhoto, setProfilePhoto] = React.useState<string>("");
-  const { setToast, setLoader } = useApp();
-
-  // const { auth } = useAuth();
-
-  // const getUserProfileData = ():void => {
-  //   setUserProfile()
-  // }
+  const [ profilePhoto, setProfilePhoto] = React.useState<string | null>(localStorage.getItem("profileImgUrl")??null);
+  const { setToast, setLoader, setLoading } = useApp();
+  const { setAuth } = useAuth();
 
   const uploadProfilePhoto = async (
     e: React.ChangeEvent<HTMLInputElement>
@@ -50,9 +43,9 @@ const UserProfileProvider = ({ children }: Props) => {
           visible: true,
         });
       })
-      .catch((error) => {
+      .catch((error:Error) => {
         setToast({
-          message: error,
+          message: error.message,
           type: "error",
           visible: true,
         });
@@ -65,15 +58,43 @@ const UserProfileProvider = ({ children }: Props) => {
       });
   };
 
-  const updateUserProfile = async (userData: FormikValues): Promise<void> => {
-    console.log(userData);
+  const editUserProfile = async (userData: FormikValues): Promise<void> => {
+    const token = localStorage.getItem("token");
+    if(token){
+      setLoading({
+        message: "Updating user profile...",
+        visible: true,
+      });
+      await updateUserProfile(userData, token).then((res)=>{
+        localStorage.setItem("token", res);
+        setToast({
+          message: "User profile updated!",
+          type: "success",
+          visible: true,
+        }); 
+        const user = decodeToken<UserAuth | null>(res);
+        setAuth(user);   
+
+      }).catch((error: Error)=>{
+        setToast({
+          message: error.message,
+          type: "error",
+          visible: true,
+        });
+      }).finally(()=>{
+        setLoading({
+          message: "",
+          visible: false,
+        });
+      });
+    }
   };
 
   return (
     <UserProfileContext.Provider
       value={{
-        userProfile,
-        updateUserProfile,
+        profilePhoto,
+        editUserProfile,
         uploadProfilePhoto,
       }}
     >

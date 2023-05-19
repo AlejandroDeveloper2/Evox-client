@@ -56,6 +56,11 @@ interface UserAuth {
   state: boolean;
   roles: Role[];
   refLink: string;
+  email: string;
+  phone: string;
+  country: string;
+  countryOfResidence: string;
+  photo: string | null;
   iat: number;
   exp: number;
 }
@@ -87,21 +92,15 @@ interface Referral {
   dateRegistered: string;
 }
 
-interface UserProfile extends UserAuth {
-  sponsorName: string;
-  walletAddress: string;
-}
-
 interface ProfileFormValues {
-  profilePhotoUrl: string;
   username: string;
   fullName: string;
   email: string;
   phone: string;
+  country: string;
   countryOfResidence: string;
-  suponsorName: string;
-  walletAddress: string;
 }
+
 
 export type {
   FormType,
@@ -117,6 +116,5 @@ export type {
   ServerResponseFail,
   LoginReasponse,
   Referral,
-  UserProfile,
   ProfileFormValues,
 };

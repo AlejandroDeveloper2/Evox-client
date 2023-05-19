@@ -1,3 +1,5 @@
+import { FormikValues } from "formik";
+
 import getAxiosClient from "../config/axiosClient";
 
 const uploadProfileImage = async (formData: FormData): Promise<string> => {
@@ -12,4 +14,23 @@ const uploadProfileImage = async (formData: FormData): Promise<string> => {
   return response;
 };
 
-export { uploadProfileImage };
+const updateUserProfile = async (userData: FormikValues, token:string): Promise<string> =>{
+  const axiosClient = getAxiosClient("evoxAPI");
+  let response:string = "";
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  try {
+    const { data } = await axiosClient.put("/users/edit", userData, config);
+    response = data.token;
+  } catch (error: any) {
+   throw new Error(error.response.data);
+  }
+  return response;
+}
+
+export { uploadProfileImage, updateUserProfile };

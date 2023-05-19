@@ -8,7 +8,6 @@ import {
   ToastProps,
   UserAuth,
   UserIP,
-  UserProfile,
 } from ".";
 
 interface AppContextType {
@@ -39,6 +38,7 @@ interface AuthContextType {
   sendRequestPassword: (userData: FormikValues) => Promise<void>;
   changeUserPassword: (userData: FormikValues) => Promise<void>;
   validateAccount: () => Promise<void>;
+  setAuth: React.Dispatch<React.SetStateAction<UserAuth | null>>;
 }
 
 interface EvoxContextType {
@@ -59,8 +59,8 @@ interface Functions {
 
 interface UserProfileContextType {
   children?: JSX.Element | JSX.Element[];
-  userProfile: UserProfile | null;
-  updateUserProfile: (userData: FormikValues) => Promise<void>;
+  profilePhoto: string | null;
+  editUserProfile: (userData: FormikValues) => Promise<void>;
   uploadProfilePhoto: (e: React.ChangeEvent<HTMLInputElement>) => Promise<void>;
 }
 

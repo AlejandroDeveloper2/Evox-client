@@ -10,6 +10,10 @@ const useLoader = (message: string): boolean => {
     setTimeout(() => {
       setIsValidating(false);
     }, 2000);
+
+    return ()=>{
+      setLoader({ loading: false, message:"" });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

@@ -1,23 +1,23 @@
 import {
   faAt,
-  faWallet,
   faUser,
   faLocationDot,
   faPhone,
-  faPerson,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { Field, CustomButtonProps, ProfileFormValues } from "../../types";
+import { Field, CustomButtonProps, ProfileFormValues, UserAuth } from "../../types";
 
-export const initialvalues: ProfileFormValues = {
-  profilePhotoUrl: "",
-  email: "diazalejandro@gmail.com",
-  username: "Alejo98",
-  fullName: "Diego Alejandro Diaz",
-  phone: "",
-  countryOfResidence: "",
-  suponsorName: "Diego Felipe",
-  walletAddress: "AIASHDFLKASNDC1651IJASDNCIANJS",
+export const getInitialvalues =( auth: UserAuth | null): ProfileFormValues =>{
+  return {
+    email:auth ? auth.email : "",
+    username: auth ? auth.sub : "",
+    fullName: auth ? auth.fullName : "",
+    phone: auth ? auth.phone : "",
+    country: auth ? auth.country : "",
+    countryOfResidence: auth ? auth.countryOfResidence:"",
+  }
+  // suponsorName: "Diego Felipe",
+  // walletAddress: "AIASHDFLKASNDC1651IJASDNCIANJS",
 };
 
 export const fields: Field[] = [
@@ -67,21 +67,12 @@ export const fields: Field[] = [
   },
   {
     type: "text",
-    name: "suponsorName",
-    label: "Suponsor",
-    placeholder: "Enter your suponsor's name",
-    icon: faPerson,
-    as: "input",
-    disabled: true,
-  },
-  {
-    type: "text",
-    name: "walletAddress",
-    label: "Your wallet",
-    placeholder: "Enter your wallet address",
-    icon: faWallet,
-    as: "input",
-    disabled: true,
+    name: "country",
+    label: "Country *",
+    placeholder: "Choose your country",
+    icon: faLocationDot,
+    as: "select",
+    selectName: "countries",
   },
 ];
 
