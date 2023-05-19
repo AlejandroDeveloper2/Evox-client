@@ -1,13 +1,14 @@
 import { faCopy } from "@fortawesome/free-solid-svg-icons";
 
 import { useApp, useAuth } from "../../hooks";
+import { copyToDashDoard } from "../../utils";
 
 import { CustomButton } from "..";
 
 const InvitationLink = (): JSX.Element => {
   const { auth } = useAuth();
   const { setToast } = useApp();
-
+  const link = "http:/evox/ref/Diego007";
   return (
     <section className="w-full px-10 flex flex-col gap-3">
       <h1
@@ -21,7 +22,7 @@ const InvitationLink = (): JSX.Element => {
         dark:bg-mediumGray items-center md:flex-row flex-col gap-3 md:gap-0 justify-center"
       >
         <p className=" font-montserrat font-medium dark:text-white text-darkGray md:text-[20px]">
-          {auth?.refLink}
+          {link}
         </p>
         <CustomButton
           type="button"
@@ -32,13 +33,9 @@ const InvitationLink = (): JSX.Element => {
             aditionalStyles: "w-[5rem] md:w-[6rem]",
           }}
           icon={faCopy}
-          onClick={() =>
-            setToast({
-              message: "Link copied!",
-              type: "success",
-              visible: true,
-            })
-          }
+          onClick={() => {
+            copyToDashDoard(link, setToast);
+          }}
         />
       </div>
     </section>

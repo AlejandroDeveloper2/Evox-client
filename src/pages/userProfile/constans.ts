@@ -84,14 +84,6 @@ export const fields: Field[] = [
     as: "input",
     disabled: true,
   },
-  {
-    type: "file",
-    name: "profilePhotoUrl",
-    label: "Your profile photo",
-    placeholder: "Choose your profile photo",
-    icon: faImage,
-    as: "input",
-  },
 ];
 
 export const buttons: CustomButtonProps[] = [

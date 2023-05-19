@@ -1,7 +1,8 @@
 import { FormikErrors, FormikValues } from "formik";
 import { Location } from "react-router-dom";
+import * as copy from "copy-to-clipboard";
 
-import { FormType, UserIP } from "../types";
+import { FormType, ToastProps, UserIP } from "../types";
 
 interface FormConfig {
   location: Location;
@@ -135,6 +136,18 @@ const setMenuItemEnabled = (
   return style;
 };
 
+const copyToDashDoard = (
+  refLink: string,
+  setToast: React.Dispatch<React.SetStateAction<ToastProps>>
+) => {
+  copy(refLink);
+  setToast({
+    message: "Link copied!",
+    type: "success",
+    visible: true,
+  });
+};
+
 export {
   formatUserID,
   toggleButton,
@@ -143,4 +156,5 @@ export {
   setActiveMenuItem,
   formatDate,
   setMenuItemEnabled,
+  copyToDashDoard,
 };
