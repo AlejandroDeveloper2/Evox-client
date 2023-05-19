@@ -35,8 +35,6 @@ interface CustomFormProps {
   validationSchema: object;
   hasCaptcha?: boolean;
   cols: string;
-  login?: boolean;
-  recover?: boolean;
   form: FormType;
   action: (values: FormikValues) => void;
 }

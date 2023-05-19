@@ -4,8 +4,8 @@ import Logo from "../../../assets/logo-3.png";
 
 const Footer = (): JSX.Element => {
   return (
-    <footer className="w-full flex lg:flex-row h-auto bg-darkGray justify-center lg:justify-around flex-col lg:py-4 items-center py-6">
-      <div className="flex justify-center items-center gap-1 flex-col lg:items-start">
+    <footer className="w-full flex md:flex-row h-auto bg-darkGray justify-center md:justify-around flex-col lg:py-4 items-center py-6">
+      <div className="flex justify-center items-center gap-1 flex-col md:items-start">
         <h1 className="font-montserrat text-[30px] text-mediumGray font-extrabold uppercase">
           Help
         </h1>

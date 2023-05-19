@@ -22,7 +22,7 @@ const Toggle = (): JSX.Element => {
         icon={theme === "dark" ? faMoon : faSun}
         className="block text-darkGray dark:text-white lg:hidden"
       />
-      <span className="ml-3 text-sm font-medium text-darkGray dark:text-white font-montserrat hidden md:block">
+      <span className="ml-3 text-sm font-medium text-darkGray dark:text-white font-montserrat hidden lg:block">
         {theme === "dark" ? "Dark theme" : "Light theme"}
       </span>
     </label>

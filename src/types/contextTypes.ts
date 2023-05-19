@@ -8,6 +8,7 @@ import {
   ToastProps,
   UserAuth,
   UserIP,
+  UserProfile,
 } from ".";
 
 interface AppContextType {
@@ -19,6 +20,7 @@ interface AppContextType {
   isMenuVisible: boolean;
   isValidating: boolean;
   loader: LoaderProps;
+  page: string;
   setLoading: React.Dispatch<React.SetStateAction<SpinnerProps>>;
   setToast: React.Dispatch<React.SetStateAction<ToastProps>>;
   toggleLateralMenu: () => void;
@@ -42,7 +44,7 @@ interface AuthContextType {
 interface EvoxContextType {
   children?: JSX.Element | JSX.Element[];
   userReferrals: Referral[];
-  getAllUserReferrals:()=>Promise<void>;
+  getAllUserReferrals: () => Promise<void>;
 }
 
 interface ThemeContextType {
@@ -55,10 +57,17 @@ interface Functions {
   function: () => Promise<void>;
 }
 
+interface UserProfileContextType {
+  children?: JSX.Element | JSX.Element[];
+  userProfile: UserProfile | null;
+  updateUserProfile: (userData: FormikValues) => Promise<void>;
+}
+
 export type {
   AppContextType,
   AuthContextType,
   EvoxContextType,
   ThemeContextType,
   Functions,
+  UserProfileContextType,
 };

@@ -1,6 +1,6 @@
 import { useApp } from ".";
 import { SelectOptionsHook } from "../types";
-import { identificationOptions } from "../components/shared/customSelect/constans";
+import { identificationOptions } from "../components/shared/customInputs/constans";
 
 const useSelectOptions = (
   selectName: "countries" | "identification" | undefined

@@ -1,4 +1,4 @@
-type FormType = "login" | "recover" | "register";
+type FormType = "login" | "recover" | "register" | "profile";
 
 interface RegisterFormValues {
   email: string;
@@ -84,7 +84,23 @@ interface Referral {
   userName: string;
   fullName: string;
   status: boolean;
-  dateRegistered:string;
+  dateRegistered: string;
+}
+
+interface UserProfile extends UserAuth {
+  sponsorName: string;
+  walletAddress: string;
+}
+
+interface ProfileFormValues {
+  profilePhotoUrl: string;
+  username: string;
+  fullName: string;
+  email: string;
+  phone: string;
+  countryOfResidence: string;
+  suponsorName: string;
+  walletAddress: string;
 }
 
 export type {
@@ -101,4 +117,6 @@ export type {
   ServerResponseFail,
   LoginReasponse,
   Referral,
+  UserProfile,
+  ProfileFormValues,
 };

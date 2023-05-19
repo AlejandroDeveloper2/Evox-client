@@ -13,7 +13,10 @@ const UserRegister = () => {
   const { createAccount } = useAuth();
 
   return (
-    <div className="w-full bg-white dark:bg-darkGray flex justify-center items-center flex-col gap-1 pb-6 md:pb-[60px] relative">
+    <div
+      className="w-full bg-white dark:bg-darkGray flex justify-center items-center 
+    flex-col gap-1 pb-6 md:pb-[60px] relative"
+    >
       <img
         src={RegisterImage}
         alt="Register image"

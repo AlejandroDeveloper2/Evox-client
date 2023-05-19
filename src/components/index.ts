@@ -1,8 +1,10 @@
 /*Shared components */
 export { default as CustomForm } from "./shared/CustomForm";
 export { default as CustomButton } from "./shared/CustomButton";
-export { default as CustomInput } from "./shared/CustomInput";
-export { default as CustomSelect } from "./shared/customSelect/CustomSelect";
+export { default as CustomField } from "./shared/CustomField";
+export { default as CustomSelect } from "./shared/customInputs/CustomSelect";
+export { default as CustomInput } from "./shared/customInputs/CustomInput";
+export { default as CustomInputFile } from "./shared/customInputs/CustomInputFile";
 export { default as Spinner } from "./shared/Spinner";
 export { default as Toast } from "./shared/Toast";
 export { default as Header } from "./shared/Header";

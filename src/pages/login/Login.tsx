@@ -25,7 +25,6 @@ const Login = () => {
         validationSchema={validationSchema}
         hasCaptcha
         cols="1"
-        login
         form="login"
         action={(values: FormikValues) => logIn(values)}
       />

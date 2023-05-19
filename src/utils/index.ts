@@ -114,10 +114,26 @@ const setActiveMenuItem = (to: string, pathName: string): string[] => {
 
 const formatDate = (date: string): string => {
   const formattedDate = new Date(date).toLocaleString("en-US", {
-    weekday:"long", year:"numeric", month:"short", day:"numeric"
+    weekday: "long",
+    year: "numeric",
+    month: "short",
+    day: "numeric",
   });
   return formattedDate;
-}
+};
+
+const setMenuItemEnabled = (
+  enabled: boolean,
+  to: string,
+  location: Location
+): string => {
+  const style = enabled
+    ? `hover:bg-opacity-40 dark:hover:bg-opacity-40 ${
+        setActiveMenuItem(to, location.pathname)[0]
+      }`
+    : "bg-black bg-opacity-30";
+  return style;
+};
 
 export {
   formatUserID,
@@ -125,5 +141,6 @@ export {
   setFormValues,
   setToastColor,
   setActiveMenuItem,
-  formatDate
+  formatDate,
+  setMenuItemEnabled,
 };

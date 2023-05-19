@@ -4,8 +4,13 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 import { useAuth } from "../../hooks";
 
-const Avatar = (): JSX.Element => {
+interface AvatarProps {
+  haslink?: boolean;
+}
+const Avatar = (props: AvatarProps): JSX.Element => {
   const { auth } = useAuth();
+  const { haslink } = props;
+
   return (
     <div
       className="flex flex-col gap-1 justify-center items-center w-full py-4 bg-gradient-to-r 
@@ -20,14 +25,21 @@ const Avatar = (): JSX.Element => {
       <span className="text-[14px] text-white font-montserrat font-extrabold lg:text-[16px]">
         {auth?.sub}
       </span>
-      <Link
-        to="/dashboard"
-        className="text-[12px] text-white font-montserrat font-normal text-center lg:text-[14px]"
-      >
-        Edit profile
-      </Link>
+      {haslink && (
+        <Link
+          to="/dashboard/profile"
+          className="text-[12px] text-white font-montserrat font-normal text-center lg:text-[14px]"
+        >
+          Edit profile
+        </Link>
+      )}
     </div>
   );
 };
 
+const AvatarVariant = (): JSX.Element => {
+  return <Avatar haslink />;
+};
+
 export default Avatar;
+AvatarVariant;

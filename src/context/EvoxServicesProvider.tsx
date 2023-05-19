@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useApp } from "../hooks";
+import { useApp, useAuth, useFetchData } from "../hooks";
 import { EvoxContextType, Referral } from "../types";
 import { getUserReferrals } from "../services/userReferrals";
 
@@ -15,6 +15,7 @@ interface Props {
 const EvoxServicesProvider = ({ children }: Props) => {
   const [userReferrals, setUserReferrals] = React.useState<Referral[]>([]);
   const { setLoader, setIsValidating } = useApp();
+  const { auth } = useAuth();
 
   const getAllUserReferrals = async () => {
     const token = localStorage.getItem("token");
@@ -24,12 +25,15 @@ const EvoxServicesProvider = ({ children }: Props) => {
       await getUserReferrals(token).then((res) => {
         setIsValidating(false);
         setLoader({ loading: false, message: "" });
-        setUserReferrals(res);
-        console.log(res);
+        const newReferrals = res.filter(
+          (referral) => referral.userName !== auth?.sub
+        );
+        setUserReferrals(newReferrals);
       });
     }
   };
-  // useFetchData([{ function: getAllUserReferrals }]);
+
+  useFetchData([{ function: getAllUserReferrals }]);
 
   return (
     <EvoxServicesContext.Provider

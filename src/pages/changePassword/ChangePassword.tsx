@@ -37,7 +37,6 @@ const ChangePassword = (): JSX.Element => {
             validationSchema={validationSchema}
             hasCaptcha
             cols="1"
-            recover
             form="recover"
             action={(values: FormikValues) => changeUserPassword(values)}
           />

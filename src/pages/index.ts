@@ -5,3 +5,4 @@ export { default as UserDashboard } from "./userDashboard/UserDashboard";
 export { default as ChangePassword } from "./changePassword/ChangePassword";
 export { default as ActivateAccount } from "./activeAccount/ActiveAccount";
 export { default as Referrals } from "./referrals/Referrals";
+export { default as UserProfile } from "./userProfile/UserProfile";

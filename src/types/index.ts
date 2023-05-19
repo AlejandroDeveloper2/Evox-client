@@ -13,6 +13,8 @@ export type {
   ServerResponseFail,
   LoginReasponse,
   Referral,
+  UserProfile,
+  ProfileFormValues,
 } from "./dataTypes";
 
 /* Component types Models */
@@ -43,4 +45,5 @@ export type {
   EvoxContextType,
   ThemeContextType,
   Functions,
+  UserProfileContextType,
 } from "./contextTypes";

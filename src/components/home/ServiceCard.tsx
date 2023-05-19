@@ -8,13 +8,13 @@ const ServiceCard = (props: ServiceCardProps): JSX.Element => {
   return (
     <Link
       to={to}
-      className="w-[10rem] h-[18rem] rounded-[20px] overflow-hidden 
-      cursor-pointer hover:scale-110 transition-transform"
+      className="w-[10rem] rounded-[20px] overflow-hidden 
+      cursor-pointer xl:hover:scale-110 transition-transform md:w-20rem xl:w-[10rem]"
     >
       <img
         src={serviceImage}
         alt={alt}
-        className="w-full h-full object-cover"
+        className="w-full h-full object-cover "
       />
     </Link>
   );

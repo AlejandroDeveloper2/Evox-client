@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useFetchData } from "../hooks";
+import { useFetchData, usePage } from "../hooks";
 import {
   AppContextType,
   Country,
@@ -42,6 +42,7 @@ const AppProvider = ({ children }: Props) => {
     message: "",
     loading: false,
   });
+  const page = usePage();
 
   const getCountriesData = async () => {
     const countriesData = await getAllCountries();
@@ -71,6 +72,7 @@ const AppProvider = ({ children }: Props) => {
       function: getUserIPData,
     },
   ];
+
   useFetchData(functions);
 
   return (
@@ -83,6 +85,7 @@ const AppProvider = ({ children }: Props) => {
         isMenuVisible,
         isValidating,
         loader,
+        page,
         setLoading,
         setToast,
         toggleLateralMenu,

@@ -13,7 +13,7 @@ import {
 import { toggleButton, setFormValues } from "../utils";
 import { useApp, useAuth } from ".";
 
-import { CustomButton, CustomInput } from "../components";
+import { CustomButton, CustomField } from "../components";
 
 const useForm = (
   fields: FieldType[],
@@ -31,7 +31,7 @@ const useForm = (
 
   const renderFormInputs = (config: RenderInputProps): JSX.Element[] => {
     return fields.map((field, index) => (
-      <CustomInput key={index} field={field} {...config} />
+      <CustomField key={index} field={field} {...config} />
     ));
   };
 

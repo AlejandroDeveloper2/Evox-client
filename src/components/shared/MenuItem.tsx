@@ -1,45 +1,26 @@
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 
-import { setActiveMenuItem } from "../../utils";
+import { setActiveMenuItem, setMenuItemEnabled } from "../../utils";
 import { MenuItem as MenuItemType } from "../../types";
-import { useApp } from "../../hooks";
+import { useMenuItem } from "../../hooks";
 
 const MenuItem = (props: MenuItemType): JSX.Element => {
   const { leftIcon, rightIcon, label, to, subItems } = props;
-  const location = useLocation();
-  const [isSubitemsVisible, setIsSubitemsVisible] =
-    React.useState<boolean>(false);
-
-  const { toggleLateralMenu } = useApp();
-
-  const SubItems = (props: MenuItemType): JSX.Element => {
-    const { subItems } = props;
-    return (
-      <ul
-        className={`flex-col items-center justify-start gap-1 w-full ${
-          !isSubitemsVisible ? "hidden" : "flex"
-        } transition-all`}
-      >
-        {subItems?.map((item, index) => (
-          <MenuItem key={index} {...item} />
-        ))}
-      </ul>
-    );
-  };
+  const {
+    isSubitemsVisible,
+    location,
+    setIsSubitemsVisible,
+    toggleLateralMenu,
+    SubItems,
+  } = useMenuItem();
 
   return (
-    <li
-      className={`flex justify-center items-center gap-5 flex-col rounded-lg px-3 py-4 w-[80%] 
-      relative ${
-        props.enabled && "hover:bg-opacity-40 dark:hover:bg-opacity-40"
-      }  transition-all cursor-pointer ${
-        !props.enabled
-          ? "bg-black bg-opacity-30"
-          : setActiveMenuItem(to, location.pathname)[0]
-      } `}
+    <Link
+      to={to}
+      className={`flex justify-start items-center gap-5 flex-col rounded-lg px-5 py-4 w-[80%] 
+      relative ${setMenuItemEnabled(props.enabled, to, location)}`}
       onClick={() => {
         props.enabled
           ? setIsSubitemsVisible(!isSubitemsVisible)
@@ -47,10 +28,7 @@ const MenuItem = (props: MenuItemType): JSX.Element => {
         toggleLateralMenu();
       }}
     >
-      <Link
-        to={to}
-        className="flex justify-start items-center gap-2 h-full w-full relative"
-      >
+      <li className="flex flex-row gap-5 w-full">
         {!props.enabled && (
           <FontAwesomeIcon
             icon={faLock}
@@ -62,31 +40,33 @@ const MenuItem = (props: MenuItemType): JSX.Element => {
           className={
             props.enabled
               ? setActiveMenuItem(to, location.pathname)[1]
-              : "text-mediumGray"
+              : "text-mediumGray dark:text-white dark:text-opacity-40"
           }
         />
         <span
           className={`${
             props.enabled
               ? setActiveMenuItem(to, location.pathname)[1]
-              : "text-mediumGray"
+              : "text-mediumGray dark:text-white dark:text-opacity-40"
           } text-left font-montserrat font-medium lg:block text-[12px]`}
         >
           {label}
         </span>
-      </Link>
-      {rightIcon && (
-        <FontAwesomeIcon
-          icon={rightIcon}
-          className={`absolute top-4 right-2 ${
-            !isSubitemsVisible ? "rotate-[0deg]" : "rotate-90"
-          } transition-transform ${
-            props.enabled ? "text-darkGray dark:text-white" : "text-mediumGray"
-          }`}
-        />
-      )}
+        {rightIcon && (
+          <FontAwesomeIcon
+            icon={rightIcon}
+            className={`absolute top-4 right-2 ${
+              !isSubitemsVisible ? "rotate-[0deg]" : "rotate-90"
+            } transition-transform ${
+              props.enabled
+                ? "text-darkGray dark:text-white"
+                : "text-mediumGray dark:text-white dark:text-opacity-40"
+            }`}
+          />
+        )}
+      </li>
       {subItems && <SubItems {...props} />}
-    </li>
+    </Link>
   );
 };
 

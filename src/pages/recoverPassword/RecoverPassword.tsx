@@ -26,7 +26,6 @@ const RecoverPassword = (): JSX.Element => {
         initialValues={initialvalues}
         validationSchema={validationSchema}
         cols="1"
-        recover
         form="recover"
         action={(values: FormikValues) => sendRequestPassword(values)}
       />

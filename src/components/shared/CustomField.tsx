@@ -1,14 +1,12 @@
-import { useLocation } from "react-router-dom";
-import { Field, ErrorMessage } from "formik";
+import { ErrorMessage } from "formik";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { CustomInputProps } from "../../types";
 
-import { CustomSelect } from "..";
+import { CustomSelect, CustomInput } from "..";
 
-const CustomInput = (props: CustomInputProps): JSX.Element => {
-  const { field, errors, touched, values } = props;
-  const location = useLocation();
+const CustomField = (props: CustomInputProps): JSX.Element => {
+  const { field, errors, touched } = props;
 
   return (
     <div className="flex flex-col gap-2 justify-center items-start w-auto transition-all">
@@ -27,7 +25,11 @@ const CustomInput = (props: CustomInputProps): JSX.Element => {
         }`}
       >
         <span
-          className={`flex justify-center items-center py-3 ps-3 h-full bg-white dark:bg-mediumGray`}
+          className={`flex justify-center items-center py-3 ps-3 h-full ${
+            field.disabled
+              ? "bg-primary-color dark:bg-darkGray"
+              : "bg-white dark:bg-mediumGray"
+          }`}
         >
           <FontAwesomeIcon
             icon={field.icon}
@@ -41,21 +43,7 @@ const CustomInput = (props: CustomInputProps): JSX.Element => {
         {field.as === "select" ? (
           <CustomSelect {...props} />
         ) : (
-          <Field
-            as="input"
-            type={field.type}
-            placeholder={field.placeholder}
-            name={field.name}
-            className={`border-none outline-none py-3 px-4 w-full text-[14px] font-poppins ${
-              field.disabled && "text-darkGray"
-            } dark:bg-mediumGray bg-white dark:placeholder:text-primary-color dark:placeholder:text-opacity-60  dark:text-white`}
-            disabled={field.disabled ? field.disabled : false}
-            value={
-              field.name === "referral"
-                ? location.pathname.split("/")[1]
-                : values[field.name]
-            }
-          />
+          <CustomInput {...props} />
         )}
       </div>
       <ErrorMessage
@@ -67,4 +55,4 @@ const CustomInput = (props: CustomInputProps): JSX.Element => {
   );
 };
 
-export default CustomInput;
+export default CustomField;

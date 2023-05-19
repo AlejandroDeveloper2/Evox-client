@@ -30,9 +30,11 @@ const CustomForm = (props: CustomFormProps): JSX.Element => {
           </h1>
           <div
             className={`grid grid-cols-1 w-full gap-5 ${
-              props.login || props.recover ? "lg:w-3/4" : ""
+              props.form === "login" || props.form === "recover"
+                ? "lg:w-3/4"
+                : ""
             } ${
-              props.login || props.recover
+              props.form === "login" || props.form === "recover"
                 ? `md:grid-cols-${props.cols}`
                 : "md:grid-cols-2"
             } lg:grid-cols-${props.cols}`}
@@ -41,10 +43,12 @@ const CustomForm = (props: CustomFormProps): JSX.Element => {
           </div>
           <div
             className={`flex flex-wrap gap-3 w-full ${
-              props.login || props.recover ? "lg:w-3/4" : ""
+              props.form === "login" || props.form === "recover"
+                ? "lg:w-3/4"
+                : ""
             } justify-center md:grid grid-cols-1 md:justify-items-center`}
           >
-            {props.login && (
+            {props.form === "login" && (
               <Link
                 to="/recoverPassword"
                 className="font-montserrat text-darkGray dark:text-white font-normal hover:text-secondaryColor transition-all"
