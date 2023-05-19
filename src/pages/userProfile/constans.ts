@@ -5,7 +5,6 @@ import {
   faLocationDot,
   faPhone,
   faPerson,
-  faImage,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { Field, CustomButtonProps, ProfileFormValues } from "../../types";
@@ -83,14 +82,6 @@ export const fields: Field[] = [
     icon: faWallet,
     as: "input",
     disabled: true,
-  },
-  {
-    type: "file",
-    name: "profilePhotoUrl",
-    label: "Your profile photo",
-    placeholder: "Choose your profile photo",
-    icon: faImage,
-    as: "input",
   },
 ];
 

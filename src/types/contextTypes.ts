@@ -61,6 +61,7 @@ interface UserProfileContextType {
   children?: JSX.Element | JSX.Element[];
   userProfile: UserProfile | null;
   updateUserProfile: (userData: FormikValues) => Promise<void>;
+  uploadProfilePhoto: (e: React.ChangeEvent<HTMLInputElement>) => Promise<void>;
 }
 
 export type {
