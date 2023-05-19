@@ -5,7 +5,6 @@ import {
   faLocationDot,
   faPhone,
   faPerson,
-  faImage,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { Field, CustomButtonProps, ProfileFormValues } from "../../types";

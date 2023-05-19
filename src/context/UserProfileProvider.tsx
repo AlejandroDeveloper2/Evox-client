@@ -2,9 +2,9 @@ import React from "react";
 import { FormikValues } from "formik";
 
 import { UserProfile, UserProfileContextType } from "../types";
-import getAxiosClient from "../config/axiosClient";
+
 import { useApp } from "../hooks";
-// import { useAuth } from "../hooks";
+import { uploadProfileImage } from "../services/userProfile";
 
 const UserProfileContext = React.createContext<UserProfileContextType>(
   {} as UserProfileContextType
@@ -34,31 +34,35 @@ const UserProfileProvider = ({ children }: Props) => {
     const formData = new FormData();
     if (files) {
       formData.append("file", files[0]);
-      formData.append("upload_preset", "Evox images");
+      formData.append("upload_preset", "tfmnv7bp");
     }
-    const axiosClient = getAxiosClient("cloudinaryAPI");
-
     setLoader({
       message: "Uploading image...",
       loading: true,
     });
-
-    try {
-      const { data } = await axiosClient.post("/image/upload", formData);
-      setProfilePhoto(data.secure_url);
-      setLoader({
-        message: "",
-        loading: false,
+    await uploadProfileImage(formData)
+      .then((res) => {
+        setProfilePhoto(res);
+        localStorage.setItem("profileImgUrl", res);
+        setToast({
+          message: "Profile photo uploaded!",
+          type: "success",
+          visible: true,
+        });
+      })
+      .catch((error) => {
+        setToast({
+          message: error,
+          type: "error",
+          visible: true,
+        });
+      })
+      .finally(() => {
+        setLoader({
+          message: "",
+          loading: false,
+        });
       });
-      setToast({
-        message: "Profile photo uploaded!",
-        type: "success",
-        visible: true,
-      });
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
   };
 
   const updateUserProfile = async (userData: FormikValues): Promise<void> => {

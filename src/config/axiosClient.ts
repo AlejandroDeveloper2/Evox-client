@@ -11,7 +11,7 @@ const getAxiosClient = (
         ? import.meta.env.VITE_IP_ADDRESS_API_URL
         : apiName === "evoxAPI"
         ? import.meta.env.VITE_BACKEND_URL
-        : "https://res.cloudinary.com/dym53oxov",
+        : import.meta.env.VITE_CLOUDINARY_API_URL,
   });
   return axiosClient;
 };
