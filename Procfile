@@ -1,1 +1,1 @@
-web: vite preview --port 5173
+web: npm run start:prod
