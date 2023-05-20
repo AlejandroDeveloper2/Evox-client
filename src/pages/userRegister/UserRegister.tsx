@@ -20,7 +20,7 @@ const UserRegister = () => {
       <img
         src={RegisterImage}
         alt="Register image"
-        className=" absolute hidden lg:block lg:left-[-12%] w-1/4 h-1/4 lg:animate-wiggle"
+        className=" absolute hidden xl:block xl:left-[-12%] w-1/4 h-1/4 xl:animate-wiggle"
       />
       <CustomForm
         formTitle="User Registration"

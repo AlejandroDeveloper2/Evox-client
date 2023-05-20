@@ -16,7 +16,7 @@ const ProtectedLayout = (): JSX.Element => {
         <main className="bg-primary-color dark:bg-mediumGray w-screen h-screen overflow-x-hidden relative">
           <Toast />
           <Header pageName={page} />
-          <div className="flex h-auto relative w-full xl:w-3/4 shadow-lg mt-[5rem] mb-[1rem] mx-auto max-w-[95%]">
+          <div className="flex h-auto relative w-full xl:w-[85%] shadow-lg mt-[5rem] mb-[1rem] mx-auto max-w-[95%]">
             <LateralMenu />
             <div className="bg-white dark:bg-darkGray xl:w-[80%] w-full min-h-[60rem]">
               <button

@@ -19,11 +19,14 @@ const ChangePassword = (): JSX.Element => {
   }, []);
 
   return (
-    <div className="w-full bg-white flex justify-center items-center flex-col gap-1 pb-6  rounded-t-[20px] relative dark:bg-darkGray">
+    <div
+      className="w-full bg-white flex justify-center items-center flex-col gap-1 pb-6  rounded-t-[20px] 
+    relative dark:bg-darkGray h-[calc(100vh-400px)] xl:h-auto"
+    >
       <img
         src={LoginImage}
         alt="Login image"
-        className=" absolute hidden lg:block lg:left-[-12%] w-1/4 h-1/4 lg:animate-wiggle"
+        className=" absolute hidden xl:block xl:left-[-12%] w-1/4 h-1/4 xl:animate-wiggle"
       />
       {isValidating ? (
         <Loader />

@@ -14,9 +14,12 @@ const uploadProfileImage = async (formData: FormData): Promise<string> => {
   return response;
 };
 
-const updateUserProfile = async (userData: FormikValues, token:string): Promise<string> =>{
+const updateUserProfile = async (
+  userData: FormikValues,
+  token: string
+): Promise<string> => {
   const axiosClient = getAxiosClient("evoxAPI");
-  let response:string = "";
+  let response = "";
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -27,10 +30,11 @@ const updateUserProfile = async (userData: FormikValues, token:string): Promise<
   try {
     const { data } = await axiosClient.put("/users/edit", userData, config);
     response = data.token;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
-   throw new Error(error.response.data);
+    throw new Error(error.response.data);
   }
   return response;
-}
+};
 
 export { uploadProfileImage, updateUserProfile };

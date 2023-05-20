@@ -12,7 +12,7 @@ const useCountdown = (): CountDownHook => {
   let interval: any = React.useRef();
 
   const startTimer = () => {
-    const countdownDate = new Date("May 17 2023 00:00:00").getTime();
+    const countdownDate = new Date("May 27 2023 00:00:00").getTime();
     interval = setInterval(() => {
       const now = new Date().getTime();
       const distance: number = countdownDate - now;

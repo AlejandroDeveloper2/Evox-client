@@ -13,11 +13,11 @@ const RecoverPassword = (): JSX.Element => {
   const { sendRequestPassword } = useAuth();
   const buttons = getFormButtons(navigate);
   return (
-    <div className="w-full bg-white flex justify-center items-center flex-col gap-1 relative dark:bg-darkGray">
+    <div className="w-full bg-white flex justify-center items-center flex-col gap-1 relative dark:bg-darkGray h-[calc(100vh-400px)] xl:h-auto">
       <img
         src={RecoverImage}
         alt="Recover password image"
-        className=" absolute hidden lg:block lg:left-[-12%] w-1/4 h-1/4 lg:animate-wiggle"
+        className=" absolute hidden xl:block xl:left-[-12%] w-1/4 h-1/4 xl:animate-wiggle"
       />
       <CustomForm
         formTitle="Recover Password"

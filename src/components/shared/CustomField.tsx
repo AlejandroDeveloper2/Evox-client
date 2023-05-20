@@ -9,7 +9,7 @@ const CustomField = (props: CustomInputProps): JSX.Element => {
   const { field, errors, touched } = props;
 
   return (
-    <div className="flex flex-col gap-2 justify-center items-start w-auto transition-all">
+    <div className="flex flex-col gap-2 justify-center items-start w-auto max-w-4xl transition-all">
       <label
         htmlFor={field.name}
         className=" font-montserrat text-darkGray dark:text-white font-bold"

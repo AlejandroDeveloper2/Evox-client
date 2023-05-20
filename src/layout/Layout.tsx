@@ -22,8 +22,8 @@ const Layout = () => {
             <Toggle />
           </div>
           <div className="w-full bg-gradient-to-r from-blue via-purple to-lightBlue h-6  dark:to-purple dark:from-white"></div>
-          <div className="grid grid-cols-1 justify-items-center lg:grid-cols-2 relative">
-            <div className="w-full bg-primary-color dark:bg-mediumGray flex justify-center items-center h-[400px] gap-4 flex-col pb-[40px] lg:h-screen lg:gap-6 px-5">
+          <div className="grid grid-cols-1 justify-items-center xl:grid-cols-2 relative">
+            <div className="w-full bg-primary-color dark:bg-mediumGray flex justify-center items-center h-[400px] gap-4 flex-col pb-[40px] xl:h-screen lg:gap-6 px-5">
               <img
                 src={theme === "light" ? Logo : LogoDark}
                 alt="EVOX-LOGO"

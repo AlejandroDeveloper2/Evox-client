@@ -26,7 +26,7 @@ const MenuItem = (props: MenuItemType): JSX.Element => {
           props.enabled
             ? setIsSubitemsVisible(!isSubitemsVisible)
             : console.log("Blocked");
-          //toggleLateralMenu();
+          props.subItems === undefined ? console.log("") : toggleLateralMenu();
         }}
       >
         <li className="flex flex-row gap-5 w-full">

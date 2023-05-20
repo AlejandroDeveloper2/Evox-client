@@ -16,7 +16,9 @@ interface Props {
 }
 
 const UserProfileProvider = ({ children }: Props) => {
-  const [ profilePhoto, setProfilePhoto] = React.useState<string | null>(localStorage.getItem("profileImgUrl")??null);
+  const [profilePhoto, setProfilePhoto] = React.useState<string | null>(
+    localStorage.getItem("profileImgUrl") ?? null
+  );
   const { setToast, setLoader, setLoading } = useApp();
   const { setAuth } = useAuth();
 
@@ -43,7 +45,7 @@ const UserProfileProvider = ({ children }: Props) => {
           visible: true,
         });
       })
-      .catch((error:Error) => {
+      .catch((error: Error) => {
         setToast({
           message: error.message,
           type: "error",
@@ -60,33 +62,36 @@ const UserProfileProvider = ({ children }: Props) => {
 
   const editUserProfile = async (userData: FormikValues): Promise<void> => {
     const token = localStorage.getItem("token");
-    if(token){
+    if (token) {
       setLoading({
         message: "Updating user profile...",
         visible: true,
       });
-      await updateUserProfile(userData, token).then((res)=>{
-        localStorage.setItem("token", res);
-        setToast({
-          message: "User profile updated!",
-          type: "success",
-          visible: true,
-        }); 
-        const user = decodeToken<UserAuth | null>(res);
-        setAuth(user);   
-
-      }).catch((error: Error)=>{
-        setToast({
-          message: error.message,
-          type: "error",
-          visible: true,
+      await updateUserProfile(userData, token)
+        .then((res) => {
+          localStorage.removeItem("profileImgUrl");
+          localStorage.setItem("token", res);
+          setToast({
+            message: "User profile updated!",
+            type: "success",
+            visible: true,
+          });
+          const user = decodeToken<UserAuth | null>(res);
+          setAuth(user);
+        })
+        .catch((error: Error) => {
+          setToast({
+            message: error.message,
+            type: "error",
+            visible: true,
+          });
+        })
+        .finally(() => {
+          setLoading({
+            message: "",
+            visible: false,
+          });
         });
-      }).finally(()=>{
-        setLoading({
-          message: "",
-          visible: false,
-        });
-      });
     }
   };
 
