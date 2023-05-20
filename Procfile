@@ -1,1 +1,1 @@
-web: vite preview --port $PORT
+web: ./node_modules/vite/bin/vite preview --port $PORT
