@@ -7,8 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
-    "start:prod": "NODE_ENV=production node build/server.js"
+    "preview": "vite preview --port 5173"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
