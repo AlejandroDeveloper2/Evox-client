@@ -5,12 +5,9 @@ interface RegisterFormValues {
   password: string;
   confirmPassword: string;
   username: string;
-  fullName: string;
   phone: string;
-  typeOfIdentification: string;
-  identification: string;
   country: string;
-  countryOfResidence: string;
+  city: string;
   invitationLink?: string;
 }
 
@@ -39,10 +36,12 @@ interface Identification {
 }
 
 interface Country {
-  name: {
-    common: string;
-    official: string;
-  };
+  id: number;
+  name: string;
+}
+
+interface City extends Country {
+  country_name: string;
 }
 
 interface UserIP {
@@ -101,7 +100,6 @@ interface ProfileFormValues {
   countryOfResidence: string;
 }
 
-
 export type {
   FormType,
   RegisterFormValues,
@@ -110,6 +108,7 @@ export type {
   ChangePasswordFormValues,
   Identification,
   Country,
+  City,
   UserIP,
   UserAuth,
   ServerResponseSuccess,

@@ -1,6 +1,7 @@
 import { FormikValues } from "formik";
 
 import {
+  City,
   Country,
   LoaderProps,
   Referral,
@@ -13,6 +14,7 @@ import {
 interface AppContextType {
   children?: JSX.Element | JSX.Element[];
   countries: Country[];
+  cities: City[];
   userIP: UserIP;
   loading: SpinnerProps;
   toast: ToastProps;
@@ -25,12 +27,14 @@ interface AppContextType {
   toggleLateralMenu: () => void;
   setIsValidating: React.Dispatch<React.SetStateAction<boolean>>;
   setLoader: React.Dispatch<React.SetStateAction<LoaderProps>>;
+  getCities: (country: string) => Promise<void>;
 }
 
 interface AuthContextType {
   children?: JSX.Element | JSX.Element[];
   auth: UserAuth | null;
   success: boolean;
+  phoneCode: string;
   logIn: (userData: FormikValues) => Promise<void>;
   logOut: () => void;
   createAccount: (userData: FormikValues) => Promise<void>;
@@ -39,6 +43,7 @@ interface AuthContextType {
   changeUserPassword: (userData: FormikValues) => Promise<void>;
   validateAccount: () => Promise<void>;
   setAuth: React.Dispatch<React.SetStateAction<UserAuth | null>>;
+  setPhoneCode: React.Dispatch<React.SetStateAction<string>>;
 }
 
 interface EvoxContextType {

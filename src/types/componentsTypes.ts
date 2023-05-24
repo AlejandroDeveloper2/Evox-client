@@ -7,11 +7,11 @@ interface Field {
   type: string;
   name: string;
   placeholder: string;
-  label: string;
+  label?: string;
   icon: IconDefinition;
   disabled?: boolean;
   as: "input" | "textarea" | "select";
-  selectName?: "countries" | "identification";
+  selectName?: "countries" | "cities";
 }
 
 interface CustomButtonProps {
@@ -54,6 +54,7 @@ interface HeaderProps {
 
 interface CustomInputProps extends RenderInputProps {
   field: Field;
+  passVisible?: boolean;
 }
 
 interface RenderInputProps {
@@ -81,6 +82,7 @@ interface ServiceCardProps {
   serviceImage: string;
   alt: string;
   to: string;
+  style?: string;
 }
 
 interface CountDownElement {

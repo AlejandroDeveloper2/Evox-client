@@ -1,50 +1,67 @@
+import React from "react";
 import { ErrorMessage } from "formik";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 import { CustomInputProps } from "../../types";
 
 import { CustomSelect, CustomInput } from "..";
+import { useAuth, usePhonecode } from "../../hooks";
 
 const CustomField = (props: CustomInputProps): JSX.Element => {
   const { field, errors, touched } = props;
+  const [passVisible, setPassVisible] = React.useState<boolean>(false);
+  const { phoneCode, setPhoneCode } = useAuth();
+  const { renderPhoneCodes } = usePhonecode();
 
   return (
-    <div className="flex flex-col gap-2 justify-center items-start w-auto max-w-4xl transition-all">
-      <label
-        htmlFor={field.name}
-        className=" font-montserrat text-darkGray dark:text-white font-bold"
-      >
-        {field.label}
-      </label>
+    <div className="flex flex-col gap-2 justify-center items-start w-auto transition-all">
       <div
-        className={`flex flex-row justify-center w-full items-center border-solid border-[1px] rounded-[10px] overflow-hidden 
+        className={`flex flex-col  justify-center w-full items-start border-solid 
+        border-[1px] rounded-[10px] overflow-hidden p-3 gap-2 ${
+          field.disabled
+            ? "text-darkGray bg-disabledColor dark:bg-darkGray"
+            : "dark:bg-mediumGray bg-white"
+        }
         hover:border-darkGray dark:hover:border-primary-color ${
           errors[field.name] && touched[field.name]
             ? "border-error"
             : "border-primary-color"
         }`}
       >
-        <span
-          className={`flex justify-center items-center py-3 ps-3 h-full ${
-            field.disabled
-              ? "bg-primary-color dark:bg-darkGray"
-              : "bg-white dark:bg-mediumGray"
+        <label
+          className={`text-black text-opacity-40 text-left font-poppins font-semibold ${
+            field.label ? "block" : "hidden"
           }`}
         >
-          <FontAwesomeIcon
-            icon={field.icon}
-            className={`${
-              errors[field.name] && touched[field.name]
-                ? "text-error"
-                : "text-darkGray dark:text-white"
-            }`}
-          />
-        </span>
-        {field.as === "select" ? (
-          <CustomSelect {...props} />
-        ) : (
-          <CustomInput {...props} />
-        )}
+          {field.label}
+        </label>
+        <div className="w-full flex flex-row justify-between items-center">
+          {field.name === "phone" && (
+            <select
+              className="outline-none w-[10rem] font-poppins"
+              value={phoneCode}
+              name="phoneCode"
+              onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                setPhoneCode(e.target.value)
+              }
+            >
+              {renderPhoneCodes()}
+            </select>
+          )}
+          {field.as === "select" ? (
+            <CustomSelect {...props} />
+          ) : (
+            <CustomInput {...props} passVisible={passVisible} />
+          )}
+          {field.type === "password" && (
+            <FontAwesomeIcon
+              icon={passVisible ? faEyeSlash : faEye}
+              className="text-darkGray"
+              onClick={() => setPassVisible(!passVisible)}
+            />
+          )}
+        </div>
       </div>
       <ErrorMessage
         name={field.name}

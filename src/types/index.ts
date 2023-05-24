@@ -7,6 +7,7 @@ export type {
   ChangePasswordFormValues,
   Identification,
   Country,
+  City,
   UserIP,
   UserAuth,
   ServerResponseSuccess,

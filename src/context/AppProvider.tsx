@@ -3,6 +3,7 @@ import React from "react";
 import { useFetchData, usePage } from "../hooks";
 import {
   AppContextType,
+  City,
   Country,
   Functions,
   LoaderProps,
@@ -10,7 +11,7 @@ import {
   ToastProps,
   UserIP,
 } from "../types";
-import { getAllCountries } from "../services/countries";
+import { getAllCountries, getCitiesPerCountry } from "../services/countries";
 import { getUserIPAddress } from "../services/userIpAddress";
 
 const AppContext = React.createContext<AppContextType>({} as AppContextType);
@@ -21,6 +22,7 @@ interface Props {
 
 const AppProvider = ({ children }: Props) => {
   const [countries, setCountries] = React.useState<Country[]>([]);
+  const [cities, setCities] = React.useState<City[]>([]);
   const [userIP, setUserIP] = React.useState<UserIP>({
     ip: "",
     country_name: "",
@@ -48,9 +50,16 @@ const AppProvider = ({ children }: Props) => {
     const countriesData = await getAllCountries();
     setCountries(
       countriesData.sort(function (a, b) {
-        return a.name.common
-          .toLowerCase()
-          .localeCompare(b.name.common.toLowerCase());
+        return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
+      })
+    );
+  };
+
+  const getCities = async (country: string) => {
+    const citiesData = await getCitiesPerCountry(country);
+    setCities(
+      citiesData.sort(function (a, b) {
+        return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
       })
     );
   };
@@ -79,6 +88,7 @@ const AppProvider = ({ children }: Props) => {
     <AppContext.Provider
       value={{
         countries,
+        cities,
         userIP,
         loading,
         toast,
@@ -91,6 +101,7 @@ const AppProvider = ({ children }: Props) => {
         toggleLateralMenu,
         setIsValidating,
         setLoader,
+        getCities,
       }}
     >
       {children}

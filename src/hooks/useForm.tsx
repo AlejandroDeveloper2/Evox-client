@@ -27,7 +27,7 @@ const useForm = (
   const captcha = React.useRef<ReCAPTCHA>(null);
   const location = useLocation();
   const { userIP } = useApp();
-  const { success } = useAuth();
+  const { success, phoneCode } = useAuth();
   const { profilePhoto } = useUserProfile();
 
   const renderFormInputs = (config: RenderInputProps): JSX.Element[] => {
@@ -78,8 +78,14 @@ const useForm = (
     values: FormikValues,
     formikHelpers: FormikHelpers<FormikValues>
   ): void => {
-    const newValues = setFormValues(values, form, { location, userIp: userIP, profileImageUrl:profilePhoto });
+    const newValues = setFormValues(values, form, {
+      location,
+      userIp: userIP,
+      profileImageUrl: profilePhoto,
+      phoneCode,
+    });
     action(newValues);
+    console.log(newValues);
     captcha.current?.reset();
     if (success && form !== "profile") {
       formikHelpers.resetForm();

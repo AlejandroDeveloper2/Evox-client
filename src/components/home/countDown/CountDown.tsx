@@ -6,7 +6,7 @@ const CountDown = (): JSX.Element => {
   const countDownElements = getCountDownElements(timerValues);
   return (
     <div
-      className="w-full bg-primary-color dark:bg-mediumGray h-[10rem] rounded-xl flex 
+      className="w-full bg-white dark:bg-mediumGray h-[10rem] rounded-xl flex 
       flex-row gap-2 lg:gap-5 items-center justify-center shadow-xl px-3 lg:px-0"
     >
       {countDownElements.map((element, index) => (

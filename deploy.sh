@@ -5,6 +5,6 @@ echo "Building app...."
 npm run build
 
 echo "Deploying files to server...."
-scp sudo -r dist/* ubuntu@18.117.174.93:/var/www/html/evoxclient
+scp -r dist/* ubuntu@18.117.174.93:/var/www/html/evoxclient
 
 echo "done!"

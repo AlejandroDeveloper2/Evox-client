@@ -15,16 +15,14 @@ export const fields: Field[] = [
   {
     type: "password",
     name: "password",
-    label: "Your new password *",
-    placeholder: "Enter your password",
+    placeholder: "Enter your new password",
     icon: faLock,
     as: "input",
   },
   {
     type: "password",
     name: "confirmPassword",
-    label: "Confirm password *",
-    placeholder: "Enter your password",
+    placeholder: "Confirm your password",
     icon: faLock,
     as: "input",
   },

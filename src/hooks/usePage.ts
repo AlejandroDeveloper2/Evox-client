@@ -15,7 +15,7 @@ const usePage = (): string => {
   React.useEffect(() => {
     setPage(getCurrentPage());
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location.pathname]);
+  }, [location.pathname, page]);
 
   return page;
 };

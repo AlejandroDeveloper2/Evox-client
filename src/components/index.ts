@@ -15,6 +15,7 @@ export { default as MenuItem } from "./shared/MenuItem";
 export { default as Footer } from "./shared/footer/Footer";
 export { default as Toggle } from "./shared/Toggle";
 export { default as Loader } from "./shared/Loader";
+export { default as OptionsBar } from "./shared/OptionsBar";
 
 /*Home components */
 export { default as Welcome } from "./home/Welcome";

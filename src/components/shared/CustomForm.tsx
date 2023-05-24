@@ -22,36 +22,33 @@ const CustomForm = (props: CustomFormProps): JSX.Element => {
     >
       {({ touched, errors, values, isSubmitting }) => (
         <Form
-          className="w-full lg:w-3/4 bg-white dark:bg-darkGray lg:h-auto flex flex-col gap-5 pt-[40px] md:w-3/4
-         pb-[10px] px-[40px] h-auto lg:justify-center items-center md:h-full md:justify-center"
+          className={`flex flex-col lg:gap-5 ${
+            props.form === "register" || props.form === "recover"
+              ? "items-center"
+              : "items-start"
+          } w-full gap-10  md:px-20`}
         >
-          <h1 className="font-montserrat font-bold text-darkGray dark:text-white text-[18px] lg:text-[22px]">
+          <h1
+            className={`font-poppins font-bold ${
+              props.form === "login" || props.form === "recover"
+                ? "text-darkGray"
+                : "text-blue"
+            } dark:text-white text-[18px] lg:text-[22px] text-center`}
+          >
             {props.formTitle}
           </h1>
           <div
-            className={`grid grid-cols-1 w-full gap-5 ${
-              props.form === "login" || props.form === "recover"
-                ? "lg:w-3/4"
-                : ""
-            } ${
-              props.form === "login" || props.form === "recover"
-                ? `md:grid-cols-${props.cols}`
-                : "md:grid-cols-2"
-            } lg:grid-cols-${props.cols}`}
+            className={`grid grid-cols-1 w-full gap-5 md:grid-cols-${props.cols} lg:grid-cols-${props.cols}`}
           >
             {renderFormInputs({ errors, touched, values })}
           </div>
           <div
-            className={`flex flex-wrap gap-3 w-full ${
-              props.form === "login" || props.form === "recover"
-                ? "lg:w-3/4"
-                : ""
-            } justify-center md:grid grid-cols-1 md:justify-items-center`}
+            className={`flex flex-wrap gap-3 w-full justify-center md:grid grid-cols-1 md:justify-items-center`}
           >
             {props.form === "login" && (
               <Link
                 to="/recoverPassword"
-                className="font-montserrat text-darkGray dark:text-white font-normal hover:text-secondaryColor transition-all"
+                className="font-poppins text-blue dark:text-white font-normal hover:text-secondaryColor transition-all"
               >
                 {" "}
                 Did you forget your password?

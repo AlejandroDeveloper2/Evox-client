@@ -14,7 +14,6 @@ export const fields: Field[] = [
   {
     type: "text",
     name: "email",
-    label: "Email *",
     placeholder: "Enter your email",
     icon: faAt,
     as: "input",
@@ -22,7 +21,6 @@ export const fields: Field[] = [
   {
     type: "password",
     name: "password",
-    label: "Password *",
     placeholder: "Enter your password",
     icon: faLock,
     as: "input",

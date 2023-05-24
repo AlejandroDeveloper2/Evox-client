@@ -35,12 +35,12 @@ const UserDashboard = (): JSX.Element => {
             <>
               <ServicesList />
               <JoinChannelSection />
-              <section className="flex flex-col gap-10 items-center justify-center px-10 w-full">
-                <InfoCard style="bg-gradient-to-r from-blue via-purple to-lightBlue dark:to-white dark:from-purple">
-                  <div className="flex flex-col md:flex-row gap-10 justify-center items-center relative">
+              <section className="flex flex-col gap-10 items-center justify-center px-20 w-full">
+                <InfoCard style="bg-gradient-to-r from-purple via-mediumBlue to-lightBlue dark:to-white dark:from-purple ">
+                  <div className="flex flex-col md:flex-row gap-10 justify-between py-10 px-5 items-center relative w-full">
                     <div className=" flex flex-col gap-10 items-center md:items-start justify-center">
                       <img src={EvoxAcademyLogo} alt="Evox academy Logo" />
-                      <h3 className="text-white font-medium font-montserrat md:text-[30px] text-center md:text-left text-[24] md:w-3/5">
+                      <h3 className="text-white font-medium font-poppins md:text-[25px] text-center md:text-left text-[24] md:w-3/5">
                         <span className="text-white font-extrabold">
                           + 500 Hours
                         </span>{" "}
@@ -53,20 +53,20 @@ const UserDashboard = (): JSX.Element => {
                         Find out more <FontAwesomeIcon icon={faArrowRight} />
                       </Link>
                     </div>
-                    <div className="hidden md:block absolute right-0 bottom-[-5rem]">
+                    <div className="hidden md:block absolute right-0 bottom-[-2rem]">
                       <img src={EvoxAcademyImage1} alt="Evox academy" />
                     </div>
                   </div>
                 </InfoCard>
               </section>
-              <section className="flex flex-col gap-10 items-center justify-center px-10 w-full">
+              <section className="flex flex-col gap-10 items-center justify-center px-20 w-full">
                 <InfoCard style="bg-violet dark:bg-blue">
                   <div
-                    className="flex flex-row flex-wrap md:gap-20 items-center lg:justify-start md:justify-center
-                  justify-center gap-5"
+                    className="flex flex-row md:gap-5 items-center lg:justify-start md:justify-center
+                    justify-center gap-5"
                   >
                     <div className="flex flex-col gap-1 md:items-start items-center">
-                      <h2 className="text-white font-medium font-montserrat md:text-[30px] text-[24]">
+                      <h2 className="text-white font-medium font-poppins md:text-[25px] text-[24]">
                         Total Directs
                       </h2>
                       <span className="text-white font-extrabold font-poppins md:text-[45px] text-[30px]">
@@ -74,7 +74,7 @@ const UserDashboard = (): JSX.Element => {
                       </span>
                     </div>
                     <div className="flex flex-col gap-1 md:items-start items-center">
-                      <h2 className="text-white font-medium font-montserrat md:text-[30px] text-[24]">
+                      <h2 className="text-white font-medium font-poppins md:text-[25px] text-[24]">
                         Total Customers
                       </h2>
                       <span className="text-white font-extrabold font-poppins md:text-[45px] text-[30px]">

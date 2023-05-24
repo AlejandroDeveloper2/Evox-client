@@ -6,7 +6,6 @@ import { useAuth } from "../../hooks";
 
 import { CustomForm } from "../../components";
 
-import RegisterImage from "../../assets/registration-image.svg";
 import { FormikValues } from "formik";
 
 const UserRegister = () => {
@@ -14,31 +13,24 @@ const UserRegister = () => {
 
   return (
     <div
-      className="w-full bg-white dark:bg-darkGray flex justify-center items-center 
-    flex-col gap-1 pb-6 md:pb-[60px] relative"
+      className="w-full bg-primary-color flex lg:justify-center items-center flex-col gap-3
+      relative dark:bg-darkGray lg:w-1/2 xl:w-1/3 lg:rounded-[10px] overflow-hidden pb-10 
+      lg:h-auto h-[calc(400px - 100vh)] px-10 justify-start"
     >
-      <img
-        src={RegisterImage}
-        alt="Register image"
-        className=" absolute hidden xl:block xl:left-[-12%] w-1/4 h-1/4 xl:animate-wiggle"
-      />
       <CustomForm
-        formTitle="User Registration"
+        formTitle="Sign up is easy and fast!"
         fields={fields}
         buttons={buttons}
         initialValues={initialvalues}
         validationSchema={validationSchema}
         hasCaptcha
-        cols="2"
+        cols="1"
         form="register"
         action={(values: FormikValues) => createAccount(values)}
       />
-      <h2 className="font-montserrat text-darkGray dark:text-white font-medium text-[16px]">
+      <h2 className="font-poppins text-blue dark:text-white font-medium text-[16px]">
         Do you already have an account?{" "}
-        <Link
-          to="/login"
-          className="font-montserrat text-purple font-extrabold"
-        >
+        <Link to="/login" className="font-poppins text-blue font-extrabold">
           {" "}
           Login
         </Link>

@@ -7,7 +7,7 @@ import { MenuItem as MenuItemType } from "../../types";
 import { useMenuItem } from "../../hooks";
 
 const MenuItem = (props: MenuItemType): JSX.Element => {
-  const { leftIcon, rightIcon, label, to, subItems } = props;
+  const { rightIcon, label, to, subItems } = props;
   const {
     isSubitemsVisible,
     location,
@@ -20,8 +20,8 @@ const MenuItem = (props: MenuItemType): JSX.Element => {
     <>
       <Link
         to={to}
-        className={`flex justify-start items-center gap-5 flex-col rounded-lg px-5 py-4 w-[80%] 
-      relative ${setMenuItemEnabled(props.enabled, to, location)}`}
+        className={`flex justify-center items-center gap-5 flex-col px-10 py-5 w-full
+        relative ${setMenuItemEnabled(props.enabled, to, location)} relative `}
         onClick={() => {
           props.enabled
             ? setIsSubitemsVisible(!isSubitemsVisible)
@@ -29,43 +29,36 @@ const MenuItem = (props: MenuItemType): JSX.Element => {
           props.subItems === undefined ? console.log("") : toggleLateralMenu();
         }}
       >
-        <li className="flex flex-row gap-5 w-full">
+        <li className="flex w-[80%] justify-start items-center relative">
           {!props.enabled && (
             <FontAwesomeIcon
               icon={faLock}
-              className="text-white text-[20px] absolute m-auto left-0 right-0"
+              className="text-mediumGray text-[20px] absolute m-auto left-[-30px]"
             />
           )}
-          <FontAwesomeIcon
-            icon={leftIcon}
-            className={
-              props.enabled
-                ? setActiveMenuItem(to, location.pathname)[1]
-                : "text-mediumGray dark:text-white dark:text-opacity-40"
-            }
-          />
           <span
             className={`${
               props.enabled
                 ? setActiveMenuItem(to, location.pathname)[1]
-                : "text-mediumGray dark:text-white dark:text-opacity-40"
-            } text-left font-montserrat font-medium lg:block text-[12px]`}
+                : "text-darkBlue dark:text-white dark:text-opacity-40"
+            } text-left font-poppins font-semibold lg:block text-[14px]`}
           >
             {label}
           </span>
           {rightIcon && (
             <FontAwesomeIcon
               icon={rightIcon}
-              className={`absolute top-4 right-2 ${
+              className={` ${
                 !isSubitemsVisible ? "rotate-[0deg]" : "rotate-90"
               } transition-transform ${
                 props.enabled
-                  ? "text-darkGray dark:text-white"
-                  : "text-mediumGray dark:text-white dark:text-opacity-40"
-              }`}
+                  ? "text-mediumGray dark:text-white"
+                  : "text-gray dark:text-white dark:text-opacity-40"
+              } absolute top-0 bottom-0 my-auto right-0`}
             />
           )}
         </li>
+        <div className="w-[80%] bg-gray h-[2px] absolute top-[-1px] mx-auto left-0 right-0"></div>
       </Link>
       {subItems && <SubItems {...props} />}
     </>

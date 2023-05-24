@@ -30,6 +30,7 @@ interface Props {
 const AuthProvider = ({ children }: Props) => {
   const [auth, setAuth] = React.useState<UserAuth | null>(null);
   const [success, setSuccess] = React.useState<boolean>(false);
+  const [phoneCode, setPhoneCode] = React.useState<string>("");
 
   const { setToast, setLoading, setIsValidating, setLoader } = useApp();
   const location = useLocation();
@@ -226,6 +227,7 @@ const AuthProvider = ({ children }: Props) => {
       value={{
         auth,
         success,
+        phoneCode,
         logIn,
         logOut,
         createAccount,
@@ -233,7 +235,8 @@ const AuthProvider = ({ children }: Props) => {
         sendRequestPassword,
         changeUserPassword,
         validateAccount,
-        setAuth
+        setAuth,
+        setPhoneCode,
       }}
     >
       {children}

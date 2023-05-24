@@ -8,7 +8,7 @@ const Loader = (): JSX.Element => {
   const { setIsValidating, loader } = useApp();
 
   return (
-    <div className="w-full h-full bg-white dark:bg-darkGray flex justify-center items-center">
+    <div className="w-full h-full bg-lightGray dark:bg-darkGray flex justify-center items-center">
       <div className="p-6 text-center flex flex-col gap-4 items-center justify-center">
         {loader.loading && <Spinner />}
         <h3 className="mb-5 text-[25px] font-montserrat font-extrabold text-darkGray dark:text-white">

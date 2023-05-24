@@ -1,6 +1,3 @@
-import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import { menuItems } from "./constans";
 import { useApp, useAuth, useTheme } from "../../../hooks";
 
@@ -22,7 +19,7 @@ const LateralMenu = (): JSX.Element => {
            ? "translate-x-0 xl:translate-x-0"
            : "translate-x-[-100%] xl:translate-x-0"
        } 
-      bg-primary-color dark:bg-mediumGray py-5 gap-5 xl:w-1/5 md:w-[40%] lg:w-1/4 fixed top-[0] left-0 xl:relative xl:top-0 z-20 xl:z-10`}
+       bg-white dark:bg-mediumGray py-5 gap-5 xl:w-[30%] md:w-[40%] lg:w-1/4 fixed top-[0] left-0 xl:relative xl:top-0 z-20 xl:z-10`}
     >
       <div className="w-full h-[5rem] flex justify-center items-center">
         <img
@@ -32,20 +29,18 @@ const LateralMenu = (): JSX.Element => {
         />
       </div>
       <Avatar haslink />
-      <ul className="flex flex-col items-center justify-start gap-3 w-full overflow-y-scroll lg:overflow-y-auto h-auto">
+      <ul
+        className="flex flex-col items-center justify-start gap-0 w-full overflow-y-scroll 
+      lg:overflow-y-auto h-auto bg-primary-color py-10"
+      >
         {menuItems.map((menuItem, index) => (
           <MenuItem key={index} {...menuItem} />
         ))}
         <button
           onClick={logOut}
-          className="w-[80%] text-darkGray dark:text-white font-montserrat font-bold border-[2px] 
-          border-darkGray dark:border-white py-3 rounded-lg flex flex-row items-center justify-center gap-3
-           hover:border-purple transition-all dark:hover:border-lightBlue hover:text-purple dark:hover:text-lightBlue"
+          className="w-full text-darkBlue dark:text-white font-poppins font-semibold py-3 flex items-center justify-start gap-3 px-[4.5rem]
+          transition-all bg-gray text-[14px]"
         >
-          <FontAwesomeIcon
-            icon={faPowerOff}
-            className="text-darkGray dark:text-white text-[20px] hover:text-purple dark:hover:text-lightBlue"
-          />
           Exit
         </button>
       </ul>

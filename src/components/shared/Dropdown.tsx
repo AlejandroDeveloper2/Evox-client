@@ -12,10 +12,14 @@ const Dropdown = (): JSX.Element => {
         py-2.5 text-center inline-flex items-center"
         type="button"
       >
-        <FontAwesomeIcon icon={faEarth} className="text-darkGray text-[20px]" />{" "}
+        <FontAwesomeIcon
+          icon={faEarth}
+          className="text-mediumGray text-[20px]"
+        />{" "}
+        <label className="text-darkGray">EN</label>
         <FontAwesomeIcon
           icon={faChevronDown}
-          className="text-darkGray text-[16px]"
+          className="text-mediumGray text-[16px]"
         />{" "}
       </button>
       <div
