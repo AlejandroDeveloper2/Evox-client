@@ -24,7 +24,9 @@ const Login = () => {
         hasCaptcha
         cols="1"
         form="login"
-        action={(values: FormikValues) => logIn(values)}
+        action={(values: FormikValues) => {
+          logIn(values);
+        }}
       />
       <h2 className="font-poppins text-darkGray font-medium text-[16px] dark:text-white text-center">
         Don't you have an account?{" "}

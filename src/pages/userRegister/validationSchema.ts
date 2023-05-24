@@ -24,12 +24,7 @@ export const validationSchema = yup.object().shape({
     .required(isRequiredMessage)
     .min(3, "Username must be at least 3 characters!"),
   fullName: yup.string().required(isRequiredMessage),
-  phone:yup.string().required(isRequiredMessage),
-  typeOfIdentification: yup
-    .string()
-    .required(isRequiredMessage)
-    .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field!"),
-  identification: yup.string().required(isRequiredMessage),
+  phone: yup.string().required(isRequiredMessage),
   country: yup.string().required(isRequiredMessage),
-  countryOfResidence: yup.string().required(isRequiredMessage),
+  city: yup.string().required(isRequiredMessage),
 });

@@ -25,7 +25,8 @@ const authenticateUser = async (
     );
     response = data;
   } catch (error: any) {
-    response = error.response.data;
+    console.log(error.response.data)
+    throw new Error(error.response.data);
   }
   return response;
 };
@@ -44,7 +45,7 @@ const registerUser = async (
     >("/auth/create", userData);
     response = data;
   } catch (error: any) {
-    response = error.response.data;
+    throw new Error(error.response.data);
   }
   return response;
 };

@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom";
+import { FormikValues } from "formik";
 
 import { initialvalues, fields, buttons } from "./constans";
 import { validationSchema } from "./validationSchema";
 import { useAuth } from "../../hooks";
 
 import { CustomForm } from "../../components";
-
-import { FormikValues } from "formik";
 
 const UserRegister = () => {
   const { createAccount } = useAuth();
@@ -26,7 +25,10 @@ const UserRegister = () => {
         hasCaptcha
         cols="1"
         form="register"
-        action={(values: FormikValues) => createAccount(values)}
+        action={(values: FormikValues) => {
+          console.log("register");
+          createAccount(values);
+        }}
       />
       <h2 className="font-poppins text-blue dark:text-white font-medium text-[16px]">
         Do you already have an account?{" "}

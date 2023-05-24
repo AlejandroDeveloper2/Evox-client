@@ -55,7 +55,6 @@ const useForm = (
           hasCaptcha,
           button.type
         )}
-        onClick={button.onClick}
       />
     ));
   };

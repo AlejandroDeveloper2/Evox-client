@@ -1,6 +1,7 @@
 type FormType = "login" | "recover" | "register" | "profile";
 
 interface RegisterFormValues {
+  fullName:string;
   email: string;
   password: string;
   confirmPassword: string;

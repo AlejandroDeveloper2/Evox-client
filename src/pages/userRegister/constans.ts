@@ -9,6 +9,7 @@ import {
 import { Field, CustomButtonProps, RegisterFormValues } from "../../types";
 
 export const initialvalues: RegisterFormValues = {
+  fullName: "",
   email: "",
   password: "",
   confirmPassword: "",
@@ -20,6 +21,14 @@ export const initialvalues: RegisterFormValues = {
 };
 
 export const fields: Field[] = [
+  {
+    type: "text",
+    name: "fullName",
+    label: "Fullname *",
+    placeholder: "Enter your fullname",
+    icon: faUser,
+    as: "input",
+  },
   {
     type: "text",
     name: "username",

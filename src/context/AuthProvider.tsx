@@ -37,29 +37,39 @@ const AuthProvider = ({ children }: Props) => {
   const navigate = useNavigate();
 
   const logIn = async (userData: FormikValues): Promise<void> => {
+    console.log(userData);
     setLoading({
       message: "Checking user credentials...",
       visible: true,
     });
-    await authenticateUser(userData).then((res: LoginReasponse) => {
-      setLoading({
-        message: "",
-        visible: false,
-      });
-
-      if (!res.token) {
+    await authenticateUser(userData)
+      .then((res: LoginReasponse) => {
+        if (!res.token) {
+          setToast({
+            message: res.message,
+            type: res.typeStatus === "Warning" ? "warning" : "success",
+            visible: true,
+          });
+        } else {
+          const userAuth = decodeToken<UserAuth>(res.token);
+          localStorage.setItem("token", res.token);
+          setAuth(userAuth);
+          setSuccess(true);
+        }
+      })
+      .catch((error: Error) => {
         setToast({
-          message: res.message,
-          type: res.typeStatus === "Error" ? "error" : "warning",
+          message: error.message,
+          type: "error",
           visible: true,
         });
-      } else {
-        const userAuth = decodeToken<UserAuth>(res.token);
-        localStorage.setItem("token", res.token);
-        setAuth(userAuth);
-        setSuccess(true);
-      }
-    });
+      })
+      .finally(() => {
+        setLoading({
+          message: "",
+          visible: false,
+        });
+      });
   };
 
   const checkIsUserAuth = async (): Promise<void> => {
@@ -89,28 +99,30 @@ const AuthProvider = ({ children }: Props) => {
       message: "Creating Account...",
       visible: true,
     });
-    await registerUser(userData).then(
-      (res: ServerResponseSuccess | ServerResponseFail) => {
-        setLoading({
-          message: "",
-          visible: false,
-        });
+    await registerUser(userData)
+      .then((res: ServerResponseSuccess | ServerResponseFail) => {      
         setToast({
           message: res.message,
-          type:
-            res.typeStatus === "Error"
-              ? "error"
-              : res.typeStatus === "Warning"
-              ? "warning"
-              : "success",
+          type: res.typeStatus === "Warning" ? "warning" : "success",
           visible: true,
         });
         if (res.typeStatus === "Success") {
           setSuccess(true);
           navigate("/login");
         }
-      }
-    );
+      })
+      .catch((error: Error) => {
+        setToast({
+          message: error.message,
+          type: "error",
+          visible: true,
+        });
+      }).finally(()=>{
+        setLoading({
+          message: "",
+          visible: false,
+        });
+      });
   };
 
   const checkChangePassToken = async (): Promise<void> => {
