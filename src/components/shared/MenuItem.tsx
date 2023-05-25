@@ -21,12 +21,16 @@ const MenuItem = (props: MenuItemType): JSX.Element => {
       <Link
         to={to}
         className={`flex justify-center items-center gap-5 flex-col px-10 py-5 w-full
-        relative ${setMenuItemEnabled(props.enabled, to, location)} relative `}
+        relative ${setMenuItemEnabled(
+          props.enabled,
+          to,
+          location
+        )} relative  border-b-[2px] border-gray`}
         onClick={() => {
           props.enabled
             ? setIsSubitemsVisible(!isSubitemsVisible)
             : console.log("Blocked");
-          props.subItems === undefined ? console.log("") : toggleLateralMenu();
+          props.subItems ? console.log("") : toggleLateralMenu();
         }}
       >
         <li className="flex w-[80%] justify-start items-center relative">
@@ -41,7 +45,7 @@ const MenuItem = (props: MenuItemType): JSX.Element => {
               props.enabled
                 ? setActiveMenuItem(to, location.pathname)[1]
                 : "text-darkBlue dark:text-white dark:text-opacity-40"
-            } text-left font-poppins font-semibold lg:block text-[14px]`}
+            } text-left font-poppins font-semibold lg:block text-[16px]`}
           >
             {label}
           </span>
@@ -58,7 +62,7 @@ const MenuItem = (props: MenuItemType): JSX.Element => {
             />
           )}
         </li>
-        <div className="w-[80%] bg-gray h-[2px] absolute top-[-1px] mx-auto left-0 right-0"></div>
+        {/* <div className="w-[80%] bg-gray h-[2px] absolute top-[-1px] mx-auto left-0 right-0"></div> */}
       </Link>
       {subItems && <SubItems {...props} />}
     </>

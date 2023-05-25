@@ -10,7 +10,7 @@ const automatedSystems: AutomatedSystem[] = [
     to: "#",
   },
   {
-    name: "Syntetics",
+    name: "Sintéticos",
     to: "#",
   },
   {

@@ -18,7 +18,7 @@ const RecoverPassword = (): JSX.Element => {
       md:h-auto h-[calc(100vh-250px)] justify-start px-10 md:px-0"
     >
       <CustomForm
-        formTitle="Enter your email address to search your account"
+        formTitle="Ingresa tu correo electrónico para buscar tu cuenta"
         fields={fields}
         buttons={buttons}
         initialValues={initialvalues}
@@ -28,10 +28,10 @@ const RecoverPassword = (): JSX.Element => {
         action={(values: FormikValues) => sendRequestPassword(values)}
       />
       <h2 className="font-poppins text-darkGray font-medium text-[16px] dark:text-white text-center">
-        Go back to login{" "}
+        Regresar a iniciar sesión{" "}
         <Link to="/login" className="font-poppins text-blue font-extrabold">
           {" "}
-          Login
+          Iniciar sesión
         </Link>
       </h2>
     </div>

@@ -5,18 +5,23 @@ import {
   faPhone,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { Field, CustomButtonProps, ProfileFormValues, UserAuth } from "../../types";
+import {
+  Field,
+  CustomButtonProps,
+  ProfileFormValues,
+  UserAuth,
+} from "../../types";
 
-export const getInitialvalues =( auth: UserAuth | null): ProfileFormValues =>{
+export const getInitialvalues = (auth: UserAuth | null): ProfileFormValues => {
   return {
-    email:auth ? auth.email : "",
+    email: auth ? auth.email : "",
     username: auth ? auth.sub : "",
     fullName: auth ? auth.fullName : "",
     phone: auth ? auth.phone : "",
     country: auth ? auth.country : "",
-    countryOfResidence: auth ? auth.countryOfResidence:"",
-  }
-  // suponsorName: "Diego Felipe",
+    city: auth ? auth.city : "",
+    suponsorName: auth ? auth.suponsorName : "",
+  };
   // walletAddress: "AIASHDFLKASNDC1651IJASDNCIANJS",
 };
 
@@ -24,8 +29,8 @@ export const fields: Field[] = [
   {
     type: "text",
     name: "username",
-    label: "Username *",
-    placeholder: "Enter your username",
+    label: "Nombre de usuario",
+    placeholder: "Ingresa tu nombre de usuario",
     icon: faUser,
     as: "input",
     disabled: true,
@@ -33,8 +38,8 @@ export const fields: Field[] = [
   {
     type: "text",
     name: "fullName",
-    label: "Fullname *",
-    placeholder: "Enter your fullname",
+    label: "Nombre completo",
+    placeholder: "Ingresa tu nombre completo *",
     icon: faUser,
     as: "input",
     disabled: true,
@@ -42,8 +47,8 @@ export const fields: Field[] = [
   {
     type: "text",
     name: "email",
-    label: "Email *",
-    placeholder: "Enter your email",
+    label: "Correo electrónico",
+    placeholder: "Ingresa tu correo electrónico",
     icon: faAt,
     as: "input",
     disabled: true,
@@ -51,35 +56,44 @@ export const fields: Field[] = [
   {
     type: "number",
     name: "phone",
-    label: "Phone",
-    placeholder: "Enter your phone number",
+    label: "Celular",
+    placeholder: "Ingresa tu número de celular",
     icon: faPhone,
     as: "input",
   },
   {
     type: "text",
-    name: "countryOfResidence",
-    label: "Country of residence *",
-    placeholder: "Choose your country",
+    name: "country",
+    label: "País",
+    placeholder: "País",
     icon: faLocationDot,
     as: "select",
     selectName: "countries",
   },
   {
     type: "text",
-    name: "country",
-    label: "Country *",
-    placeholder: "Choose your country",
+    name: "city",
+    label: "Ciudad",
+    placeholder: "Escoja su ciudad",
     icon: faLocationDot,
     as: "select",
-    selectName: "countries",
+    selectName: "cities",
+  },
+  {
+    type: "text",
+    name: "suponsorName",
+    label: "Nombre de patrocinador",
+    placeholder: "Nombre del patrocinador",
+    icon: faUser,
+    as: "input",
+    disabled: true,
   },
 ];
 
 export const buttons: CustomButtonProps[] = [
   {
     type: "submit",
-    label: "Save changes",
+    label: "Guardar cambios",
     theme: {
       bg: "bg-blue dark:bg-purple",
       color: "text-white",

@@ -1,7 +1,7 @@
 type FormType = "login" | "recover" | "register" | "profile";
 
 interface RegisterFormValues {
-  fullName:string;
+  fullName: string;
   email: string;
   password: string;
   confirmPassword: string;
@@ -59,8 +59,9 @@ interface UserAuth {
   email: string;
   phone: string;
   country: string;
-  countryOfResidence: string;
+  city: string;
   photo: string | null;
+  suponsorName: string | null;
   iat: number;
   exp: number;
 }
@@ -98,7 +99,8 @@ interface ProfileFormValues {
   email: string;
   phone: string;
   country: string;
-  countryOfResidence: string;
+  city: string;
+  suponsorName: string | null;
 }
 
 export type {

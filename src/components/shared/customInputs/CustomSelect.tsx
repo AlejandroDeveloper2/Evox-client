@@ -20,7 +20,7 @@ const CustomSelect = (props: CustomInputProps): JSX.Element => {
       disabled={field.disabled ? field.disabled : false}
       value={values[field.name]}
     >
-      <option value="">...Select...</option>
+      <option value="">...Seleccionar...</option>
       {renderSelectOptions()}
     </Field>
   );

@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { CustomFormProps } from "../../types";
 import { useForm } from "../../hooks";
 
+import { InputWallet } from "..";
+
 const CustomForm = (props: CustomFormProps): JSX.Element => {
   const { renderFormInputs, renderFormButtons, renderReCaptcha, onSubmit } =
     useForm(
@@ -42,6 +44,7 @@ const CustomForm = (props: CustomFormProps): JSX.Element => {
           >
             {renderFormInputs({ errors, touched, values })}
           </div>
+          {props.form === "profile" ? <InputWallet /> : null}
           <div
             className={`flex flex-wrap gap-3 w-full justify-center md:grid grid-cols-1 md:justify-items-center`}
           >
@@ -51,7 +54,7 @@ const CustomForm = (props: CustomFormProps): JSX.Element => {
                 className="font-poppins text-blue dark:text-white font-normal hover:text-secondaryColor transition-all"
               >
                 {" "}
-                Did you forget your password?
+                ¿Olvidaste tu contraseña?
               </Link>
             )}
             {props.hasCaptcha && renderReCaptcha()}

@@ -12,12 +12,15 @@ import {
 
 const ServicesList = (): JSX.Element => {
   return (
-    <section className="w-full relative flex flex-col  md:flex-wrap lg:flex-row lg:flex-nowrap lg:justify-items-center justify-center items-center gap-5 px-20">
+    <section
+      className="w-full relative flex flex-col  md:flex-wrap lg:flex-row 
+      lg:flex-nowrap lg:justify-items-center justify-center items-center gap-5 md:px-20 px-5"
+    >
       <h1 className="text-[24px] md:text-[30px] lg:hidden font-poppins text-center text-darkBlue dark:text-white font-normal">
-        How would you feel if you had{" "}
+        ¿Como te sentirías si tuvieras{" "}
         <span className="text-[24px] md:text-[30px] font-poppins font-bold">
           {" "}
-          more control over your money?{" "}
+          más control sobre tu dinero?{" "}
         </span>
       </h1>
       <div className="flex gap-5 justify-center lg:flex-col lg:w-full">
@@ -30,10 +33,10 @@ const ServicesList = (): JSX.Element => {
       </div>
       <div className="flex lg:flex-col gap-5 justify-center">
         <h1 className=" hidden lg:block md:text-[30px] text-[24px] font-poppins text-center text-darkBlue dark:text-white font-medium mb-10">
-          How would you feel if you had{" "}
+          ¿Como te sentirías si tuvieras{" "}
           <span className="text-[24px] md:text-[30px] font-poppins font-extrabold">
             {" "}
-            more control over your money?{" "}
+            más control sobre tu dinero?{" "}
           </span>
         </h1>
         <div className="flex flex-wrap items-center justify-center gap-5 md:flex-nowrap md:flex-row">
@@ -46,7 +49,7 @@ const ServicesList = (): JSX.Element => {
             to="/"
             serviceImage={ImageEvoxMAM}
             alt="Evox MAM Accounts"
-            style="mt-20"
+            style="md:mt-20"
           />
           <ServiceCard
             to="/"

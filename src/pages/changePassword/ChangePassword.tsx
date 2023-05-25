@@ -28,7 +28,7 @@ const ChangePassword = (): JSX.Element => {
       ) : (
         <>
           <CustomForm
-            formTitle="Update Password"
+            formTitle="Actualizar contraseña"
             fields={fields}
             buttons={buttons}
             initialValues={initialvalues}
@@ -39,10 +39,10 @@ const ChangePassword = (): JSX.Element => {
             action={(values: FormikValues) => changeUserPassword(values)}
           />
           <h2 className="font-poppins text-darkGray font-medium text-[16px]">
-            Return to
+            Regresar a
             <Link to="/" className="font-poppins text-purple font-extrabold">
               {" "}
-              Log in
+              Iniciar sesión
             </Link>
           </h2>
         </>

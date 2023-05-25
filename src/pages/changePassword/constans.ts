@@ -15,14 +15,14 @@ export const fields: Field[] = [
   {
     type: "password",
     name: "password",
-    placeholder: "Enter your new password",
+    placeholder: "Ingresa tu nueva contraseña",
     icon: faLock,
     as: "input",
   },
   {
     type: "password",
     name: "confirmPassword",
-    placeholder: "Confirm your password",
+    placeholder: "Confirma tu nueva contraseña",
     icon: faLock,
     as: "input",
   },
@@ -31,7 +31,7 @@ export const fields: Field[] = [
 export const buttons: CustomButtonProps[] = [
   {
     type: "submit",
-    label: "Update Password",
+    label: "Actualizar contraseña",
     theme: {
       bg: "bg-blue dark:bg-purple",
       color: "text-white",

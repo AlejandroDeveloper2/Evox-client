@@ -64,7 +64,7 @@ const UserProfileProvider = ({ children }: Props) => {
     const token = localStorage.getItem("token");
     if (token) {
       setLoading({
-        message: "Updating user profile...",
+        message: "Actualizando perfil de usuario...",
         visible: true,
       });
       await updateUserProfile(userData, token)
@@ -72,7 +72,7 @@ const UserProfileProvider = ({ children }: Props) => {
           localStorage.removeItem("profileImgUrl");
           localStorage.setItem("token", res);
           setToast({
-            message: "User profile updated!",
+            message: "Perfil actualizado correctamente!",
             type: "success",
             visible: true,
           });

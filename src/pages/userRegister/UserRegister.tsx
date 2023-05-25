@@ -17,7 +17,7 @@ const UserRegister = () => {
       lg:h-auto h-[calc(400px - 100vh)] px-10 justify-start"
     >
       <CustomForm
-        formTitle="Sign up is easy and fast!"
+        formTitle="Registrarse es facil y rapido!"
         fields={fields}
         buttons={buttons}
         initialValues={initialvalues}
@@ -26,15 +26,14 @@ const UserRegister = () => {
         cols="1"
         form="register"
         action={(values: FormikValues) => {
-          console.log("register");
           createAccount(values);
         }}
       />
       <h2 className="font-poppins text-blue dark:text-white font-medium text-[16px]">
-        Do you already have an account?{" "}
+        ¿Ya estas registrado?{" "}
         <Link to="/login" className="font-poppins text-blue font-extrabold">
           {" "}
-          Login
+          Iniciar sesión
         </Link>
       </h2>
     </div>

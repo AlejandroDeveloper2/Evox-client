@@ -23,10 +23,10 @@ const toggleButton = (
       ? true
       : false
     : type === "button"
-      ? false
-      : Object.keys(errors).length > 0 || Object.values(values).includes("")
-        ? true
-        : false;
+    ? false
+    : Object.keys(errors).length > 0 || Object.values(values).includes("")
+    ? true
+    : false;
   return disable;
 };
 
@@ -41,22 +41,22 @@ const setFormValues = (
   if (form === "register") {
     const referral = location?.pathname.split("/")[1].replace(/ /g, "");
     const invitationLink = referral
-      ? `https://evox/ref/${location?.pathname.split("/")[1]}`
+      ? `https://www.backoffice.evox.com.co/${location?.pathname.split("/")[1]}`
       : null;
     delete values.confirmPassword;
     delete values.invitationLink;
     newValues = referral
       ? {
-        ...values,
-        phone: `${phoneCode} ${values.phone}`,
-        username: values.username.replace(/ /g, ""),
-        invitationLink: invitationLink,
-      }
+          ...values,
+          phone: `${phoneCode} ${values.phone}`,
+          username: values.username.replace(/ /g, ""),
+          invitationLink: invitationLink,
+        }
       : {
-        ...values,
-        phone: `${phoneCode} ${values.phone}`,
-        username: values.username.replace(/ /g, ""),
-      };
+          ...values,
+          phone: `${phoneCode} ${values.phone}`,
+          username: values.username.replace(/ /g, ""),
+        };
     return newValues;
   }
   if (form === "login") {
@@ -85,10 +85,10 @@ const setToastColor = (
     type === "success"
       ? "bg-success"
       : type === "error"
-        ? "bg-error"
-        : type === "warning"
-          ? "bg-warning"
-          : "bg-lightBlue";
+      ? "bg-error"
+      : type === "warning"
+      ? "bg-warning"
+      : "bg-lightBlue";
   return color;
 };
 
@@ -96,7 +96,7 @@ const setActiveMenuItem = (to: string, pathName: string): string[] => {
   const activeStyles: string[] =
     to === pathName
       ? ["bg-mediumGray", "text-white"]
-      : ["bg-primary-color dark:bg-darkGray", "text-darkBlue dark:text-white"];
+      : ["", "text-darkBlue dark:text-white"];
   return activeStyles;
 };
 
@@ -116,8 +116,9 @@ const setMenuItemEnabled = (
   location: Location
 ): string => {
   const style = enabled
-    ? `hover:bg-opacity-40 dark:hover:bg-opacity-40 ${setActiveMenuItem(to, location.pathname)[0]
-    }`
+    ? `hover:bg-opacity-40 dark:hover:bg-opacity-40 ${
+        setActiveMenuItem(to, location.pathname)[0]
+      }`
     : "";
   return style;
 };

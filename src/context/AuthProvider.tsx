@@ -39,7 +39,7 @@ const AuthProvider = ({ children }: Props) => {
   const logIn = async (userData: FormikValues): Promise<void> => {
     console.log(userData);
     setLoading({
-      message: "Checking user credentials...",
+      message: "Verificando credenciales...",
       visible: true,
     });
     await authenticateUser(userData)
@@ -96,11 +96,11 @@ const AuthProvider = ({ children }: Props) => {
 
   const createAccount = async (userData: FormikValues): Promise<void> => {
     setLoading({
-      message: "Creating Account...",
+      message: "Creando cuenta...",
       visible: true,
     });
     await registerUser(userData)
-      .then((res: ServerResponseSuccess | ServerResponseFail) => {      
+      .then((res: ServerResponseSuccess | ServerResponseFail) => {
         setToast({
           message: res.message,
           type: res.typeStatus === "Warning" ? "warning" : "success",
@@ -117,7 +117,8 @@ const AuthProvider = ({ children }: Props) => {
           type: "error",
           visible: true,
         });
-      }).finally(()=>{
+      })
+      .finally(() => {
         setLoading({
           message: "",
           visible: false,
@@ -130,7 +131,7 @@ const AuthProvider = ({ children }: Props) => {
 
     setIsValidating(true);
     setLoader({
-      message: "Loading....",
+      message: "Cargando....",
       loading: true,
     });
 
@@ -143,7 +144,7 @@ const AuthProvider = ({ children }: Props) => {
         });
       } else {
         setLoader({
-          message: "Invalid Token!, please try again!",
+          message: "Token invalido!, Por favor intente de nuevo!",
           loading: false,
         });
         setTimeout(() => {
@@ -155,7 +156,7 @@ const AuthProvider = ({ children }: Props) => {
 
   const sendRequestPassword = async (userData: FormikValues): Promise<void> => {
     setLoading({
-      message: "Sending request...",
+      message: "Enviando solicitud...",
       visible: true,
     });
     await recoverPassword(userData).then(
@@ -183,7 +184,7 @@ const AuthProvider = ({ children }: Props) => {
 
   const changeUserPassword = async (userData: FormikValues): Promise<void> => {
     setLoading({
-      message: "Updating password...",
+      message: "Actualizando contraseña...",
       visible: true,
     });
     const token = location.pathname.split("/")[2];
@@ -214,7 +215,7 @@ const AuthProvider = ({ children }: Props) => {
     const token = location.pathname.split("/")[2];
     setIsValidating(true);
     setLoader({
-      message: "Loading....",
+      message: "Cargando....",
       loading: true,
     });
 

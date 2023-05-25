@@ -18,7 +18,7 @@ const CustomField = (props: CustomInputProps): JSX.Element => {
     <div className="flex flex-col gap-2 justify-center items-start w-auto transition-all">
       <div
         className={`flex flex-col  justify-center w-full items-start border-solid 
-        border-[1px] rounded-[10px] overflow-hidden p-3 gap-2 ${
+        border-[1px] rounded-[10px] overflow-hidden p-3 gap-1 ${
           field.disabled
             ? "text-darkGray bg-disabledColor dark:bg-darkGray"
             : "dark:bg-mediumGray bg-white"

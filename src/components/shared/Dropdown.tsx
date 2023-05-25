@@ -16,7 +16,7 @@ const Dropdown = (): JSX.Element => {
           icon={faEarth}
           className="text-mediumGray text-[20px]"
         />{" "}
-        <label className="text-darkGray">EN</label>
+        <label className="text-darkGray">ES</label>
         <FontAwesomeIcon
           icon={faChevronDown}
           className="text-mediumGray text-[16px]"

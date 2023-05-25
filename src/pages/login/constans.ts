@@ -14,14 +14,14 @@ export const fields: Field[] = [
   {
     type: "text",
     name: "email",
-    placeholder: "Enter your email",
+    placeholder: "Ingresa tu correo electrónico",
     icon: faAt,
     as: "input",
   },
   {
     type: "password",
     name: "password",
-    placeholder: "Enter your password",
+    placeholder: "Ingresa tu contraseña",
     icon: faLock,
     as: "input",
   },
@@ -30,7 +30,7 @@ export const fields: Field[] = [
 export const buttons: CustomButtonProps[] = [
   {
     type: "submit",
-    label: "Login",
+    label: "Acceder",
     theme: {
       bg: "bg-blue dark:bg-purple",
       color: "text-white",

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useApp, useAuth, useFetchData } from "../hooks";
+import { useApp, useAuth } from "../hooks";
 import { EvoxContextType, Referral } from "../types";
 import { getUserReferrals } from "../services/userReferrals";
 
@@ -20,7 +20,7 @@ const EvoxServicesProvider = ({ children }: Props) => {
   const getAllUserReferrals = async () => {
     const token = localStorage.getItem("token");
     if (token) {
-      setLoader({ loading: true, message: "Loading referrals..." });
+      setLoader({ loading: true, message: "Cargando referidos..." });
       setIsValidating(true);
       await getUserReferrals(token).then((res) => {
         setIsValidating(false);
@@ -32,8 +32,6 @@ const EvoxServicesProvider = ({ children }: Props) => {
       });
     }
   };
-
-  useFetchData([{ function: getAllUserReferrals }]);
 
   return (
     <EvoxServicesContext.Provider

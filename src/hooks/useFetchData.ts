@@ -11,6 +11,7 @@ const useFetchData = (functions: Functions[]): void => {
 
   React.useEffect(() => {
     executeFunctions();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 };
 export default useFetchData;

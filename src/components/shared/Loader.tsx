@@ -22,7 +22,7 @@ const Loader = (): JSX.Element => {
                   hover:bg-opacity-60 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm inline-flex 
                   items-center px-5 py-4 text-center mr-2"
           >
-            Go back to login
+            Regresar al inicio de sesión
           </Link>
         )}
       </div>

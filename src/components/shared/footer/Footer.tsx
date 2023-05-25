@@ -7,13 +7,13 @@ const Footer = (): JSX.Element => {
     <footer className="w-full flex md:flex-row h-auto bg-darkGray justify-center md:justify-around flex-col lg:py-4 items-center py-6">
       <div className="flex justify-center items-center gap-1 flex-col md:items-start">
         <h1 className="font-montserrat text-[30px] text-mediumGray font-extrabold uppercase">
-          Help
+          AYUDA
         </h1>
         <p className="text-white font-montserrat text-[16px] font-bold text-center">
-          Get contact with an adviser
+          Contacta un asesor
         </p>
         <p className="text-white font-montserrat text-[14px] font-normal">
-          All rights reserved © - 2023
+          Todos los derechos reservados © - 2023
         </p>
       </div>
       <img

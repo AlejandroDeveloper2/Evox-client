@@ -6,11 +6,11 @@ export const getCountDownElements = (
   const countDownElements: CountDownElement[] = [
     {
       value: formatTimerValues(timerValues[0]),
-      label: "Days",
+      label: "Días",
     },
     {
       value: formatTimerValues(timerValues[1]),
-      label: "Hours",
+      label: "Horas",
     },
     {
       value: formatTimerValues(timerValues[2]),
@@ -18,7 +18,7 @@ export const getCountDownElements = (
     },
     {
       value: formatTimerValues(timerValues[3]),
-      label: "Seconds",
+      label: "Segundos",
     },
   ];
   return countDownElements;

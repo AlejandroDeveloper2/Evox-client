@@ -23,7 +23,7 @@ import {
 
 const UserDashboard = (): JSX.Element => {
   const { timerValues } = useCountdown();
-  const isValidating = useLoader("Loading...");
+  const isValidating = useLoader("Cargando...");
 
   return (
     <div className="w-full flex flex-col justify-center items-start py-10 h-full gap-10">
@@ -35,22 +35,22 @@ const UserDashboard = (): JSX.Element => {
             <>
               <ServicesList />
               <JoinChannelSection />
-              <section className="flex flex-col gap-10 items-center justify-center px-20 w-full">
+              <section className="flex flex-col gap-10 items-center justify-center px-5 md:px-20 w-full">
                 <InfoCard style="bg-gradient-to-r from-purple via-mediumBlue to-lightBlue dark:to-white dark:from-purple ">
-                  <div className="flex flex-col md:flex-row gap-10 justify-between py-10 px-5 items-center relative w-full">
+                  <div className="flex flex-col md:flex-row gap-10 justify-between  py-5 md:py-10 px-5 items-center relative w-full">
                     <div className=" flex flex-col gap-10 items-center md:items-start justify-center">
                       <img src={EvoxAcademyLogo} alt="Evox academy Logo" />
                       <h3 className="text-white font-medium font-poppins md:text-[25px] text-center md:text-left text-[24] md:w-3/5">
                         <span className="text-white font-extrabold">
-                          + 500 Hours
+                          + 500 Horas
                         </span>{" "}
-                        of pre-recorded trading classes
+                        de clases de trading pregrabadas
                       </h3>
                       <Link
                         to="#"
                         className="text-white md:text-[20px] text-[16px] font-montserrat font-bold flex items-center justify-center gap-5"
                       >
-                        Find out more <FontAwesomeIcon icon={faArrowRight} />
+                        Descubre más <FontAwesomeIcon icon={faArrowRight} />
                       </Link>
                     </div>
                     <div className="hidden md:block absolute right-0 bottom-[-2rem]">
@@ -59,15 +59,15 @@ const UserDashboard = (): JSX.Element => {
                   </div>
                 </InfoCard>
               </section>
-              <section className="flex flex-col gap-10 items-center justify-center px-20 w-full">
+              <section className="flex flex-col gap-10 items-center justify-center px-5 md:px-20 w-full">
                 <InfoCard style="bg-violet dark:bg-blue">
                   <div
-                    className="flex flex-row md:gap-5 items-center lg:justify-start md:justify-center
+                    className="flex flex-row flex-wrap md:flex-nowrap md:gap-5 items-center lg:justify-start md:justify-center
                     justify-center gap-5"
                   >
                     <div className="flex flex-col gap-1 md:items-start items-center">
                       <h2 className="text-white font-medium font-poppins md:text-[25px] text-[24]">
-                        Total Directs
+                        Total Directos
                       </h2>
                       <span className="text-white font-extrabold font-poppins md:text-[45px] text-[30px]">
                         13
@@ -75,7 +75,7 @@ const UserDashboard = (): JSX.Element => {
                     </div>
                     <div className="flex flex-col gap-1 md:items-start items-center">
                       <h2 className="text-white font-medium font-poppins md:text-[25px] text-[24]">
-                        Total Customers
+                        Total Clientes
                       </h2>
                       <span className="text-white font-extrabold font-poppins md:text-[45px] text-[30px]">
                         42
@@ -91,7 +91,7 @@ const UserDashboard = (): JSX.Element => {
                     to="#"
                     className="text-white md:text-[20px] text-[16px] font-montserrat font-bold flex items-center justify-center gap-5"
                   >
-                    See more <FontAwesomeIcon icon={faArrowRight} />
+                    Ver más <FontAwesomeIcon icon={faArrowRight} />
                   </Link>
                 </InfoCard>
                 <InfoCard style="bg-blue dark:bg-purple">
@@ -101,13 +101,13 @@ const UserDashboard = (): JSX.Element => {
                   >
                     <div className="flex flex-col gap-1 md:items-start items-center">
                       <h2 className="text-white font-medium font-montserrat md:text-[30px] text-[24]">
-                        Total Earnings
+                        Total ganancias
                       </h2>
                       <span className="text-white font-extrabold font-poppins md:text-[45px] text-[30px]">
                         850 USDT
                       </span>
                       <h2 className="text-white font-medium font-montserrat md:text-[24px] text-[20px]">
-                        +150 this week
+                        +150 Esta semana
                       </h2>
                     </div>
                     <img
@@ -120,7 +120,7 @@ const UserDashboard = (): JSX.Element => {
                     to="#"
                     className="text-white md:text-[20px] text-[16px] font-montserrat font-bold flex items-center justify-center gap-5"
                   >
-                    See full report <FontAwesomeIcon icon={faArrowRight} />
+                    Ver reporte completo <FontAwesomeIcon icon={faArrowRight} />
                   </Link>
                 </InfoCard>
               </section>

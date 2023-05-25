@@ -16,7 +16,7 @@ const Login = () => {
       md:h-auto h-[calc(100vh-150px)] justify-start px-10 md:px-0"
     >
       <CustomForm
-        formTitle="Login"
+        formTitle="Iniciar sesión"
         fields={fields}
         buttons={buttons}
         initialValues={initialvalues}
@@ -29,10 +29,10 @@ const Login = () => {
         }}
       />
       <h2 className="font-poppins text-darkGray font-medium text-[16px] dark:text-white text-center">
-        Don't you have an account?{" "}
+        ¿No tienes una cuenta?{" "}
         <Link to="/" className="font-poppins text-blue font-extrabold">
           {" "}
-          Sign up
+          Registrarse
         </Link>
       </h2>
     </div>

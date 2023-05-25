@@ -3,7 +3,12 @@ import { FormikValues } from "formik";
 import { fields, buttons, getInitialvalues } from "./constans";
 import { validationSchema } from "./validationSchema";
 
-import { Avatar, CustomForm, CustomInputFile, Loader } from "../../components";
+import {
+  CustomForm,
+  CustomInputFile,
+  EditProfileAvatar,
+  Loader,
+} from "../../components";
 import { useApp, useAuth, useUserProfile } from "../../hooks";
 
 const UserProfile = (): JSX.Element => {
@@ -12,11 +17,11 @@ const UserProfile = (): JSX.Element => {
   const { auth } = useAuth();
 
   return (
-    <div className="w-full bg-white dark:bg-darkGray flex justify-center items-center flex-col gap-5 pb-6 md:pb-[60px] relative">
-      <Avatar />
+    <div className="w-full bg-lightGray dark:bg-darkGray flex justify-center items-center flex-col gap-5 pb-6 md:pb-[60px] relative">
+      <EditProfileAvatar />
       {loader.loading ? <Loader /> : <CustomInputFile />}
       <CustomForm
-        formTitle="Edit Profile"
+        formTitle=""
         fields={fields}
         buttons={buttons}
         initialValues={getInitialvalues(auth)}
