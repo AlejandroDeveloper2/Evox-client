@@ -25,34 +25,36 @@ const Referrals = (): JSX.Element => {
         <span className="align-middle"> Mis referidos </span>
       </h1>
       <div className="w-full overflow-x-scroll md:px-20 px-5">
-        <Table type="referrals">
-          {isValidating ? (
-            <Loader />
-          ) : userReferrals.length > 0 ? (
-            userReferrals.map((referral, index) => (
-              <tr
-                className="bg-lightGray border-b-[2px] border-gray dark:bg-darkGray dark:border-mediumGray"
-                key={index}
-              >
-                <tr className="px-6 py-4 font-medium text-darkGray whitespace-nowrap dark:text-white">
-                  {referral?.fullName}
+        {isValidating ? (
+          <Loader />
+        ) : (
+          <Table type="referrals">
+            {userReferrals.length > 0 ? (
+              userReferrals.map((referral, index) => (
+                <tr
+                  className="bg-lightGray border-b-[2px] border-gray dark:bg-darkGray dark:border-mediumGray"
+                  key={index}
+                >
+                  <td className="px-6 py-4 font-medium text-darkGray whitespace-nowrap dark:text-white">
+                    {referral?.fullName}
+                  </td>
+                  <td className="px-6 py-4">{referral?.phone}</td>
+                  <td className="px-6 py-4">{referral?.userName}</td>
+                  <td className="px-6 py-4">
+                    {referral && formatDate(referral?.dateRegistered)}
+                  </td>
                 </tr>
-                <td className="px-6 py-4">{referral?.phone}</td>
-                <td className="px-6 py-4">{referral?.userName}</td>
-                <td className="px-6 py-4">
-                  {referral && formatDate(referral?.dateRegistered)}
-                </td>
-              </tr>
-            ))
-          ) : (
-            <tr
-              className="bg-lightGray  dark:bg-darkGray dark:border-mediumGray text-darkBlue 
+              ))
+            ) : (
+              <tr
+                className="bg-lightGray  dark:bg-darkGray dark:border-mediumGray text-darkBlue 
                 md:text-[16px] text-[12px] font-poppins font-semibold py-5"
-            >
-              <td className="py-4">No tienes referidos aún</td>
-            </tr>
-          )}
-        </Table>
+              >
+                <td className="py-4">No tienes referidos aún</td>
+              </tr>
+            )}
+          </Table>
+        )}
       </div>
     </div>
   );

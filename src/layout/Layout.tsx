@@ -4,7 +4,7 @@ import { useAuth, useTheme } from "../hooks";
 
 import Logo from "../assets/logo.png";
 import LogoDark from "../assets/logo-2.png";
-import { LinkBotEvox, Toast } from "../components";
+import { Toast } from "../components";
 
 const Layout = () => {
   const { auth } = useAuth();
@@ -20,7 +20,7 @@ const Layout = () => {
           className={`bg-primary-color dark:bg-mediumGray w-screen h-screen overflow-x-hidden relative`}
         >
           <div className="w-full bg-gradient-to-r from-purple via-mediumBlue to-lightBlue h-4  dark:to-purple dark:from-white"></div>
-          <div className="flex flex-col justify-center relative items-center lg:gap-10 gap-5">
+          <div className="flex flex-col justify-center relative items-center lg:gap-10 gap-5 overflow-x-hidden">
             <div className="w-full bg-primary-color dark:bg-mediumGray flex justify-center items-center gap-4 flex-col lg:gap-6">
               <img
                 src={theme === "light" ? Logo : LogoDark}
@@ -42,7 +42,6 @@ const Layout = () => {
               </h1>
             </div>
             <Toast />
-            <LinkBotEvox />
             <Outlet />
           </div>
         </main>

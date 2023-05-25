@@ -12,6 +12,7 @@ import {
   ServicesList,
   InfoCard,
   AutomaticSystemsSection,
+  LinkBotEvox,
 } from "../../components";
 
 import {
@@ -126,6 +127,7 @@ const UserDashboard = (): JSX.Element => {
               </section>
               <AutomaticSystemsSection />
               <InvitationLink />
+              <LinkBotEvox />
             </>
           )}
         </>
@@ -133,6 +135,7 @@ const UserDashboard = (): JSX.Element => {
         <>
           <Welcome />
           <InvitationLink />
+          <LinkBotEvox />
         </>
       )}
     </div>

@@ -22,7 +22,7 @@ const ProtectedLayout = (): JSX.Element => {
               <OptionsBar />
               <div className="bg-lightGray dark:bg-darkGray w-full min-h-[40rem]">
                 <button
-                  className="fixed right-2 bottom-2 w-10 h-10 md:w-20 md:h-20 lg:w-20 lg:h-20 bg-mediumGray rounded-lg xl:hidden dark:bg-white z-10"
+                  className="fixed right-3 bottom-3 w-10 h-10 md:w-20 md:h-20 lg:w-20 lg:h-20 bg-mediumGray rounded-lg xl:hidden dark:bg-white z-10"
                   onClick={toggleLateralMenu}
                 >
                   <FontAwesomeIcon

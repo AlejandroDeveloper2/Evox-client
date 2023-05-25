@@ -1,6 +1,5 @@
 import { FormikErrors, FormikValues } from "formik";
 import { Location } from "react-router-dom";
-import * as copy from "copy-to-clipboard";
 
 import { FormType, ToastProps, UserIP } from "../types";
 
@@ -101,7 +100,7 @@ const setActiveMenuItem = (to: string, pathName: string): string[] => {
 };
 
 const formatDate = (date: string): string => {
-  const formattedDate = new Date(date).toLocaleString("en-US", {
+  const formattedDate = new Date(date).toLocaleString("es-ES", {
     weekday: "long",
     year: "numeric",
     month: "short",
@@ -127,12 +126,24 @@ const copyToDashDoard = (
   refLink: string,
   setToast: React.Dispatch<React.SetStateAction<ToastProps>>
 ) => {
-  copy(refLink);
+  const aux = document.createElement("input");
+  aux.setAttribute("value", refLink);
+  document.body.appendChild(aux);
+  aux.select();
+  document.execCommand("copy");
+  document.body.removeChild(aux);
   setToast({
     message: "Link copiado!",
     type: "success",
     visible: true,
   });
+  setTimeout(() => {
+    setToast({
+      message: "",
+      type: "success",
+      visible: false,
+    });
+  }, 3000);
 };
 
 const setInputType = (

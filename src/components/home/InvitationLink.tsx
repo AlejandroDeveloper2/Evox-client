@@ -22,7 +22,7 @@ const InvitationLink = (): JSX.Element => {
         className="rounded-xl h-[3rem] w-full bg-gray px-5 flex justify-between 
         dark:bg-mediumGray items-center flex-row gap-3 md:gap-0"
       >
-        <p className=" font-poppins font-medium dark:text-white text-darkBlue md:text-[20px]">
+        <p className=" font-poppins font-medium dark:text-white text-darkBlue text-[14px] md:text-[20px]">
           {link}
         </p>
         <CustomButton

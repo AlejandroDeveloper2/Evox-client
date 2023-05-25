@@ -31,6 +31,9 @@ const AuthProvider = ({ children }: Props) => {
   const [auth, setAuth] = React.useState<UserAuth | null>(null);
   const [success, setSuccess] = React.useState<boolean>(false);
   const [phoneCode, setPhoneCode] = React.useState<string>("");
+  // const [isTokenExpired, setIsTokenExpired] = React.useState<boolean | null>(
+  //   null
+  // );
 
   const { setToast, setLoading, setIsValidating, setLoader } = useApp();
   const location = useLocation();
@@ -81,20 +84,33 @@ const AuthProvider = ({ children }: Props) => {
 
   const checkIsUserAuth = async (): Promise<void> => {
     const token = localStorage.getItem("token");
+    setIsValidating(true);
     if (token) {
-      await validateBearerToken(token).then((res) => {
-        if (res) {
-          const userAuth = decodeToken<UserAuth>(token);
-          setAuth(userAuth);
-          navigate("/dashboard");
-        } else {
-          setAuth(null);
-          navigate("/login");
-          localStorage.removeItem("token");
-        }
-      });
+      await validateBearerToken(token)
+        .then((res) => {
+          if (res) {
+            const userAuth = decodeToken<UserAuth>(token);
+            setAuth(userAuth);
+            navigate("/dashboard");
+          } else {
+            setAuth(null);
+            navigate("/login");
+            localStorage.removeItem("token");
+          }
+        })
+        .finally(() => {
+          setIsValidating(false);
+        });
     }
   };
+
+  // const checkTokenExpiration = () => {
+  //   const token = localStorage.getItem("token");
+  //   if (token) {
+  //     const tokenExpired = isExpired(token);
+  //     setIsTokenExpired(tokenExpired);
+  //   }
+  // };
 
   const logOut = (): void => {
     localStorage.removeItem("token");
@@ -253,11 +269,15 @@ const AuthProvider = ({ children }: Props) => {
       }
     );
   };
-
   React.useEffect(() => {
     checkIsUserAuth();
+    console.log("token");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // React.useEffect(() => {
+  //   checkTokenExpiration();
+  // }, []);
 
   return (
     <AuthContext.Provider
