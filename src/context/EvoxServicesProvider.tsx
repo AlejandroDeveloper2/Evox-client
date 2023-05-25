@@ -1,8 +1,8 @@
 import React from "react";
 
 import { useApp, useAuth } from "../hooks";
-import { EvoxContextType, Referral } from "../types";
-import { getUserReferrals } from "../services/userReferrals";
+import { EvoxContextType, Referral, Team } from "../types";
+import { getUserReferrals, getUserTeam } from "../services/userReferrals";
 
 const EvoxServicesContext = React.createContext<EvoxContextType>(
   {} as EvoxContextType
@@ -14,6 +14,7 @@ interface Props {
 
 const EvoxServicesProvider = ({ children }: Props) => {
   const [userReferrals, setUserReferrals] = React.useState<Referral[]>([]);
+  const [userTeam, setUserTeam ] = React.useState<Team[]>([]);
   const { setLoader, setIsValidating } = useApp();
   const { auth } = useAuth();
 
@@ -33,11 +34,30 @@ const EvoxServicesProvider = ({ children }: Props) => {
     }
   };
 
+  const getUserTeamRed = async () =>{
+    const token = localStorage.getItem("token");
+    if(token){
+      setLoader({ loading: true, message: "Cargando equipo..." });
+      setIsValidating(true);
+      await getUserTeam(token).then((res) => {    
+        const newTeam = res.filter(
+          (referral) => referral.userName !== auth?.sub
+        );
+        setUserTeam(newTeam);
+      }).finally(()=>{
+        setIsValidating(false);
+        setLoader({ loading: false, message: "" });
+      });
+    }
+  }
+
   return (
     <EvoxServicesContext.Provider
       value={{
         userReferrals,
+        userTeam,
         getAllUserReferrals,
+        getUserTeamRed
       }}
     >
       {children}

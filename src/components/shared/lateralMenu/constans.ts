@@ -58,7 +58,7 @@ export const menuItems: MenuItem[] = [
         leftIcon: faHandHoldingDollar,
         rightIcon: null,
         label: "Mi equipo",
-        to: "#",
+        to: "/dashboard/teams",
         enabled: true,
       },
     ],

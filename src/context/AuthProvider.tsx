@@ -159,27 +159,30 @@ const AuthProvider = ({ children }: Props) => {
       message: "Enviando solicitud...",
       visible: true,
     });
-    await recoverPassword(userData).then(
-      (res: ServerResponseSuccess | ServerResponseFail) => {
-        setLoading({
-          message: "",
-          visible: false,
-        });
+    await recoverPassword(userData)
+      .then((res: ServerResponseSuccess | ServerResponseFail) => {
         setToast({
           message: res.message,
-          type:
-            res.typeStatus === "Error"
-              ? "error"
-              : res.typeStatus === "Warning"
-              ? "warning"
-              : "success",
+          type: res.typeStatus === "Warning" ? "warning" : "success",
           visible: true,
         });
         if (res.typeStatus === "Success") {
           setSuccess(true);
         }
-      }
-    );
+      })
+      .catch((error: Error) => {
+        setToast({
+          message: error.message,
+          type: "error",
+          visible: true,
+        });
+      })
+      .finally(() => {
+        setLoading({
+          message: "",
+          visible: false,
+        });
+      });
   };
 
   const changeUserPassword = async (userData: FormikValues): Promise<void> => {

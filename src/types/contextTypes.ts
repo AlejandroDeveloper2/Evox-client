@@ -6,6 +6,7 @@ import {
   LoaderProps,
   Referral,
   SpinnerProps,
+  Team,
   ToastProps,
   UserAuth,
   UserIP,
@@ -49,7 +50,9 @@ interface AuthContextType {
 interface EvoxContextType {
   children?: JSX.Element | JSX.Element[];
   userReferrals: Referral[];
+  userTeam: Team[];
   getAllUserReferrals: () => Promise<void>;
+  getUserTeamRed: () => Promise<void>;
 }
 
 interface ThemeContextType {

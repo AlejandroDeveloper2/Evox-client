@@ -14,7 +14,7 @@ const OptionsBar = (): JSX.Element => {
         <Dropdown />
       </div>
       {/* <Toggle /> */}
-      <div className="w-full h-[14rem] bg-lightBlue ml-0 lg:ml-5"></div>
+      <div className="w-full h-[14rem] bg-lightBlue ml-0"></div>
     </div>
   );
 };

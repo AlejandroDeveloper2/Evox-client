@@ -25,8 +25,7 @@ const authenticateUser = async (
     );
     response = data;
   } catch (error: any) {
-    console.log(error.response.data)
-    throw new Error(error.response.data);
+    throw new Error(error.response.data.message);
   }
   return response;
 };
@@ -45,7 +44,7 @@ const registerUser = async (
     >("/auth/create", userData);
     response = data;
   } catch (error: any) {
-    throw new Error(error.response.data);
+    throw new Error(error.response.data.message);
   }
   return response;
 };
@@ -92,7 +91,7 @@ const recoverPassword = async (userData: FormikValues) => {
     >(`/auth/recover`, userData);
     response = data;
   } catch (error: any) {
-    response = error.response.data;
+    throw new Error(error.response.data.message);
   }
   return response;
 };
@@ -109,7 +108,7 @@ const updatePassword = async (userData: FormikValues, token: string) => {
     >(`/auth/passwordChange/${token}`, userData);
     response = data;
   } catch (error: any) {
-    response = error.response.data;
+    response = error.response.data.message;
   }
   return response;
 };
@@ -127,7 +126,7 @@ const activeAccount = async (token: string) => {
     >(`/auth/activateAccount/${token}`);
     response = data;
   } catch (error: any) {
-    response = error.response.data;
+    response = error.response.data.message;
   }
   return response;
 };

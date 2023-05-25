@@ -32,7 +32,7 @@ const updateUserProfile = async (
     response = data.token;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
-    throw new Error(error.response.data);
+    throw new Error(error.response.data.message);
   }
   return response;
 };

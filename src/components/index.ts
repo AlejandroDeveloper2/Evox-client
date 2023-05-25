@@ -30,4 +30,4 @@ export { default as InfoCard } from "./home/InfoCard";
 export { default as AutomaticSystemsSection } from "./home/automaticSystemsSection/AutomaticSystemsSection";
 
 /* Referrals components */
-export { default as UserProfile } from "./referrals/userProfile/UserProfile";
+export { default as Table } from "./referrals/Table";

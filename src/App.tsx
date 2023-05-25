@@ -9,6 +9,7 @@ import {
   ChangePassword,
   ActivateAccount,
   Referrals,
+  Teams,
   UserProfile,
 } from "./pages";
 import {
@@ -51,6 +52,10 @@ function App() {
                     <Route
                       path="/dashboard/referrals"
                       element={<Referrals />}
+                    />
+                    <Route
+                      path="/dashboard/teams"
+                      element={<Teams />}
                     />
                     <Route
                       path="/dashboard/profile"

@@ -85,12 +85,14 @@ interface LoginReasponse extends ServerResponseFail {
 }
 
 interface Referral {
-  parent: string | null;
-  refLink: string;
   userName: string;
   fullName: string;
-  status: boolean;
   dateRegistered: string;
+  phone?: string;
+}
+
+interface Team extends Referral {
+  level?: string;
 }
 
 interface ProfileFormValues {
@@ -119,4 +121,5 @@ export type {
   LoginReasponse,
   Referral,
   ProfileFormValues,
+  Team
 };

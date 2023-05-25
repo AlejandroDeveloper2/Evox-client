@@ -101,6 +101,11 @@ interface AutomatedSystem {
   to: string;
 }
 
+interface TableProps {
+  children:JSX.Element | JSX.Element[];
+  type: "referrals" | "team";
+}
+
 export type {
   Field,
   CustomButtonProps,
@@ -116,4 +121,5 @@ export type {
   CountDownElement,
   InfoCardProps,
   AutomatedSystem,
+  TableProps
 };
