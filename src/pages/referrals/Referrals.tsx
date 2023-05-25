@@ -1,13 +1,14 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 
-import { useEvoxServices, useFetchData } from "../../hooks";
+import { useApp, useEvoxServices, useFetchData } from "../../hooks";
 import { formatDate } from "../../utils";
 
-import { InvitationLink, Table } from "../../components";
+import { InvitationLink, Loader, Table } from "../../components";
 
 const Referrals = (): JSX.Element => {
   const { userReferrals, getAllUserReferrals } = useEvoxServices();
+  const { isValidating } = useApp();
   useFetchData([{ function: getAllUserReferrals }]);
 
   return (
@@ -19,24 +20,23 @@ const Referrals = (): JSX.Element => {
       >
         <FontAwesomeIcon
           icon={faCircleUser}
-          className="text-[40px] text-darkBlue align-middle"
+          className="text-[40px] text-blue align-middle"
         />{" "}
         <span className="align-middle"> Mis referidos </span>
       </h1>
-      <div className="w-full overflow-x-scroll px-20">
+      <div className="w-full overflow-x-scroll md:px-20 px-5">
         <Table type="referrals">
-          {userReferrals.length > 0 ? (
+          {isValidating ? (
+            <Loader />
+          ) : userReferrals.length > 0 ? (
             userReferrals.map((referral, index) => (
               <tr
                 className="bg-lightGray border-b-[2px] border-gray dark:bg-darkGray dark:border-mediumGray"
                 key={index}
               >
-                <th
-                  scope="row"
-                  className="px-6 py-4 font-medium text-darkGray whitespace-nowrap dark:text-white"
-                >
+                <tr className="px-6 py-4 font-medium text-darkGray whitespace-nowrap dark:text-white">
                   {referral?.fullName}
-                </th>
+                </tr>
                 <td className="px-6 py-4">{referral?.phone}</td>
                 <td className="px-6 py-4">{referral?.userName}</td>
                 <td className="px-6 py-4">
@@ -45,12 +45,12 @@ const Referrals = (): JSX.Element => {
               </tr>
             ))
           ) : (
-            <div
+            <tr
               className="bg-lightGray  dark:bg-darkGray dark:border-mediumGray text-darkBlue 
-                text-[16px] font-poppins font-semibold py-5"
+                md:text-[16px] text-[12px] font-poppins font-semibold py-5"
             >
-              No tienes referidos aún
-            </div>
+              <td className="py-4">No tienes referidos aún</td>
+            </tr>
           )}
         </Table>
       </div>

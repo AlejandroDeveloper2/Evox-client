@@ -15,3 +15,4 @@ export { default as AutomatedAccountImage } from "./automated-account-image.png"
 export { default as EvoxAcademyImage1 } from "./evox-academy-image-1.png";
 export { default as EvoxAcademyLogo } from "./evox-academy-image-2.png";
 export { default as TetherLogo } from "./Tether_Logo.png";
+export { default as TopBanner } from "./top-banner.jpeg";

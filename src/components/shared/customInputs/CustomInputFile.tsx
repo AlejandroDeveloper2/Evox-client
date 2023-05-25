@@ -5,7 +5,7 @@ const CustomInputFile = (): JSX.Element => {
 
   return (
     <div
-      className="flex flex-col  justify-center w-1/2 items-start border-solid border-primary-color
+      className="flex flex-col  justify-center w-full md:w-1/2 items-start border-solid border-primary-color
     border-[1px] rounded-[10px] overflow-hidden p-3 gap-2 dark:bg-mediumGray bg-white
     hover:border-darkGray dark:hover:border-primary-color"
     >

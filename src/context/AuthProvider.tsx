@@ -65,6 +65,13 @@ const AuthProvider = ({ children }: Props) => {
         });
       })
       .finally(() => {
+        setTimeout(() => {
+          setToast({
+            message: "",
+            type: "success",
+            visible: false,
+          });
+        }, 3000);
         setLoading({
           message: "",
           visible: false,
@@ -119,6 +126,13 @@ const AuthProvider = ({ children }: Props) => {
         });
       })
       .finally(() => {
+        setTimeout(() => {
+          setToast({
+            message: "",
+            type: "success",
+            visible: false,
+          });
+        }, 3000);
         setLoading({
           message: "",
           visible: false,
@@ -182,6 +196,13 @@ const AuthProvider = ({ children }: Props) => {
           message: "",
           visible: false,
         });
+        setTimeout(() => {
+          setToast({
+            message: "",
+            type: "success",
+            visible: false,
+          });
+        }, 3000);
       });
   };
 

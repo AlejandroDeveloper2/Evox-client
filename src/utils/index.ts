@@ -129,7 +129,7 @@ const copyToDashDoard = (
 ) => {
   copy(refLink);
   setToast({
-    message: "Link copied!",
+    message: "Link copiado!",
     type: "success",
     visible: true,
   });

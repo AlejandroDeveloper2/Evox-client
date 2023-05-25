@@ -29,10 +29,10 @@ const UserProfileProvider = ({ children }: Props) => {
     const formData = new FormData();
     if (files) {
       formData.append("file", files[0]);
-      formData.append("upload_preset", "tfmnv7bp");
+      formData.append("upload_preset", "uploadPhoto");
     }
     setLoader({
-      message: "Uploading image...",
+      message: "Subiendo foto de perfil...",
       loading: true,
     });
     await uploadProfileImage(formData)
@@ -40,7 +40,7 @@ const UserProfileProvider = ({ children }: Props) => {
         setProfilePhoto(res);
         localStorage.setItem("profileImgUrl", res);
         setToast({
-          message: "Profile photo uploaded!",
+          message: "Foto de perfil Actualizada con exito!",
           type: "success",
           visible: true,
         });
@@ -57,6 +57,13 @@ const UserProfileProvider = ({ children }: Props) => {
           message: "",
           loading: false,
         });
+        setTimeout(() => {
+          setToast({
+            message: "",
+            type: "success",
+            visible: false,
+          });
+        }, 3000);
       });
   };
 
@@ -91,6 +98,13 @@ const UserProfileProvider = ({ children }: Props) => {
             message: "",
             visible: false,
           });
+          setTimeout(() => {
+            setToast({
+              message: "",
+              type: "success",
+              visible: false,
+            });
+          }, 3000);
         });
     }
   };

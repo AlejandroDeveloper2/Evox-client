@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { Dropdown } from "..";
 
+import { TopBanner } from "../../assets";
+
 const OptionsBar = (): JSX.Element => {
   return (
     <div className="flex flex-col w-full pt-5 bg-white gap-4">
@@ -14,7 +16,13 @@ const OptionsBar = (): JSX.Element => {
         <Dropdown />
       </div>
       {/* <Toggle /> */}
-      <div className="w-full h-[14rem] bg-lightBlue ml-0"></div>
+      <div className="w-full h-[14rem]">
+        <img
+          src={TopBanner}
+          alt="Evox banner"
+          className="object-cover w-full h-full"
+        />
+      </div>
     </div>
   );
 };

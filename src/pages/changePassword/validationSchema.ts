@@ -1,10 +1,10 @@
 import * as yup from "yup";
 
-const isRequiredMessage = "Field is required!";
-const passwordMessage = "Password must be at least 8 characters!";
-const passwordsDontMatchMessage = "Passwords don't match!";
+const isRequiredMessage = "El campo  es requerido!";
+const passwordMessage = "La contraseña debe ser de al menos 8 caracteres!";
+const passwordsDontMatchMessage = "Las contraseñas no coinciden!";
 const passwordRulesMessage =
-  "Password must have at least one uppercase and lowercase letter!";
+  "La contraseña debe tener al menos una letra mayuscula y minuscula!";
 const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
 
 export const validationSchema = yup.object().shape({

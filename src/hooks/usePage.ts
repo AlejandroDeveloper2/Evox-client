@@ -8,7 +8,14 @@ const usePage = (): string => {
   const getCurrentPage = (): string => {
     const url = location.pathname.split("/");
     const lastUrlElement = url.length - 1;
-    const currentPage = url[lastUrlElement];
+    const currentPage =
+      url[lastUrlElement] === "dashboard"
+        ? "Inicio"
+        : url[lastUrlElement] === "referrals"
+        ? "Referidos"
+        : url[lastUrlElement] === "profile"
+        ? "Mi Perfil"
+        : "Equipo";
     return currentPage;
   };
 

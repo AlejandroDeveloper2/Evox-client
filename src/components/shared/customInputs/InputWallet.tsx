@@ -2,7 +2,7 @@ import { TetherLogo } from "../../../assets";
 
 const InputWallet = (): JSX.Element => {
   return (
-    <div className="flex flex-row gap-10 justify-center items-center w-full">
+    <div className="flex  flex-col md:flex-row gap-10 justify-center items-center w-full">
       <div className="flex gap-5 justify-center items-center">
         <img src={TetherLogo} alt="Tether evox" />
         <p className="flex flex-col gap-1 items-start font-poppins font-medium text-darkBlue">
@@ -14,7 +14,7 @@ const InputWallet = (): JSX.Element => {
         </p>
       </div>
       <div
-        className="flex flex-col  justify-center w-1/2 items-start border-solid border-primary-color
+        className="flex flex-col  justify-center w-full md:w-1/2 items-start border-solid border-primary-color
         border-[1px] rounded-[10px] overflow-hidden p-3 gap-1 dark:bg-mediumGray bg-disabledColor
         hover:border-darkGray dark:hover:border-primary-color"
       >

@@ -13,12 +13,12 @@ const CountDown = (): JSX.Element => {
         <div key={index} className="flex flex-row gap-2 lg:gap-5 items-center">
           <div
             className="lg:w-[7rem] lg:h-[7rem] dark:bg-purple  bg-blue rounded-lg flex 
-            flex-col lg:gap-1 items-center justify-center w-[5rem] h-[5rem] gap-0"
+            flex-col lg:gap-1 items-center justify-center w-[4rem] h-[4rem] gap-0"
           >
-            <h2 className="text-white lg:text-[40px] font-montserrat font-bold text-[20px]">
+            <h2 className="text-white lg:text-[40px] font-montserrat font-bold md:text-[20px] text-[18px]">
               {element.value}
             </h2>
-            <span className="text-white lg:text-[16px] font-montserrat font-normal text-[12px]">
+            <span className="text-white lg:text-[16px] font-montserrat font-normal md:text-[12px] text-[10px]">
               {element.label}
             </span>
           </div>

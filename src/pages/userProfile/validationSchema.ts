@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-const isRequiredMessage = "Field is required!";
+const isRequiredMessage = "El campo  es requerido!";
 
 export const validationSchema = yup.object().shape({
   phone: yup.string().required(isRequiredMessage),

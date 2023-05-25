@@ -17,7 +17,7 @@ const UserProfile = (): JSX.Element => {
   const { auth } = useAuth();
 
   return (
-    <div className="w-full bg-lightGray dark:bg-darkGray flex justify-center items-center flex-col gap-5 pb-6 md:pb-[60px] relative">
+    <div className="w-full bg-lightGray dark:bg-darkGray flex justify-center items-center flex-col gap-5 px-5 md:px-0 pb-6 md:pb-[60px] relative">
       <EditProfileAvatar />
       {loader.loading ? <Loader /> : <CustomInputFile />}
       <CustomForm

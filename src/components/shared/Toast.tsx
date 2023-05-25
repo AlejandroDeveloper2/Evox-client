@@ -13,11 +13,11 @@ const Toast = (): JSX.Element => {
   const { toast, setToast } = useApp();
   return (
     <div
-      className={`flex justify-start items-center gap-1 ${setToastColor(
+      className={`flex justify-between items-center gap-5 ${setToastColor(
         toast.type
       )} ${
         toast.visible ? "translate-x-[0px]" : "translate-x-[110%]"
-      } transition-transform fixed bottom-2 md:bottom-[1rem] right-2  w-3/4 md:w-[30%] p-[25px] z-40 rounded-lg`}
+      } transition-transform fixed bottom-2 md:bottom-[1rem] right-2 w-auto p-[25px] z-40 rounded-lg`}
     >
       <FontAwesomeIcon
         icon={
@@ -32,14 +32,14 @@ const Toast = (): JSX.Element => {
         className="text-white"
       />
 
-      <div className="ml-3 text-sm font-normal font-montserrat text-white">
+      <div className="ml-3 text-sm font-normal font-poppins text-white">
         {toast.message}
       </div>
       <button
         onClick={() =>
           setToast({ message: "", type: "success", visible: false })
         }
-        className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary-color text-darkGray absolute right-2"
+        className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary-color text-darkGray"
       >
         <FontAwesomeIcon icon={faClose} className="text-darkGray" />
       </button>
