@@ -73,8 +73,8 @@ export const fields: Field[] = [
   {
     type: "text",
     name: "city",
-    label: "Ciudad",
-    placeholder: "Escoja su ciudad",
+    label: "Estado / departamento / provincia",
+    placeholder: "Escoja su estado / departamento / provincia",
     icon: faLocationDot,
     as: "select",
     selectName: "cities",
