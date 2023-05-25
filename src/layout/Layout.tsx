@@ -4,7 +4,7 @@ import { useAuth, useTheme } from "../hooks";
 
 import Logo from "../assets/logo.png";
 import LogoDark from "../assets/logo-2.png";
-import { Toast } from "../components";
+import { LinkBotEvox, Toast } from "../components";
 
 const Layout = () => {
   const { auth } = useAuth();
@@ -42,6 +42,7 @@ const Layout = () => {
               </h1>
             </div>
             <Toast />
+            <LinkBotEvox />
             <Outlet />
           </div>
         </main>
