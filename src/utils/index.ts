@@ -14,15 +14,12 @@ const toggleButton = (
   errors: FormikErrors<FormikValues>,
   values: FormikValues,
   isCaptchaChecked: boolean,
-  hasCaptcha: boolean | undefined,
-  type: "submit" | "button" | "reset" | undefined
+  hasCaptcha: boolean | undefined
 ): boolean => {
   const disable: boolean = hasCaptcha
     ? Object.keys(errors).length > 0 || !isCaptchaChecked
       ? true
       : false
-    : type === "button"
-    ? false
     : Object.keys(errors).length > 0 || Object.values(values).includes("")
     ? true
     : false;

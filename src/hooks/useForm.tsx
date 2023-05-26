@@ -48,13 +48,7 @@ const useForm = (
           color: button.theme.color,
           aditionalStyles: "w-full",
         }}
-        disabled={toggleButton(
-          errors,
-          values,
-          isCaptchaChecked,
-          hasCaptcha,
-          button.type
-        )}
+        disabled={toggleButton(errors, values, isCaptchaChecked, hasCaptcha)}
       />
     ));
   };
@@ -67,6 +61,8 @@ const useForm = (
         onChange={() => {
           if (captcha.current?.getValue()) {
             setIsCaptchaChecked(true);
+          } else {
+            setIsCaptchaChecked(false);
           }
         }}
       />
@@ -84,7 +80,6 @@ const useForm = (
       phoneCode,
     });
     action(newValues);
-    console.log(newValues);
     captcha.current?.reset();
     if (success && form !== "profile") {
       formikHelpers.resetForm();

@@ -280,9 +280,9 @@ const AuthProvider = ({ children }: Props) => {
       }
     );
   };
+
   React.useEffect(() => {
     checkIsUserAuth();
-    console.log("token");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
