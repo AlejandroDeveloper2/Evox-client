@@ -5,7 +5,7 @@ const validEmailMessage = "Correo invalido!";
 const passwordMessage = "La contraseña debe ser de al menos 8 caracteres!";
 const passwordsDontMatchMessage = "Las contraseñas no coinciden!";
 const passwordRulesMessage =
-  "La contraseña debe tener al menos una letra mayuscula y minuscula!";
+  "La contraseña debe tener al menos una letra mayuscula, una minuscula y un numero!";
 const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
 
 export const validationSchema = yup.object().shape({

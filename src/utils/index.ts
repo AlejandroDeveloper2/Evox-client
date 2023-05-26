@@ -39,8 +39,8 @@ const setFormValues = (
     const invitationLink = referral
       ? `https://www.backoffice.evox.com.co/${location?.pathname.split("/")[1]}`
       : null;
-    delete values.confirmPassword;
     delete values.invitationLink;
+    delete newValues.confirmPassword;
     newValues = referral
       ? {
           ...values,

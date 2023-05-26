@@ -9,7 +9,7 @@ interface FormHook {
   onSubmit: (
     values: FormikValues,
     formikHelpers: FormikHelpers<FormikValues>
-  ) => void;
+  ) => Promise<void>;
 }
 
 interface SelectOptionsHook {

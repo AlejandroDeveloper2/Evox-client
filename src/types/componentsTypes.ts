@@ -36,7 +36,7 @@ interface CustomFormProps {
   hasCaptcha?: boolean;
   cols: string;
   form: FormType;
-  action: (values: FormikValues) => void;
+  action: (values:FormikValues) => Promise<void>;
 }
 
 interface SpinnerProps {

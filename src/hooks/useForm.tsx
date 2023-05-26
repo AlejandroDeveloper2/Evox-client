@@ -19,7 +19,7 @@ const useForm = (
   fields: FieldType[],
   buttons: CustomButtonProps[],
   form: FormType,
-  action: (values: FormikValues) => void,
+  action: (values: FormikValues) => Promise<void>,
   hasCaptcha?: boolean
 ): FormHook => {
   const [isCaptchaChecked, setIsCaptchaChecked] =
@@ -69,21 +69,24 @@ const useForm = (
     );
   };
 
-  const onSubmit = (
+  const onSubmit = async (
     values: FormikValues,
     formikHelpers: FormikHelpers<FormikValues>
-  ): void => {
+  ): Promise<void> => {
     const newValues = setFormValues(values, form, {
       location,
       userIp: userIP,
       profileImageUrl: profilePhoto,
       phoneCode,
     });
-    action(newValues);
-    captcha.current?.reset();
-    if (success && form !== "profile") {
-      formikHelpers.resetForm();
-    }
+    await action(newValues).then(() => {      
+      if (success && form !== "profile") {
+        formikHelpers.resetForm();
+      }
+    }).finally(()=>{
+      captcha.current?.reset();
+      setIsCaptchaChecked(false);
+    });
   };
 
   return {

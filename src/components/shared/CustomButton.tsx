@@ -5,28 +5,61 @@ import { Spinner } from "..";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const CustomButton = (props: CustomButtonProps): JSX.Element => {
+  if (props.type === "submit") return <Submit {...props} />;
+  return <Button {...props} />;
+};
+
+const Submit = ({
+  theme,
+  disabled,
+  icon,
+  label,
+}: CustomButtonProps): JSX.Element => {
   const { loading } = useApp();
   return (
     <button
-      type={props.type}
-      onClick={props.onClick}
-      className={`${props.theme.color} hover:bg-opacity-80 
-      dark:hover:bg-opacity-80 transition-all ${props.theme.bg}
-       ${props.theme.aditionalStyles}
-       ${props.disabled ? "bg-opacity-40" : ""}
-       focus:ring-4 focus:ring-blue-300 font-medium 
-       rounded-lg text-sm px-5 py-5
-       focus:outline-none text-[18px] font-poppins cursor-pointer
+      type="submit"
+      className={`${theme.color} lg:hover:bg-opacity-80 
+        lg:dark:hover:bg-opacity-80 transition-all ${theme.bg}
+        ${theme.aditionalStyles}
+        ${disabled ? "bg-opacity-40" : ""}
+        focus:ring-4 focus:ring-blue-300 font-medium 
+        rounded-lg text-sm px-5 py-5
+        focus:outline-none text-[18px] font-poppins cursor-pointer
         lg:rounded-xl lg:text-[20px] flex justify-center items-center gap-3
       `}
-      disabled={props.disabled}
+      disabled={disabled}
     >
-      {props.icon ? (
-        <FontAwesomeIcon icon={props.icon} className={props.theme.color} />
-      ) : (
-        ""
-      )}
-      {loading.visible && props.type === "submit" ? <Spinner /> : props.label}
+      {icon ? <FontAwesomeIcon icon={icon} className={theme.color} /> : ""}
+      {loading.visible ? <Spinner /> : label}
+    </button>
+  );
+};
+
+const Button = ({
+  theme,
+  disabled,
+  label,
+  icon,
+  onClick,
+}: CustomButtonProps): JSX.Element => {
+  return (
+    <button
+      onClick={onClick}
+      type="button"
+      className={`${theme.color} lg:hover:bg-opacity-80 
+        lg:dark:hover:bg-opacity-80 transition-all ${theme.bg}
+        ${theme.aditionalStyles}
+        ${disabled ? "bg-opacity-40" : ""}
+        focus:ring-4 focus:ring-blue-300 font-medium 
+        rounded-lg text-sm px-5 py-5
+        focus:outline-none text-[18px] font-poppins cursor-pointer
+        lg:rounded-xl lg:text-[20px] flex justify-center items-center gap-3
+      `}
+      disabled={disabled}
+    >
+      {icon ? <FontAwesomeIcon icon={icon} className={theme.color} /> : ""}
+      {label}
     </button>
   );
 };

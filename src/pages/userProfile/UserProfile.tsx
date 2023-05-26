@@ -1,5 +1,3 @@
-import { FormikValues } from "formik";
-
 import { fields, buttons, getInitialvalues } from "./constans";
 import { validationSchema } from "./validationSchema";
 
@@ -28,7 +26,7 @@ const UserProfile = (): JSX.Element => {
         validationSchema={validationSchema}
         cols="2"
         form="profile"
-        action={(values: FormikValues) => editUserProfile(values)}
+        action={editUserProfile}
       />
     </div>
   );

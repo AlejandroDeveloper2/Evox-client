@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { FormikValues } from "formik";
 
 import { initialvalues, fields, buttons } from "./constans";
 import { validationSchema } from "./validationSchema";
@@ -25,9 +24,7 @@ const UserRegister = () => {
         hasCaptcha
         cols="1"
         form="register"
-        action={(values: FormikValues) => {
-          createAccount(values);
-        }}
+        action={createAccount}
       />
       <h2 className="font-poppins text-blue dark:text-white font-medium text-[16px]">
         ¿Ya estas registrado?{" "}

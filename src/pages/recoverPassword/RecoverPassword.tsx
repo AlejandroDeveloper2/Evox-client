@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { FormikValues } from "formik";
 
 import { initialvalues, fields, getFormButtons } from "./constans";
 import { validationSchema } from "./validationSchema";
@@ -25,7 +24,7 @@ const RecoverPassword = (): JSX.Element => {
         validationSchema={validationSchema}
         cols="1"
         form="recover"
-        action={(values: FormikValues) => sendRequestPassword(values)}
+        action={sendRequestPassword}
       />
       <h2 className="font-poppins text-darkGray font-medium text-[16px] dark:text-white text-center">
         Regresar a iniciar sesión{" "}

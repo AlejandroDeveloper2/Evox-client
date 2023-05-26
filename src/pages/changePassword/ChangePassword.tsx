@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FormikValues } from "formik";
 
 import { initialvalues, fields, buttons } from "./constans";
 import { validationSchema } from "./validationSchema";
@@ -36,7 +35,7 @@ const ChangePassword = (): JSX.Element => {
             hasCaptcha
             cols="1"
             form="recover"
-            action={(values: FormikValues) => changeUserPassword(values)}
+            action={changeUserPassword}
           />
           <h2 className="font-poppins text-darkGray font-medium text-[16px]">
             Regresar a

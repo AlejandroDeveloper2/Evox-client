@@ -31,9 +31,6 @@ const AuthProvider = ({ children }: Props) => {
   const [auth, setAuth] = React.useState<UserAuth | null>(null);
   const [success, setSuccess] = React.useState<boolean>(false);
   const [phoneCode, setPhoneCode] = React.useState<string>("");
-  // const [isTokenExpired, setIsTokenExpired] = React.useState<boolean | null>(
-  //   null
-  // );
 
   const { setToast, setLoading, setIsValidating, setLoader } = useApp();
   const location = useLocation();
@@ -103,14 +100,6 @@ const AuthProvider = ({ children }: Props) => {
         });
     }
   };
-
-  // const checkTokenExpiration = () => {
-  //   const token = localStorage.getItem("token");
-  //   if (token) {
-  //     const tokenExpired = isExpired(token);
-  //     setIsTokenExpired(tokenExpired);
-  //   }
-  // };
 
   const logOut = (): void => {
     localStorage.removeItem("token");
@@ -285,10 +274,6 @@ const AuthProvider = ({ children }: Props) => {
     checkIsUserAuth();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  // React.useEffect(() => {
-  //   checkTokenExpiration();
-  // }, []);
 
   return (
     <AuthContext.Provider

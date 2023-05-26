@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { FormikValues } from "formik";
 
 import { initialvalues, fields, buttons } from "./constans";
 import { validationSchema } from "./validationSchema";
@@ -24,9 +23,7 @@ const Login = () => {
         hasCaptcha
         cols="1"
         form="login"
-        action={(values: FormikValues) => {
-          logIn(values);
-        }}
+        action={logIn}
       />
       <h2 className="font-poppins text-darkGray font-medium text-[16px] dark:text-white text-center">
         ¿No tienes una cuenta?{" "}
