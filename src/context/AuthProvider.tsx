@@ -228,27 +228,38 @@ const AuthProvider = ({ children }: Props) => {
       visible: true,
     });
     const token = location.pathname.split("/")[2];
-    await updatePassword(userData, token).then(
-      (res: ServerResponseSuccess | ServerResponseFail) => {
-        setLoading({
-          message: "",
-          visible: false,
-        });
+    await updatePassword(userData, token)
+      .then((res: ServerResponseSuccess | ServerResponseFail) => {
         setToast({
           message: res.message,
-          type:
-            res.typeStatus === "Error"
-              ? "error"
-              : res.typeStatus === "Warning"
-              ? "warning"
-              : "success",
+          type: res.typeStatus === "Warning" ? "warning" : "success",
           visible: true,
         });
         if (res.typeStatus === "Success") {
           setSuccess(true);
         }
-      }
-    );
+        navigate("/login");
+      })
+      .catch((error: Error) => {
+        setToast({
+          message: error.message,
+          type: "error",
+          visible: true,
+        });
+      })
+      .finally(() => {
+        setLoading({
+          message: "",
+          visible: false,
+        });
+        setTimeout(() => {
+          setToast({
+            message: "",
+            type: "success",
+            visible: false,
+          });
+        }, 3000);
+      });
   };
 
   const validateAccount = async (): Promise<void> => {

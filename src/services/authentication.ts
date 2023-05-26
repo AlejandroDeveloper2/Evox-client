@@ -108,7 +108,7 @@ const updatePassword = async (userData: FormikValues, token: string) => {
     >(`/auth/passwordChange/${token}`, userData);
     response = data;
   } catch (error: any) {
-    response = error.response.data.message;
+    throw new Error(error.response.data.message);
   }
   return response;
 };
