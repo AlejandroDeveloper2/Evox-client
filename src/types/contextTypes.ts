@@ -6,6 +6,7 @@ import {
   LoaderProps,
   Referral,
   SpinnerProps,
+  Status,
   Team,
   ToastProps,
   UserAuth,
@@ -33,6 +34,7 @@ interface AppContextType {
 
 interface AuthContextType {
   children?: JSX.Element | JSX.Element[];
+  status: Status;
   auth: UserAuth | null;
   success: boolean;
   phoneCode: string;

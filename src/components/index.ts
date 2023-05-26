@@ -19,6 +19,7 @@ export { default as Toggle } from "./shared/Toggle";
 export { default as Loader } from "./shared/Loader";
 export { default as OptionsBar } from "./shared/OptionsBar";
 export { default as LinkBotEvox } from "./shared/LinkBotEvox";
+export { default as Loading } from "./shared/Loading";
 
 /*Home components */
 export { default as Welcome } from "./home/Welcome";

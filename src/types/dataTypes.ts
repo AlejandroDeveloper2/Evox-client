@@ -105,6 +105,8 @@ interface ProfileFormValues {
   suponsorName: string | null;
 }
 
+type Status = "authenticate" | "checking" | "noAuthenticate";
+
 export type {
   FormType,
   RegisterFormValues,
@@ -121,5 +123,6 @@ export type {
   LoginReasponse,
   Referral,
   ProfileFormValues,
-  Team
+  Team,
+  Status,
 };

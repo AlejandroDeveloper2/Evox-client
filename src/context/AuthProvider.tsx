@@ -18,6 +18,7 @@ import {
   ServerResponseSuccess,
   LoginReasponse,
   UserAuth,
+  Status,
 } from "../types";
 import { useApp } from "../hooks";
 
@@ -28,6 +29,7 @@ interface Props {
 }
 
 const AuthProvider = ({ children }: Props) => {
+  const [status, setStatus] = React.useState<Status>("noAuthenticate");
   const [auth, setAuth] = React.useState<UserAuth | null>(null);
   const [success, setSuccess] = React.useState<boolean>(false);
   const [phoneCode, setPhoneCode] = React.useState<string>("");
@@ -37,7 +39,6 @@ const AuthProvider = ({ children }: Props) => {
   const navigate = useNavigate();
 
   const logIn = async (userData: FormikValues): Promise<void> => {
-    console.log(userData);
     setLoading({
       message: "Verificando credenciales...",
       visible: true,
@@ -53,6 +54,7 @@ const AuthProvider = ({ children }: Props) => {
         } else {
           const userAuth = decodeToken<UserAuth>(res.token);
           localStorage.setItem("token", res.token);
+          setStatus("authenticate");
           setAuth(userAuth);
           setSuccess(true);
         }
@@ -82,14 +84,17 @@ const AuthProvider = ({ children }: Props) => {
   const checkIsUserAuth = async (): Promise<void> => {
     const token = localStorage.getItem("token");
     setIsValidating(true);
+    setStatus("checking");
     if (token) {
       await validateBearerToken(token)
         .then((res) => {
           if (res) {
             const userAuth = decodeToken<UserAuth>(token);
+            setStatus("authenticate");
             setAuth(userAuth);
             navigate("/dashboard");
           } else {
+            setStatus("noAuthenticate");
             setAuth(null);
             navigate("/login");
             localStorage.removeItem("token");
@@ -98,6 +103,8 @@ const AuthProvider = ({ children }: Props) => {
         .finally(() => {
           setIsValidating(false);
         });
+    } else {
+      setStatus("noAuthenticate");
     }
   };
 
@@ -278,6 +285,7 @@ const AuthProvider = ({ children }: Props) => {
   return (
     <AuthContext.Provider
       value={{
+        status,
         auth,
         success,
         phoneCode,

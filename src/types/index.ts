@@ -15,7 +15,8 @@ export type {
   LoginReasponse,
   Referral,
   ProfileFormValues,
-  Team
+  Team,
+  Status,
 } from "./dataTypes";
 
 /* Component types Models */
@@ -34,7 +35,7 @@ export type {
   CountDownElement,
   InfoCardProps,
   AutomatedSystem,
-  TableProps
+  TableProps,
 } from "./componentsTypes";
 
 /*Hook types model */
