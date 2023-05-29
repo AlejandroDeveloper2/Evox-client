@@ -1,10 +1,11 @@
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { useAuth } from "../../../hooks";
+import { useAuth, useUserProfile } from "../../../hooks";
 
 const EditProfileAvatar = (): JSX.Element => {
   const { auth } = useAuth();
+  const { uploadProfilePhoto } = useUserProfile();
 
   const photo = auth ? (auth.photo ? auth.photo : null) : null;
 
@@ -12,7 +13,7 @@ const EditProfileAvatar = (): JSX.Element => {
     <div className="flex gap-10 justify-start items-start w-full py-7 bg-lightGray md:px-20 px-5">
       <div
         className="relative w-[4rem] h-[4rem] overflow-hidden bg-white dark:bg-primary-color rounded-full 
-          flex justify-center items-center lg:w-[5rem] lg:h-[5rem]"
+        flex justify-center items-center lg:w-[5rem] lg:h-[5rem]"
       >
         {photo ? (
           <img
@@ -26,6 +27,15 @@ const EditProfileAvatar = (): JSX.Element => {
             className="text-primary-color dark:text-mediumGray text-[20px] lg:text-[30px]"
           />
         )}
+        <input
+          type="file"
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            uploadProfilePhoto(e)
+          }
+          className="absolute top-0 right-0 min-w-[100%] min-h-[100%] opacity-0 
+          outline-none bg-white cursor-pointer block"
+          title="Subir foto de perfil"
+        />
       </div>
 
       <div className="flex flex-col gap-3 items-start">

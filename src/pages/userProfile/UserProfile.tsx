@@ -1,12 +1,7 @@
 import { fields, buttons, getInitialvalues } from "./constans";
 import { validationSchema } from "./validationSchema";
 
-import {
-  CustomForm,
-  CustomInputFile,
-  EditProfileAvatar,
-  Loader,
-} from "../../components";
+import { CustomForm, EditProfileAvatar, Loader } from "../../components";
 import { useApp, useAuth, useUserProfile } from "../../hooks";
 
 const UserProfile = (): JSX.Element => {
@@ -16,8 +11,7 @@ const UserProfile = (): JSX.Element => {
 
   return (
     <div className="w-full bg-lightGray dark:bg-darkGray flex justify-center items-center flex-col gap-5 px-5 md:px-0 pb-6 md:pb-[60px] relative">
-      <EditProfileAvatar />
-      {loader.loading ? <Loader /> : <CustomInputFile />}
+      {loader.loading ? <Loader /> : <EditProfileAvatar />}
       <CustomForm
         formTitle=""
         fields={fields}
