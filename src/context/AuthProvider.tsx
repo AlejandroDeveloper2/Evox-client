@@ -57,6 +57,7 @@ const AuthProvider = ({ children }: Props) => {
           setStatus("authenticate");
           setAuth(userAuth);
           setSuccess(true);
+          navigate("/dashboard");
         }
       })
       .catch((error: Error) => {
@@ -111,6 +112,8 @@ const AuthProvider = ({ children }: Props) => {
   const logOut = (): void => {
     localStorage.removeItem("token");
     setAuth(null);
+    setStatus("noAuthenticate");
+    navigate("/login");
   };
 
   const createAccount = async (userData: FormikValues): Promise<void> => {

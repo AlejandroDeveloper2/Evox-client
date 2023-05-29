@@ -36,7 +36,7 @@ interface CustomFormProps {
   hasCaptcha?: boolean;
   cols: string;
   form: FormType;
-  action: (values:FormikValues) => Promise<void>;
+  action: (values: FormikValues) => Promise<void>;
 }
 
 interface SpinnerProps {
@@ -101,9 +101,14 @@ interface AutomatedSystem {
   to: string;
 }
 
+interface TableHeader {
+  icon: IconDefinition;
+  label: string;
+}
+
 interface TableProps {
-  children:JSX.Element | JSX.Element[];
-  type: "referrals" | "team";
+  children: JSX.Element | JSX.Element[];
+  headers: TableHeader[];
 }
 
 export type {
@@ -121,5 +126,6 @@ export type {
   CountDownElement,
   InfoCardProps,
   AutomatedSystem,
-  TableProps
+  TableProps,
+  TableHeader,
 };

@@ -11,3 +11,4 @@ export { default as usePage } from "./usePage";
 export { default as useMenuItem } from "./useMenuItem";
 export { default as useUserProfile } from "./useUserProfile";
 export { default as usePhonecode } from "./usePhonecode";
+export { default as useScreen } from "./useScreen";

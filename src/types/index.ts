@@ -36,6 +36,7 @@ export type {
   InfoCardProps,
   AutomatedSystem,
   TableProps,
+  TableHeader,
 } from "./componentsTypes";
 
 /*Hook types model */

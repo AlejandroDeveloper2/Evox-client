@@ -12,12 +12,14 @@ const AppRouter = (): JSX.Element => {
   if (status === "checking") return <Loading message="Cargando..." />;
   return (
     <Routes>
-      {status === "noAuthenticate" ? (
-        <Route path="/*" element={<PublicRoutes />} />
-      ) : (
+      {status === "authenticate" ? (
         <Route path="/*" element={<ProtectedRoutes />} />
+      ) : (
+        <>
+          <Route path="/*" element={<PublicRoutes />} />
+          <Route path="/*" element={<Navigate to="/login" />} />
+        </>
       )}
-      <Route path="/*" element={<Navigate to="/login" />} />
     </Routes>
   );
 };
