@@ -45,6 +45,7 @@ const AppProvider = ({ children }: Props) => {
     loading: false,
   });
   const page = usePage();
+  // const { message, isLoading, activeLoading, inactiveLoading } = useLoading();
 
   const getCountriesData = async () => {
     const countriesData = await getAllCountries();
