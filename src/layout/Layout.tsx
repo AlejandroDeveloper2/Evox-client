@@ -2,8 +2,8 @@ import { Outlet, useLocation } from "react-router-dom";
 
 import { useTheme } from "../hooks";
 
-import Logo from "../assets/logo.png";
-import LogoDark from "../assets/logo-2.png";
+import Logo from "../assets/images/logo.png";
+import LogoDark from "../assets/images/logo-2.png";
 import { Toast } from "../components";
 
 const Layout = () => {

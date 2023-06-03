@@ -15,13 +15,14 @@ interface Field {
 }
 
 interface CustomButtonProps {
-  type: "submit" | "button" | "reset" | undefined;
+  type: "submit" | "button" | "reset" | "externalLink";
   label: string;
   theme: {
     bg: string;
     color: string;
     aditionalStyles?: string;
   };
+  externalLink?: string;
   icon?: IconDefinition;
   disabled?: boolean;
   onClick?: () => void;
@@ -73,11 +74,6 @@ interface MenuItem {
   subItems?: MenuItem[];
 }
 
-interface LoaderProps {
-  message: string;
-  loading: boolean;
-}
-
 interface ServiceCardProps {
   serviceImage: string;
   alt: string;
@@ -102,7 +98,6 @@ interface AutomatedSystem {
 }
 
 interface TableHeader {
-  icon: IconDefinition;
   label: string;
 }
 
@@ -110,6 +105,15 @@ interface TableProps {
   children: JSX.Element | JSX.Element[];
   headers: TableHeader[];
 }
+interface EmptyTableProps {
+  message: string;
+  colspan: number;
+}
+
+type CopyLinkProps = {
+  link: string;
+  width?: string;
+};
 
 export type {
   Field,
@@ -121,11 +125,12 @@ export type {
   CustomInputProps,
   RenderInputProps,
   MenuItem,
-  LoaderProps,
   ServiceCardProps,
   CountDownElement,
   InfoCardProps,
   AutomatedSystem,
   TableProps,
   TableHeader,
+  EmptyTableProps,
+  CopyLinkProps,
 };

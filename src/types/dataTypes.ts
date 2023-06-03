@@ -1,4 +1,4 @@
-type FormType = "login" | "recover" | "register" | "profile";
+type FormType = "login" | "recover" | "register" | "profile" | "transactionId";
 
 interface RegisterFormValues {
   fullName: string;
@@ -85,6 +85,7 @@ interface LoginReasponse extends ServerResponseFail {
 }
 
 interface Referral {
+  id: string;
   userName: string;
   fullName: string;
   dateRegistered: string;

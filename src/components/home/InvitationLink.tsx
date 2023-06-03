@@ -1,13 +1,9 @@
-import { faCopy } from "@fortawesome/free-solid-svg-icons";
+import { useAuth } from "../../hooks";
 
-import { useApp, useAuth } from "../../hooks";
-import { copyToDashDoard } from "../../utils";
-
-import { CustomButton } from "..";
+import { CopyLink } from "..";
 
 const InvitationLink = (): JSX.Element => {
   const { auth } = useAuth();
-  const { setToast } = useApp();
   const link = auth ? auth.refLink : "link";
 
   return (
@@ -18,27 +14,7 @@ const InvitationLink = (): JSX.Element => {
       >
         Mi Link
       </h1>
-      <div
-        className="rounded-xl h-[3rem] w-full bg-gray px-5 flex justify-center md:justify-between 
-        dark:bg-mediumGray items-center flex-row gap-3 md:gap-0"
-      >
-        <p className=" font-poppins font-medium dark:text-white text-darkBlue text-[14px] md:text-[20px] truncate w-full">
-          {link}
-        </p>
-        <CustomButton
-          type="button"
-          label=""
-          theme={{
-            bg: "",
-            color: "text-blue",
-            aditionalStyles: "w-2 h-2",
-          }}
-          icon={faCopy}
-          onClick={() => {
-            copyToDashDoard(link, setToast);
-          }}
-        />
-      </div>
+      <CopyLink link={link} />
     </section>
   );
 };

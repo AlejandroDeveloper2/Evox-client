@@ -16,10 +16,10 @@ export { default as EditProfileAvatar } from "./shared/avatars/EditProfileAvatar
 export { default as MenuItem } from "./shared/MenuItem";
 export { default as Footer } from "./shared/footer/Footer";
 export { default as Toggle } from "./shared/Toggle";
-export { default as Loader } from "./shared/Loader";
 export { default as OptionsBar } from "./shared/OptionsBar";
 export { default as LinkBotEvox } from "./shared/LinkBotEvox";
 export { default as Loading } from "./shared/Loading";
+export { default as CopyLink } from "./shared/CopyLink";
 
 /*Home components */
 export { default as Welcome } from "./home/Welcome";
@@ -33,3 +33,7 @@ export { default as AutomaticSystemsSection } from "./home/automaticSystemsSecti
 
 /* Referrals components */
 export { default as Table } from "./referrals/Table";
+export { default as EmptyTablet } from "./referrals/EmptyTablet";
+
+/*bridge funds components*/
+export { default as AccountCard } from "./bridgeFunds/AccountCard";

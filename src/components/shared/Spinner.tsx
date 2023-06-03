@@ -1,6 +1,11 @@
 import { useApp } from "../../hooks";
 
-const Spinner = (): JSX.Element => {
+interface Props {
+  message?: string;
+  color?: string;
+}
+
+const Spinner = (props: Props): JSX.Element => {
   const { loading } = useApp();
   return (
     <div className="flex justify-center items-center gap-3">
@@ -20,8 +25,12 @@ const Spinner = (): JSX.Element => {
           fill="currentFill"
         />
       </svg>
-      <label className="text-white font-poppins text-[14px] lg:text-[20px] text-center">
-        {loading.message}
+      <label
+        className={`${
+          props.color ? props.color : "text-white"
+        } font-poppins text-[14px] lg:text-[20px] text-center`}
+      >
+        {props.message ? props.message : loading.message}
       </label>
     </div>
   );

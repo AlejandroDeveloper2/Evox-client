@@ -11,13 +11,13 @@ const JoinChannelSection = (): JSX.Element => {
           className="md:text-[32px] text-[24px] text-center md:text-left font-poppins 
           text-darkBlue dark:text-white font-extrabold flex flex-col gap-2"
         >
-          Trading en vivo
+          Bot de telegram Evox
           <span className="text-[20px] md:text-[24px] font-poppins font-medium">
-            Opera con profesionales del trading
+            Unete ya a nuestro chat bot!
           </span>
         </h1>
         <CustomButton
-          type="button"
+          type="externalLink"
           label="Únete al canal"
           theme={{
             bg: "bg-blue dark:bg-purple",
@@ -25,6 +25,7 @@ const JoinChannelSection = (): JSX.Element => {
             aditionalStyles: "w-full ",
           }}
           icon={faPaperPlane}
+          externalLink="https://t.me/evoXvirtualbot"
         />
       </div>
       <img

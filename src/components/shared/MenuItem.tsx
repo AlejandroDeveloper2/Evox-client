@@ -19,7 +19,7 @@ const MenuItem = (props: MenuItemType): JSX.Element => {
   return (
     <>
       <Link
-        to={to}
+        to={props.enabled ? to : "#"}
         className={`flex justify-center items-center gap-5 flex-col px-10 py-5 w-full
         relative ${setMenuItemEnabled(
           props.enabled,

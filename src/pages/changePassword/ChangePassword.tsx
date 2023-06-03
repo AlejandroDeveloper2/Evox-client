@@ -5,14 +5,17 @@ import { initialvalues, fields, buttons } from "./constans";
 import { validationSchema } from "./validationSchema";
 import { useApp, useAuth } from "../../hooks";
 
-import { CustomForm, Loader } from "../../components";
+import { CustomForm, Spinner } from "../../components";
 
 const ChangePassword = (): JSX.Element => {
-  const { isValidating } = useApp();
+  const [isTokenValid, setIsTokenValid] = React.useState<boolean>(false);
+  const { loading } = useApp();
   const { checkChangePassToken, changeUserPassword } = useAuth();
 
   React.useEffect(() => {
-    checkChangePassToken();
+    checkChangePassToken().then((tokenValid) => {
+      setIsTokenValid(tokenValid);
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -22,9 +25,9 @@ const ChangePassword = (): JSX.Element => {
     relative dark:bg-darkGray md:w-3/5 xl:w-1/3 md:rounded-[10px] overflow-hidden py-10 
     md:h-auto h-[calc(100vh-250px)] justify-start px-10 md:px-0"
     >
-      {isValidating ? (
-        <Loader />
-      ) : (
+      {loading.visible ? (
+        <Spinner color="text-darkGray" />
+      ) : isTokenValid ? (
         <>
           <CustomForm
             formTitle="Actualizar contraseña"
@@ -45,6 +48,10 @@ const ChangePassword = (): JSX.Element => {
             </Link>
           </h2>
         </>
+      ) : (
+        <h1 className="font-poppins text-[20px] font-semibold text-darkBlue text-center">
+          Token Invalido intente de nuevo!
+        </h1>
       )}
     </div>
   );

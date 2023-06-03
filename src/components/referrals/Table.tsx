@@ -12,8 +12,10 @@ const Table = (props: TableProps): JSX.Element => {
           className="text-[16px] text-blue capitalize dark:bg-mediumGray 
           dark:text-white font-poppins font-semibold border-b-[2px] border-gray"
         >
-          {headers.map((header) => (
-            <th className="px-6 py-3 whitespace-nowrap">{header.label}</th>
+          {headers.map((header, index) => (
+            <th className="px-6 py-3 whitespace-nowrap" key={index}>
+              {header.label}
+            </th>
           ))}
         </thead>
         <tbody>{children}</tbody>

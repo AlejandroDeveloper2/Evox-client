@@ -1,17 +1,21 @@
 import { fields, buttons, getInitialvalues } from "./constans";
 import { validationSchema } from "./validationSchema";
 
-import { CustomForm, EditProfileAvatar, Loader } from "../../components";
+import { CustomForm, EditProfileAvatar, Spinner } from "../../components";
 import { useApp, useAuth, useUserProfile } from "../../hooks";
 
 const UserProfile = (): JSX.Element => {
   const { editUserProfile } = useUserProfile();
-  const { loader } = useApp();
+  const { loading } = useApp();
   const { auth } = useAuth();
 
   return (
-    <div className="w-full bg-lightGray dark:bg-darkGray flex justify-center items-center flex-col gap-5 px-5 md:px-0 pb-6 md:pb-[60px] relative">
-      {loader.loading ? <Loader /> : <EditProfileAvatar />}
+    <div className="w-full bg-lightGray dark:bg-darkGray flex justify-center items-center flex-col gap-5 px-5 md:px-0 py-6 md:pb-[60px] relative">
+      {loading.visible ? (
+        <Spinner color="text-darkBlue" />
+      ) : (
+        <EditProfileAvatar />
+      )}
       <CustomForm
         formTitle=""
         fields={fields}

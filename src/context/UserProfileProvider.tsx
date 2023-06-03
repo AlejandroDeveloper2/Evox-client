@@ -19,7 +19,7 @@ const UserProfileProvider = ({ children }: Props) => {
   const [profilePhoto, setProfilePhoto] = React.useState<string | null>(
     localStorage.getItem("profileImgUrl") ?? null
   );
-  const { setToast, setLoader, setLoading } = useApp();
+  const { setToast, setLoading } = useApp();
   const { setAuth } = useAuth();
 
   const uploadProfilePhoto = async (
@@ -31,9 +31,9 @@ const UserProfileProvider = ({ children }: Props) => {
       formData.append("file", files[0]);
       formData.append("upload_preset", "uploadPhoto");
     }
-    setLoader({
+    setLoading({
       message: "Subiendo foto de perfil...",
-      loading: true,
+      visible: true,
     });
     await uploadProfileImage(formData)
       .then((res) => {
@@ -53,9 +53,9 @@ const UserProfileProvider = ({ children }: Props) => {
         });
       })
       .finally(() => {
-        setLoader({
+        setLoading({
           message: "",
-          loading: false,
+          visible: false,
         });
         setTimeout(() => {
           setToast({

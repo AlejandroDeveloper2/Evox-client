@@ -3,8 +3,9 @@ import { FormikValues } from "formik";
 import {
   City,
   Country,
-  LoaderProps,
   Referral,
+  ServerResponseFail,
+  ServerResponseSuccess,
   SpinnerProps,
   Status,
   Team,
@@ -21,14 +22,10 @@ interface AppContextType {
   loading: SpinnerProps;
   toast: ToastProps;
   isMenuVisible: boolean;
-  isValidating: boolean;
-  loader: LoaderProps;
   page: string;
   setLoading: React.Dispatch<React.SetStateAction<SpinnerProps>>;
   setToast: React.Dispatch<React.SetStateAction<ToastProps>>;
   toggleLateralMenu: () => void;
-  setIsValidating: React.Dispatch<React.SetStateAction<boolean>>;
-  setLoader: React.Dispatch<React.SetStateAction<LoaderProps>>;
   getCities: (country: string) => Promise<void>;
 }
 
@@ -41,20 +38,20 @@ interface AuthContextType {
   logIn: (userData: FormikValues) => Promise<void>;
   logOut: () => void;
   createAccount: (userData: FormikValues) => Promise<void>;
-  checkChangePassToken: () => Promise<void>;
+  checkChangePassToken: () => Promise<boolean>;
   sendRequestPassword: (userData: FormikValues) => Promise<void>;
   changeUserPassword: (userData: FormikValues) => Promise<void>;
-  validateAccount: () => Promise<void>;
+  validateAccount: () => Promise<ServerResponseSuccess | ServerResponseFail>;
   setAuth: React.Dispatch<React.SetStateAction<UserAuth | null>>;
   setPhoneCode: React.Dispatch<React.SetStateAction<string>>;
 }
 
 interface EvoxContextType {
   children?: JSX.Element | JSX.Element[];
-  userReferrals: Referral[];
-  userTeam: Team[];
-  getAllUserReferrals: () => Promise<void>;
-  getUserTeamRed: () => Promise<void>;
+  team: Team[];
+  referrals: Referral[];
+  getTeam: (team: Team[]) => void;
+  getDirectReferrals: (referrals: Referral[]) => void;
 }
 
 interface ThemeContextType {

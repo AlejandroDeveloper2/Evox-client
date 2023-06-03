@@ -1,7 +1,7 @@
 import { FormikErrors, FormikValues } from "formik";
 import { Location } from "react-router-dom";
 
-import { FormType, ToastProps, UserIP } from "../types";
+import { FormType, Referral, Team, ToastProps, UserIP } from "../types";
 
 interface FormConfig {
   location: Location;
@@ -130,7 +130,7 @@ const copyToDashDoard = (
   document.execCommand("copy");
   document.body.removeChild(aux);
   setToast({
-    message: "Link copiado!",
+    message: "Texto copiado!",
     type: "success",
     visible: true,
   });
@@ -152,6 +152,22 @@ const setInputType = (
   return typeInput;
 };
 
+const sortReferralsRecords = (
+  data: Referral[] | Team[]
+): Referral[] | Team[] => {
+  const sortedRecords = data.sort(
+    (a, b) =>
+      new Date(b.dateRegistered).getTime() -
+      new Date(a.dateRegistered).getTime()
+  );
+  return sortedRecords;
+};
+
+const calculateTotalToPay = (price: string, quantity: string): number => {
+  const totalToPay = parseInt(price) * parseInt(quantity);
+  return totalToPay;
+};
+
 export {
   toggleButton,
   setFormValues,
@@ -161,4 +177,6 @@ export {
   setMenuItemEnabled,
   copyToDashDoard,
   setInputType,
+  sortReferralsRecords,
+  calculateTotalToPay,
 };

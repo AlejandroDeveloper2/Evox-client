@@ -30,13 +30,14 @@ export type {
   CustomInputProps,
   RenderInputProps,
   MenuItem,
-  LoaderProps,
   ServiceCardProps,
   CountDownElement,
   InfoCardProps,
   AutomatedSystem,
   TableProps,
   TableHeader,
+  EmptyTableProps,
+  CopyLinkProps,
 } from "./componentsTypes";
 
 /*Hook types model */

@@ -15,6 +15,18 @@ const usePage = (): string => {
         ? "Referidos"
         : url[lastUrlElement] === "profile"
         ? "Mi Perfil"
+        : url[lastUrlElement] === "evoxAcademy"
+        ? "Academia"
+        : url[lastUrlElement] === "mamAccounts"
+        ? "Trading automático Cuentas MAM"
+        : url[lastUrlElement] === "commissions"
+        ? "Trading automático Comisiones"
+        : url[lastUrlElement] === "kindOfAccounts"
+        ? "Bridge funds Tipo de cuentas PASO 1"
+        : url[lastUrlElement] === "myAccounts"
+        ? " BRIDGE FUNDS Mis cuentas"
+        : url[lastUrlElement] === "syntheticsPayment"
+        ? "BRIDGE FUNDS TIPOS DE CUENTA PASO 2 PAGO SINTETICOS"
         : "Equipo";
     return currentPage;
   };

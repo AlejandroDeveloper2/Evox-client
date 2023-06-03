@@ -2,22 +2,30 @@ import React from "react";
 import { useApp } from ".";
 
 const useLoader = (message: string): boolean => {
-  const { setLoader, setIsValidating, isValidating } = useApp();
+  const { setLoading, loading } = useApp();
 
   React.useEffect(() => {
-    setIsValidating(true);
-    setLoader({ loading: true, message });
+    setLoading({
+      visible: true,
+      message: message,
+    });
     setTimeout(() => {
-      setIsValidating(false);
+      setLoading({
+        visible: false,
+        message: message,
+      });
     }, 2000);
 
-    return ()=>{
-      setLoader({ loading: false, message:"" });
-    }
+    return () => {
+      setLoading({
+        visible: false,
+        message: "",
+      });
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return isValidating;
+  return loading.visible;
 };
 
 export default useLoader;

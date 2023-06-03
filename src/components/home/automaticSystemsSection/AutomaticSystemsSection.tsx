@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { faChartSimple } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -41,13 +40,15 @@ const AutomaticSystemsSection = (): JSX.Element => {
                 <span className="uppercase font-bold"> {item.name} </span>
               </p>
             </div>
-            <Link
-              to={item.to}
+            <a
+              href={item.to}
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-white md:text-[16px] text-[14px] font-poppins font-bold 
-            flex items-center justify-center gap-5 bg-darkBlue dark:bg-purple py-3 px-10 rounded-xl"
+              flex items-center justify-center gap-5 bg-darkBlue dark:bg-purple py-3 px-10 rounded-xl"
             >
               <FontAwesomeIcon icon={faChartSimple} /> Ver más
-            </Link>
+            </a>
           </InfoCard>
         ))}
       </div>

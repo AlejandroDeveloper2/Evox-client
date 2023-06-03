@@ -1,8 +1,6 @@
 import React from "react";
 
-import { useApp, useAuth } from "../hooks";
 import { EvoxContextType, Referral, Team } from "../types";
-import { getUserReferrals, getUserTeam } from "../services/userReferrals";
 
 const EvoxServicesContext = React.createContext<EvoxContextType>(
   {} as EvoxContextType
@@ -13,51 +11,24 @@ interface Props {
 }
 
 const EvoxServicesProvider = ({ children }: Props) => {
-  const [userReferrals, setUserReferrals] = React.useState<Referral[]>([]);
-  const [userTeam, setUserTeam ] = React.useState<Team[]>([]);
-  const { setLoader, setIsValidating } = useApp();
-  const { auth } = useAuth();
+  const [referrals, setReferrals] = React.useState<Referral[]>([]);
+  const [team, setTeam] = React.useState<Team[]>([]);
 
-  const getAllUserReferrals = async () => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      setLoader({ loading: true, message: "Cargando referidos..." });
-      setIsValidating(true);
-      await getUserReferrals(token).then((res) => {
-        setIsValidating(false);
-        setLoader({ loading: false, message: "" });
-        const newReferrals = res.filter(
-          (referral) => referral.userName !== auth?.sub
-        );
-        setUserReferrals(newReferrals);
-      });
-    }
+  const getTeam = (team: Team[]): void => {
+    setTeam(team);
   };
 
-  const getUserTeamRed = async () =>{
-    const token = localStorage.getItem("token");
-    if(token){
-      setLoader({ loading: true, message: "Cargando equipo..." });
-      setIsValidating(true);
-      await getUserTeam(token).then((res) => {    
-        const newTeam = res.filter(
-          (referral) => referral.userName !== auth?.sub
-        );
-        setUserTeam(newTeam);
-      }).finally(()=>{
-        setIsValidating(false);
-        setLoader({ loading: false, message: "" });
-      });
-    }
-  }
+  const getDirectReferrals = (referrals: Referral[]): void => {
+    setReferrals(referrals);
+  };
 
   return (
     <EvoxServicesContext.Provider
       value={{
-        userReferrals,
-        userTeam,
-        getAllUserReferrals,
-        getUserTeamRed
+        referrals,
+        team,
+        getTeam,
+        getDirectReferrals,
       }}
     >
       {children}

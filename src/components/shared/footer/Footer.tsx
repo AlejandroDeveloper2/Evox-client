@@ -1,6 +1,6 @@
 import { SocialMediaLinks } from "./constans";
 
-import Logo from "../../../assets/logo-3.png";
+import Logo from "../../../assets/images/logo-3.png";
 
 const Footer = (): JSX.Element => {
   return (

@@ -34,7 +34,7 @@ const AuthProvider = ({ children }: Props) => {
   const [success, setSuccess] = React.useState<boolean>(false);
   const [phoneCode, setPhoneCode] = React.useState<string>("");
 
-  const { setToast, setLoading, setIsValidating, setLoader } = useApp();
+  const { setToast, setLoading } = useApp();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -84,26 +84,19 @@ const AuthProvider = ({ children }: Props) => {
 
   const checkIsUserAuth = async (): Promise<void> => {
     const token = localStorage.getItem("token");
-    setIsValidating(true);
     setStatus("checking");
     if (token) {
-      await validateBearerToken(token)
-        .then((res) => {
-          if (res) {
-            const userAuth = decodeToken<UserAuth>(token);
-            setStatus("authenticate");
-            setAuth(userAuth);
-            navigate("/dashboard");
-          } else {
-            setStatus("noAuthenticate");
-            setAuth(null);
-            navigate("/login");
-            localStorage.removeItem("token");
-          }
-        })
-        .finally(() => {
-          setIsValidating(false);
-        });
+      await validateBearerToken(token).then((res) => {
+        if (res) {
+          const userAuth = decodeToken<UserAuth>(token);
+          setStatus("authenticate");
+          setAuth(userAuth);
+          //navigate("/dashboard");
+        } else {
+          window.alert("La sesión a caducado por favor loguese de nuevo!");
+          logOut();
+        }
+      });
     } else {
       setStatus("noAuthenticate");
     }
@@ -155,32 +148,30 @@ const AuthProvider = ({ children }: Props) => {
       });
   };
 
-  const checkChangePassToken = async (): Promise<void> => {
+  const checkChangePassToken = async (): Promise<boolean> => {
     const token = location.pathname.split("/")[2];
-
-    setIsValidating(true);
-    setLoader({
-      message: "Cargando....",
-      loading: true,
+    let tokenValid = false;
+    setLoading({
+      message: "Cargando...",
+      visible: true,
     });
-
-    await validateChangePassToken(token).then((res: boolean) => {
-      if (res) {
-        setIsValidating(false);
-        setLoader({
-          message: "",
-          loading: false,
+    await validateChangePassToken(token)
+      .then((res: boolean) => {
+        if (!res) {
+          setTimeout(() => {
+            navigate("/login");
+          }, 3000);
+          return;
+        }
+        tokenValid = true;
+      })
+      .finally(() => {
+        setLoading({
+          message: "Validación terminada!",
+          visible: false,
         });
-      } else {
-        setLoader({
-          message: "Token invalido!, Por favor intente de nuevo!",
-          loading: false,
-        });
-        setTimeout(() => {
-          navigate("/login");
-        }, 3000);
-      }
-    });
+      });
+    return tokenValid;
   };
 
   const sendRequestPassword = async (userData: FormikValues): Promise<void> => {
@@ -261,23 +252,28 @@ const AuthProvider = ({ children }: Props) => {
       });
   };
 
-  const validateAccount = async (): Promise<void> => {
+  const validateAccount = async (): Promise<
+    ServerResponseSuccess | ServerResponseFail
+  > => {
+    let result: ServerResponseSuccess | ServerResponseFail = {
+      message: "",
+      typeStatus: "Success",
+    };
     const token = location.pathname.split("/")[2];
-    setIsValidating(true);
-    setLoader({
-      message: "Cargando....",
-      loading: true,
+    setLoading({
+      message: "Cargando...",
+      visible: true,
     });
-
     await activeAccount(token).then(
       (res: ServerResponseSuccess | ServerResponseFail) => {
-        setIsValidating(false);
-        setLoader({
-          message: res.message,
-          loading: false,
+        result = res;
+        setLoading({
+          message: "Validación terminada!",
+          visible: false,
         });
       }
     );
+    return result;
   };
 
   React.useEffect(() => {

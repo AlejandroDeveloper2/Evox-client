@@ -6,7 +6,7 @@ const getUserReferrals = async (token: string): Promise<Referral[]> => {
   const config = {
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     },
   };
   let response: Referral[] = [];
@@ -24,7 +24,7 @@ const getUserTeam = async (token: string): Promise<Team[]> => {
   const config = {
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     },
   };
   let response: Team[] = [];
@@ -36,8 +36,5 @@ const getUserTeam = async (token: string): Promise<Team[]> => {
   }
   return response;
 };
-
-
-
 
 export { getUserReferrals, getUserTeam };
