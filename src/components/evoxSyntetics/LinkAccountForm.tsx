@@ -1,6 +1,25 @@
+import React from "react";
+
 import { CustomButton } from "..";
 
 const LinkAccountForm = (): JSX.Element => {
+  const [accountData, setAccountData] = React.useState({
+    login: "",
+    password: "",
+  });
+  const [isChecked, setIsChecked] = React.useState<boolean>(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setAccountData({ ...accountData, [e.target.name]: e.target.value });
+  };
+  const handleCheck = (): void => {
+    setIsChecked(!isChecked);
+  };
+  const validateFields = (): boolean => {
+    if (Object.values(accountData).includes("") || !isChecked) return true;
+    return false;
+  };
+
   return (
     <div className="w-full flex flex-col gap-5 items-start justify-center">
       <p className="text-[16px] text-darkGray font-poppins font-normal md:w-3/4 text-left">
@@ -14,8 +33,8 @@ const LinkAccountForm = (): JSX.Element => {
           type="text"
           id="login"
           name="login"
-          value={""}
-          // onChange={onChange}
+          value={accountData.login}
+          onChange={handleChange}
           className="outline-none bg-white py-2 px-3 rounded-xl border-[1px] border-gray w-full"
         />
       </div>
@@ -27,8 +46,8 @@ const LinkAccountForm = (): JSX.Element => {
           type="text"
           id="password"
           name="password"
-          value={""}
-          // onChange={onChange}
+          value={accountData.password}
+          onChange={handleChange}
           className="outline-none bg-white py-2 px-3 rounded-xl border-[1px] border-gray w-full"
         />
       </div>
@@ -36,9 +55,9 @@ const LinkAccountForm = (): JSX.Element => {
         <input
           type="checkbox"
           name="accountConditions"
-          checked={true}
+          checked={isChecked}
           className="outline-none bg-lightGray border-[2px] border-mediumGray p-2"
-          // onChange={handleClick}
+          onChange={handleCheck}
         />
         <p className="text-[18px] text-darkGray font-poppins font-normal">
           Acepto{" "}
@@ -55,6 +74,8 @@ const LinkAccountForm = (): JSX.Element => {
           color: "text-white",
           aditionalStyles: "w-3/5 m-auto",
         }}
+        disabled={validateFields()}
+        onClick={() => console.log("pressed")}
       />
     </div>
   );
