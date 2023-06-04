@@ -108,6 +108,19 @@ interface ProfileFormValues {
 
 type Status = "authenticate" | "checking" | "noAuthenticate";
 
+interface SyntheticsAccount {
+  transaction: string;
+  currency: string;
+  price: number;
+  createdAt: string;
+  expirationDate: string;
+  state: boolean;
+  username: string;
+  email: string;
+}
+
+type AccountStatus = "Verified" | "Shopping" | "Pending";
+
 export type {
   FormType,
   RegisterFormValues,
@@ -126,4 +139,6 @@ export type {
   ProfileFormValues,
   Team,
   Status,
+  SyntheticsAccount,
+  AccountStatus
 };

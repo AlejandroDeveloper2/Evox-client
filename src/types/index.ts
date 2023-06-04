@@ -17,6 +17,8 @@ export type {
   ProfileFormValues,
   Team,
   Status,
+  SyntheticsAccount,
+  AccountStatus
 } from "./dataTypes";
 
 /* Component types Models */

@@ -25,6 +25,9 @@ const accountActivationsTableHeaders: TableHeader[] = [
   {
     label: "Email",
   },
+  {
+    label: "Acciones",
+  },
 ];
 
 export { accountActivationsTableHeaders };
