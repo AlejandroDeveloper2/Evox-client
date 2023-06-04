@@ -26,7 +26,11 @@ const usePage = (): string => {
         : url[lastUrlElement] === "myAccounts"
         ? " BRIDGE FUNDS Mis cuentas"
         : url[lastUrlElement] === "syntheticsPayment"
-        ? "BRIDGE FUNDS TIPOS DE CUENTA PASO 2 PAGO SINTETICOS"
+        ? "TIPOS DE CUENTA PASO 2 PAGO SINTETICOS"
+        : url[lastUrlElement] === "bridgeMarkets"
+        ? "Bridge Markets"
+        : url[lastUrlElement] === "copySynthetics"
+        ? "EVOX SYNTHETICS Copy sintéticos"
         : "Equipo";
     return currentPage;
   };

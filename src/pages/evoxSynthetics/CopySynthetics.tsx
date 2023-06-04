@@ -1,9 +1,11 @@
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 
 import useSWR from "swr";
 import { getAccountStatus } from "../../services/synthetics";
 
-import { CustomButton } from "../../components";
+import { CustomButton, LinkAccount } from "../../components";
 import { EvoxSynteticsLogo } from "../../assets";
 
 const CopySynthetics = (): JSX.Element => {
@@ -17,7 +19,11 @@ const CopySynthetics = (): JSX.Element => {
       <img src={EvoxSynteticsLogo} alt="Evox syntetics logo" />
       {status === "Shopping" ? (
         <>
-          <p className="text-[16px] text-darkGray font-poppins font-normal">
+          <p className="text-[16px] text-darkGray font-poppins font-normal md:w-3/4 text-center flex flex-col gap-2">
+            <FontAwesomeIcon
+              icon={faInfoCircle}
+              className="text-[50px] text-success"
+            />
             Primero debes realizar el pago de tu cuenta de sinteticos para poder
             visualizarla!
           </p>
@@ -29,15 +35,22 @@ const CopySynthetics = (): JSX.Element => {
               aditionalStyles: "",
             }}
             type="button"
-            onClick={() => navigate("/dashboard/bridgeFunds/syntheticsPayment")}
+            onClick={() =>
+              navigate("/dashboard/evoxSynthetics/syntheticsPayment")
+            }
           />
         </>
       ) : status === "Pending" ? (
-        <p>
-          Tu cuenta de sinteticos esta pendiente a verificación porfavor espera!
+        <p className="text-[16px] text-darkGray font-poppins font-normal md:w-3/4 text-center flex flex-col gap-2">
+          <FontAwesomeIcon
+            icon={faInfoCircle}
+            className="text-[50px] text-success"
+          />
+          Tu cuenta de sinteticos esta pendiente a verificación en las proximas
+          24 horas tu cuenta será activada!
         </p>
       ) : (
-        <p>Mis cuentas</p>
+        <LinkAccount />
       )}
     </div>
   );

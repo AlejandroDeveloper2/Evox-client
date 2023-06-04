@@ -7,22 +7,26 @@ import {
   faUserAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import useSWR from "swr";
 
-import { useEvoxServices, useScreen } from "../../hooks";
+import { getUserSyntecticsAccounts } from "../../services/synthetics";
+import { useEvoxServices, useScreen, usePagination } from "../../hooks";
 import { accountActivationsTableHeaders } from "./constans";
 // import { formatDate } from "../../utils";
 
-import { CustomButton, EmptyTablet, Table } from "../../components";
-import useSWR from "swr";
-import { getUserSyntecticsAccounts } from "../../services/synthetics";
+import { CustomButton, EmptyTablet, Table, Spinner } from "../../components";
+import { formatDate } from "../../utils";
 
 const AccountsActivation = (): JSX.Element => {
   const screenSize = useScreen();
   const token = localStorage.getItem("token") ?? "";
   const { activeSyntheticAccount } = useEvoxServices();
-  const { data: accounts } = useSWR("/synthetic/list", () =>
+  const { data: accounts, isLoading } = useSWR("/synthetic/list", () =>
     getUserSyntecticsAccounts(token)
   );
+
+  const { Pagination, records } = usePagination(accounts ? accounts : []);
+
   return (
     <div className="relative flex flex-col pt-20 pb-10 items-center gap-10 px-5  md:px-20">
       <h1
@@ -37,8 +41,10 @@ const AccountsActivation = (): JSX.Element => {
       </h1>
       <div className="w-full flex justify-center items-start flex-col overflow-x-auto">
         <Table headers={accountActivationsTableHeaders}>
-          {accounts && accounts.length > 0 ? (
-            accounts.map((account, index) =>
+          {isLoading ? (
+            <Spinner message="Cargando cuentas de sintéticos..." />
+          ) : accounts && accounts.length > 0 ? (
+            records.map((account, index) =>
               screenSize < 768 ? (
                 <div
                   key={index}
@@ -67,20 +73,24 @@ const AccountsActivation = (): JSX.Element => {
                     </span>
                     {account.price}
                   </div>
-                  <div className="text-darkGray font-poppins font-medium truncate w-full">
-                    <span className="text-darkGray font-poppins font-semibold  mr-2">
-                      {<FontAwesomeIcon icon={faUser} className="mr-2" />}
-                      Fecha de registro:
-                    </span>
-                    {account.createdAt}
-                  </div>
-                  <div className="text-darkGray font-poppins font-medium truncate w-full">
-                    <span className="text-darkGray font-poppins font-semibold  mr-2">
-                      {<FontAwesomeIcon icon={faCalendar} className="mr-2" />}
-                      Fecha de caducidad:
-                    </span>
-                    {account.expirationDate}
-                  </div>
+                  {account.createdAt ? (
+                    <div className="text-darkGray font-poppins font-medium truncate w-full">
+                      <span className="text-darkGray font-poppins font-semibold  mr-2">
+                        {<FontAwesomeIcon icon={faUser} className="mr-2" />}
+                        Fecha de registro:
+                      </span>
+                      {formatDate(account.createdAt)}
+                    </div>
+                  ) : null}
+                  {account.expirationDate ? (
+                    <div className="text-darkGray font-poppins font-medium truncate w-full">
+                      <span className="text-darkGray font-poppins font-semibold  mr-2">
+                        {<FontAwesomeIcon icon={faCalendar} className="mr-2" />}
+                        Fecha de caducidad:
+                      </span>
+                      {formatDate(account.expirationDate)}
+                    </div>
+                  ) : null}
                   <div className="text-darkGray font-poppins font-medium truncate w-full">
                     <span className="text-darkGray font-poppins font-semibold  mr-2">
                       {<FontAwesomeIcon icon={faCalendar} className="mr-2" />}
@@ -129,6 +139,7 @@ const AccountsActivation = (): JSX.Element => {
                       onClick={() =>
                         activeSyntheticAccount(account.transaction)
                       }
+                      disabled={account.state}
                     />
                   </td>
                 </tr>
@@ -139,6 +150,7 @@ const AccountsActivation = (): JSX.Element => {
           )}
         </Table>
       </div>
+      <Pagination />
     </div>
   );
 };

@@ -1,3 +1,5 @@
+import React from "react";
+
 import { faCreditCard } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -5,6 +7,17 @@ import { QrImagen, TetherLogo } from "../../assets";
 import { CopyLink, CustomButton } from "../../components";
 
 const SyntheticsPayment = (): JSX.Element => {
+  const [transactionHash, setTransactionHash] = React.useState("");
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTransactionHash(e.target.value);
+  };
+
+  const validateField = (): boolean => {
+    if (transactionHash === "") return true;
+    return false;
+  };
+
   return (
     <div className="relative flex flex-col pt-20 pb-10 items-start gap-20 px-5  md:px-20">
       <h1 className="text-[20px] md:text-[24px] text-darkBlue font-extrabold text-center font-poppins align-middle">
@@ -39,7 +52,7 @@ const SyntheticsPayment = (): JSX.Element => {
                 className="object-contain"
               />
             </div>
-            <CopyLink link={"LIJKSADNCIAJSDNCPASD1231545ASDOJCHASD12"} />
+            <CopyLink link={"TF6DuE3zehWhnSqv6E971iBtbwQfuPZEHe"} />
             <div className="flex flex-col gap-3 justify-center items-center w-full">
               <label
                 htmlFor="transactionId"
@@ -51,7 +64,8 @@ const SyntheticsPayment = (): JSX.Element => {
                 type="text"
                 id="transactionId"
                 name="transactionId"
-                value=""
+                value={transactionHash}
+                onChange={onChange}
                 className="outline-none bg-white py-2 px-3 rounded-xl border-[1px] border-gray w-full"
               />
               <CustomButton
@@ -63,6 +77,7 @@ const SyntheticsPayment = (): JSX.Element => {
                 }}
                 type="button"
                 onClick={() => console.log("Clicked")}
+                disabled={validateField()}
               />
             </div>
           </div>

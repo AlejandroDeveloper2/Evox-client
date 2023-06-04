@@ -37,3 +37,7 @@ export { default as EmptyTablet } from "./referrals/EmptyTablet";
 
 /*bridge funds components*/
 export { default as AccountCard } from "./bridgeFunds/AccountCard";
+
+/*Syntetics components */
+export { default as LinkAccount } from "./evoxSyntetics/LinkAccount";
+export { default as LinkAccountForm } from "./evoxSyntetics/LinkAccountForm";

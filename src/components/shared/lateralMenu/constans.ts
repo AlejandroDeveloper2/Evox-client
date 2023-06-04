@@ -68,14 +68,14 @@ export const menuItems: MenuItem[] = [
     rightIcon: faChevronRight,
     label: "Trading automático",
     to: "#",
-    enabled: true,
+    enabled: false,
     subItems: [
       {
         leftIcon: faChartLine,
         rightIcon: null,
         label: "Cuentas MAM",
         to: "/dashboard/automaticTrading/mamAccounts",
-        enabled: true,
+        enabled: false,
       },
       // {
       //   leftIcon: faHandHoldingDollar,
@@ -91,7 +91,7 @@ export const menuItems: MenuItem[] = [
     rightIcon: faChevronRight,
     label: "Bridge Funds",
     to: "#",
-    enabled: true,
+    enabled: false,
     subItems: [
       {
         leftIcon: faBuildingColumns,
@@ -114,14 +114,14 @@ export const menuItems: MenuItem[] = [
     rightIcon: null,
     label: "Bridge Markets",
     to: "/dashboard/bridgeMarkets",
-    enabled: true,
+    enabled: false,
   },
   {
     leftIcon: faMoneyBill,
     rightIcon: faChevronRight,
     label: "Evox Synthetics",
     to: "#",
-    enabled: true,
+    enabled: false,
     subItems: [
       {
         leftIcon: faSchool,

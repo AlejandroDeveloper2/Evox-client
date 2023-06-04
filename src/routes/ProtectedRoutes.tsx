@@ -48,6 +48,10 @@ const ProtectedRoutes = (): JSX.Element => {
           path="/dashboard/bridgeFunds/syntheticsPayment"
           element={<SyntheticsPayment />}
         />
+        <Route
+          path="/dashboard/evoxSynthetics/syntheticsPayment"
+          element={<SyntheticsPayment />}
+        />
         <Route path="/dashboard/bridgeMarkets" element={<BridgeMarkets />} />
         <Route path="/dashboard/evoxSynthetics/academy" element={<Academy />} />
         <Route
