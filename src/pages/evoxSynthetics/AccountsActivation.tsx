@@ -79,7 +79,7 @@ const AccountsActivation = (): JSX.Element => {
                         {<FontAwesomeIcon icon={faUser} className="mr-2" />}
                         Fecha de registro:
                       </span>
-                      {formatDate(account.createdAt)}
+                      {formatDate(account.activationDate)}
                     </div>
                   ) : null}
                   {account.expirationDate ? (
@@ -120,7 +120,7 @@ const AccountsActivation = (): JSX.Element => {
                   </td>
                   <td className="px-6 py-4">{account.currency}</td>
                   <td className="px-6 py-4">{account.price}</td>
-                  <td className="px-6 py-4">{account.createdAt}</td>
+                  <td className="px-6 py-4">{account.activationDate}</td>
                   <td className="px-6 py-4">{account.expirationDate}</td>
                   <td className="px-6 py-4">
                     {account.state ? "Activa" : "Inactiva"}

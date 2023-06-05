@@ -112,7 +112,7 @@ interface SyntheticsAccount {
   transaction: string;
   currency: string;
   price: number;
-  createdAt: string;
+  activationDate: string;
   expirationDate: string;
   state: boolean;
   username: string;
@@ -155,5 +155,5 @@ export type {
   Status,
   SyntheticsAccount,
   AccountStatus,
-  Transaction
+  Transaction,
 };

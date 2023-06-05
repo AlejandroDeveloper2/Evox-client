@@ -20,6 +20,7 @@ export { default as OptionsBar } from "./shared/OptionsBar";
 export { default as LinkBotEvox } from "./shared/LinkBotEvox";
 export { default as Loading } from "./shared/Loading";
 export { default as CopyLink } from "./shared/CopyLink";
+export { default as PaymentNoDone } from "./shared/PaymentNoDone";
 
 /*Home components */
 export { default as Welcome } from "./home/Welcome";
@@ -37,6 +38,7 @@ export { default as EmptyTablet } from "./referrals/EmptyTablet";
 
 /*bridge funds components*/
 export { default as AccountCard } from "./bridgeFunds/AccountCard";
+export { default as MTPlatforms } from "./bridgeFunds/MTPlatforms";
 
 /*Syntetics components */
 export { default as LinkAccount } from "./evoxSyntetics/LinkAccount";
