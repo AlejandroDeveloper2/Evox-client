@@ -1,5 +1,5 @@
 import getAxiosClient from "../config/axiosClient";
-import { AccountStatus, ServerResponseFail, ServerResponseSuccess, SyntheticsAccount, Transaction } from "../types";
+import { AccountStatus, ServerResponseFail, ServerResponseSuccess, SyntheticsAccount } from "../types";
 
 const getUserSyntecticsAccounts = async (
     token: string
@@ -29,7 +29,7 @@ const getAccountStatus = async (token: string): Promise<AccountStatus> => {
             Authorization: `Bearer ${token}`,
         },
     };
-    let response: AccountStatus = "Verified";
+    let response: AccountStatus = "Shopping";
     try {
         const { data } = await axiosClient("/synthetic/accountStatus", config);
         response = data;
@@ -99,7 +99,7 @@ const registerSynteticAccount = async (token: string, login: string, password: s
     return response;
 }
 
-const saveTransaction = async (token: string, transaction: string): Promise<Transaction | object> => {
+const saveTransaction = async (token: string, transaction: string): Promise<ServerResponseFail | ServerResponseSuccess> => {
     const axiosClient = getAxiosClient("evoxAPI");
     const config = {
         headers: {
@@ -107,7 +107,10 @@ const saveTransaction = async (token: string, transaction: string): Promise<Tran
             Authorization: `Bearer ${token}`,
         }
     }
-    let response: Transaction | object = {};
+    let response: ServerResponseFail | ServerResponseSuccess={
+        message:"",
+        typeStatus:"Warning"
+    };
     try {
         const { data } = await axiosClient.post(
             `/synthetic/transaction`,

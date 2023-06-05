@@ -24,8 +24,8 @@ const CopySynthetics = (): JSX.Element => {
               icon={faInfoCircle}
               className="text-[50px] text-success"
             />
-            Primero debes realizar el pago de tu cuenta de sinteticos para poder
-            visualizarla!
+            Primero debes realizar el pago mensual de $15 USD de servicio de VPS
+            para el correcto funcionamiento de tu cuenta.
           </p>
           <CustomButton
             label="Realizar el pago de tu cuenta de sintéticos"

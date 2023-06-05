@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import { EvoxContextType, Referral, Team } from "../types";
 import {
@@ -19,6 +20,7 @@ interface Props {
 const EvoxServicesProvider = ({ children }: Props) => {
   const [referrals, setReferrals] = React.useState<Referral[]>([]);
   const [team, setTeam] = React.useState<Team[]>([]);
+  const navigate = useNavigate();
 
   const { setLoading, setToast } = useApp();
 
@@ -113,11 +115,11 @@ const EvoxServicesProvider = ({ children }: Props) => {
       await saveTransaction(token, transaction)
         .then((res) => {
           setToast({
-            message: "Transación enviada satisfactoriamente!",
+            message: res.message,
             visible: true,
             type: "success",
           });
-          console.log(res);
+          navigate("/dashboard/evoxSynthetics/copySynthetics");
         })
         .catch((error: Error) => {
           setToast({
