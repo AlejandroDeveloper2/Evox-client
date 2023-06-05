@@ -1,4 +1,4 @@
-import { menuItems } from "./constans";
+import { getMenuItems } from "./constans";
 import { useApp, useAuth, useTheme } from "../../../hooks";
 
 import { Avatar, MenuItem } from "../..";
@@ -7,8 +7,12 @@ import LogoDark from "../../../assets/images/logo-2.png";
 
 const LateralMenu = (): JSX.Element => {
   const { isMenuVisible } = useApp();
-  const { logOut } = useAuth();
+  const { logOut, auth } = useAuth();
   const { theme } = useTheme();
+
+  const menuItems = getMenuItems(
+    auth ? auth.roles[0] : { authority: "ROLE_USER" }
+  );
 
   return (
     <nav

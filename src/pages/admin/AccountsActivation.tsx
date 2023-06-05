@@ -11,11 +11,10 @@ import useSWR from "swr";
 
 import { getUserSyntecticsAccounts } from "../../services/synthetics";
 import { useEvoxServices, useScreen, usePagination } from "../../hooks";
-import { accountActivationsTableHeaders } from "./constans";
-// import { formatDate } from "../../utils";
+import { accountActivationsTableHeaders } from "../evoxSynthetics/constans";
+import { formatDate } from "../../utils";
 
 import { CustomButton, EmptyTablet, Table, Spinner } from "../../components";
-import { formatDate } from "../../utils";
 
 const AccountsActivation = (): JSX.Element => {
   const screenSize = useScreen();

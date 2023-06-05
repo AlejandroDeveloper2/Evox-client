@@ -66,8 +66,10 @@ interface UserAuth {
   exp: number;
 }
 
+type RoleType = "ROLE_USER" | "ROLE_ADMIN";
+
 interface Role {
-  authority: string;
+  authority: RoleType;
 }
 
 interface ServerResponseSuccess {
@@ -132,6 +134,14 @@ interface Transaction {
   userId: string;
 }
 
+interface BridgeFundsAccount {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  currency: string;
+}
+
 type AccountStatus = "Verified" | "Shopping" | "Pending";
 type TransactionType = "Synthetic" | "Bridge funds";
 
@@ -156,4 +166,6 @@ export type {
   SyntheticsAccount,
   AccountStatus,
   Transaction,
+  Role,
+  BridgeFundsAccount,
 };

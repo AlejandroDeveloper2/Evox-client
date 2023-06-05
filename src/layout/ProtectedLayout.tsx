@@ -8,7 +8,6 @@ import { Header, LateralMenu, Footer, Toast, OptionsBar } from "../components";
 
 const ProtectedLayout = (): JSX.Element => {
   const { toggleLateralMenu, isMenuVisible, page } = useApp();
-
   return (
     <main className="bg-white dark:bg-mediumGray w-screen h-screen overflow-x-hidden relative">
       <Toast />

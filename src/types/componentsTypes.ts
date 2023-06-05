@@ -67,7 +67,6 @@ interface RenderInputProps {
 
 interface MenuItem {
   rightIcon: IconDefinition | null;
-  leftIcon: IconDefinition;
   label: string;
   to: string;
   enabled: boolean;

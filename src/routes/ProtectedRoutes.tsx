@@ -1,72 +1,19 @@
 import { Route, Routes } from "react-router-dom";
 
-import { ProtectedLayout } from "../layout";
-import {
-  UserDashboard,
-  Referrals,
-  Teams,
-  UserProfile,
-  EvoxAcademy,
-  MAMAccounts,
-  Commissions,
-  KindOfAccounts,
-  SyntheticsPayment,
-  BridgeFundsPayment,
-  MyAccounts,
-  BridgeMarkets,
-  Users,
-  Academy,
-  CopySynthetics,
-  AccountsActvation,
-} from "../pages";
+import { useAuth } from "../hooks";
+
+import AdminRoutes from "./AdminRoutes";
+import UserRoutes from "./UserRoutes";
 
 const ProtectedRoutes = (): JSX.Element => {
+  const { auth } = useAuth();
   return (
     <Routes>
-      <Route path="/dashboard" element={<ProtectedLayout />}>
-        <Route index element={<UserDashboard />} />
-        <Route path="/dashboard/referrals" element={<Referrals />} />
-        <Route path="/dashboard/teams" element={<Teams />} />
-        <Route path="/dashboard/profile" element={<UserProfile />} />
-        <Route path="/dashboard/evoxAcademy" element={<EvoxAcademy />} />
-        <Route
-          path="/dashboard/automaticTrading/mamAccounts"
-          element={<MAMAccounts />}
-        />
-        <Route
-          path="/dashboard/automaticTrading/commissions"
-          element={<Commissions />}
-        />
-        <Route
-          path="/dashboard/bridgeFunds/kindOfAccounts"
-          element={<KindOfAccounts />}
-        />
-        <Route
-          path="/dashboard/bridgeFunds/myAccounts"
-          element={<MyAccounts />}
-        />
-        <Route
-          path="/dashboard/bridgeFunds/bridgeFundsPayment"
-          element={<BridgeFundsPayment />}
-        />
-        <Route
-          path="/dashboard/evoxSynthetics/syntheticsPayment"
-          element={<SyntheticsPayment />}
-        />
-        <Route path="/dashboard/bridgeMarkets" element={<BridgeMarkets />} />
-        <Route path="/dashboard/evoxSynthetics/academy" element={<Academy />} />
-        <Route
-          path="/dashboard/evoxSynthetics/copySynthetics"
-          element={<CopySynthetics />}
-        />
-
-        {/*Admin routes */}
-        <Route path="/dashboard/admin/users" element={<Users />} />
-        <Route
-          path="/dashboard/admin/accountsActivation"
-          element={<AccountsActvation />}
-        />
-      </Route>
+      {auth?.roles[0].authority === "ROLE_USER" ? (
+        <Route path="/*" element={<UserRoutes />} />
+      ) : (
+        <Route path="/*" element={<AdminRoutes />} />
+      )}
     </Routes>
   );
 };

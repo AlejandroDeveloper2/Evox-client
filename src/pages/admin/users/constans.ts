@@ -1,4 +1,4 @@
-import { TableHeader } from "../../types";
+import { TableHeader } from "../../../types";
 
 const usersTableHeaders: TableHeader[] = [
   {

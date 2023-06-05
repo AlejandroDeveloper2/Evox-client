@@ -9,9 +9,9 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { usersTableHeaders } from "./constans";
-import { useScreen } from "../../hooks";
+import { useScreen } from "../../../hooks";
 
-import { CustomButton, Table } from "../../components";
+import { CustomButton, Table } from "../../../components";
 
 const Users = (): JSX.Element => {
   const screenSize = useScreen();

@@ -91,7 +91,11 @@ const AuthProvider = ({ children }: Props) => {
           const userAuth = decodeToken<UserAuth>(token);
           setStatus("authenticate");
           setAuth(userAuth);
-          //navigate("/dashboard");
+          navigate(
+            userAuth?.roles[0].authority === "ROLE_USER"
+              ? "/dashboard"
+              : "/admin"
+          );
         } else {
           window.alert("La sesión a caducado por favor loguese de nuevo!");
           logOut();

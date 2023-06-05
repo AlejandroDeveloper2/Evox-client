@@ -1,232 +1,203 @@
-import {
-  faHome,
-  faSchool,
-  faChevronRight,
-  faChartLine,
-  faMagnifyingGlassDollar,
-  faMoneyBillTrendUp,
-  faMoneyBill,
-  faBullhorn,
-  faPeopleGroup,
-  faWallet,
-  faFlag,
-  faTicket,
-  faHandHoldingDollar,
-  faPiggyBank,
-  faBuildingColumns,
-  faCopy,
-  faBox,
-  faMoneyBillTransfer,
-  faCoins,
-  faClock,
-  faCheck,
-  faUsersLine,
-} from "@fortawesome/free-solid-svg-icons";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
-import { MenuItem } from "../../../types";
+import { MenuItem, Role } from "../../../types";
 
-export const menuItems: MenuItem[] = [
-  {
-    leftIcon: faHome,
-    rightIcon: null,
-    label: "Inicio",
-    to: "/dashboard",
-    enabled: true,
-  },
-  {
-    leftIcon: faSchool,
-    rightIcon: null,
-    label: "Evox Academy",
-    to: "/dashboard/evoxAcademy",
-    enabled: false,
-  },
-  {
-    leftIcon: faUsersLine,
-    rightIcon: faChevronRight,
-    label: "Red",
-    to: "#",
-    enabled: true,
-    subItems: [
+const getMenuItems = (roleUser: Role): MenuItem[] => {
+  if (roleUser.authority === "ROLE_USER")
+    return [
       {
-        leftIcon: faChartLine,
         rightIcon: null,
-        label: "Referidos",
-        to: "/dashboard/referrals",
+        label: "Inicio",
+        to: "/dashboard",
         enabled: true,
       },
       {
-        leftIcon: faHandHoldingDollar,
         rightIcon: null,
-        label: "Mi equipo",
-        to: "/dashboard/teams",
-        enabled: true,
-      },
-    ],
-  },
-  {
-    leftIcon: faChartLine,
-    rightIcon: faChevronRight,
-    label: "Trading automático",
-    to: "#",
-    enabled: true,
-    subItems: [
-      {
-        leftIcon: faChartLine,
-        rightIcon: null,
-        label: "Cuentas MAM",
-        to: "/dashboard/automaticTrading/mamAccounts",
-        enabled: true,
-      },
-      // {
-      //   leftIcon: faHandHoldingDollar,
-      //   rightIcon: null,
-      //   label: "Comisiones",
-      //   to: "/dashboard/automaticTrading/commissions",
-      //   enabled: true,
-      // },
-    ],
-  },
-  {
-    leftIcon: faMagnifyingGlassDollar,
-    rightIcon: faChevronRight,
-    label: "Bridge Funds",
-    to: "#",
-    enabled: true,
-    subItems: [
-      {
-        leftIcon: faBuildingColumns,
-        rightIcon: null,
-        label: "Ver los tipos de cuentas",
-        to: "/dashboard/bridgeFunds/kindOfAccounts",
-        enabled: true,
-      },
-      {
-        leftIcon: faPiggyBank,
-        rightIcon: null,
-        label: "Mis cuentas",
-        to: "/dashboard/bridgeFunds/myAccounts",
-        enabled: true,
-      },
-    ],
-  },
-  {
-    leftIcon: faMoneyBillTrendUp,
-    rightIcon: null,
-    label: "Bridge Markets",
-    to: "/dashboard/bridgeMarkets",
-    enabled: true,
-  },
-  {
-    leftIcon: faMoneyBill,
-    rightIcon: faChevronRight,
-    label: "Evox Synthetics",
-    to: "#",
-    enabled: true,
-    subItems: [
-      {
-        leftIcon: faSchool,
-        rightIcon: null,
-        label: "Academia",
-        to: "/dashboard/evoxSynthetics/academy",
+        label: "Evox Academy",
+        to: "/dashboard/evoxAcademy",
         enabled: false,
       },
       {
-        leftIcon: faCopy,
-        rightIcon: null,
-        label: "Copy sintéticos",
-        to: "/dashboard/evoxSynthetics/copySynthetics",
+        rightIcon: faChevronRight,
+        label: "Red",
+        to: "#",
         enabled: true,
+        subItems: [
+          {
+            rightIcon: null,
+            label: "Referidos",
+            to: "/dashboard/referrals",
+            enabled: true,
+          },
+          {
+            rightIcon: null,
+            label: "Mi equipo",
+            to: "/dashboard/teams",
+            enabled: true,
+          },
+        ],
       },
-      // {
-      //   leftIcon: faHandHoldingDollar,
-      //   rightIcon: null,
-      //   label: "Comisiones",
-      //   to: "#",
-      //   enabled: true,
-      // },
-    ],
-  },
-  {
-    leftIcon: faBullhorn,
-    rightIcon: faChevronRight,
-    label: "Evox Marketing",
-    to: "#",
-    enabled: false,
-    subItems: [
       {
-        leftIcon: faBox,
+        rightIcon: faChevronRight,
+        label: "Trading automático",
+        to: "#",
+        enabled: false,
+        subItems: [
+          {
+            rightIcon: null,
+            label: "Cuentas MAM",
+            to: "/dashboard/automaticTrading/mamAccounts",
+            enabled: true,
+          },
+          // {
+          //   leftIcon: faHandHoldingDollar,
+          //   rightIcon: null,
+          //   label: "Comisiones",
+          //   to: "/dashboard/automaticTrading/commissions",
+          //   enabled: true,
+          // },
+        ],
+      },
+      {
+        rightIcon: faChevronRight,
+        label: "Bridge Funds",
+        to: "#",
+        enabled: false,
+        subItems: [
+          {
+            rightIcon: null,
+            label: "Ver los tipos de cuentas",
+            to: "/dashboard/bridgeFunds/kindOfAccounts",
+            enabled: true,
+          },
+          {
+            rightIcon: null,
+            label: "Mis cuentas",
+            to: "/dashboard/bridgeFunds/myAccounts",
+            enabled: true,
+          },
+        ],
+      },
+      {
         rightIcon: null,
-        label: "Paquetes",
+        label: "Bridge Markets",
+        to: "/dashboard/bridgeMarkets",
+        enabled: false,
+      },
+      {
+        rightIcon: faChevronRight,
+        label: "Evox Synthetics",
+        to: "#",
+        enabled: false,
+        subItems: [
+          {
+            rightIcon: null,
+            label: "Academia",
+            to: "/dashboard/evoxSynthetics/academy",
+            enabled: false,
+          },
+          {
+            rightIcon: null,
+            label: "Copy sintéticos",
+            to: "/dashboard/evoxSynthetics/copySynthetics",
+            enabled: true,
+          },
+          // {
+          //   leftIcon: faHandHoldingDollar,
+          //   rightIcon: null,
+          //   label: "Comisiones",
+          //   to: "#",
+          //   enabled: true,
+          // },
+        ],
+      },
+      {
+        rightIcon: faChevronRight,
+        label: "Evox Marketing",
+        to: "#",
+        enabled: false,
+        subItems: [
+          {
+            rightIcon: null,
+            label: "Paquetes",
+            to: "#",
+            enabled: false,
+          },
+          {
+            rightIcon: null,
+            label: "Comisiones",
+            to: "#",
+            enabled: false,
+          },
+        ],
+      },
+      {
+        rightIcon: null,
+        label: "Comunidad",
         to: "#",
         enabled: false,
       },
       {
-        leftIcon: faHandHoldingDollar,
-        rightIcon: null,
-        label: "Comisiones",
+        rightIcon: faChevronRight,
+        label: "Billetera Evox",
         to: "#",
         enabled: false,
+        subItems: [
+          {
+            rightIcon: null,
+            label: "Mis ganancias",
+            to: "#",
+            enabled: false,
+          },
+          {
+            rightIcon: null,
+            label: "Retiros",
+            to: "#",
+            enabled: false,
+          },
+        ],
       },
-    ],
-  },
-  {
-    leftIcon: faPeopleGroup,
-    rightIcon: null,
-    label: "Comunidad",
-    to: "#",
-    enabled: false,
-  },
-  {
-    leftIcon: faWallet,
-    rightIcon: faChevronRight,
-    label: "Billetera Evox",
-    to: "#",
-    enabled: false,
-    subItems: [
       {
-        leftIcon: faCoins,
         rightIcon: null,
-        label: "Mis ganancias",
+        label: "Reportes",
         to: "#",
         enabled: false,
       },
       {
-        leftIcon: faMoneyBillTransfer,
-        rightIcon: null,
-        label: "Retiros",
+        rightIcon: faChevronRight,
+        label: "Ticket de soporte",
         to: "#",
         enabled: false,
+        subItems: [
+          {
+            rightIcon: null,
+            label: "Solicitud de ticket",
+            to: "#",
+            enabled: false,
+          },
+          {
+            rightIcon: null,
+            label: "Historial",
+            to: "#",
+            enabled: false,
+          },
+        ],
       },
-    ],
-  },
-  {
-    leftIcon: faFlag,
-    rightIcon: null,
-    label: "Reportes",
-    to: "#",
-    enabled: false,
-  },
-  {
-    leftIcon: faTicket,
-    rightIcon: faChevronRight,
-    label: "Ticket de soporte",
-    to: "#",
-    enabled: false,
-    subItems: [
-      {
-        leftIcon: faCheck,
-        rightIcon: null,
-        label: "Solicitud de ticket",
-        to: "#",
-        enabled: false,
-      },
-      {
-        leftIcon: faClock,
-        rightIcon: null,
-        label: "Historial",
-        to: "#",
-        enabled: false,
-      },
-    ],
-  },
-];
+    ];
+  return [
+    {
+      rightIcon: null,
+      label: "Usuarios",
+      to: "/admin",
+      enabled: true,
+    },
+    {
+      rightIcon: null,
+      label: "Activación de cuentas",
+      to: "/admin/accountsActivation",
+      enabled: false,
+    },
+  ];
+};
+
+export { getMenuItems };

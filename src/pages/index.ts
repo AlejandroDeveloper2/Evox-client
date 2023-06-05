@@ -20,5 +20,5 @@ export { default as Academy } from "./evoxSynthetics/Academy";
 export { default as CopySynthetics } from "./evoxSynthetics/CopySynthetics";
 
 /*Admin pages */
-export { default as Users } from "./users/Users";
-export { default as AccountsActvation } from "./evoxSynthetics/AccountsActivation";
+export { default as Users } from "./admin/users/Users";
+export { default as AccountsActvation } from "./admin/AccountsActivation";

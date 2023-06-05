@@ -19,7 +19,9 @@ export type {
   Status,
   SyntheticsAccount,
   AccountStatus,
-  Transaction
+  Transaction,
+  Role,
+  BridgeFundsAccount,
 } from "./dataTypes";
 
 /* Component types Models */
