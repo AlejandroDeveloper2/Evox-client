@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
-import { useCountdown, useEvoxServices, useLoader } from "../../hooks";
+import { useEvoxServices, useLoader } from "../../hooks";
 import { getUserReferrals, getUserTeam } from "../../services/userReferrals";
 import { sortReferralsRecords } from "../../utils";
 import useSWR from "swr";
@@ -26,7 +26,7 @@ import {
 } from "../../assets";
 
 const UserDashboard = (): JSX.Element => {
-  const { isCountdownFinished } = useCountdown();
+  // const { isCountdownFinished } = useCountdown();
   const isLoading = useLoader("Cargando...");
   const { getTeam, getDirectReferrals } = useEvoxServices();
   const token = localStorage.getItem("token") ?? "";
@@ -51,11 +51,13 @@ const UserDashboard = (): JSX.Element => {
     }
   );
 
+  const timer = 10;
+
   return (
     <div className="w-full flex flex-col justify-center items-center py-10 h-full gap-10">
       {isLoading ? (
         <Spinner color="text-darkBlue" />
-      ) : isCountdownFinished() ? (
+      ) : timer <= 0 ? (
         <>
           <ServicesList />
           <JoinChannelSection />
