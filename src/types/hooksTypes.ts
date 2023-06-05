@@ -18,6 +18,7 @@ interface SelectOptionsHook {
 
 interface CountDownHook {
   timerValues: number[];
+  isCountdownFinished: () => boolean;
 }
 
 export type { FormHook, SelectOptionsHook, CountDownHook };

@@ -26,7 +26,7 @@ import {
 } from "../../assets";
 
 const UserDashboard = (): JSX.Element => {
-  const { timerValues } = useCountdown();
+  const { isCountdownFinished } = useCountdown();
   const isLoading = useLoader("Cargando...");
   const { getTeam, getDirectReferrals } = useEvoxServices();
   const token = localStorage.getItem("token") ?? "";
@@ -55,7 +55,7 @@ const UserDashboard = (): JSX.Element => {
     <div className="w-full flex flex-col justify-center items-center py-10 h-full gap-10">
       {isLoading ? (
         <Spinner color="text-darkBlue" />
-      ) : timerValues[0] === 0 ? (
+      ) : isCountdownFinished() ? (
         <>
           <ServicesList />
           <JoinChannelSection />

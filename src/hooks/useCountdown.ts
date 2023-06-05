@@ -34,6 +34,15 @@ const useCountdown = (): CountDownHook => {
     }, 1000);
   };
 
+  const isCountdownFinished = (): boolean => {
+    const isCoundownterminate =
+      timerDays === 0 &&
+      timerHours === 0 &&
+      timerMinutes === 0 &&
+      timerSeconds === 0;
+    return isCoundownterminate;
+  };
+
   React.useEffect(() => {
     startTimer();
     return () => {
@@ -44,6 +53,7 @@ const useCountdown = (): CountDownHook => {
 
   return {
     timerValues: [timerDays, timerHours, timerMinutes, timerSeconds],
+    isCountdownFinished,
   };
 };
 
