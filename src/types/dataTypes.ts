@@ -122,16 +122,16 @@ interface SyntheticsAccount {
 }
 
 interface Transaction {
-  createdAt: string;
-  currency: string;
-  expirationDate: string;
-  id: string;
-  price: number;
-  state: boolean;
-  syntheticState: AccountStatus;
+  createdAt?: string;
+  currency?: string;
+  expirationDate?: string;
+  id?: string;
+  price?: number;
+  state?: boolean;
+  syntheticState?: AccountStatus;
   transaction: string;
-  type: TransactionType;
-  userId: string;
+  type?: TransactionType;
+  userId?: string;
 }
 
 interface BridgeFundsAccount {

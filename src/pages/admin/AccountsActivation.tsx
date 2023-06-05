@@ -1,6 +1,8 @@
 import {
   faCalendar,
+  faCheck,
   faCircleUser,
+  faCircleXmark,
   faHashtag,
   faPhone,
   faUserAlt,
@@ -17,7 +19,7 @@ import { CustomButton, EmptyTablet, Table, Spinner } from "../../components";
 const AccountsActivation = (): JSX.Element => {
   const screenSize = useScreen();
   const token = localStorage.getItem("token") ?? "";
-  const { activeSyntheticAccount } = useEvoxServices();
+  const { activeSyntheticAccount, invalidSyntheticAccount } = useEvoxServices();
   const { data: accounts, isLoading } = useSWR("/synthetic/list", () =>
     getUserSyntecticsAccounts(token)
   );
@@ -93,7 +95,10 @@ const AccountsActivation = (): JSX.Element => {
                   </div>
                 </div>
               ) : (
-                <tr className="bg-lightGray border-b-[2px] border-gray dark:bg-darkGray dark:border-mediumGray">
+                <tr
+                  key={index}
+                  className="bg-lightGray border-b-[2px] border-gray dark:bg-darkGray dark:border-mediumGray"
+                >
                   <td className="px-6 py-4 font-medium text-darkGray whitespace-nowrap dark:text-white">
                     {account.transaction}
                   </td>
@@ -104,17 +109,34 @@ const AccountsActivation = (): JSX.Element => {
                   </td>
                   <td className="px-6 py-4">{account.username}</td>
                   <td className="px-6 py-4">{account.email}</td>
-                  <td className="px-6 py-4">
+                  <td className="px-6 py-4 flex gap-2 items-center">
                     <CustomButton
                       type="button"
-                      label={"Activar"}
+                      label={""}
+                      title="Activar cuenta"
+                      icon={faCheck}
                       theme={{
                         bg: "bg-blue",
                         color: "text-white",
-                        aditionalStyles: "h-[3rem]",
+                        aditionalStyles: "h-[3rem] w-[3rem]",
                       }}
                       onClick={() =>
                         activeSyntheticAccount(account.transaction)
+                      }
+                      disabled={account.state}
+                    />
+                    <CustomButton
+                      type="button"
+                      label={""}
+                      title="Invalidar transacción"
+                      icon={faCircleXmark}
+                      theme={{
+                        bg: "bg-error",
+                        color: "text-white",
+                        aditionalStyles: "h-[3rem] w-[3rem]",
+                      }}
+                      onClick={() =>
+                        invalidSyntheticAccount(account.transaction)
                       }
                       disabled={account.state}
                     />

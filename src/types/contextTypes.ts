@@ -52,9 +52,10 @@ interface EvoxContextType {
   referrals: Referral[];
   getTeam: (team: Team[]) => void;
   getDirectReferrals: (referrals: Referral[]) => void;
-  activeSyntheticAccount:(transaction:string)=>Promise<void>;
-  registerSyntheticsAccount:(login:string, password:string)=>Promise<void>;
-  sendTransaction:(transaction:string)=>Promise<void>;
+  activeSyntheticAccount: (transaction: string) => Promise<void>;
+  registerSyntheticsAccount: (login: string, password: string) => Promise<void>;
+  sendTransaction: (transaction: string) => Promise<void>;
+  invalidSyntheticAccount: (transaction: string) => Promise<void>
 }
 
 interface ThemeContextType {

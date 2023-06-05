@@ -26,6 +26,7 @@ interface CustomButtonProps {
   icon?: IconDefinition;
   disabled?: boolean;
   onClick?: () => void;
+  title?: string;
 }
 
 interface CustomFormProps {

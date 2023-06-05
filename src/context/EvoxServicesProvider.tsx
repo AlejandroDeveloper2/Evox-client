@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { EvoxContextType, Referral, Team } from "../types";
 import {
   activeSynteticsAccount,
+  invalidTransaction,
   registerSynteticAccount,
   saveTransaction,
 } from "../services/synthetics";
@@ -144,6 +145,44 @@ const EvoxServicesProvider = ({ children }: Props) => {
     }
   };
 
+  const invalidSyntheticAccount=async(transaction:string):Promise<void>=>{
+    const token = localStorage.getItem("token");
+    setLoading({
+      message: "Invalidando transacción...",
+      visible: true,
+    });
+    if (token) {
+      await invalidTransaction(token, transaction)
+        .then((res) => {
+          setToast({
+            message: res.message,
+            visible: true,
+            type: "success",
+          });
+        })
+        .catch((error: Error) => {
+          setToast({
+            message: error.message,
+            visible: true,
+            type: "error",
+          });
+        })
+        .finally(() => {
+          setTimeout(() => {
+            setToast({
+              message: "",
+              visible: false,
+              type: "success",
+            });
+          }, 3000);
+          setLoading({
+            message: "",
+            visible: false,
+          });
+        });
+    }
+  }
+
   return (
     <EvoxServicesContext.Provider
       value={{
@@ -154,6 +193,7 @@ const EvoxServicesProvider = ({ children }: Props) => {
         activeSyntheticAccount,
         registerSyntheticsAccount,
         sendTransaction,
+        invalidSyntheticAccount
       }}
     >
       {children}
