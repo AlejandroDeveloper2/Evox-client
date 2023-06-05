@@ -1,26 +1,23 @@
 import React from "react";
 import { faCreditCard } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {useLocation} from "react-router-dom"
+import { useLocation } from "react-router-dom";
 
 import { QrImagen, TetherLogo } from "../../assets";
 import { CopyLink, CustomButton } from "../../components";
 import { useEvoxServices } from "../../hooks";
 import { Transaction } from "../../types";
 
-interface props {
-  type: boolean;
-}
-
-const SyntheticsPayment = ({ type }: props): JSX.Element => {
+const SyntheticsPayment = (): JSX.Element => {
   const location = useLocation();
-  const [transaction, setTransaction] = React.useState<Transaction>({   
-   
+  const transactionParam = location.pathname.split("/")[3];
+  const [transaction, setTransaction] = React.useState<Transaction>({
+    transaction: transactionParam ?? "",
   });
   const { sendTransaction } = useEvoxServices();
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTransaction({...transaction, [e.target.name]: e.target.value});
+    setTransaction({ ...transaction, [e.target.name]: e.target.value });
   };
 
   const validateField = (): boolean => {
@@ -32,12 +29,20 @@ const SyntheticsPayment = ({ type }: props): JSX.Element => {
     e.preventDefault();
     sendTransaction(transaction.transaction);
     setTransaction({
-      transaction:""
+      transaction: "",
     });
   };
 
   return (
     <div className="relative flex flex-col pt-20 pb-10 items-start gap-20 px-5  md:px-20">
+      {transactionParam ? (
+        <p
+          className="text-[20px] md:text-[24px] text-white font-extrabold text-center font-poppins align-middle
+            p-10 bg-error"
+        >
+          Hash de transacción invalido ingreselo nuevamente!
+        </p>
+      ) : null}
       <h1 className="text-[20px] md:text-[24px] text-darkBlue font-extrabold text-center font-poppins align-middle">
         <FontAwesomeIcon
           icon={faCreditCard}
