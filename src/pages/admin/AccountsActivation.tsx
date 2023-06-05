@@ -3,7 +3,6 @@ import {
   faCircleUser,
   faHashtag,
   faPhone,
-  faUser,
   faUserAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,8 +10,7 @@ import useSWR from "swr";
 
 import { getUserSyntecticsAccounts } from "../../services/synthetics";
 import { useEvoxServices, useScreen, usePagination } from "../../hooks";
-import { accountActivationsTableHeaders } from "../evoxSynthetics/constans";
-import { formatDate } from "../../utils";
+import { accountActivationsTableHeaders } from "./constans";
 
 import { CustomButton, EmptyTablet, Table, Spinner } from "../../components";
 
@@ -38,7 +36,7 @@ const AccountsActivation = (): JSX.Element => {
         />{" "}
         <span className="align-middle"> Activación de cuentas sintéticos </span>
       </h1>
-      <div className="w-full flex justify-center items-start flex-col overflow-x-auto">
+      <div className="w-full flex justify-center items-start flex-col overflow-x-scroll">
         <Table headers={accountActivationsTableHeaders}>
           {isLoading ? (
             <Spinner message="Cargando cuentas de sintéticos..." />
@@ -72,24 +70,6 @@ const AccountsActivation = (): JSX.Element => {
                     </span>
                     {account.price}
                   </div>
-                  {account.createdAt ? (
-                    <div className="text-darkGray font-poppins font-medium truncate w-full">
-                      <span className="text-darkGray font-poppins font-semibold  mr-2">
-                        {<FontAwesomeIcon icon={faUser} className="mr-2" />}
-                        Fecha de registro:
-                      </span>
-                      {formatDate(account.activationDate)}
-                    </div>
-                  ) : null}
-                  {account.expirationDate ? (
-                    <div className="text-darkGray font-poppins font-medium truncate w-full">
-                      <span className="text-darkGray font-poppins font-semibold  mr-2">
-                        {<FontAwesomeIcon icon={faCalendar} className="mr-2" />}
-                        Fecha de caducidad:
-                      </span>
-                      {formatDate(account.expirationDate)}
-                    </div>
-                  ) : null}
                   <div className="text-darkGray font-poppins font-medium truncate w-full">
                     <span className="text-darkGray font-poppins font-semibold  mr-2">
                       {<FontAwesomeIcon icon={faCalendar} className="mr-2" />}
@@ -119,8 +99,6 @@ const AccountsActivation = (): JSX.Element => {
                   </td>
                   <td className="px-6 py-4">{account.currency}</td>
                   <td className="px-6 py-4">{account.price}</td>
-                  <td className="px-6 py-4">{account.activationDate}</td>
-                  <td className="px-6 py-4">{account.expirationDate}</td>
                   <td className="px-6 py-4">
                     {account.state ? "Activa" : "Inactiva"}
                   </td>

@@ -13,7 +13,7 @@ const getBridgeFundsAccounts = async (
   };
   let response: BridgeFundsAccount[] = [];
   try {
-    const { data } = await axiosClient("/synthetic/list", config);
+    const { data } = await axiosClient("/bridgeFunds/list", config);
     response = data;
   } catch (error) {
     console.log(error);

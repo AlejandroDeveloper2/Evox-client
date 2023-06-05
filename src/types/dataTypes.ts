@@ -142,7 +142,7 @@ interface BridgeFundsAccount {
   currency: string;
 }
 
-type AccountStatus = "Verified" | "Shopping" | "Pending";
+type AccountStatus = "Verified" | "Shopping" | "Pending" | "Error";
 type TransactionType = "Synthetic" | "Bridge funds";
 
 export type {

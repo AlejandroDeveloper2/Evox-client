@@ -1,9 +1,18 @@
 import { faMoneyCheckDollar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import useSWR from "swr";
+
+// import { getUserSyntecticsAccounts } from "../../services/synthetics";
 
 import { AccountCard } from "../../components";
 
 const kindOfAccounts = (): JSX.Element => {
+  //const token = localStorage.getItem("token") ?? "";
+  // const { data: bridgeFundsAccounts } = useSWR(
+  //   "/bridgeFunds/list",
+  //   () => getUserSyntecticsAccounts(token)
+  // );
+
   return (
     <div className="relative flex flex-col pt-20 pb-10 items-center gap-20 px-5  md:px-20">
       <h1 className="text-[20px] md:text-[24px] text-darkBlue font-extrabold text-center font-poppins align-middle">

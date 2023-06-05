@@ -9,6 +9,7 @@ import useSWR from "swr";
 import { getAccountStatus } from "../../services/synthetics";
 
 import { CopyLink, MTPlatforms, PaymentNoDone } from "../../components";
+import { Navigate } from "react-router-dom";
 
 const MyAccounts = (): JSX.Element => {
   const token = localStorage.getItem("token") ?? "";
@@ -32,6 +33,8 @@ const MyAccounts = (): JSX.Element => {
           Tu cuenta de sinteticos esta pendiente a verificación en las proximas
           24 horas tu cuenta será activada!
         </p>
+      ) : status === "Error" ? (
+        <Navigate to="/dashboard/bridgeFunds/bridgeFundsPayment" />
       ) : (
         <>
           <h1 className="text-[20px] md:text-[24px] text-darkBlue font-extrabold text-center font-poppins align-middle">

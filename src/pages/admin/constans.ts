@@ -8,13 +8,7 @@ const accountActivationsTableHeaders: TableHeader[] = [
     label: "Moneda",
   },
   {
-    label: "Price",
-  },
-  {
-    label: "Fecha de registro",
-  },
-  {
-    label: "Fecha de caducidad",
+    label: "Precio",
   },
   {
     label: "Estado",
@@ -23,7 +17,7 @@ const accountActivationsTableHeaders: TableHeader[] = [
     label: "Nombre de usuario",
   },
   {
-    label: "Email",
+    label: "Correo",
   },
   {
     label: "Acciones",

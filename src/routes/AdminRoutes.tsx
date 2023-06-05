@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 
 import { AdminLayout } from "../layout";
-import { Users, AccountsActvation } from "../pages";
+import { Users, AccountsActvation, UserProfile } from "../pages";
 
 const AdminRoutes = (): JSX.Element => {
   return (
@@ -12,6 +12,7 @@ const AdminRoutes = (): JSX.Element => {
           path="/admin/accountsActivation"
           element={<AccountsActvation />}
         />
+        <Route path="/admin/profile" element={<UserProfile />} />
       </Route>
     </Routes>
   );

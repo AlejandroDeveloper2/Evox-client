@@ -57,7 +57,11 @@ const AuthProvider = ({ children }: Props) => {
           setStatus("authenticate");
           setAuth(userAuth);
           setSuccess(true);
-          navigate("/dashboard");
+          navigate(
+            userAuth?.roles[0].authority === "ROLE_USER"
+              ? "/dashboard"
+              : "/admin"
+          );
         }
       })
       .catch((error: Error) => {
