@@ -5,9 +5,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { QrImagen, TetherLogo } from "../../assets";
 import { CopyLink, CustomButton } from "../../components";
+import { useEvoxServices } from "../../hooks";
 
-const SyntheticsPayment = (): JSX.Element => {
+const BridgeFundsPayment = (): JSX.Element => {
   const [transactionHash, setTransactionHash] = React.useState("");
+  const { sendTransaction } = useEvoxServices();
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTransactionHash(e.target.value);
@@ -16,6 +18,12 @@ const SyntheticsPayment = (): JSX.Element => {
   const validateField = (): boolean => {
     if (transactionHash === "") return true;
     return false;
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+    sendTransaction(transactionHash);
+    setTransactionHash("");
   };
 
   return (
@@ -53,33 +61,34 @@ const SyntheticsPayment = (): JSX.Element => {
               />
             </div>
             <CopyLink link={"TF6DuE3zehWhnSqv6E971iBtbwQfuPZEHe"} />
-            <div className="flex flex-col gap-3 justify-center items-center w-full">
-              <label
-                htmlFor="transactionId"
-                className="text-[18px] text-darkGray font-poppins font-normal"
-              >
-                ID de transacción o hash (obligatorio)
-              </label>
-              <input
-                type="text"
-                id="transactionId"
-                name="transactionId"
-                value={transactionHash}
-                onChange={onChange}
-                className="outline-none bg-white py-2 px-3 rounded-xl border-[1px] border-gray w-full"
-              />
-              <CustomButton
-                label="Ya he enviado el pago por USDT"
-                theme={{
-                  bg: "bg-blue",
-                  color: "text-white",
-                  aditionalStyles: "w-full h-[3rem] mt-3",
-                }}
-                type="button"
-                onClick={() => console.log("Clicked")}
-                disabled={validateField()}
-              />
-            </div>
+            <form onSubmit={handleSubmit}>
+              <div className="flex flex-col gap-3 justify-center items-center w-full">
+                <label
+                  htmlFor="transactionId"
+                  className="text-[18px] text-darkGray font-poppins font-normal"
+                >
+                  ID de transacción o hash (obligatorio)
+                </label>
+                <input
+                  type="text"
+                  id="transactionId"
+                  name="transactionId"
+                  value={transactionHash}
+                  onChange={onChange}
+                  className="outline-none bg-white py-2 px-3 rounded-xl border-[1px] border-gray w-full"
+                />
+                <CustomButton
+                  label="Ya he enviado el pago por USDT"
+                  theme={{
+                    bg: "bg-blue",
+                    color: "text-white",
+                    aditionalStyles: "w-full h-[3rem] mt-3",
+                  }}
+                  type="submit"
+                  disabled={validateField()}
+                />
+              </div>
+            </form>
           </div>
         </div>
       </div>
@@ -87,4 +96,4 @@ const SyntheticsPayment = (): JSX.Element => {
   );
 };
 
-export default SyntheticsPayment;
+export default BridgeFundsPayment;

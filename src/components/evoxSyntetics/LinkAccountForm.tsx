@@ -1,6 +1,7 @@
 import React from "react";
 
 import { CustomButton } from "..";
+import { useEvoxServices } from "../../hooks";
 
 const LinkAccountForm = (): JSX.Element => {
   const [accountData, setAccountData] = React.useState({
@@ -8,6 +9,7 @@ const LinkAccountForm = (): JSX.Element => {
     password: "",
   });
   const [isChecked, setIsChecked] = React.useState<boolean>(false);
+  const { registerSyntheticsAccount } = useEvoxServices();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setAccountData({ ...accountData, [e.target.name]: e.target.value });
@@ -20,8 +22,17 @@ const LinkAccountForm = (): JSX.Element => {
     return false;
   };
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+    registerSyntheticsAccount(accountData.login, accountData.password);
+    setAccountData({ login: "", password: "" });
+  };
+
   return (
-    <div className="w-full flex flex-col gap-5 items-start justify-center">
+    <form
+      onSubmit={handleSubmit}
+      className="w-full flex flex-col gap-5 items-start justify-center"
+    >
       <p className="text-[16px] text-darkGray font-poppins font-normal md:w-3/4 text-left">
         Completa los datos con la información de acceso a tu cuenta Deriv
       </p>
@@ -67,7 +78,7 @@ const LinkAccountForm = (): JSX.Element => {
         </p>
       </div>
       <CustomButton
-        type="button"
+        type="submit"
         label="Enviar datos"
         theme={{
           bg: "bg-blue",
@@ -75,9 +86,8 @@ const LinkAccountForm = (): JSX.Element => {
           aditionalStyles: "w-3/5 m-auto",
         }}
         disabled={validateFields()}
-        onClick={() => console.log("pressed")}
       />
-    </div>
+    </form>
   );
 };
 

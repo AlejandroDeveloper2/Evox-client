@@ -11,6 +11,7 @@ import {
   Commissions,
   KindOfAccounts,
   SyntheticsPayment,
+  BridgeFundsPayment,
   MyAccounts,
   BridgeMarkets,
   Users,
@@ -45,8 +46,8 @@ const ProtectedRoutes = (): JSX.Element => {
           element={<MyAccounts />}
         />
         <Route
-          path="/dashboard/bridgeFunds/syntheticsPayment"
-          element={<SyntheticsPayment />}
+          path="/dashboard/bridgeFunds/bridgeFundsPayment"
+          element={<BridgeFundsPayment />}
         />
         <Route
           path="/dashboard/evoxSynthetics/syntheticsPayment"

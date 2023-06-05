@@ -104,7 +104,7 @@ const AccountCard = (): JSX.Element => {
           aditionalStyles: "m-auto w-full md:w-3/5 h-[2rem]",
         }}
         type="button"
-        onClick={() => navigate("/dashboard/bridgeFunds/syntheticsPayment")}
+        onClick={() => navigate("/dashboard/bridgeFunds/bridgeFundsPayment")}
         disabled={!isChecked}
       />
     </div>

@@ -119,7 +119,21 @@ interface SyntheticsAccount {
   email: string;
 }
 
+interface Transaction {
+  createdAt: string;
+  currency: string;
+  expirationDate: string;
+  id: string;
+  price: number;
+  state: boolean;
+  syntheticState: AccountStatus;
+  transaction: string;
+  type: TransactionType;
+  userId: string;
+}
+
 type AccountStatus = "Verified" | "Shopping" | "Pending";
+type TransactionType = "Synthetic" | "Bridge funds";
 
 export type {
   FormType,
@@ -140,5 +154,6 @@ export type {
   Team,
   Status,
   SyntheticsAccount,
-  AccountStatus
+  AccountStatus,
+  Transaction
 };

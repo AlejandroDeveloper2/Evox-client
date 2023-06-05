@@ -18,7 +18,8 @@ export type {
   Team,
   Status,
   SyntheticsAccount,
-  AccountStatus
+  AccountStatus,
+  Transaction
 } from "./dataTypes";
 
 /* Component types Models */
