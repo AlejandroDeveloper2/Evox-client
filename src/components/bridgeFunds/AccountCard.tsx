@@ -9,7 +9,7 @@ import { CustomButton } from "..";
 const AccountCard = (props: BridgeFundsAccount): JSX.Element => {
   const [isChecked, setIsChecked] = React.useState<boolean>(false);
   const [accountQuantity, setAccountQuantity] = React.useState<string>("1");
-  const [singlePrice] = React.useState("500");
+  const [singlePrice] = React.useState<string>(props.price.toString());
   const [price, setPrice] = React.useState<string>(singlePrice);
 
   const navigate = useNavigate();
@@ -40,7 +40,7 @@ const AccountCard = (props: BridgeFundsAccount): JSX.Element => {
         font-poppins font-extrabold text-center flex justify-center items-center absolute top-[-1rem]
         left-0 right-0 m-auto text-[16px] rounded-md px-3 uppercase"
       >
-        Cuenta {props.price} USD
+        {props.title}
       </span>
       {features.map((feature, index) => (
         <p
@@ -79,7 +79,7 @@ const AccountCard = (props: BridgeFundsAccount): JSX.Element => {
           max={99}
         />
         <span className="text-[18px] text-darkGray font-extrabold font-poppins">
-          {price} USD
+          {price} {props.currency}
         </span>
       </div>
       <CustomButton
