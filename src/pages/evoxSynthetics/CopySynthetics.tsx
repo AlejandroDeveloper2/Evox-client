@@ -40,7 +40,7 @@ const CopySynthetics = (): JSX.Element => {
       ) : status === "Error" ? (
         <Navigate
           to={`/dashboard/bridgeFunds/bridgeFundsPayment/${JSON.stringify(
-            transaction
+            transaction ? transaction : {}
           )}`}
         />
       ) : (
