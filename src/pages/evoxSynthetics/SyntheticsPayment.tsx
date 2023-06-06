@@ -10,7 +10,7 @@ import { Transaction } from "../../types";
 
 const SyntheticsPayment = (): JSX.Element => {
   const location = useLocation();
-  const transactionParam = location.pathname.split("/")[3];
+  const transactionParam = location.pathname.split("/")[4];
   const [transaction, setTransaction] = React.useState<Transaction>({
     transaction: transactionParam ?? "",
   });
