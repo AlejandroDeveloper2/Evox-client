@@ -16,7 +16,6 @@ const SyntheticsPayment = ({ type }: Props): JSX.Element => {
     const gokuGay = async () => {
       if (type == true) {
         const data = await getTransactionStatus(token);
-        console.log(data);
       }
     };
     gokuGay();
@@ -38,7 +37,7 @@ const SyntheticsPayment = ({ type }: Props): JSX.Element => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    sendTransaction(transaction.transaction);
+    sendTransaction(transaction);
     setTransaction({
       transaction: "",
     });

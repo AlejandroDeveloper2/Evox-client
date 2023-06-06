@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import { EvoxContextType, Referral, Team } from "../types";
+import { EvoxContextType, Referral, Team, Transaction } from "../types";
 import {
   activeSynteticsAccount,
   invalidTransaction,
@@ -106,7 +106,7 @@ const EvoxServicesProvider = ({ children }: Props) => {
     }
   };
 
-  const sendTransaction = async (transaction: string): Promise<void> => {
+  const sendTransaction = async (transaction: Transaction): Promise<void> => {
     const token = localStorage.getItem("token");
     setLoading({
       message: "Enviando transacción...",
@@ -145,7 +145,9 @@ const EvoxServicesProvider = ({ children }: Props) => {
     }
   };
 
-  const invalidSyntheticAccount=async(transaction:string):Promise<void>=>{
+  const invalidSyntheticAccount = async (
+    transaction: string
+  ): Promise<void> => {
     const token = localStorage.getItem("token");
     setLoading({
       message: "Invalidando transacción...",
@@ -181,7 +183,7 @@ const EvoxServicesProvider = ({ children }: Props) => {
           });
         });
     }
-  }
+  };
 
   return (
     <EvoxServicesContext.Provider
@@ -193,7 +195,7 @@ const EvoxServicesProvider = ({ children }: Props) => {
         activeSyntheticAccount,
         registerSyntheticsAccount,
         sendTransaction,
-        invalidSyntheticAccount
+        invalidSyntheticAccount,
       }}
     >
       {children}

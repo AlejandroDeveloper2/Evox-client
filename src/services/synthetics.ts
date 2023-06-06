@@ -112,7 +112,7 @@ const registerSynteticAccount = async (
 
 const saveTransaction = async (
   token: string,
-  transaction: string
+  transaction: Transaction
 ): Promise<ServerResponseFail | ServerResponseSuccess> => {
   const axiosClient = getAxiosClient("evoxAPI");
   const config = {
@@ -128,7 +128,7 @@ const saveTransaction = async (
   try {
     const { data } = await axiosClient.post(
       `/synthetic/transaction`,
-      { transaction },
+      transaction,
       config
     );
     response = data;

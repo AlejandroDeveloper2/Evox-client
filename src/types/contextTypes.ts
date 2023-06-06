@@ -10,6 +10,7 @@ import {
   Status,
   Team,
   ToastProps,
+  Transaction,
   UserAuth,
   UserIP,
 } from ".";
@@ -54,7 +55,7 @@ interface EvoxContextType {
   getDirectReferrals: (referrals: Referral[]) => void;
   activeSyntheticAccount: (transaction: string) => Promise<void>;
   registerSyntheticsAccount: (login: string, password: string) => Promise<void>;
-  sendTransaction: (transaction: string) => Promise<void>;
+  sendTransaction: (transaction: Transaction) => Promise<void>;
   invalidSyntheticAccount: (transaction: string) => Promise<void>
 }
 
