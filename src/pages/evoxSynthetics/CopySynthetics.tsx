@@ -17,7 +17,6 @@ const CopySynthetics = (): JSX.Element => {
     getAccountStatus(token)
   );
 
-
   return (
     <div className="relative flex flex-col pt-20 pb-10 items-center gap-10 px-5  md:px-20">
       <img src={EvoxSynteticsLogo} alt="Evox syntetics logo" />
