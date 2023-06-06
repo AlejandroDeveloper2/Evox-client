@@ -39,7 +39,7 @@ const CopySynthetics = (): JSX.Element => {
         </p>
       ) : status === "Error" ? (
         <Navigate
-          to={`/dashboard/bridgeFunds/bridgeFundsPayment/${JSON.stringify(
+          to={`/dashboard/evoxSynthetics/syntheticsPayment/${JSON.stringify(
             transaction ? transaction : {}
           )}`}
         />
