@@ -94,7 +94,7 @@ const getMenuItems = (roleUser: Role): MenuItem[] => {
             rightIcon: null,
             label: "Academia",
             to: "/dashboard/evoxSynthetics/academy",
-            enabled: false,
+            enabled: true,
           },
           {
             rightIcon: null,
