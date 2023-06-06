@@ -11,9 +11,9 @@ import { Transaction } from "../../types";
 const SyntheticsPayment = (): JSX.Element => {
   const location = useLocation();
   const transactionParam = location.pathname.split("/")[4];
-  const [transaction, setTransaction] = React.useState<Transaction>({
-    transaction: transactionParam ?? "",
-  });
+  const [transaction, setTransaction] = React.useState<Transaction>(
+    JSON.parse(transactionParam)
+  );
   const { sendTransaction } = useEvoxServices();
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
