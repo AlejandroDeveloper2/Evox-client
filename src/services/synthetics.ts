@@ -138,7 +138,10 @@ const saveTransaction = async (
   return response;
 };
 
-const invalidTransaction = async (token: string, transaction: string): Promise<ServerResponseFail | ServerResponseSuccess> => {
+const invalidTransaction = async (
+  token: string,
+  transaction: string
+): Promise<ServerResponseFail | ServerResponseSuccess> => {
   const axiosClient = getAxiosClient("evoxAPI");
   const config = {
     headers: {
@@ -161,9 +164,9 @@ const invalidTransaction = async (token: string, transaction: string): Promise<S
     throw new Error(error.response.data.message);
   }
   return response;
-}
+};
 
-const getTransactionStatus = async (token: string): Promise<Transaction | object> => {
+const getTransactionStatus = async (token: string): Promise<Transaction> => {
   const axiosClient = getAxiosClient("evoxAPI");
   const config = {
     headers: {
@@ -172,19 +175,18 @@ const getTransactionStatus = async (token: string): Promise<Transaction | object
     },
   };
 
-  let response: Transaction | object = {};
+  let response: Transaction = {
+    transaction: "",
+  };
 
   try {
-    const { data } = await axiosClient.get(
-      `/synthetic/transaction`,
-      config
-    );
+    const { data } = await axiosClient.get(`/synthetic/transaction`, config);
     response = data;
   } catch (error: any) {
     throw new Error(error.response.data.message);
   }
   return response;
-}
+};
 
 export {
   getUserSyntecticsAccounts,
@@ -193,5 +195,5 @@ export {
   registerSynteticAccount,
   saveTransaction,
   invalidTransaction,
-  getTransactionStatus
+  getTransactionStatus,
 };

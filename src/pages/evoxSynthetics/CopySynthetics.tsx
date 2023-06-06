@@ -3,7 +3,10 @@ import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { Navigate } from "react-router-dom";
 
 import useSWR from "swr";
-import { getAccountStatus, getTransactionStatus } from "../../services/synthetics";
+import {
+  getAccountStatus,
+  getTransactionStatus,
+} from "../../services/synthetics";
 
 import { LinkAccount, PaymentNoDone } from "../../components";
 import { EvoxSynteticsLogo } from "../../assets";
@@ -35,7 +38,9 @@ const CopySynthetics = (): JSX.Element => {
           24 horas tu cuenta será activada!
         </p>
       ) : status === "Error" ? (
-        <Navigate to={`/dashboard/bridgeFunds/bridgeFundsPayment/${transaction}`}/>
+        <Navigate
+          to={`/dashboard/bridgeFunds/bridgeFundsPayment/${transaction?.transaction}`}
+        />
       ) : (
         <LinkAccount />
       )}
