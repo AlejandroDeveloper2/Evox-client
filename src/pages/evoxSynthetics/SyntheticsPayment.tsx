@@ -11,7 +11,7 @@ interface Props {
   type: boolean;
 }
 const SyntheticsPayment = ({ type }: Props): JSX.Element => {
-  const token = localStorage.getItem("token")!;
+  const token = localStorage.getItem("token") ?? "";
   useEffect(() => {
     const gokuGay = async () => {
       if (type == true) {
