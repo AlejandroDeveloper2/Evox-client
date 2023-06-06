@@ -7,18 +7,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCreditCard } from "@fortawesome/free-solid-svg-icons";
 import { QrImagen, TetherLogo } from "../../assets";
 import { CopyLink, CustomButton } from "../../components";
+
 interface Props {
-  type: boolean;
+  error: boolean;
 }
-const SyntheticsPayment = ({ type }: Props): JSX.Element => {
+
+const SyntheticsPayment = ({ error }: Props): JSX.Element => {
   const token = localStorage.getItem("token") ?? "";
   useEffect(() => {
-    const gokuGay = async () => {
-      if (type == true) {
+    const getTransaction = async () => {
+      if (error) {
         const data = await getTransactionStatus(token);
+        setTransaction(data);
       }
     };
-    gokuGay();
+    getTransaction();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [transaction, setTransaction] = React.useState<Transaction>({
@@ -45,6 +49,11 @@ const SyntheticsPayment = ({ type }: Props): JSX.Element => {
 
   return (
     <div className="relative flex flex-col pt-20 pb-10 items-start gap-20 px-5  md:px-20">
+      {error ? (
+        <p className="w-full py-4 px-6 bg-error text-white font-poppins text-[18px] rounded-md text-center">
+          La transacción es invalida por favor ingresela nuevamente!
+        </p>
+      ) : null}
       <h1 className="text-[20px] md:text-[24px] text-darkBlue font-extrabold text-center font-poppins align-middle">
         <FontAwesomeIcon
           icon={faCreditCard}

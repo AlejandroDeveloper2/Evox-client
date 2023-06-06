@@ -1,7 +1,13 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import { EvoxContextType, Referral, Team, Transaction } from "../types";
+import {
+  BridgeFundsAccount,
+  EvoxContextType,
+  Referral,
+  Team,
+  Transaction,
+} from "../types";
 import {
   activeSynteticsAccount,
   invalidTransaction,
@@ -9,6 +15,7 @@ import {
   saveTransaction,
 } from "../services/synthetics";
 import { useApp } from "../hooks";
+import { getBridgeFundsAccounts } from "../services/bridgeFunds";
 
 const EvoxServicesContext = React.createContext<EvoxContextType>(
   {} as EvoxContextType
@@ -21,8 +28,11 @@ interface Props {
 const EvoxServicesProvider = ({ children }: Props) => {
   const [referrals, setReferrals] = React.useState<Referral[]>([]);
   const [team, setTeam] = React.useState<Team[]>([]);
-  const navigate = useNavigate();
+  const [bridgeFundsAccounts, setBridgeFundsAccounts] = React.useState<
+    BridgeFundsAccount[]
+  >([]);
 
+  const navigate = useNavigate();
   const { setLoading, setToast } = useApp();
 
   const getTeam = (team: Team[]): void => {
@@ -185,17 +195,42 @@ const EvoxServicesProvider = ({ children }: Props) => {
     }
   };
 
+  const getBridgeKindOfAccounts = async () => {
+    const token = localStorage.getItem("token");
+    setLoading({
+      message: "Cargando tipos de cuentas de fondeo...",
+      visible: true,
+    });
+    if (token) {
+      await getBridgeFundsAccounts(token)
+        .then((res) => {
+          setBridgeFundsAccounts(res);
+        })
+        .catch((error: Error) => {
+          console.error(error);
+        })
+        .finally(() => {
+          setLoading({
+            message: "",
+            visible: false,
+          });
+        });
+    }
+  };
+
   return (
     <EvoxServicesContext.Provider
       value={{
         referrals,
         team,
+        bridgeFundsAccounts,
         getTeam,
         getDirectReferrals,
         activeSyntheticAccount,
         registerSyntheticsAccount,
         sendTransaction,
         invalidSyntheticAccount,
+        getBridgeKindOfAccounts,
       }}
     >
       {children}

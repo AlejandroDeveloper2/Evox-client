@@ -1,11 +1,12 @@
 import React from "react";
-
-import { calculateTotalToPay } from "../../utils";
-
-import { CustomButton } from "..";
 import { useNavigate } from "react-router-dom";
 
-const AccountCard = (): JSX.Element => {
+import { calculateTotalToPay } from "../../utils";
+import { BridgeFundsAccount } from "../../types";
+
+import { CustomButton } from "..";
+
+const AccountCard = (props: BridgeFundsAccount): JSX.Element => {
   const [isChecked, setIsChecked] = React.useState<boolean>(false);
   const [accountQuantity, setAccountQuantity] = React.useState<string>("1");
   const [singlePrice] = React.useState("500");
@@ -27,43 +28,28 @@ const AccountCard = (): JSX.Element => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [accountQuantity]);
 
+  const features = props.description.split(",");
+
   return (
     <div
       className="w-full md:w-3/4 rounded-lg shadow-md border-[1px] border-violet 
-    relative flex flex-col  justify-center items-start gap-3 px-5 pt-20 pb-10"
+      relative flex flex-col  justify-center items-start gap-3 px-5 pt-20 pb-10"
     >
       <span
         className="w-[14rem] py-2 bg-gradient-to-r from-mediumBlue to-lightBlue text-white
         font-poppins font-extrabold text-center flex justify-center items-center absolute top-[-1rem]
         left-0 right-0 m-auto text-[16px] rounded-md px-3 uppercase"
       >
-        Cuenta $10.500 USD
+        Cuenta {props.price} USD
       </span>
-      <p className="text-[12px] text-darkGray font-poppins font-normal">
-        • Retiros desde el primer dia.
-      </p>
-      <p className="text-[12px] text-darkGray font-poppins font-normal">
-        • Sin límite de operaciones.
-      </p>
-      <p className="text-[12px] text-darkGray font-poppins font-normal">
-        • Máximo drawdawn <span className="font-extrabold">2% diario.</span>
-      </p>
-      <p className="text-[12px] text-darkGray font-poppins font-normal">
-        • Máxima drawdown <span className="font-extrabold">5% mensual.</span>
-      </p>
-      <p className="text-[12px] text-darkGray font-poppins font-normal">
-        • Recuerda que debes operar todos los días (Lunes a Viernes).
-      </p>
-      <p className="text-[12px] text-darkGray font-poppins font-normal">
-        • El volumen mínimo de operación es de 0,1 lotes.
-      </p>
-      <p className="text-[12px] text-darkGray font-poppins font-normal">
-        • No está permitido el HFT (High Frecuency Trading) cada operación debe
-        durar como mínimo 1m 30 seg
-      </p>
-      <p className="text-[12px] text-darkGray font-poppins font-normal">
-        • Operativa válida en mercado FOREX & XAU
-      </p>
+      {features.map((feature, index) => (
+        <p
+          key={index}
+          className="text-[12px] text-darkGray font-poppins font-normal"
+        >
+          • {feature}
+        </p>
+      ))}
       <div className="w-full flex justify-between items-center">
         <p className="text-[12px] text-darkGray font-poppins font-normal">
           • Acepto{" "}

@@ -15,8 +15,9 @@ const getBridgeFundsAccounts = async (
   try {
     const { data } = await axiosClient("/bridgeFunds/list", config);
     response = data;
-  } catch (error) {
-    console.log(error);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
+    throw new Error(error.response.data.message);
   }
   return response;
 };

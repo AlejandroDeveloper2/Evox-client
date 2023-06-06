@@ -3,10 +3,7 @@ import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { Navigate } from "react-router-dom";
 
 import useSWR from "swr";
-import {
-  getAccountStatus,
-  getTransactionStatus,
-} from "../../services/synthetics";
+import { getAccountStatus } from "../../services/synthetics";
 
 import { LinkAccount, PaymentNoDone } from "../../components";
 import { EvoxSynteticsLogo } from "../../assets";

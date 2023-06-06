@@ -1,6 +1,7 @@
 import { FormikValues } from "formik";
 
 import {
+  BridgeFundsAccount,
   City,
   Country,
   Referral,
@@ -51,12 +52,14 @@ interface EvoxContextType {
   children?: JSX.Element | JSX.Element[];
   team: Team[];
   referrals: Referral[];
+  bridgeFundsAccounts: BridgeFundsAccount[];
   getTeam: (team: Team[]) => void;
   getDirectReferrals: (referrals: Referral[]) => void;
   activeSyntheticAccount: (transaction: string) => Promise<void>;
   registerSyntheticsAccount: (login: string, password: string) => Promise<void>;
   sendTransaction: (transaction: Transaction) => Promise<void>;
-  invalidSyntheticAccount: (transaction: string) => Promise<void>
+  invalidSyntheticAccount: (transaction: string) => Promise<void>;
+  getBridgeKindOfAccounts: () => Promise<void>;
 }
 
 interface ThemeContextType {

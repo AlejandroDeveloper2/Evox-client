@@ -49,11 +49,11 @@ const UserRoutes = (): JSX.Element => {
         />
         <Route
           path="/dashboard/evoxSynthetics/syntheticsPayment"
-          element={<SyntheticsPayment type={false} />}
+          element={<SyntheticsPayment error={false} />}
         />
         <Route
           path="/dashboard/evoxSynthetics/syntheticsPayment/error"
-          element={<SyntheticsPayment type={true} />}
+          element={<SyntheticsPayment error={true} />}
         />
         <Route path="/dashboard/bridgeMarkets" element={<BridgeMarkets />} />
         <Route path="/dashboard/evoxSynthetics/academy" element={<Academy />} />
