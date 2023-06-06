@@ -66,11 +66,11 @@ const SyntheticsPayment = ({ error }: Props): JSX.Element => {
           <span>Criptomonedas</span>
           <span className="font-normal">Rellene los valores requeridos</span>
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2">
-          <span className="font-medium text-[18px] font-poppins text-darkBlue">
+        <div className="grid grid-cols-6 md:grid-cols-12 ">
+          <span className="font-medium text-[18px] font-poppins text-darkBlue col-span-4">
             USDT Red TRC20
           </span>
-          <div className="flex flex-col gap-5 items-start justify-center">
+          <div className="flex flex-col gap-5 items-start justify-center col-span-8">
             <p className="text-left text-[18px] font-poppins font-normal text-darkBlue">
               Utilice la siguiente red y ewallet para enviar su pago por USDT,
               debes enviar el valor exacto a depositar fuera de comisiones:
@@ -87,7 +87,7 @@ const SyntheticsPayment = ({ error }: Props): JSX.Element => {
               />
             </div>
             <CopyLink link={"TF6DuE3zehWhnSqv6E971iBtbwQfuPZEHe"} />
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="w-full">
               <div className="flex flex-col gap-3 justify-center items-center w-full">
                 <label
                   htmlFor="transactionId"

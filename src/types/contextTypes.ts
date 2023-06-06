@@ -60,6 +60,9 @@ interface EvoxContextType {
   sendTransaction: (transaction: Transaction) => Promise<void>;
   invalidSyntheticAccount: (transaction: string) => Promise<void>;
   getBridgeKindOfAccounts: () => Promise<void>;
+  activeBridgeAccount: (transaction: string) => Promise<void>;
+  invalidBridgeAccount: (transaction: string) => Promise<void>;
+  sendBridgeTransaction: (transaction: Transaction) => Promise<void>;
 }
 
 interface ThemeContextType {

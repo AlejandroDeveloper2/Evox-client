@@ -18,6 +18,7 @@ export { default as AcademyLogo } from "./images/evox-academy-logo.png";
 export { default as MamAccountsLogo } from "./images/mam-accounts-logo.png";
 export { default as QrImagen } from "./images/Qr-imagen.png";
 export { default as EvoxSynteticsLogo } from "./images/evox-synthetics-logo.png";
+export { default as BridgeFundsLogo } from "./images/bridge-funds-logo.png";
 
 /*icons */
 export { default as EducativeIcon } from "./icons/educativeicon.png";

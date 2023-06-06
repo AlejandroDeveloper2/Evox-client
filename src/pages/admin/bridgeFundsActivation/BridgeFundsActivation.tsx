@@ -1,69 +1,68 @@
 import {
+  faCircleUser,
+  faHashtag,
+  faUserAlt,
+  faPhone,
   faCalendar,
   faCheck,
-  faCircleUser,
   faCircleXmark,
-  faHashtag,
-  faPhone,
-  faUserAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useSWR from "swr";
 
-import { getUserSyntecticsAccounts } from "../../services/synthetics";
-import { useEvoxServices, useScreen, usePagination } from "../../hooks";
+import { useScreen, useEvoxServices, usePagination } from "../../../hooks";
+import { getBridgeFundsAccounts } from "../../../services/bridgeFunds";
 import { accountActivationsTableHeaders } from "./constans";
 
-import { CustomButton, EmptyTablet, Table, Spinner } from "../../components";
+import { CustomButton, EmptyTablet, Table, Spinner } from "../../../components";
 
-const AccountsActivation = (): JSX.Element => {
+const BridgeFundsActivation = (): JSX.Element => {
   const screenSize = useScreen();
   const token = localStorage.getItem("token") ?? "";
-  const { activeSyntheticAccount, invalidSyntheticAccount } = useEvoxServices();
-  const { data: accounts, isLoading } = useSWR("/synthetic/list", () =>
-    getUserSyntecticsAccounts(token)
+  const { activeBridgeAccount, invalidBridgeAccount } = useEvoxServices();
+  const { data: accounts, isLoading } = useSWR("/bridgeFunds/list", () =>
+    getBridgeFundsAccounts(token)
   );
 
   const { Pagination, records } = usePagination(accounts ? accounts : []);
-
   return (
     <div className="relative flex flex-col pt-20 pb-10 items-center gap-10 px-5  md:px-20">
       <h1
         className="lg:text-[24px] text-[20px] text-center lg:text-left 
-        font-poppins text-darkBlue dark:text-white font-extrabold"
+      font-poppins text-darkBlue dark:text-white font-extrabold"
       >
         <FontAwesomeIcon
           icon={faCircleUser}
           className="text-[40px] text-blue align-middle"
         />{" "}
-        <span className="align-middle"> Activación de cuentas sintéticos </span>
+        <span className="align-middle"> Activación de cuentas de fondeo </span>
       </h1>
       <div className="w-full flex justify-center items-start flex-col overflow-x-scroll">
         <Table headers={accountActivationsTableHeaders}>
           {isLoading ? (
-            <Spinner message="Cargando cuentas de sintéticos..." />
+            <Spinner message="Cargando cuentas de fondeo..." />
           ) : accounts && accounts.length > 0 ? (
             records.map((account, index) =>
               screenSize < 768 ? (
                 <div
                   key={index}
                   className="w-full bg-white p-4 flex flex-col gap-2 shadow-md rounded-md items-start 
-                    after:absolute after:w-[5px] after:h-full after:right-0 after:top-0 
-                    relative overflow-hidden  after:bg-gradient-to-b after:from-purple after:via-mediumBlue after:to-lightBlue"
+                  after:absolute after:w-[5px] after:h-full after:right-0 after:top-0 
+                  relative overflow-hidden  after:bg-gradient-to-b after:from-purple after:via-mediumBlue after:to-lightBlue"
                 >
                   <div className="text-darkGray font-poppins font-medium">
                     <span className="text-darkGray font-poppins font-semibold  mr-2">
                       {<FontAwesomeIcon icon={faHashtag} className="mr-2" />}
-                      Transacción
+                      Transacción:
                     </span>
                     {account.transaction}
                   </div>
-                  <div className="text-darkGray font-poppins font-medium truncate w-full">
+                  <div className="text-darkGray font-poppins font-medium">
                     <span className="text-darkGray font-poppins font-semibold  mr-2">
-                      {<FontAwesomeIcon icon={faUserAlt} className="mr-2" />}
-                      Moneda:
+                      {<FontAwesomeIcon icon={faHashtag} className="mr-2" />}
+                      Titulo:
                     </span>
-                    {account.currency}
+                    {account.title}
                   </div>
                   <div className="text-darkGray font-poppins font-medium truncate w-full">
                     <span className="text-darkGray font-poppins font-semibold  mr-2">
@@ -74,11 +73,26 @@ const AccountsActivation = (): JSX.Element => {
                   </div>
                   <div className="text-darkGray font-poppins font-medium truncate w-full">
                     <span className="text-darkGray font-poppins font-semibold  mr-2">
-                      {<FontAwesomeIcon icon={faCalendar} className="mr-2" />}
-                      Estado:
+                      {<FontAwesomeIcon icon={faPhone} className="mr-2" />}
+                      Cantidad:
                     </span>
-                    {account.state ? "Activa" : "Inactiva"}
+                    {account.quantity}
                   </div>
+                  <div className="text-darkGray font-poppins font-medium truncate w-full">
+                    <span className="text-darkGray font-poppins font-semibold  mr-2">
+                      {<FontAwesomeIcon icon={faPhone} className="mr-2" />}
+                      Total:
+                    </span>
+                    {account.total}
+                  </div>
+                  <div className="text-darkGray font-poppins font-medium truncate w-full">
+                    <span className="text-darkGray font-poppins font-semibold  mr-2">
+                      {<FontAwesomeIcon icon={faUserAlt} className="mr-2" />}
+                      Moneda:
+                    </span>
+                    {account.currency}
+                  </div>
+
                   <div className="text-darkGray font-poppins font-medium truncate w-full">
                     <span className="text-darkGray font-poppins font-semibold  mr-2">
                       {<FontAwesomeIcon icon={faCalendar} className="mr-2" />}
@@ -89,9 +103,16 @@ const AccountsActivation = (): JSX.Element => {
                   <div className="text-darkGray font-poppins font-medium truncate w-full">
                     <span className="text-darkGray font-poppins font-semibold  mr-2">
                       {<FontAwesomeIcon icon={faCalendar} className="mr-2" />}
-                      Email:
+                      Correo:
                     </span>
                     {account.email}
+                  </div>
+                  <div className="text-darkGray font-poppins font-medium truncate w-full">
+                    <span className="text-darkGray font-poppins font-semibold  mr-2">
+                      {<FontAwesomeIcon icon={faCalendar} className="mr-2" />}
+                      Estado:
+                    </span>
+                    {account.state ? "Activa" : "Inactiva"}
                   </div>
                   <div className="flex gap-3 items-center justify-center">
                     <CustomButton
@@ -104,9 +125,7 @@ const AccountsActivation = (): JSX.Element => {
                         color: "text-white",
                         aditionalStyles: "h-[3rem] w-[3rem]",
                       }}
-                      onClick={() =>
-                        activeSyntheticAccount(account.transaction)
-                      }
+                      onClick={() => activeBridgeAccount(account.transaction)}
                       disabled={account.state}
                     />
                     <CustomButton
@@ -119,9 +138,7 @@ const AccountsActivation = (): JSX.Element => {
                         color: "text-white",
                         aditionalStyles: "h-[3rem] w-[3rem]",
                       }}
-                      onClick={() =>
-                        invalidSyntheticAccount(account.transaction)
-                      }
+                      onClick={() => invalidBridgeAccount(account.transaction)}
                       disabled={account.state}
                     />
                   </div>
@@ -134,13 +151,16 @@ const AccountsActivation = (): JSX.Element => {
                   <td className="px-6 py-4 font-medium text-darkGray whitespace-nowrap dark:text-white">
                     {account.transaction}
                   </td>
-                  <td className="px-6 py-4">{account.currency}</td>
+                  <td className="px-6 py-4">{account.title}</td>
                   <td className="px-6 py-4">{account.price}</td>
+                  <td className="px-6 py-4">{account.quantity}</td>
+                  <td className="px-6 py-4">{account.total}</td>
+                  <td className="px-6 py-4">{account.currency}</td>
+                  <td className="px-6 py-4">{account.username}</td>
+                  <td className="px-6 py-4">{account.email}</td>
                   <td className="px-6 py-4">
                     {account.state ? "Activa" : "Inactiva"}
                   </td>
-                  <td className="px-6 py-4">{account.username}</td>
-                  <td className="px-6 py-4">{account.email}</td>
                   <td className="px-6 py-4 flex gap-2 items-center">
                     <CustomButton
                       type="button"
@@ -152,9 +172,7 @@ const AccountsActivation = (): JSX.Element => {
                         color: "text-white",
                         aditionalStyles: "h-[3rem] w-[3rem]",
                       }}
-                      onClick={() =>
-                        activeSyntheticAccount(account.transaction)
-                      }
+                      onClick={() => activeBridgeAccount(account.transaction)}
                       disabled={account.state}
                     />
                     <CustomButton
@@ -167,9 +185,7 @@ const AccountsActivation = (): JSX.Element => {
                         color: "text-white",
                         aditionalStyles: "h-[3rem] w-[3rem]",
                       }}
-                      onClick={() =>
-                        invalidSyntheticAccount(account.transaction)
-                      }
+                      onClick={() => invalidBridgeAccount(account.transaction)}
                       disabled={account.state}
                     />
                   </td>
@@ -177,7 +193,7 @@ const AccountsActivation = (): JSX.Element => {
               )
             )
           ) : (
-            <EmptyTablet message="No hay cuentas aún" colspan={9} />
+            <EmptyTablet message="No hay cuentas aún" colspan={10} />
           )}
         </Table>
       </div>
@@ -186,4 +202,4 @@ const AccountsActivation = (): JSX.Element => {
   );
 };
 
-export default AccountsActivation;
+export default BridgeFundsActivation;

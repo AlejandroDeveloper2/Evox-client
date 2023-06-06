@@ -6,23 +6,24 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useSWR from "swr";
 
-import { getAccountStatus } from "../../services/synthetics";
+import { getBridgeFundsAccountStatus } from "../../services/bridgeFunds";
 
 import { CopyLink, MTPlatforms, PaymentNoDone } from "../../components";
 import { Navigate } from "react-router-dom";
 
 const MyAccounts = (): JSX.Element => {
   const token = localStorage.getItem("token") ?? "";
-  const { data: status } = useSWR("/synthetic/accountStatus", () =>
-    getAccountStatus(token)
+  const { data: status } = useSWR("/bridgeFunds/accountStatus", () =>
+    getBridgeFundsAccountStatus(token)
   );
 
   return (
     <div className="relative flex flex-col pt-20 pb-10 items-center gap-20 px-5  md:px-20">
       {status === "Shopping" ? (
         <PaymentNoDone
-          paymentLink="/dashboard/bridgeFunds/bridgeFundsPayment"
+          paymentLink="/dashboard/bridgeFunds/kindOfAccounts"
           label="Realizar el pago de tu cuenta de fondeos"
+          type="brigeFunds"
         />
       ) : status === "Pending" ? (
         <p className="text-[16px] text-darkGray font-poppins font-normal md:w-3/4 text-center flex flex-col gap-2">
@@ -30,8 +31,8 @@ const MyAccounts = (): JSX.Element => {
             icon={faInfoCircle}
             className="text-[50px] text-success"
           />
-          Tu cuenta de sinteticos esta pendiente a verificación en las proximas
-          24 horas tu cuenta será activada!
+          Tu cuenta de fondeo esta pendiente a verificación en las proximas 24
+          horas tu cuenta será activada!
         </p>
       ) : status === "Error" ? (
         <Navigate to="/dashboard/bridgeFunds/bridgeFundsPayment" />

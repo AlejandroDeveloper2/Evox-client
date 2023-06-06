@@ -46,7 +46,7 @@ const MAMAccounts = (): JSX.Element => {
           en automático.
         </p>
         <CustomButton
-          type="button"
+          type="externalLink"
           label="Conoce el paso a paso aqui"
           theme={{
             bg: "bg-blue",
@@ -54,7 +54,7 @@ const MAMAccounts = (): JSX.Element => {
             aditionalStyles: "w-full md:w-3/5 mt-5",
           }}
           icon={faPaperPlane}
-          onClick={() => console.log("Step")}
+          externalLink="https://t.me/evoXvirtualbot"
         />
       </section>
     </div>

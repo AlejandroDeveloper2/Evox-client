@@ -21,6 +21,7 @@ const CopySynthetics = (): JSX.Element => {
         <PaymentNoDone
           paymentLink="/dashboard/evoxSynthetics/syntheticsPayment"
           label="Realizar el pago de tu cuenta de sintéticos"
+          type="synthetics"
         />
       ) : status === "Pending" ? (
         <p className="text-[16px] text-darkGray font-poppins font-normal md:w-3/4 text-center flex flex-col gap-2">

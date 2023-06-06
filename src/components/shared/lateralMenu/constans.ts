@@ -193,8 +193,14 @@ const getMenuItems = (roleUser: Role): MenuItem[] => {
     },
     {
       rightIcon: null,
-      label: "Activación de cuentas",
+      label: "Activación de cuentas de sintéticos",
       to: "/admin/accountsActivation",
+      enabled: true,
+    },
+    {
+      rightIcon: null,
+      label: "Activación de cuentas de fondeo",
+      to: "/admin/bridgeFundsAccounts",
       enabled: true,
     },
   ];

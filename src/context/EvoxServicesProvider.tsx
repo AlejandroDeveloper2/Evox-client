@@ -15,7 +15,12 @@ import {
   saveTransaction,
 } from "../services/synthetics";
 import { useApp } from "../hooks";
-import { getBridgeFundsAccounts } from "../services/bridgeFunds";
+import {
+  activeBridgeFundsAccount,
+  getBridgeFundsAccounts,
+  invalidBridgeFundsTransaction,
+  saveBridgeFundsTransaction,
+} from "../services/bridgeFunds";
 
 const EvoxServicesContext = React.createContext<EvoxContextType>(
   {} as EvoxContextType
@@ -195,6 +200,7 @@ const EvoxServicesProvider = ({ children }: Props) => {
     }
   };
 
+  /*Bidge Context */
   const getBridgeKindOfAccounts = async () => {
     const token = localStorage.getItem("token");
     setLoading({
@@ -218,6 +224,117 @@ const EvoxServicesProvider = ({ children }: Props) => {
     }
   };
 
+  const activeBridgeAccount = async (transaction: string): Promise<void> => {
+    const token = localStorage.getItem("token");
+    setLoading({
+      message: "Activando cuenta...",
+      visible: true,
+    });
+    if (token) {
+      await activeBridgeFundsAccount(token, transaction)
+        .then((res) => {
+          console.log(res);
+          setToast({
+            message: "Cuenta activada correctamente!",
+            visible: true,
+            type: "success",
+          });
+        })
+        .catch((error: Error) => {
+          setToast({
+            message: error.message,
+            visible: true,
+            type: "error",
+          });
+        })
+        .finally(() => {
+          setLoading({
+            message: "",
+            visible: false,
+          });
+        });
+    }
+  };
+
+  const invalidBridgeAccount = async (transaction: string): Promise<void> => {
+    const token = localStorage.getItem("token");
+    setLoading({
+      message: "Invalidando transacción...",
+      visible: true,
+    });
+    if (token) {
+      await invalidBridgeFundsTransaction(token, transaction)
+        .then((res) => {
+          setToast({
+            message: res.message,
+            visible: true,
+            type: "success",
+          });
+        })
+        .catch((error: Error) => {
+          setToast({
+            message: error.message,
+            visible: true,
+            type: "error",
+          });
+        })
+        .finally(() => {
+          setTimeout(() => {
+            setToast({
+              message: "",
+              visible: false,
+              type: "success",
+            });
+          }, 3000);
+          setLoading({
+            message: "",
+            visible: false,
+          });
+        });
+    }
+  };
+
+  const sendBridgeTransaction = async (
+    transaction: Transaction
+  ): Promise<void> => {
+    const token = localStorage.getItem("token");
+    setLoading({
+      message: "Enviando transacción...",
+      visible: true,
+    });
+    if (token) {
+      await saveBridgeFundsTransaction(token, transaction)
+        .then((res) => {
+          setToast({
+            message: res.message,
+            visible: true,
+            type: "success",
+          });
+          navigate("/dashboard/bridgeFunds/myAccounts");
+        })
+        .catch((error: Error) => {
+          setToast({
+            message: error.message,
+            visible: true,
+            type: "error",
+          });
+        })
+        .finally(() => {
+          setTimeout(() => {
+            setToast({
+              message: "",
+              visible: false,
+              type: "success",
+            });
+          }, 3000);
+          setLoading({
+            message: "",
+            visible: false,
+          });
+        });
+    }
+  };
+
   return (
     <EvoxServicesContext.Provider
       value={{
@@ -231,6 +348,9 @@ const EvoxServicesProvider = ({ children }: Props) => {
         sendTransaction,
         invalidSyntheticAccount,
         getBridgeKindOfAccounts,
+        activeBridgeAccount,
+        invalidBridgeAccount,
+        sendBridgeTransaction,
       }}
     >
       {children}

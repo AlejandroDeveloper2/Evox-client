@@ -121,6 +121,12 @@ interface SyntheticsAccount {
   email: string;
 }
 
+interface BridgeAccount extends SyntheticsAccount {
+  title: string;
+  quantity: number;
+  total: number;
+}
+
 interface Transaction {
   createdAt?: string;
   currency?: string;
@@ -168,4 +174,5 @@ export type {
   Transaction,
   Role,
   BridgeFundsAccount,
+  BridgeAccount,
 };

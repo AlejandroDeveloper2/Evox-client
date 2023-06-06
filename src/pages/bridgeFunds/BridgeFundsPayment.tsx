@@ -1,33 +1,61 @@
-import React from "react";
-
+import React, { useEffect } from "react";
 import { faCreditCard } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import { useEvoxServices } from "../../hooks";
+import { Transaction } from "../../types";
+import { getBridgeFundsTransactionStatus } from "../../services/bridgeFunds";
+
 import { QrImagen, TetherLogo } from "../../assets";
 import { CopyLink, CustomButton } from "../../components";
-import { useEvoxServices } from "../../hooks";
 
-const BridgeFundsPayment = (): JSX.Element => {
-  const [transactionHash, setTransactionHash] = React.useState("");
-  const { sendTransaction } = useEvoxServices();
+interface Props {
+  error: boolean;
+}
+
+const BridgeFundsPayment = ({ error }: Props): JSX.Element => {
+  const token = localStorage.getItem("token") ?? "";
+  const [transactionHash, setTransactionHash] = React.useState<Transaction>({
+    transaction: "",
+  });
+  const { sendBridgeTransaction } = useEvoxServices();
+
+  useEffect(() => {
+    const getTransaction = async () => {
+      if (error) {
+        const data = await getBridgeFundsTransactionStatus(token);
+        setTransactionHash(data);
+      }
+    };
+    getTransaction();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTransactionHash(e.target.value);
+    setTransactionHash({
+      ...transactionHash,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const validateField = (): boolean => {
-    if (transactionHash === "") return true;
+    if (Object.values(transactionHash).includes("")) return true;
     return false;
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    sendTransaction(transactionHash);
-    setTransactionHash("");
+    sendBridgeTransaction(transactionHash);
+    setTransactionHash({ transaction: "" });
   };
 
   return (
     <div className="relative flex flex-col pt-20 pb-10 items-start gap-20 px-5  md:px-20">
+      {error ? (
+        <p className="w-full py-4 px-6 bg-error text-white font-poppins text-[18px] rounded-md text-center">
+          La transacción es invalida por favor ingresela nuevamente!
+        </p>
+      ) : null}
       <h1 className="text-[20px] md:text-[24px] text-darkBlue font-extrabold text-center font-poppins align-middle">
         <FontAwesomeIcon
           icon={faCreditCard}
@@ -40,11 +68,11 @@ const BridgeFundsPayment = (): JSX.Element => {
           <span>Criptomonedas</span>
           <span className="font-normal">Rellene los valores requeridos</span>
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2">
-          <span className="font-medium text-[18px] font-poppins text-darkBlue">
+        <div className="grid grid-cols-6 md:grid-cols-12">
+          <span className="font-medium text-[18px] font-poppins text-darkBlue col-span-4">
             USDT Red TRC20
           </span>
-          <div className="flex flex-col gap-5 items-start justify-center">
+          <div className="flex flex-col gap-5 items-start justify-center col-span-8">
             <p className="text-left text-[18px] font-poppins font-normal text-darkBlue">
               Utilice la siguiente red y ewallet para enviar su pago por USDT,
               debes enviar el valor exacto a depositar fuera de comisiones:
@@ -61,7 +89,7 @@ const BridgeFundsPayment = (): JSX.Element => {
               />
             </div>
             <CopyLink link={"TF6DuE3zehWhnSqv6E971iBtbwQfuPZEHe"} />
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="w-full">
               <div className="flex flex-col gap-3 justify-center items-center w-full">
                 <label
                   htmlFor="transactionId"
@@ -72,8 +100,8 @@ const BridgeFundsPayment = (): JSX.Element => {
                 <input
                   type="text"
                   id="transactionId"
-                  name="transactionId"
-                  value={transactionHash}
+                  name="transaction"
+                  value={transactionHash.transaction}
                   onChange={onChange}
                   className="outline-none bg-white py-2 px-3 rounded-xl border-[1px] border-gray w-full"
                 />
