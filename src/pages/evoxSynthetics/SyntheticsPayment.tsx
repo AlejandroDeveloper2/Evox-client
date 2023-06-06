@@ -1,19 +1,30 @@
-import React from "react";
-import { faCreditCard } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useLocation } from "react-router-dom";
+import React, { useEffect } from "react";
 
-import { QrImagen, TetherLogo } from "../../assets";
-import { CopyLink, CustomButton } from "../../components";
 import { useEvoxServices } from "../../hooks";
 import { Transaction } from "../../types";
+import { getTransactionStatus } from "../../services/synthetics";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCreditCard } from "@fortawesome/free-solid-svg-icons";
+import { QrImagen, TetherLogo } from "../../assets";
+import { CopyLink, CustomButton } from "../../components";
+interface Props {
+  type: boolean;
+}
+const SyntheticsPayment = ({ type }: Props): JSX.Element => {
+  const token = localStorage.getItem("token")!;
+  useEffect(() => {
+    const gokuGay = async () => {
+      if (type == true) {
+        const data = await getTransactionStatus(token);
+        console.log(data);
+      }
+    };
+    gokuGay();
+  }, []);
 
-const SyntheticsPayment = (): JSX.Element => {
-  const location = useLocation();
-  const transactionParam = location.pathname.split("/")[4];
-  const [transaction, setTransaction] = React.useState<Transaction>(
-    JSON.parse(transactionParam)
-  );
+  const [transaction, setTransaction] = React.useState<Transaction>({
+    transaction: "",
+  });
   const { sendTransaction } = useEvoxServices();
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,14 +46,6 @@ const SyntheticsPayment = (): JSX.Element => {
 
   return (
     <div className="relative flex flex-col pt-20 pb-10 items-start gap-20 px-5  md:px-20">
-      {transactionParam ? (
-        <p
-          className="text-[20px] md:text-[24px] text-white font-extrabold text-center font-poppins align-middle
-            p-10 bg-error"
-        >
-          Hash de transacción invalido ingreselo nuevamente!
-        </p>
-      ) : null}
       <h1 className="text-[20px] md:text-[24px] text-darkBlue font-extrabold text-center font-poppins align-middle">
         <FontAwesomeIcon
           icon={faCreditCard}

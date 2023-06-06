@@ -16,9 +16,6 @@ const CopySynthetics = (): JSX.Element => {
   const { data: status } = useSWR("/synthetic/accountStatus", () =>
     getAccountStatus(token)
   );
-  const { data: transaction } = useSWR("/synthetic/transaction", () =>
-    getTransactionStatus(token)
-  );
 
   return (
     <div className="relative flex flex-col pt-20 pb-10 items-center gap-10 px-5  md:px-20">
@@ -38,9 +35,7 @@ const CopySynthetics = (): JSX.Element => {
           24 horas tu cuenta será activada!
         </p>
       ) : status === "Error" ? (
-        <Navigate
-          to={`/dashboard/evoxSynthetics/syntheticsPayment/${transaction?.transaction}`}
-        />
+        <Navigate to={`/dashboard/evoxSynthetics/syntheticsPayment/error`} />
       ) : (
         <LinkAccount />
       )}
