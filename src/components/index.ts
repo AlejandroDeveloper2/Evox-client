@@ -43,3 +43,4 @@ export { default as MTPlatforms } from "./bridgeFunds/MTPlatforms";
 /*Syntetics components */
 export { default as LinkAccount } from "./evoxSyntetics/LinkAccount";
 export { default as LinkAccountForm } from "./evoxSyntetics/LinkAccountForm";
+export { default as SyntheticAccountList } from "./evoxSyntetics/SyntheticAccountList";

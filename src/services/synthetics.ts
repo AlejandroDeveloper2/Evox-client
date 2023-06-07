@@ -6,6 +6,7 @@ import {
   ServerResponseSuccess,
   SyntheticsAccount,
   Transaction,
+  UserSyntheticAccount,
 } from "../types";
 
 const getUserSyntecticsAccounts = async (
@@ -188,6 +189,55 @@ const getTransactionStatus = async (token: string): Promise<Transaction> => {
   return response;
 };
 
+const verifyUserSyntheticAccount = async (token: string): Promise<boolean> => {
+  const axiosClient = getAxiosClient("evoxAPI");
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  let response = false;
+  try {
+    const { data } = await axiosClient.get<boolean>(
+      `/users/syntheticsAccount`,
+      config
+    );
+    response = data;
+  } catch (error: any) {
+    console.log(error);
+  }
+  return response;
+};
+
+const getUserSyntheticAccount = async (
+  token: string
+): Promise<UserSyntheticAccount> => {
+  const axiosClient = getAxiosClient("evoxAPI");
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  let response: UserSyntheticAccount = {
+    id: 0,
+    login: "",
+  };
+
+  try {
+    const { data } = await axiosClient.get<UserSyntheticAccount>(
+      `/users/account`,
+      config
+    );
+    response = data;
+  } catch (error: any) {
+    console.log(error);
+  }
+  return response;
+};
+
 export {
   getUserSyntecticsAccounts,
   getAccountStatus,
@@ -196,4 +246,6 @@ export {
   saveTransaction,
   invalidTransaction,
   getTransactionStatus,
+  verifyUserSyntheticAccount,
+  getUserSyntheticAccount,
 };

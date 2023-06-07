@@ -23,6 +23,7 @@ export type {
   Role,
   BridgeFundsAccount,
   BridgeAccount,
+  UserSyntheticAccount,
 } from "./dataTypes";
 
 /* Component types Models */

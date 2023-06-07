@@ -4,6 +4,7 @@ import { Navigate } from "react-router-dom";
 
 import useSWR from "swr";
 import { getAccountStatus } from "../../services/synthetics";
+// import { useAuth } from "../../hooks";
 
 import { LinkAccount, PaymentNoDone } from "../../components";
 import { EvoxSynteticsLogo } from "../../assets";
@@ -13,6 +14,7 @@ const CopySynthetics = (): JSX.Element => {
   const { data: status } = useSWR("/synthetic/accountStatus", () =>
     getAccountStatus(token)
   );
+  // const { auth } = useAuth();
 
   return (
     <div className="relative flex flex-col pt-20 pb-10 items-center gap-10 px-5  md:px-20">

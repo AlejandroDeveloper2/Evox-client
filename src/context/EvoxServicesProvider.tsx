@@ -7,12 +7,15 @@ import {
   Referral,
   Team,
   Transaction,
+  UserSyntheticAccount,
 } from "../types";
 import {
   activeSynteticsAccount,
+  getUserSyntheticAccount,
   invalidTransaction,
   registerSynteticAccount,
   saveTransaction,
+  verifyUserSyntheticAccount,
 } from "../services/synthetics";
 import { useApp } from "../hooks";
 import {
@@ -36,6 +39,12 @@ const EvoxServicesProvider = ({ children }: Props) => {
   const [bridgeFundsAccounts, setBridgeFundsAccounts] = React.useState<
     BridgeFundsAccount[]
   >([]);
+  const [hasAccount, setHasAccount] = React.useState<boolean>(false);
+  const [userSyntheticAccount, setUserSyntheticAccount] =
+    React.useState<UserSyntheticAccount>({
+      id: 0,
+      login: "",
+    });
 
   const navigate = useNavigate();
   const { setLoading, setToast } = useApp();
@@ -92,6 +101,7 @@ const EvoxServicesProvider = ({ children }: Props) => {
     if (token) {
       await registerSynteticAccount(token, login, password)
         .then((res) => {
+          checkUserSyntheticAccount();
           setToast({
             message: res.message,
             visible: true,
@@ -335,12 +345,55 @@ const EvoxServicesProvider = ({ children }: Props) => {
     }
   };
 
+  const checkUserSyntheticAccount = async (): Promise<void> => {
+    const token = localStorage.getItem("token");
+    setLoading({
+      message: "Cargando...",
+      visible: true,
+    });
+    if (token) {
+      await verifyUserSyntheticAccount(token)
+        .then((res) => {
+          setHasAccount(res);
+          console.log(res);
+        })
+        .finally(() => {
+          setLoading({
+            message: "",
+            visible: false,
+          });
+        });
+    }
+  };
+
+  const getSyntheticAccount = async (): Promise<void> => {
+    const token = localStorage.getItem("token");
+    setLoading({
+      message: "Cargando cuenta de usuario...",
+      visible: true,
+    });
+    if (token) {
+      await getUserSyntheticAccount(token)
+        .then((res) => {
+          setUserSyntheticAccount(res);
+        })
+        .finally(() => {
+          setLoading({
+            message: "",
+            visible: false,
+          });
+        });
+    }
+  };
+
   return (
     <EvoxServicesContext.Provider
       value={{
         referrals,
         team,
         bridgeFundsAccounts,
+        hasAccount,
+        userSyntheticAccount,
         getTeam,
         getDirectReferrals,
         activeSyntheticAccount,
@@ -351,6 +404,8 @@ const EvoxServicesProvider = ({ children }: Props) => {
         activeBridgeAccount,
         invalidBridgeAccount,
         sendBridgeTransaction,
+        checkUserSyntheticAccount,
+        getSyntheticAccount,
       }}
     >
       {children}

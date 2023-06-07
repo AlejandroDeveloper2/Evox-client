@@ -64,6 +64,7 @@ interface UserAuth {
   suponsorName: string | null;
   iat: number;
   exp: number;
+  accountSynthetic: number;
 }
 
 type RoleType = "ROLE_USER" | "ROLE_ADMIN";
@@ -148,6 +149,11 @@ interface BridgeFundsAccount {
   currency: string;
 }
 
+interface UserSyntheticAccount {
+  id: number;
+  login: string;
+}
+
 type AccountStatus = "Verified" | "Shopping" | "Pending" | "Error";
 type TransactionType = "Synthetic" | "Bridge funds";
 
@@ -175,4 +181,5 @@ export type {
   Role,
   BridgeFundsAccount,
   BridgeAccount,
+  UserSyntheticAccount,
 };
