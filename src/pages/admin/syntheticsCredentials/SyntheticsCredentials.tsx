@@ -1,3 +1,4 @@
+import React from "react";
 import {
   faCircleUser,
   faHashtag,
@@ -6,11 +7,12 @@ import {
   faUser,
   faMessage,
   faLock,
+  faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useSWR from "swr";
 
-import { useScreen, useEvoxServices, usePagination } from "../../../hooks";
+import { useScreen, usePagination } from "../../../hooks";
 import { syntheticCredentialsTableHeaders } from "./constans";
 import { getSyntheticsAccountCredentials } from "../../../services/synthetics";
 
@@ -19,10 +21,10 @@ import { CustomButton, EmptyTablet, Table, Spinner } from "../../../components";
 const SyntheticsCredentials = (): JSX.Element => {
   const screenSize = useScreen();
   const token = localStorage.getItem("token") ?? "";
-  const { activeBridgeAccount } = useEvoxServices();
   const { data: credentialList, isLoading } = useSWR("/synthetic/access", () =>
     getSyntheticsAccountCredentials(token)
   );
+  const [isChecking, setIsChecking] = React.useState<boolean>(false);
 
   const { Pagination, records } = usePagination(
     credentialList ? credentialList : []
@@ -101,15 +103,15 @@ const SyntheticsCredentials = (): JSX.Element => {
                   <div className="flex gap-3 items-center justify-center">
                     <CustomButton
                       type="button"
-                      label={"No ingresado"}
+                      label={isChecking ? "Ingresado" : "No ingresado"}
                       title=""
-                      icon={faCheck}
+                      icon={isChecking ? faCheck : faXmark}
                       theme={{
-                        bg: "bg-blue",
+                        bg: isChecking ? "bg-success" : "bg-error",
                         color: "text-white",
-                        aditionalStyles: "h-[3rem] w-[3rem]",
+                        aditionalStyles: "h-[3rem]",
                       }}
-                      onClick={() => activeBridgeAccount(account.transaction)}
+                      onClick={() => setIsChecking(!isChecking)}
                     />
                   </div>
                 </div>
@@ -129,15 +131,15 @@ const SyntheticsCredentials = (): JSX.Element => {
                   <td className="px-6 py-4 flex gap-2 items-center">
                     <CustomButton
                       type="button"
-                      label={"No ingresado"}
+                      label={isChecking ? "Ingresado" : "No ingresado"}
                       title=""
-                      icon={faCheck}
+                      icon={isChecking ? faCheck : faXmark}
                       theme={{
-                        bg: "bg-blue",
+                        bg: isChecking ? "bg-success" : "bg-error",
                         color: "text-white",
-                        aditionalStyles: "h-[3rem] w-[3rem]",
+                        aditionalStyles: "h-[3rem]",
                       }}
-                      onClick={() => activeBridgeAccount(account.transaction)}
+                      onClick={() => setIsChecking(!isChecking)}
                     />
                   </td>
                 </tr>
