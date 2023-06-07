@@ -19,7 +19,7 @@ const Users = (): JSX.Element => {
     <div className="relative flex flex-col py-10 items-center gap-10">
       <h1
         className="lg:text-[24px] text-[20px] text-center lg:text-left 
-    font-poppins text-darkBlue dark:text-white font-extrabold"
+    font-poppins text-darkBlue dark:text-white font-extrabold flex flex-col gap-2 md:flex-row"
       >
         <FontAwesomeIcon
           icon={faUsers}

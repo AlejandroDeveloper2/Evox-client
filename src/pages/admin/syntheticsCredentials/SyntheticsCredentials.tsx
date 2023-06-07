@@ -11,17 +11,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useSWR from "swr";
 
 import { useScreen, useEvoxServices, usePagination } from "../../../hooks";
-import { getUsersBridgeFundsAccounts } from "../../../services/bridgeFunds";
 import { syntheticCredentialsTableHeaders } from "./constans";
+import { getSyntheticsAccountCredentials } from "../../../services/synthetics";
 
 import { CustomButton, EmptyTablet, Table, Spinner } from "../../../components";
 
 const SyntheticsCredentials = (): JSX.Element => {
   const screenSize = useScreen();
   const token = localStorage.getItem("token") ?? "";
-  const { activeBridgeAccount, invalidBridgeAccount } = useEvoxServices();
+  const { activeBridgeAccount } = useEvoxServices();
   const { data: credentialList, isLoading } = useSWR("/synthetic/access", () =>
-    getUsersBridgeFundsAccounts(token)
+    getSyntheticsAccountCredentials(token)
   );
 
   const { Pagination, records } = usePagination(
@@ -32,7 +32,7 @@ const SyntheticsCredentials = (): JSX.Element => {
     <div className="relative flex flex-col pt-20 pb-10 items-center gap-10 px-5  md:px-20">
       <h1
         className="lg:text-[24px] text-[20px] text-center lg:text-left 
-        font-poppins text-darkBlue dark:text-white font-extrabold"
+        font-poppins text-darkBlue dark:text-white font-extrabold flex flex-col gap-2 md:flex-row"
       >
         <FontAwesomeIcon
           icon={faCircleUser}

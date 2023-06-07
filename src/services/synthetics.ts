@@ -5,6 +5,7 @@ import {
   ServerResponseFail,
   ServerResponseSuccess,
   SyntheticsAccount,
+  SyntheticsAccountCredentials,
   Transaction,
   UserSyntheticAccount,
 } from "../types";
@@ -238,6 +239,30 @@ const getUserSyntheticAccount = async (
   return response;
 };
 
+const getSyntheticsAccountCredentials = async (
+  token: string
+): Promise<SyntheticsAccountCredentials[]> => {
+  const axiosClient = getAxiosClient("evoxAPI");
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  let response: SyntheticsAccountCredentials[] = [];
+
+  try {
+    const { data } = await axiosClient.get<SyntheticsAccountCredentials[]>(
+      `/synthetic/access`,
+      config
+    );
+    response = data;
+  } catch (error: any) {
+    console.log(error);
+  }
+  return response;
+};
+
 export {
   getUserSyntecticsAccounts,
   getAccountStatus,
@@ -248,4 +273,5 @@ export {
   getTransactionStatus,
   verifyUserSyntheticAccount,
   getUserSyntheticAccount,
+  getSyntheticsAccountCredentials,
 };

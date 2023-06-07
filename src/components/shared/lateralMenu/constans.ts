@@ -203,6 +203,12 @@ const getMenuItems = (roleUser: Role): MenuItem[] => {
       to: "/admin/bridgeFundsAccounts",
       enabled: true,
     },
+    {
+      rightIcon: null,
+      label: "Credenciales de sintéticos",
+      to: "/admin/syntheticsCredentials",
+      enabled: true,
+    },
   ];
 };
 

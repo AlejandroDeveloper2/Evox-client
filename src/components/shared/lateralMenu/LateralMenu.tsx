@@ -17,7 +17,7 @@ const LateralMenu = (): JSX.Element => {
   return (
     <nav
       id="nav"
-      className={` w-[75%] lg:w-[60%] h-full flex flex-col justify-start items-center transition-transform 
+      className={` w-[75%] lg:w-[25%] h-full flex flex-col justify-start items-center transition-transform 
        ${
          isMenuVisible
            ? "translate-x-0 xl:translate-x-0"

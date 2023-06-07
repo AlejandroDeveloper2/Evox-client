@@ -6,6 +6,7 @@ import {
   AccountsActvation,
   UserProfile,
   BridgeFundsActivation,
+  SyntheticsCredentials,
 } from "../pages";
 
 const AdminRoutes = (): JSX.Element => {
@@ -21,6 +22,10 @@ const AdminRoutes = (): JSX.Element => {
         <Route
           path="/admin/bridgeFundsAccounts"
           element={<BridgeFundsActivation />}
+        />
+        <Route
+          path="/admin/syntheticsCredentials"
+          element={<SyntheticsCredentials />}
         />
       </Route>
     </Routes>
