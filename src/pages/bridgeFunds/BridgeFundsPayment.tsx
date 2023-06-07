@@ -15,10 +15,13 @@ interface Props {
 
 const BridgeFundsPayment = ({ error }: Props): JSX.Element => {
   const token = localStorage.getItem("token") ?? "";
+  const { sendBridgeTransaction, bridgeFundsAccountInfo } = useEvoxServices();
+  const { id, quantity } = bridgeFundsAccountInfo;
   const [transactionHash, setTransactionHash] = React.useState<Transaction>({
     transaction: "",
+    bridgeAccountId: id,
+    quantity,
   });
-  const { sendBridgeTransaction } = useEvoxServices();
 
   useEffect(() => {
     const getTransaction = async () => {
@@ -45,6 +48,7 @@ const BridgeFundsPayment = ({ error }: Props): JSX.Element => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
+    console.log(transactionHash);
     sendBridgeTransaction(transactionHash);
     setTransactionHash({ transaction: "" });
   };

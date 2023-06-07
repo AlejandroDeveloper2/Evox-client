@@ -20,7 +20,7 @@ export const getInitialvalues = (auth: UserAuth | null): ProfileFormValues => {
     phone: auth ? auth.phone : "",
     country: auth ? auth.country : "",
     city: auth ? auth.city : "",
-    suponsorName: auth ? auth.suponsorName : "",
+    suponsorName: auth ? auth.sponsorName : "",
   };
   // walletAddress: "AIASHDFLKASNDC1651IJASDNCIANJS",
 };

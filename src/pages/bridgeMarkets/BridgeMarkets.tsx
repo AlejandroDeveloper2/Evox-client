@@ -25,7 +25,7 @@ const BridgeMarkets = (): JSX.Element => {
       <p className="text-[16px] md:text-[20px] text-blue font-normal text-center font-poppins flex flex-col gap-0">
         Contacta a tu patrocinador
         <span className="text-[16px] md:text-[20px] uppercase font-bold">
-          {auth?.suponsorName ? auth.suponsorName : "No tienes un patrocinador"}
+          {auth?.sponsorName ? auth.sponsorName : "No tienes un patrocinador"}
         </span>
       </p>
       <p className="text-[12px] md:text-[14px] text-darkBlue font-medium text-justify font-poppins">

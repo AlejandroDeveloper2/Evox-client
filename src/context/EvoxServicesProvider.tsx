@@ -45,6 +45,10 @@ const EvoxServicesProvider = ({ children }: Props) => {
       id: 0,
       login: "",
     });
+  const [bridgeFundsAccountInfo, setBridgeFundsAccountInfo] = React.useState({
+    id: 0,
+    quantity: 0,
+  });
 
   const navigate = useNavigate();
   const { setLoading, setToast } = useApp();
@@ -210,6 +214,47 @@ const EvoxServicesProvider = ({ children }: Props) => {
     }
   };
 
+  const checkUserSyntheticAccount = async (): Promise<void> => {
+    const token = localStorage.getItem("token");
+    setLoading({
+      message: "Cargando...",
+      visible: true,
+    });
+    if (token) {
+      await verifyUserSyntheticAccount(token)
+        .then((res) => {
+          setHasAccount(res);
+          console.log(res);
+        })
+        .finally(() => {
+          setLoading({
+            message: "",
+            visible: false,
+          });
+        });
+    }
+  };
+
+  const getSyntheticAccount = async (): Promise<void> => {
+    const token = localStorage.getItem("token");
+    setLoading({
+      message: "Cargando cuenta de usuario...",
+      visible: true,
+    });
+    if (token) {
+      await getUserSyntheticAccount(token)
+        .then((res) => {
+          setUserSyntheticAccount(res);
+        })
+        .finally(() => {
+          setLoading({
+            message: "",
+            visible: false,
+          });
+        });
+    }
+  };
+
   /*Bidge Context */
   const getBridgeKindOfAccounts = async () => {
     const token = localStorage.getItem("token");
@@ -345,45 +390,8 @@ const EvoxServicesProvider = ({ children }: Props) => {
     }
   };
 
-  const checkUserSyntheticAccount = async (): Promise<void> => {
-    const token = localStorage.getItem("token");
-    setLoading({
-      message: "Cargando...",
-      visible: true,
-    });
-    if (token) {
-      await verifyUserSyntheticAccount(token)
-        .then((res) => {
-          setHasAccount(res);
-          console.log(res);
-        })
-        .finally(() => {
-          setLoading({
-            message: "",
-            visible: false,
-          });
-        });
-    }
-  };
-
-  const getSyntheticAccount = async (): Promise<void> => {
-    const token = localStorage.getItem("token");
-    setLoading({
-      message: "Cargando cuenta de usuario...",
-      visible: true,
-    });
-    if (token) {
-      await getUserSyntheticAccount(token)
-        .then((res) => {
-          setUserSyntheticAccount(res);
-        })
-        .finally(() => {
-          setLoading({
-            message: "",
-            visible: false,
-          });
-        });
-    }
+  const getBridgeAccountFeatures = (id: number, quantity: number): void => {
+    setBridgeFundsAccountInfo({ id, quantity });
   };
 
   return (
@@ -394,6 +402,7 @@ const EvoxServicesProvider = ({ children }: Props) => {
         bridgeFundsAccounts,
         hasAccount,
         userSyntheticAccount,
+        bridgeFundsAccountInfo,
         getTeam,
         getDirectReferrals,
         activeSyntheticAccount,
@@ -406,6 +415,7 @@ const EvoxServicesProvider = ({ children }: Props) => {
         sendBridgeTransaction,
         checkUserSyntheticAccount,
         getSyntheticAccount,
+        getBridgeAccountFeatures,
       }}
     >
       {children}

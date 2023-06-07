@@ -56,6 +56,7 @@ interface EvoxContextType {
   bridgeFundsAccounts: BridgeFundsAccount[];
   hasAccount: boolean;
   userSyntheticAccount: UserSyntheticAccount;
+  bridgeFundsAccountInfo: { id: number; quantity: number };
   getTeam: (team: Team[]) => void;
   getDirectReferrals: (referrals: Referral[]) => void;
   activeSyntheticAccount: (transaction: string) => Promise<void>;
@@ -68,6 +69,7 @@ interface EvoxContextType {
   sendBridgeTransaction: (transaction: Transaction) => Promise<void>;
   checkUserSyntheticAccount: () => Promise<void>;
   getSyntheticAccount: () => Promise<void>;
+  getBridgeAccountFeatures: (id: number, quantity: number) => void;
 }
 
 interface ThemeContextType {

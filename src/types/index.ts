@@ -24,6 +24,7 @@ export type {
   BridgeFundsAccount,
   BridgeAccount,
   UserSyntheticAccount,
+  SyntheticsAccountCredentials,
 } from "./dataTypes";
 
 /* Component types Models */

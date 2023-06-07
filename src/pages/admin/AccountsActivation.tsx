@@ -1,11 +1,12 @@
 import {
-  faCalendar,
+  faAt,
   faCheck,
   faCircleUser,
   faCircleXmark,
+  faCoins,
+  faDollar,
   faHashtag,
-  faPhone,
-  faUserAlt,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useSWR from "swr";
@@ -60,35 +61,35 @@ const AccountsActivation = (): JSX.Element => {
                   </div>
                   <div className="text-darkGray font-poppins font-medium truncate w-full">
                     <span className="text-darkGray font-poppins font-semibold  mr-2">
-                      {<FontAwesomeIcon icon={faUserAlt} className="mr-2" />}
+                      {<FontAwesomeIcon icon={faCoins} className="mr-2" />}
                       Moneda:
                     </span>
                     {account.currency}
                   </div>
                   <div className="text-darkGray font-poppins font-medium truncate w-full">
                     <span className="text-darkGray font-poppins font-semibold  mr-2">
-                      {<FontAwesomeIcon icon={faPhone} className="mr-2" />}
-                      Price:
+                      {<FontAwesomeIcon icon={faDollar} className="mr-2" />}
+                      Precio:
                     </span>
                     {account.price}
                   </div>
                   <div className="text-darkGray font-poppins font-medium truncate w-full">
                     <span className="text-darkGray font-poppins font-semibold  mr-2">
-                      {<FontAwesomeIcon icon={faCalendar} className="mr-2" />}
+                      {<FontAwesomeIcon icon={faCheck} className="mr-2" />}
                       Estado:
                     </span>
                     {account.state ? "Activa" : "Inactiva"}
                   </div>
                   <div className="text-darkGray font-poppins font-medium truncate w-full">
                     <span className="text-darkGray font-poppins font-semibold  mr-2">
-                      {<FontAwesomeIcon icon={faCalendar} className="mr-2" />}
+                      {<FontAwesomeIcon icon={faUser} className="mr-2" />}
                       Nombre de usuario:
                     </span>
                     {account.username}
                   </div>
                   <div className="text-darkGray font-poppins font-medium truncate w-full">
                     <span className="text-darkGray font-poppins font-semibold  mr-2">
-                      {<FontAwesomeIcon icon={faCalendar} className="mr-2" />}
+                      {<FontAwesomeIcon icon={faAt} className="mr-2" />}
                       Email:
                     </span>
                     {account.email}

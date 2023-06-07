@@ -31,9 +31,7 @@ const MAMAccounts = (): JSX.Element => {
         <p className="text-[16px] md:text-[20px] text-blue font-normal text-center font-poppins flex flex-col gap-1">
           Contacta a tu patrocinador
           <span className="text-[16px] md:text-[20px] uppercase font-bold">
-            {auth?.suponsorName
-              ? auth.suponsorName
-              : "No tienes un patrocinador"}
+            {auth?.sponsorName ? auth.sponsorName : "No tienes un patrocinador"}
           </span>
         </p>
       </section>

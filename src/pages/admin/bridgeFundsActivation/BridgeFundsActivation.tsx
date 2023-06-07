@@ -1,17 +1,19 @@
 import {
   faCircleUser,
   faHashtag,
-  faUserAlt,
-  faPhone,
-  faCalendar,
   faCheck,
   faCircleXmark,
+  faMarker,
+  faDollar,
+  faCoins,
+  faUser,
+  faAt,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useSWR from "swr";
 
 import { useScreen, useEvoxServices, usePagination } from "../../../hooks";
-import { getBridgeFundsAccounts } from "../../../services/bridgeFunds";
+import { getUsersBridgeFundsAccounts } from "../../../services/bridgeFunds";
 import { accountActivationsTableHeaders } from "./constans";
 
 import { CustomButton, EmptyTablet, Table, Spinner } from "../../../components";
@@ -20,8 +22,8 @@ const BridgeFundsActivation = (): JSX.Element => {
   const screenSize = useScreen();
   const token = localStorage.getItem("token") ?? "";
   const { activeBridgeAccount, invalidBridgeAccount } = useEvoxServices();
-  const { data: accounts, isLoading } = useSWR("/bridgeFunds/list", () =>
-    getBridgeFundsAccounts(token)
+  const { data: accounts, isLoading } = useSWR("/bridgeFunds/list/users", () =>
+    getUsersBridgeFundsAccounts(token)
   );
 
   const { Pagination, records } = usePagination(accounts ? accounts : []);
@@ -59,35 +61,35 @@ const BridgeFundsActivation = (): JSX.Element => {
                   </div>
                   <div className="text-darkGray font-poppins font-medium">
                     <span className="text-darkGray font-poppins font-semibold  mr-2">
-                      {<FontAwesomeIcon icon={faHashtag} className="mr-2" />}
+                      {<FontAwesomeIcon icon={faMarker} className="mr-2" />}
                       Titulo:
                     </span>
                     {account.title}
                   </div>
                   <div className="text-darkGray font-poppins font-medium truncate w-full">
                     <span className="text-darkGray font-poppins font-semibold  mr-2">
-                      {<FontAwesomeIcon icon={faPhone} className="mr-2" />}
-                      Price:
+                      {<FontAwesomeIcon icon={faDollar} className="mr-2" />}
+                      Precio:
                     </span>
                     {account.price}
                   </div>
                   <div className="text-darkGray font-poppins font-medium truncate w-full">
                     <span className="text-darkGray font-poppins font-semibold  mr-2">
-                      {<FontAwesomeIcon icon={faPhone} className="mr-2" />}
+                      {<FontAwesomeIcon icon={faHashtag} className="mr-2" />}
                       Cantidad:
                     </span>
                     {account.quantity}
                   </div>
                   <div className="text-darkGray font-poppins font-medium truncate w-full">
                     <span className="text-darkGray font-poppins font-semibold  mr-2">
-                      {<FontAwesomeIcon icon={faPhone} className="mr-2" />}
+                      {<FontAwesomeIcon icon={faHashtag} className="mr-2" />}
                       Total:
                     </span>
                     {account.total}
                   </div>
                   <div className="text-darkGray font-poppins font-medium truncate w-full">
                     <span className="text-darkGray font-poppins font-semibold  mr-2">
-                      {<FontAwesomeIcon icon={faUserAlt} className="mr-2" />}
+                      {<FontAwesomeIcon icon={faCoins} className="mr-2" />}
                       Moneda:
                     </span>
                     {account.currency}
@@ -95,21 +97,21 @@ const BridgeFundsActivation = (): JSX.Element => {
 
                   <div className="text-darkGray font-poppins font-medium truncate w-full">
                     <span className="text-darkGray font-poppins font-semibold  mr-2">
-                      {<FontAwesomeIcon icon={faCalendar} className="mr-2" />}
+                      {<FontAwesomeIcon icon={faUser} className="mr-2" />}
                       Nombre de usuario:
                     </span>
                     {account.username}
                   </div>
                   <div className="text-darkGray font-poppins font-medium truncate w-full">
                     <span className="text-darkGray font-poppins font-semibold  mr-2">
-                      {<FontAwesomeIcon icon={faCalendar} className="mr-2" />}
+                      {<FontAwesomeIcon icon={faAt} className="mr-2" />}
                       Correo:
                     </span>
                     {account.email}
                   </div>
                   <div className="text-darkGray font-poppins font-medium truncate w-full">
                     <span className="text-darkGray font-poppins font-semibold  mr-2">
-                      {<FontAwesomeIcon icon={faCalendar} className="mr-2" />}
+                      {<FontAwesomeIcon icon={faCheck} className="mr-2" />}
                       Estado:
                     </span>
                     {account.state ? "Activa" : "Inactiva"}

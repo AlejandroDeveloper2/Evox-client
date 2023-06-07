@@ -5,12 +5,15 @@ import { calculateTotalToPay } from "../../utils";
 import { BridgeFundsAccount } from "../../types";
 
 import { CustomButton } from "..";
+import { useEvoxServices } from "../../hooks";
 
 const AccountCard = (props: BridgeFundsAccount): JSX.Element => {
   const [isChecked, setIsChecked] = React.useState<boolean>(false);
   const [accountQuantity, setAccountQuantity] = React.useState<string>("1");
   const [singlePrice] = React.useState<string>(props.price.toString());
   const [price, setPrice] = React.useState<string>(singlePrice);
+
+  const { getBridgeAccountFeatures } = useEvoxServices();
 
   const navigate = useNavigate();
 
@@ -90,7 +93,10 @@ const AccountCard = (props: BridgeFundsAccount): JSX.Element => {
           aditionalStyles: "m-auto w-full md:w-3/5 h-[2rem]",
         }}
         type="button"
-        onClick={() => navigate("/dashboard/bridgeFunds/bridgeFundsPayment")}
+        onClick={() => {
+          getBridgeAccountFeatures(props.id, parseInt(accountQuantity));
+          navigate("/dashboard/bridgeFunds/bridgeFundsPayment");
+        }}
         disabled={!isChecked}
       />
     </div>

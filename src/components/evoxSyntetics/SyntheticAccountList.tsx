@@ -25,7 +25,7 @@ const SyntheticAccountList = (): JSX.Element => {
             type="text"
             id="login"
             name="login"
-            value={"$ 450"}
+            value={"$0"}
             readOnly
             className="outline-none bg-gray py-2 px-3 rounded-xl border-[1px] border-gray w-3/4 text-darkGray 
             font-extrabold font-poppins text-center"

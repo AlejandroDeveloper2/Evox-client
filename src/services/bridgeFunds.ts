@@ -168,6 +168,27 @@ const getBridgeFundsTransactionStatus = async (
   return response;
 };
 
+const getUsersBridgeFundsAccounts = async (
+  token: string
+): Promise<BridgeAccount[]> => {
+  const axiosClient = getAxiosClient("evoxAPI");
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  let response: BridgeAccount[] = [];
+
+  try {
+    const { data } = await axiosClient.get(`/bridgeFunds/list/users`, config);
+    response = data;
+  } catch (error: any) {
+    throw new Error(error.response.data.message);
+  }
+  return response;
+};
+
 export {
   getBridgeFundsAccounts,
   getBridgeFundsAccountStatus,
@@ -175,4 +196,5 @@ export {
   saveBridgeFundsTransaction,
   invalidBridgeFundsTransaction,
   getBridgeFundsTransactionStatus,
+  getUsersBridgeFundsAccounts,
 };

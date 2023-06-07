@@ -61,7 +61,7 @@ interface UserAuth {
   country: string;
   city: string;
   photo: string | null;
-  suponsorName: string | null;
+  sponsorName: string | null;
   iat: number;
   exp: number;
   accountSynthetic: number;
@@ -132,13 +132,15 @@ interface Transaction {
   createdAt?: string;
   currency?: string;
   expirationDate?: string;
-  id?: string;
+  bridgeAccountId?: number;
+  id?: number;
   price?: number;
   state?: boolean;
   syntheticState?: AccountStatus;
   transaction: string;
   type?: TransactionType;
   userId?: string;
+  quantity?: number;
 }
 
 interface BridgeFundsAccount {
@@ -152,6 +154,15 @@ interface BridgeFundsAccount {
 interface UserSyntheticAccount {
   id: number;
   login: string;
+}
+
+interface SyntheticsAccountCredentials {
+  username: string;
+  email: string;
+  login: string;
+  password: string;
+  createdAt: string;
+  state: boolean;
 }
 
 type AccountStatus = "Verified" | "Shopping" | "Pending" | "Error";
@@ -182,4 +193,5 @@ export type {
   BridgeFundsAccount,
   BridgeAccount,
   UserSyntheticAccount,
+  SyntheticsAccountCredentials,
 };
