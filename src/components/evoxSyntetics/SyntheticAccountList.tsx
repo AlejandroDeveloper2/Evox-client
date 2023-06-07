@@ -1,3 +1,6 @@
+import { faCoins } from "@fortawesome/free-solid-svg-icons";
+
+import { CustomButton } from "..";
 import { useEvoxServices } from "../../hooks";
 
 const SyntheticAccountList = (): JSX.Element => {
@@ -28,6 +31,18 @@ const SyntheticAccountList = (): JSX.Element => {
             font-extrabold font-poppins text-center"
           />
         </div>
+        <CustomButton
+          type={"button"}
+          label={"Realizar Pago"}
+          theme={{
+            bg: "bg-blue",
+            color: "text-white",
+            aditionalStyles: "w-3/5 mx-auto mt-10",
+          }}
+          disabled={true}
+          onClick={() => console.log("press")}
+          icon={faCoins}
+        />
       </div>
     </div>
   );
