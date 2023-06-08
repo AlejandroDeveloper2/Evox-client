@@ -1,6 +1,7 @@
 import { FormikValues } from "formik";
 
 import {
+  BridgeFundsAccount,
   City,
   Country,
   Referral,
@@ -10,8 +11,10 @@ import {
   Status,
   Team,
   ToastProps,
+  Transaction,
   UserAuth,
   UserIP,
+  UserSyntheticAccount,
 } from ".";
 
 interface AppContextType {
@@ -50,11 +53,25 @@ interface EvoxContextType {
   children?: JSX.Element | JSX.Element[];
   team: Team[];
   referrals: Referral[];
+  bridgeFundsAccounts: BridgeFundsAccount[];
+  hasAccount: boolean;
+  userSyntheticAccount: UserSyntheticAccount;
+  bridgeFundsAccountInfo: { id: number; quantity: number };
+  isChecking: boolean;
   getTeam: (team: Team[]) => void;
   getDirectReferrals: (referrals: Referral[]) => void;
-  activeSyntheticAccount:(transaction:string)=>Promise<void>;
-  registerSyntheticsAccount:(login:string, password:string)=>Promise<void>;
-  sendTransaction:(transaction:string)=>Promise<void>;
+  activeSyntheticAccount: (transaction: string) => Promise<void>;
+  registerSyntheticsAccount: (login: string, password: string) => Promise<void>;
+  sendTransaction: (transaction: Transaction) => Promise<void>;
+  invalidSyntheticAccount: (transaction: string) => Promise<void>;
+  getBridgeKindOfAccounts: () => Promise<void>;
+  activeBridgeAccount: (transaction: string) => Promise<void>;
+  invalidBridgeAccount: (transaction: string) => Promise<void>;
+  sendBridgeTransaction: (transaction: Transaction) => Promise<void>;
+  checkUserSyntheticAccount: () => Promise<void>;
+  getSyntheticAccount: () => Promise<void>;
+  getBridgeAccountFeatures: (id: number, quantity: number) => void;
+  checkSyntheticCredentials: (id: number) => void;
 }
 
 interface ThemeContextType {

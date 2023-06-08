@@ -41,7 +41,7 @@ const getMenuItems = (roleUser: Role): MenuItem[] => {
         rightIcon: faChevronRight,
         label: "Trading automático",
         to: "#",
-        enabled: false,
+        enabled: true,
         subItems: [
           {
             rightIcon: null,
@@ -62,7 +62,7 @@ const getMenuItems = (roleUser: Role): MenuItem[] => {
         rightIcon: faChevronRight,
         label: "Bridge Funds",
         to: "#",
-        enabled: false,
+        enabled: true,
         subItems: [
           {
             rightIcon: null,
@@ -82,19 +82,19 @@ const getMenuItems = (roleUser: Role): MenuItem[] => {
         rightIcon: null,
         label: "Bridge Markets",
         to: "/dashboard/bridgeMarkets",
-        enabled: false,
+        enabled: true,
       },
       {
         rightIcon: faChevronRight,
         label: "Evox Synthetics",
         to: "#",
-        enabled: false,
+        enabled: true,
         subItems: [
           {
             rightIcon: null,
             label: "Academia",
             to: "/dashboard/evoxSynthetics/academy",
-            enabled: false,
+            enabled: true,
           },
           {
             rightIcon: null,
@@ -193,9 +193,21 @@ const getMenuItems = (roleUser: Role): MenuItem[] => {
     },
     {
       rightIcon: null,
-      label: "Activación de cuentas",
+      label: "Activación de cuentas de sintéticos",
       to: "/admin/accountsActivation",
-      enabled: false,
+      enabled: true,
+    },
+    {
+      rightIcon: null,
+      label: "Activación de cuentas de fondeo",
+      to: "/admin/bridgeFundsAccounts",
+      enabled: true,
+    },
+    {
+      rightIcon: null,
+      label: "Credenciales de sintéticos",
+      to: "/admin/syntheticsCredentials",
+      enabled: true,
     },
   ];
 };

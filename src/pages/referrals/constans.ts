@@ -1,4 +1,14 @@
-import { TableHeader } from "../../types";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import {
+  faCalendar,
+  faHashtag,
+  faPhone,
+  faUser,
+  faUserAlt,
+  faTurnDown,
+} from "@fortawesome/free-solid-svg-icons";
+
+import { MobileTableHeader, TableHeader } from "../../types";
 
 const referralsTableHeaders: TableHeader[] = [
   {
@@ -36,4 +46,55 @@ const teamTableHeaders: TableHeader[] = [
   },
 ];
 
-export { referralsTableHeaders, teamTableHeaders };
+const getTeamCardValues = (): MobileTableHeader[] => [
+  {
+    label: "ID",
+    icon: faHashtag,
+  },
+  {
+    label: "Nombre",
+    icon: faUserAlt,
+  },
+  {
+    label: "Nivel",
+    icon: faTurnDown,
+  },
+  {
+    label: "Nombre de usuario",
+    icon: faUser,
+  },
+  {
+    label: "Fecha de registro",
+    icon: faCalendar,
+  },
+];
+
+const getReferralsCardValues = (): MobileTableHeader[] => [
+  {
+    label: "ID",
+    icon: faHashtag,
+  },
+  {
+    label: "Nombre",
+    icon: faUserAlt,
+  },
+  {
+    label: "Celular",
+    icon: faPhone,
+  },
+  {
+    label: "Nombre de usuario",
+    icon: faUser,
+  },
+  {
+    label: "Fecha de registro",
+    icon: faCalendar,
+  },
+];
+
+export {
+  referralsTableHeaders,
+  teamTableHeaders,
+  getReferralsCardValues,
+  getTeamCardValues,
+};

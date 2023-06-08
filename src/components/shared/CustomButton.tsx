@@ -15,10 +15,12 @@ const Submit = ({
   disabled,
   icon,
   label,
+  title,
 }: CustomButtonProps): JSX.Element => {
   const { loading } = useApp();
   return (
     <button
+      title={title}
       type="submit"
       className={`${theme.color} lg:hover:bg-opacity-80 
         lg:dark:hover:bg-opacity-80 transition-all ${theme.bg}
@@ -42,10 +44,12 @@ const Button = ({
   disabled,
   label,
   icon,
+  title,
   onClick,
 }: CustomButtonProps): JSX.Element => {
   return (
     <button
+      title={title}
       onClick={onClick}
       type="button"
       className={`${theme.color} lg:hover:bg-opacity-80 
@@ -70,9 +74,11 @@ const ExternalLink = ({
   label,
   icon,
   externalLink,
+  title,
 }: CustomButtonProps): JSX.Element => {
   return (
     <a
+      title={title}
       href={externalLink}
       target="_blank"
       rel="noopener noreferrer"

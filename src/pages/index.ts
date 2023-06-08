@@ -22,3 +22,5 @@ export { default as CopySynthetics } from "./evoxSynthetics/CopySynthetics";
 /*Admin pages */
 export { default as Users } from "./admin/users/Users";
 export { default as AccountsActvation } from "./admin/AccountsActivation";
+export { default as BridgeFundsActivation } from "./admin/bridgeFundsActivation/BridgeFundsActivation";
+export { default as SyntheticsCredentials } from "./admin/syntheticsCredentials/SyntheticsCredentials";

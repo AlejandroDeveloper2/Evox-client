@@ -61,9 +61,10 @@ interface UserAuth {
   country: string;
   city: string;
   photo: string | null;
-  suponsorName: string | null;
+  sponsorName: string | null;
   iat: number;
   exp: number;
+  accountSynthetic: number;
 }
 
 type RoleType = "ROLE_USER" | "ROLE_ADMIN";
@@ -121,17 +122,25 @@ interface SyntheticsAccount {
   email: string;
 }
 
+interface BridgeAccount extends SyntheticsAccount {
+  title: string;
+  quantity: number;
+  total: number;
+}
+
 interface Transaction {
-  createdAt: string;
-  currency: string;
-  expirationDate: string;
-  id: string;
-  price: number;
-  state: boolean;
-  syntheticState: AccountStatus;
+  createdAt?: string;
+  currency?: string;
+  expirationDate?: string;
+  bridgeAccountId?: number;
+  id?: number;
+  price?: number;
+  state?: boolean;
+  syntheticState?: AccountStatus;
   transaction: string;
-  type: TransactionType;
-  userId: string;
+  type?: TransactionType;
+  userId?: string;
+  quantity?: number;
 }
 
 interface BridgeFundsAccount {
@@ -142,7 +151,42 @@ interface BridgeFundsAccount {
   currency: string;
 }
 
-type AccountStatus = "Verified" | "Shopping" | "Pending";
+interface UserSyntheticAccount {
+  id: number;
+  login: string;
+}
+
+interface SyntheticsAccountCredentials {
+  id: number;
+  username: string;
+  email: string;
+  login: string;
+  password: string;
+  createdAt: string;
+  state: boolean;
+}
+
+interface User {
+  id?: number;
+  username: string;
+  email: string;
+  fullName: string;
+  phone: string;
+  country: string;
+  city: string;
+  emailVerified: string;
+  token?: string;
+  photo?: string;
+  refLink?: string;
+  invitationLink?: string;
+  roles: string;
+  status: boolean;
+  level?: number;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+type AccountStatus = "Verified" | "Shopping" | "Pending" | "Error";
 type TransactionType = "Synthetic" | "Bridge funds";
 
 export type {
@@ -168,4 +212,8 @@ export type {
   Transaction,
   Role,
   BridgeFundsAccount,
+  BridgeAccount,
+  UserSyntheticAccount,
+  SyntheticsAccountCredentials,
+  User,
 };

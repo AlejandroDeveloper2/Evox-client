@@ -14,9 +14,11 @@ const LinkAccountForm = (): JSX.Element => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setAccountData({ ...accountData, [e.target.name]: e.target.value });
   };
+
   const handleCheck = (): void => {
     setIsChecked(!isChecked);
   };
+
   const validateFields = (): boolean => {
     if (Object.values(accountData).includes("") || !isChecked) return true;
     return false;

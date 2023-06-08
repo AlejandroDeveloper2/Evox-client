@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { FormikErrors, FormikTouched, FormikValues } from "formik";
 
@@ -26,6 +27,7 @@ interface CustomButtonProps {
   icon?: IconDefinition;
   disabled?: boolean;
   onClick?: () => void;
+  title?: string;
 }
 
 interface CustomFormProps {
@@ -100,10 +102,20 @@ interface TableHeader {
   label: string;
 }
 
+interface MobileTableHeader extends TableHeader {
+  icon: IconDefinition;
+}
+
 interface TableProps {
   children: JSX.Element | JSX.Element[];
   headers: TableHeader[];
 }
+
+interface MobileTableRecordProps {
+  values: MobileTableHeader[];
+  record: any;
+}
+
 interface EmptyTableProps {
   message: string;
   colspan: number;
@@ -132,4 +144,6 @@ export type {
   TableHeader,
   EmptyTableProps,
   CopyLinkProps,
+  MobileTableHeader,
+  MobileTableRecordProps,
 };

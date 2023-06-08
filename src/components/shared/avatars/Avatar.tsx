@@ -35,7 +35,11 @@ const Avatar = (): JSX.Element => {
           {auth ? auth?.sub : "Tu nombre aqui"}
         </span>
         <Link
-          to="/dashboard/profile"
+          to={
+            auth?.roles[0].authority === "ROLE_USER"
+              ? "/dashboard/profile"
+              : "/admin/profile"
+          }
           className="text-[12px] text-mediumGray font-poppins  font-semibold text-center lg:text-[14px]"
         >
           Editar perfil

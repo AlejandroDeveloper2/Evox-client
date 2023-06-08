@@ -1,9 +1,16 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { faMoneyCheckDollar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { AccountCard } from "../../components";
+import { useApp, useEvoxServices, useFetchData } from "../../hooks";
+
+import { AccountCard, Spinner } from "../../components";
 
 const kindOfAccounts = (): JSX.Element => {
+  const { getBridgeKindOfAccounts, bridgeFundsAccounts } = useEvoxServices();
+  const { loading } = useApp();
+  useFetchData([{ function: getBridgeKindOfAccounts }]);
+
   return (
     <div className="relative flex flex-col pt-20 pb-10 items-center gap-20 px-5  md:px-20">
       <h1 className="text-[20px] md:text-[24px] text-darkBlue font-extrabold text-center font-poppins align-middle">
@@ -13,9 +20,15 @@ const kindOfAccounts = (): JSX.Element => {
         />
         Tipos de cuentas
       </h1>
-      <section className="flex flex-row flex-wrap gap-5 items-center justify-center">
-        <AccountCard />
-      </section>
+      {loading.visible ? (
+        <Spinner color="text-darkBlue" />
+      ) : (
+        <section className="grid md:grid-cols-2 gap-5 items-center justify-center grid-cols-1">
+          {bridgeFundsAccounts.map((account, index) => (
+            <AccountCard key={index} {...account} />
+          ))}
+        </section>
+      )}
     </div>
   );
 };

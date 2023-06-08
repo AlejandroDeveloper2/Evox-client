@@ -1,4 +1,12 @@
-import { TableHeader } from "../../../types";
+import {
+  faCalendar,
+  faHashtag,
+  faToggleOff,
+  faUser,
+  faUserAlt,
+} from "@fortawesome/free-solid-svg-icons";
+
+import { MobileTableHeader, TableHeader } from "../../../types";
 
 const usersTableHeaders: TableHeader[] = [
   {
@@ -14,8 +22,34 @@ const usersTableHeaders: TableHeader[] = [
     label: "Estado",
   },
   {
+    label: "Estado",
+  },
+  {
     label: "Fecha de registro",
   },
 ];
 
-export { usersTableHeaders };
+const getUsersCardValues = (): MobileTableHeader[] => [
+  {
+    label: "ID",
+    icon: faHashtag,
+  },
+  {
+    label: "Nombre",
+    icon: faUser,
+  },
+  {
+    label: "Nombre de usuario",
+    icon: faUserAlt,
+  },
+  {
+    label: "Estado",
+    icon: faToggleOff,
+  },
+  {
+    label: "Fecha de registro",
+    icon: faCalendar,
+  },
+];
+
+export { usersTableHeaders, getUsersCardValues };

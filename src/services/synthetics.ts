@@ -5,6 +5,9 @@ import {
   ServerResponseFail,
   ServerResponseSuccess,
   SyntheticsAccount,
+  SyntheticsAccountCredentials,
+  Transaction,
+  UserSyntheticAccount,
 } from "../types";
 
 const getUserSyntecticsAccounts = async (
@@ -111,7 +114,7 @@ const registerSynteticAccount = async (
 
 const saveTransaction = async (
   token: string,
-  transaction: string
+  transaction: Transaction
 ): Promise<ServerResponseFail | ServerResponseSuccess> => {
   const axiosClient = getAxiosClient("evoxAPI");
   const config = {
@@ -127,9 +130,159 @@ const saveTransaction = async (
   try {
     const { data } = await axiosClient.post(
       `/synthetic/transaction`,
-      { transaction },
+      transaction,
       config
     );
+    response = data;
+  } catch (error: any) {
+    throw new Error(error.response.data.message);
+  }
+  return response;
+};
+
+const invalidTransaction = async (
+  token: string,
+  transaction: string
+): Promise<ServerResponseFail | ServerResponseSuccess> => {
+  const axiosClient = getAxiosClient("evoxAPI");
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  let response: ServerResponseFail | ServerResponseSuccess = {
+    message: "",
+    typeStatus: "Warning",
+  };
+  try {
+    const { data } = await axiosClient.patch(
+      `/synthetic/invalid/${transaction}`,
+      {},
+      config
+    );
+    response = data;
+  } catch (error: any) {
+    throw new Error(error.response.data.message);
+  }
+  return response;
+};
+
+const getTransactionStatus = async (token: string): Promise<Transaction> => {
+  const axiosClient = getAxiosClient("evoxAPI");
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  let response: Transaction = {
+    transaction: "",
+  };
+
+  try {
+    const { data } = await axiosClient.get(`/synthetic/transaction`, config);
+    response = data;
+  } catch (error: any) {
+    throw new Error(error.response.data.message);
+  }
+  return response;
+};
+
+const verifyUserSyntheticAccount = async (token: string): Promise<boolean> => {
+  const axiosClient = getAxiosClient("evoxAPI");
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  let response = false;
+  try {
+    const { data } = await axiosClient.get<boolean>(
+      `/users/syntheticsAccount`,
+      config
+    );
+    response = data;
+  } catch (error: any) {
+    console.log(error);
+  }
+  return response;
+};
+
+const getUserSyntheticAccount = async (
+  token: string
+): Promise<UserSyntheticAccount> => {
+  const axiosClient = getAxiosClient("evoxAPI");
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  let response: UserSyntheticAccount = {
+    id: 0,
+    login: "",
+  };
+
+  try {
+    const { data } = await axiosClient.get<UserSyntheticAccount>(
+      `/users/account`,
+      config
+    );
+    response = data;
+  } catch (error: any) {
+    console.log(error);
+  }
+  return response;
+};
+
+const getSyntheticsAccountCredentials = async (
+  token: string
+): Promise<SyntheticsAccountCredentials[]> => {
+  const axiosClient = getAxiosClient("evoxAPI");
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  let response: SyntheticsAccountCredentials[] = [];
+
+  try {
+    const { data } = await axiosClient.get<SyntheticsAccountCredentials[]>(
+      `/synthetic/access`,
+      config
+    );
+    response = data;
+  } catch (error: any) {
+    console.log(error);
+  }
+  return response;
+};
+
+const checkSyntheticAccountCredentials = async (
+  token: string,
+  id: number
+): Promise<ServerResponseFail | ServerResponseFail> => {
+  const axiosClient = getAxiosClient("evoxAPI");
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  let response: ServerResponseFail | ServerResponseFail = {
+    message: "",
+    typeStatus: "Error",
+  };
+
+  try {
+    const { data } = await axiosClient.patch<
+      ServerResponseFail | ServerResponseFail
+    >(`/synthetic/stateAccount/${id}`, {}, config);
     response = data;
   } catch (error: any) {
     throw new Error(error.response.data.message);
@@ -143,4 +296,10 @@ export {
   activeSynteticsAccount,
   registerSynteticAccount,
   saveTransaction,
+  invalidTransaction,
+  getTransactionStatus,
+  verifyUserSyntheticAccount,
+  getUserSyntheticAccount,
+  getSyntheticsAccountCredentials,
+  checkSyntheticAccountCredentials,
 };

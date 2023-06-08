@@ -30,10 +30,8 @@ const MAMAccounts = (): JSX.Element => {
         />
         <p className="text-[16px] md:text-[20px] text-blue font-normal text-center font-poppins flex flex-col gap-1">
           Contacta a tu patrocinador
-          <span className="text-[16px] md:text-[20px] uppercase font-bold">
-            {auth?.suponsorName
-              ? auth.suponsorName
-              : "No tienes un patrocinador"}
+          <span className="text-[16px] md:text-[20px] font-bold">
+            {auth?.sponsorName ? auth.sponsorName : "No tienes un patrocinador"}
           </span>
         </p>
       </section>
@@ -46,7 +44,7 @@ const MAMAccounts = (): JSX.Element => {
           en automático.
         </p>
         <CustomButton
-          type="button"
+          type="externalLink"
           label="Conoce el paso a paso aqui"
           theme={{
             bg: "bg-blue",
@@ -54,7 +52,7 @@ const MAMAccounts = (): JSX.Element => {
             aditionalStyles: "w-full md:w-3/5 mt-5",
           }}
           icon={faPaperPlane}
-          onClick={() => console.log("Step")}
+          externalLink="https://t.me/evoXvirtualbot"
         />
       </section>
     </div>

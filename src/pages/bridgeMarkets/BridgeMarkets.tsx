@@ -24,8 +24,8 @@ const BridgeMarkets = (): JSX.Element => {
       </h1>
       <p className="text-[16px] md:text-[20px] text-blue font-normal text-center font-poppins flex flex-col gap-0">
         Contacta a tu patrocinador
-        <span className="text-[16px] md:text-[20px] uppercase font-bold">
-          {auth?.suponsorName ? auth.suponsorName : "No tienes un patrocinador"}
+        <span className="text-[16px] md:text-[20px] font-bold">
+          {auth?.sponsorName ? auth.sponsorName : "No tienes un patrocinador"}
         </span>
       </p>
       <p className="text-[12px] md:text-[14px] text-darkBlue font-medium text-justify font-poppins">
@@ -107,14 +107,13 @@ const BridgeMarkets = (): JSX.Element => {
             </div>
           </div>
           <CustomButton
-            label="Ir a www.bridgemarkets.eu"
+            label="Solicita tu link de registro a tu patrocinador"
             theme={{
               bg: "bg-darkBlue",
               color: "text-white",
-              aditionalStyles: "w-full md:w-3/5 h-[4rem]",
+              aditionalStyles: "w-full md:w-3/4 h-[4rem]",
             }}
-            type="externalLink"
-            externalLink="https://www.bridgemarkets.eu"
+            type="button"
           />
         </div>
       </section>

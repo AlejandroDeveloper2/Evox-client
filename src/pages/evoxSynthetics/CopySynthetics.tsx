@@ -1,8 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { Navigate } from "react-router-dom";
 
 import useSWR from "swr";
 import { getAccountStatus } from "../../services/synthetics";
+// import { useAuth } from "../../hooks";
 
 import { LinkAccount, PaymentNoDone } from "../../components";
 import { EvoxSynteticsLogo } from "../../assets";
@@ -12,6 +14,7 @@ const CopySynthetics = (): JSX.Element => {
   const { data: status } = useSWR("/synthetic/accountStatus", () =>
     getAccountStatus(token)
   );
+  // const { auth } = useAuth();
 
   return (
     <div className="relative flex flex-col pt-20 pb-10 items-center gap-10 px-5  md:px-20">
@@ -20,6 +23,7 @@ const CopySynthetics = (): JSX.Element => {
         <PaymentNoDone
           paymentLink="/dashboard/evoxSynthetics/syntheticsPayment"
           label="Realizar el pago de tu cuenta de sintéticos"
+          type="synthetics"
         />
       ) : status === "Pending" ? (
         <p className="text-[16px] text-darkGray font-poppins font-normal md:w-3/4 text-center flex flex-col gap-2">
@@ -30,6 +34,8 @@ const CopySynthetics = (): JSX.Element => {
           Tu cuenta de sinteticos esta pendiente a verificación en las proximas
           24 horas tu cuenta será activada!
         </p>
+      ) : status === "Error" ? (
+        <Navigate to={`/dashboard/evoxSynthetics/syntheticsPayment/error`} />
       ) : (
         <LinkAccount />
       )}

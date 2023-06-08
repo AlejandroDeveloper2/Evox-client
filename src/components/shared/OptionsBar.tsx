@@ -20,7 +20,7 @@ const OptionsBar = (): JSX.Element => {
         <img
           src={TopBanner}
           alt="Evox banner"
-          className="object-cover w-full h-full"
+          className=" object-fill md:object-cover w-full h-full"
         />
       </div>
     </div>
