@@ -66,12 +66,6 @@ const getMenuItems = (roleUser: Role): MenuItem[] => {
         subItems: [
           {
             rightIcon: null,
-            label: "Ver los tipos de cuentas",
-            to: "/dashboard/bridgeFunds/kindOfAccounts",
-            enabled: true,
-          },
-          {
-            rightIcon: null,
             label: "Mis cuentas",
             to: "/dashboard/bridgeFunds/myAccounts",
             enabled: true,

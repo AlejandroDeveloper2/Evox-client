@@ -16,7 +16,7 @@ const Header = (props: HeaderProps): JSX.Element => {
         theme={{
           bg: "bg-white",
           color: "text-darkGray",
-          aditionalStyles: "w-[7rem] h-[3rem]",
+          aditionalStyles: "w-[7rem] h-[3rem] uppercase",
         }}
         icon={faHome}
         externalLink="https://www.evox.com.co"
