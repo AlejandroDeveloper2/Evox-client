@@ -121,9 +121,10 @@ const AccountsActivation = (): JSX.Element => {
                         color: "text-white",
                         aditionalStyles: "h-[3rem] w-[3rem]",
                       }}
-                      onClick={() =>
-                        activeSyntheticAccount(account.transaction)
-                      }
+                      onClick={() => {
+                        activeSyntheticAccount(account.transaction);
+                        mutate(accounts);
+                      }}
                       disabled={account.state}
                     />
                     <CustomButton
@@ -136,9 +137,10 @@ const AccountsActivation = (): JSX.Element => {
                         color: "text-white",
                         aditionalStyles: "h-[3rem] w-[3rem]",
                       }}
-                      onClick={() =>
-                        invalidSyntheticAccount(account.transaction)
-                      }
+                      onClick={() => {
+                        invalidSyntheticAccount(account.transaction);
+                        mutate(accounts);
+                      }}
                       disabled={account.state}
                     />
                   </td>
