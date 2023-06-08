@@ -25,6 +25,7 @@ export type {
   BridgeAccount,
   UserSyntheticAccount,
   SyntheticsAccountCredentials,
+  User,
 } from "./dataTypes";
 
 /* Component types Models */
@@ -46,6 +47,8 @@ export type {
   TableHeader,
   EmptyTableProps,
   CopyLinkProps,
+  MobileTableHeader,
+  MobileTableRecordProps,
 } from "./componentsTypes";
 
 /*Hook types model */

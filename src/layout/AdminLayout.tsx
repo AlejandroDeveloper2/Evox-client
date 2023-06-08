@@ -11,9 +11,9 @@ const AdminLayout = (): JSX.Element => {
     <main className="bg-white dark:bg-mediumGray w-screen h-screen overflow-x-hidden relative">
       <Toast />
       <Header pageName={page} />
-      <div className="flex h-auto relative w-full xl:w-[70%] mt-[5rem] mb-[1rem] mx-auto">
+      <div className="flex h-auto relative w-full mt-[5rem] mb-[1rem] mx-auto">
         <LateralMenu />
-        <div className="bg-lightGray dark:bg-darkGray xl:w-[70%] w-full flex-col items-center">
+        <div className="bg-lightGray dark:bg-darkGray xl:w-[80%] w-full flex-col items-center">
           <OptionsBar />
           <div className="bg-lightGray dark:bg-darkGray w-full min-h-[40rem]">
             <button

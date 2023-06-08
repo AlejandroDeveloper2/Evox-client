@@ -165,6 +165,26 @@ interface SyntheticsAccountCredentials {
   state: boolean;
 }
 
+interface User {
+  id?: number;
+  username: string;
+  email: string;
+  fullName: string;
+  phone: string;
+  country: string;
+  city: string;
+  emailVerified: string;
+  token?: string;
+  photo?: string;
+  refLink?: string;
+  invitationLink?: string;
+  roles: string;
+  status: boolean;
+  level?: number;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
 type AccountStatus = "Verified" | "Shopping" | "Pending" | "Error";
 type TransactionType = "Synthetic" | "Bridge funds";
 
@@ -194,4 +214,5 @@ export type {
   BridgeAccount,
   UserSyntheticAccount,
   SyntheticsAccountCredentials,
+  User,
 };

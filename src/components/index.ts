@@ -21,6 +21,7 @@ export { default as LinkBotEvox } from "./shared/LinkBotEvox";
 export { default as Loading } from "./shared/Loading";
 export { default as CopyLink } from "./shared/CopyLink";
 export { default as PaymentNoDone } from "./shared/PaymentNoDone";
+export { default as MobileTableRecord } from "./shared/MobileTableRecord";
 
 /*Home components */
 export { default as Welcome } from "./home/Welcome";

@@ -1,25 +1,34 @@
-import {
-  faCalendar,
-  faHashtag,
-  faUserAlt,
-  faUser,
-  faToggleOn,
-  faUsers,
-} from "@fortawesome/free-solid-svg-icons";
+import { faUsers } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import useSWR from "swr";
 
-import { usersTableHeaders } from "./constans";
-import { useScreen } from "../../../hooks";
+import { getUsersCardValues, usersTableHeaders } from "./constans";
+import { usePagination, useScreen } from "../../../hooks";
+import { getEvoxUsers } from "../../../services/usersList";
 
-import { CustomButton, Table } from "../../../components";
+import {
+  CustomButton,
+  EmptyTablet,
+  Spinner,
+  Table,
+  MobileTableRecord,
+} from "../../../components";
+import { formatDate } from "../../../utils";
 
 const Users = (): JSX.Element => {
   const screenSize = useScreen();
+  const token = localStorage.getItem("token") ?? "";
+  const { data: users, isLoading } = useSWR("/users/list", () =>
+    getEvoxUsers(token)
+  );
+
+  const { Pagination, records } = usePagination(users ? users : []);
+
   return (
     <div className="relative flex flex-col py-10 items-center gap-10">
       <h1
         className="lg:text-[24px] text-[20px] text-center lg:text-left 
-    font-poppins text-darkBlue dark:text-white font-extrabold flex flex-col gap-2 md:flex-row"
+        font-poppins text-darkBlue dark:text-white font-extrabold flex flex-col gap-2 md:flex-row"
       >
         <FontAwesomeIcon
           icon={faUsers}
@@ -29,87 +38,71 @@ const Users = (): JSX.Element => {
       </h1>
       <div className="w-full md:px-20 flex justify-center">
         <Table headers={usersTableHeaders}>
-          {screenSize < 768 ? (
-            <div
-              className="w-full bg-white p-4 flex flex-col gap-2 shadow-md rounded-md items-start 
-            after:absolute after:w-[5px] after:h-full after:right-0 after:top-0 
-            relative overflow-hidden  after:bg-gradient-to-b after:from-purple after:via-mediumBlue after:to-lightBlue"
-            >
-              <strong className="text-darkGray font-poppins font-medium">
-                <span className="text-darkGray font-poppins font-semibold  mr-2">
-                  {<FontAwesomeIcon icon={faHashtag} className="mr-2" />}
-                  ID:
-                </span>
-                {1}
-              </strong>
-              <div className="text-darkGray font-poppins font-medium truncate w-full">
-                <span className="text-darkGray font-poppins font-semibold  mr-2">
-                  {<FontAwesomeIcon icon={faUserAlt} className="mr-2" />}
-                  Nombre:
-                </span>
-                {12345}
-              </div>
-              <div className="text-darkGray font-poppins font-medium truncate w-full">
-                <span className="text-darkGray font-poppins font-semibold  mr-2">
-                  {<FontAwesomeIcon icon={faUser} className="mr-2" />}
-                  Nombre de usuario:
-                </span>
-                {"Alejo98"}
-              </div>
-              <div className="text-darkGray font-poppins font-medium truncate w-full">
-                <span className="text-darkGray font-poppins font-semibold  mr-2">
-                  {<FontAwesomeIcon icon={faToggleOn} className="mr-2" />}
-                  Estado:
-                </span>
-                {"Activo"}
-              </div>
-              <strong className="text-darkGray font-poppins font-medium">
-                <span className="text-darkGray font-poppins font-semibold  mr-2">
-                  {<FontAwesomeIcon icon={faCalendar} className="mr-2" />}
-                  Fecha de registro:
-                </span>
-                {"31/05/2023"}
-              </strong>
-              <CustomButton
-                onClick={() => console.log("OK")}
-                type="button"
-                label="Inactivar"
-                theme={{
-                  bg: "bg-blue",
-                  color: "text-white",
-                  aditionalStyles: "w-[6rem] h-[3rem] m-auto",
-                }}
-              />
-            </div>
+          {isLoading ? (
+            <Spinner message="Cargando usuarios..." />
+          ) : users && users.length > 0 ? (
+            records.map((user, index) =>
+              screenSize < 768 ? (
+                <>
+                  <MobileTableRecord
+                    key={index}
+                    values={getUsersCardValues()}
+                    record={{ index: index + 1, ...user }}
+                  />
+                  <CustomButton
+                    onClick={() => console.log("OK")}
+                    type="button"
+                    label="Inactivar"
+                    theme={{
+                      bg: "bg-blue",
+                      color: "text-white",
+                      aditionalStyles: "w-[6rem] h-[3rem] m-auto",
+                    }}
+                  />
+                </>
+              ) : (
+                <tr
+                  key={index}
+                  className="bg-lightGray border-b-[2px] border-gray dark:bg-darkGray dark:border-mediumGray"
+                >
+                  <td className="px-6 py-4 font-medium text-darkGray whitespace-nowrap dark:text-white">
+                    {user.fullName}
+                  </td>
+                  <td className="px-6 py-4 font-medium text-darkGray whitespace-nowrap dark:text-white">
+                    {user.username}
+                  </td>
+                  <td className="px-6 py-4 font-medium text-darkGray whitespace-nowrap dark:text-white">
+                    {user.email}
+                  </td>
+                  <td className="px-6 py-4">{user.phone}</td>
+                  <td className="px-6 py-4">{user.country}</td>
+                  <td className="px-6 py-4">{user.city}</td>
+                  <td className="px-6 py-4">
+                    {formatDate(user.emailVerified)}
+                  </td>
+                  <td className="px-6 py-4">{user.roles}</td>
+                  <td className="px-6 py-4">{user.status}</td>
+                  <td className="px-6 py-4">
+                    <CustomButton
+                      onClick={() => console.log("OK")}
+                      type="button"
+                      label="Inactivar"
+                      theme={{
+                        bg: "bg-blue",
+                        color: "text-white",
+                        aditionalStyles: "w-[6rem] h-[3rem]",
+                      }}
+                    />
+                  </td>
+                </tr>
+              )
+            )
           ) : (
-            <tr className="bg-lightGray border-b-[2px] border-gray dark:bg-darkGray dark:border-mediumGray">
-              <td className="px-6 py-4 font-medium text-darkGray whitespace-nowrap dark:text-white">
-                {1}
-              </td>
-              <td className="px-6 py-4 font-medium text-darkGray whitespace-nowrap dark:text-white">
-                {"Diego Alejandro Diaz"}
-              </td>
-              <td className="px-6 py-4 font-medium text-darkGray whitespace-nowrap dark:text-white">
-                {"Alejo98"}
-              </td>
-              <td className="px-6 py-4">{"Activo"}</td>
-              <td className="px-6 py-4">{"31/05/2023"}</td>
-              <td className="px-6 py-4">
-                <CustomButton
-                  onClick={() => console.log("OK")}
-                  type="button"
-                  label="Inactivar"
-                  theme={{
-                    bg: "bg-blue",
-                    color: "text-white",
-                    aditionalStyles: "w-[6rem] h-[3rem]",
-                  }}
-                />
-              </td>
-            </tr>
+            <EmptyTablet message="No hay usuarios aún" colspan={10} />
           )}
         </Table>
       </div>
+      <Pagination />
     </div>
   );
 };

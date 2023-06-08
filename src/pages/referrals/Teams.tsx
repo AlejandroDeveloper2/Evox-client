@@ -1,24 +1,21 @@
-import {
-  faCalendar,
-  faHashtag,
-  faPeopleGroup,
-  faTurnDown,
-  faUser,
-  faUserAlt,
-} from "@fortawesome/free-solid-svg-icons";
+import { faPeopleGroup } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { InvitationLink, Table, EmptyTablet } from "../../components";
-import { useScreen, usePagination, useEvoxServices } from "../../hooks";
+import {
+  InvitationLink,
+  Table,
+  EmptyTablet,
+  MobileTableRecord,
+} from "../../components";
 
+import { useScreen, usePagination, useEvoxServices } from "../../hooks";
 import { formatDate } from "../../utils";
-import { teamTableHeaders } from "./constans";
+import { getTeamCardValues, teamTableHeaders } from "./constans";
 
 const Teams = (): JSX.Element => {
   const screenSize = useScreen();
   const { team } = useEvoxServices();
-
-  const { Pagination, records } = usePagination(team ? team : []);
+  const { Pagination, records } = usePagination(team);
 
   return (
     <div className="relative flex flex-col py-10 items-center gap-10">
@@ -38,48 +35,11 @@ const Teams = (): JSX.Element => {
           {team && team.length > 0 ? (
             records.map((referral, index) =>
               screenSize < 768 ? (
-                <div
-                  className="w-full bg-white p-4 flex flex-col gap-2 shadow-md rounded-md items-start 
-                    after:absolute after:w-[5px] after:h-full after:right-0 after:top-0 
-                    relative overflow-hidden  after:bg-gradient-to-b after:from-purple after:via-mediumBlue after:to-lightBlue"
+                <MobileTableRecord
                   key={index}
-                >
-                  <strong className="text-darkGray font-poppins font-medium">
-                    <span className="text-darkGray font-poppins font-semibold  mr-2">
-                      {<FontAwesomeIcon icon={faHashtag} className="mr-2" />}
-                      ID:
-                    </span>
-                    {index + 1}
-                  </strong>
-                  <div className="text-darkGray font-poppins font-medium truncate w-full">
-                    <span className="text-darkGray font-poppins font-semibold  mr-2">
-                      {<FontAwesomeIcon icon={faUserAlt} className="mr-2" />}
-                      Nombre:
-                    </span>
-                    {referral.fullName}
-                  </div>
-                  <div className="text-darkGray font-poppins font-medium truncate w-full">
-                    <span className="text-darkGray font-poppins font-semibold  mr-2">
-                      {<FontAwesomeIcon icon={faTurnDown} className="mr-2" />}
-                      Nivel:
-                    </span>
-                    {referral.level}
-                  </div>
-                  <div className="text-darkGray font-poppins font-medium truncate w-full">
-                    <span className="text-darkGray font-poppins font-semibold  mr-2">
-                      {<FontAwesomeIcon icon={faUser} className="mr-2" />}
-                      Nombre de usuario:
-                    </span>
-                    {referral.userName}
-                  </div>
-                  <div>
-                    <span className="text-darkGray font-poppins font-semibold  mr-2">
-                      {<FontAwesomeIcon icon={faCalendar} className="mr-2" />}
-                      Registro:
-                    </span>
-                    {formatDate(referral.dateRegistered)}
-                  </div>
-                </div>
+                  values={getTeamCardValues()}
+                  record={{ index: index + 1, ...referral }}
+                />
               ) : (
                 <tr
                   className="bg-lightGray border-b-[2px] border-gray dark:bg-darkGray dark:border-mediumGray"

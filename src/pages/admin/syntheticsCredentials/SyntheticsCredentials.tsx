@@ -98,12 +98,12 @@ const SyntheticsCredentials = (): JSX.Element => {
                       {<FontAwesomeIcon icon={faCheck} className="mr-2" />}
                       Estado:
                     </span>
-                    {account.state}
+                    {account.state ? "Activo" : "Inactivo"}
                   </div>
                   <div className="flex gap-3 items-center justify-center">
                     <CustomButton
                       type="button"
-                      label={isChecking ? "Ingresado" : "No ingresado"}
+                      label={""}
                       title=""
                       icon={isChecking ? faCheck : faXmark}
                       theme={{
@@ -127,11 +127,14 @@ const SyntheticsCredentials = (): JSX.Element => {
                   <td className="px-6 py-4">{account.login}</td>
                   <td className="px-6 py-4">{account.password}</td>
                   <td className="px-6 py-4">{account.createdAt}</td>
-                  <td className="px-6 py-4">{account.state}</td>
+                  <td className="px-6 py-4">
+                    {" "}
+                    {account.state ? "Activo" : "Inactivo"}
+                  </td>
                   <td className="px-6 py-4 flex gap-2 items-center">
                     <CustomButton
                       type="button"
-                      label={isChecking ? "Ingresado" : "No ingresado"}
+                      label={""}
                       title=""
                       icon={isChecking ? faCheck : faXmark}
                       theme={{

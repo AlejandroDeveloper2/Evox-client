@@ -1,30 +1,35 @@
 import {
-  faAt,
   faCheck,
   faCircleUser,
   faCircleXmark,
-  faCoins,
-  faDollar,
-  faHashtag,
-  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useSWR from "swr";
 
 import { getUserSyntecticsAccounts } from "../../services/synthetics";
 import { useEvoxServices, useScreen, usePagination } from "../../hooks";
-import { accountActivationsTableHeaders } from "./constans";
+import {
+  accountActivationsTableHeaders,
+  getAccountsActivationsCardValues,
+} from "./constans";
 
-import { CustomButton, EmptyTablet, Table, Spinner } from "../../components";
+import {
+  CustomButton,
+  EmptyTablet,
+  Table,
+  Spinner,
+  MobileTableRecord,
+} from "../../components";
 
 const AccountsActivation = (): JSX.Element => {
   const screenSize = useScreen();
   const token = localStorage.getItem("token") ?? "";
   const { activeSyntheticAccount, invalidSyntheticAccount } = useEvoxServices();
-  const { data: accounts, isLoading } = useSWR("/synthetic/list", () =>
-    getUserSyntecticsAccounts(token)
-  );
-
+  const {
+    data: accounts,
+    isLoading,
+    mutate,
+  } = useSWR("/synthetic/list", () => getUserSyntecticsAccounts(token));
   const { Pagination, records } = usePagination(accounts ? accounts : []);
 
   return (
@@ -42,58 +47,19 @@ const AccountsActivation = (): JSX.Element => {
       <div className="w-full flex justify-center items-start flex-col overflow-x-scroll">
         <Table headers={accountActivationsTableHeaders}>
           {isLoading ? (
-            <Spinner message="Cargando cuentas de sintéticos..." />
+            <Spinner
+              message="Cargando cuentas de sintéticos..."
+              color="text-darkBlue"
+            />
           ) : accounts && accounts.length > 0 ? (
             records.map((account, index) =>
               screenSize < 768 ? (
-                <div
-                  key={index}
-                  className="w-full bg-white p-4 flex flex-col gap-2 shadow-md rounded-md items-start 
-                    after:absolute after:w-[5px] after:h-full after:right-0 after:top-0 
-                    relative overflow-hidden  after:bg-gradient-to-b after:from-purple after:via-mediumBlue after:to-lightBlue"
-                >
-                  <div className="text-darkGray font-poppins font-medium">
-                    <span className="text-darkGray font-poppins font-semibold  mr-2">
-                      {<FontAwesomeIcon icon={faHashtag} className="mr-2" />}
-                      Transacción
-                    </span>
-                    {account.transaction}
-                  </div>
-                  <div className="text-darkGray font-poppins font-medium truncate w-full">
-                    <span className="text-darkGray font-poppins font-semibold  mr-2">
-                      {<FontAwesomeIcon icon={faCoins} className="mr-2" />}
-                      Moneda:
-                    </span>
-                    {account.currency}
-                  </div>
-                  <div className="text-darkGray font-poppins font-medium truncate w-full">
-                    <span className="text-darkGray font-poppins font-semibold  mr-2">
-                      {<FontAwesomeIcon icon={faDollar} className="mr-2" />}
-                      Precio:
-                    </span>
-                    {account.price}
-                  </div>
-                  <div className="text-darkGray font-poppins font-medium truncate w-full">
-                    <span className="text-darkGray font-poppins font-semibold  mr-2">
-                      {<FontAwesomeIcon icon={faCheck} className="mr-2" />}
-                      Estado:
-                    </span>
-                    {account.state ? "Activa" : "Inactiva"}
-                  </div>
-                  <div className="text-darkGray font-poppins font-medium truncate w-full">
-                    <span className="text-darkGray font-poppins font-semibold  mr-2">
-                      {<FontAwesomeIcon icon={faUser} className="mr-2" />}
-                      Nombre de usuario:
-                    </span>
-                    {account.username}
-                  </div>
-                  <div className="text-darkGray font-poppins font-medium truncate w-full">
-                    <span className="text-darkGray font-poppins font-semibold  mr-2">
-                      {<FontAwesomeIcon icon={faAt} className="mr-2" />}
-                      Email:
-                    </span>
-                    {account.email}
-                  </div>
+                <>
+                  <MobileTableRecord
+                    key={index}
+                    values={getAccountsActivationsCardValues()}
+                    record={{ index: index + 1, ...account }}
+                  />
                   <div className="flex gap-3 items-center justify-center">
                     <CustomButton
                       type="button"
@@ -105,9 +71,10 @@ const AccountsActivation = (): JSX.Element => {
                         color: "text-white",
                         aditionalStyles: "h-[3rem] w-[3rem]",
                       }}
-                      onClick={() =>
-                        activeSyntheticAccount(account.transaction)
-                      }
+                      onClick={() => {
+                        activeSyntheticAccount(account.transaction);
+                        mutate(accounts);
+                      }}
                       disabled={account.state}
                     />
                     <CustomButton
@@ -120,13 +87,14 @@ const AccountsActivation = (): JSX.Element => {
                         color: "text-white",
                         aditionalStyles: "h-[3rem] w-[3rem]",
                       }}
-                      onClick={() =>
-                        invalidSyntheticAccount(account.transaction)
-                      }
+                      onClick={() => {
+                        invalidSyntheticAccount(account.transaction);
+                        mutate(accounts);
+                      }}
                       disabled={account.state}
                     />
                   </div>
-                </div>
+                </>
               ) : (
                 <tr
                   key={index}
