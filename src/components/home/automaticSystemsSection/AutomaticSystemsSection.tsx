@@ -36,7 +36,7 @@ const AutomaticSystemsSection = (): JSX.Element => {
                 className="md:text-[18px] text-[16px] text-left font-poppins 
                 text-darkBlue dark:text-white font-medium"
               >
-                Cuenta autodidacta{" "}
+                Cuenta auditada{" "}
                 <span className="uppercase font-bold"> {item.name} </span>
               </p>
             </div>
