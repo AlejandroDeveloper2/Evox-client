@@ -6,7 +6,7 @@ import { useEvoxServices } from "../../hooks";
 import { Transaction } from "../../types";
 import { getBridgeFundsTransactionStatus } from "../../services/bridgeFunds";
 
-import { QrImagen, TetherLogo } from "../../assets";
+import { QrBridgeFundsImage, TetherLogo } from "../../assets";
 import { CopyLink, CustomButton } from "../../components";
 
 interface Props {
@@ -42,7 +42,11 @@ const BridgeFundsPayment = ({ error }: Props): JSX.Element => {
   };
 
   const validateField = (): boolean => {
-    if (Object.values(transactionHash).includes("")) return true;
+    if (
+      Object.values(transactionHash).includes("") ||
+      transactionHash.transaction.length < 10
+    )
+      return true;
     return false;
   };
 
@@ -85,14 +89,18 @@ const BridgeFundsPayment = ({ error }: Props): JSX.Element => {
               • Red TRC20
             </span>
             <div className="flex gap-2 justify-center">
-              <img src={QrImagen} alt="Evox qr" className="object-contain" />
+              <img
+                src={QrBridgeFundsImage}
+                alt="Evox qr"
+                className="object-contain"
+              />
               <img
                 src={TetherLogo}
                 alt="Evox Tether logo"
                 className="object-contain"
               />
             </div>
-            <CopyLink link={"TF6DuE3zehWhnSqv6E971iBtbwQfuPZEHe"} />
+            <CopyLink link={"TPnZsRPxjgskZ2cz3Lk4PtkJXBuXrrvcqp"} />
             <form onSubmit={handleSubmit} className="w-full">
               <div className="flex flex-col gap-3 justify-center items-center w-full">
                 <label

@@ -35,7 +35,8 @@ const SyntheticsPayment = ({ error }: Props): JSX.Element => {
   };
 
   const validateField = (): boolean => {
-    if (transaction.transaction === "") return true;
+    if (transaction.transaction === "" || transaction.transaction.length < 10)
+      return true;
     return false;
   };
 

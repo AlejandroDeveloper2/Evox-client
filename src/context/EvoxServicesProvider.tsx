@@ -11,6 +11,7 @@ import {
 } from "../types";
 import {
   activeSynteticsAccount,
+  checkSyntheticAccountCredentials,
   getUserSyntheticAccount,
   invalidTransaction,
   registerSynteticAccount,
@@ -49,6 +50,7 @@ const EvoxServicesProvider = ({ children }: Props) => {
     id: 0,
     quantity: 0,
   });
+  const [isChecking, setIsChecking] = React.useState<boolean>(false);
 
   const navigate = useNavigate();
   const { setLoading, setToast } = useApp();
@@ -255,6 +257,46 @@ const EvoxServicesProvider = ({ children }: Props) => {
     }
   };
 
+  const checkSyntheticCredentials = async (id: number) => {
+    const token = localStorage.getItem("token");
+    setLoading({
+      message: "Procesando...",
+      visible: true,
+    });
+    if (token) {
+      await checkSyntheticAccountCredentials(token, id)
+        .then((res) => {
+          setToast({
+            message: res.message,
+            visible: true,
+            type: "success",
+          });
+          setIsChecking(true);
+          getSyntheticAccount();
+        })
+        .catch((error: Error) => {
+          setToast({
+            message: error.message,
+            visible: true,
+            type: "error",
+          });
+        })
+        .finally(() => {
+          setLoading({
+            message: "",
+            visible: false,
+          });
+          setTimeout(() => {
+            setToast({
+              message: "",
+              visible: false,
+              type: "success",
+            });
+          }, 3000);
+        });
+    }
+  };
+
   /*Bidge Context */
   const getBridgeKindOfAccounts = async () => {
     const token = localStorage.getItem("token");
@@ -403,6 +445,7 @@ const EvoxServicesProvider = ({ children }: Props) => {
         hasAccount,
         userSyntheticAccount,
         bridgeFundsAccountInfo,
+        isChecking,
         getTeam,
         getDirectReferrals,
         activeSyntheticAccount,
@@ -416,6 +459,7 @@ const EvoxServicesProvider = ({ children }: Props) => {
         checkUserSyntheticAccount,
         getSyntheticAccount,
         getBridgeAccountFeatures,
+        checkSyntheticCredentials,
       }}
     >
       {children}

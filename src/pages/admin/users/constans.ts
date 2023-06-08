@@ -22,6 +22,9 @@ const usersTableHeaders: TableHeader[] = [
     label: "Estado",
   },
   {
+    label: "Estado",
+  },
+  {
     label: "Fecha de registro",
   },
 ];

@@ -36,7 +36,7 @@ const Users = (): JSX.Element => {
         />{" "}
         <span className="align-middle ml-5"> Usuarios </span>
       </h1>
-      <div className="w-full md:px-20 flex justify-center">
+      <div className="w-full md:px-20 flex justify-center overflow-x-scroll">
         <Table headers={usersTableHeaders}>
           {isLoading ? (
             <Spinner message="Cargando usuarios..." />

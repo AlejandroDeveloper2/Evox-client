@@ -1,4 +1,3 @@
-import React from "react";
 import {
   faCircleUser,
   faHashtag,
@@ -12,7 +11,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useSWR from "swr";
 
-import { useScreen, usePagination } from "../../../hooks";
+import { useScreen, usePagination, useEvoxServices } from "../../../hooks";
 import { syntheticCredentialsTableHeaders } from "./constans";
 import { getSyntheticsAccountCredentials } from "../../../services/synthetics";
 
@@ -24,7 +23,7 @@ const SyntheticsCredentials = (): JSX.Element => {
   const { data: credentialList, isLoading } = useSWR("/synthetic/access", () =>
     getSyntheticsAccountCredentials(token)
   );
-  const [isChecking, setIsChecking] = React.useState<boolean>(false);
+  const { isChecking, checkSyntheticCredentials } = useEvoxServices();
 
   const { Pagination, records } = usePagination(
     credentialList ? credentialList : []
@@ -111,7 +110,7 @@ const SyntheticsCredentials = (): JSX.Element => {
                         color: "text-white",
                         aditionalStyles: "h-[3rem]",
                       }}
-                      onClick={() => setIsChecking(!isChecking)}
+                      onClick={() => checkSyntheticCredentials(account.id)}
                     />
                   </div>
                 </div>
@@ -142,7 +141,7 @@ const SyntheticsCredentials = (): JSX.Element => {
                         color: "text-white",
                         aditionalStyles: "h-[3rem]",
                       }}
-                      onClick={() => setIsChecking(!isChecking)}
+                      onClick={() => checkSyntheticCredentials(account.id)}
                     />
                   </td>
                 </tr>

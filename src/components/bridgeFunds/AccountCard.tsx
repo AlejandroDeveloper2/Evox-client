@@ -35,11 +35,11 @@ const AccountCard = (props: BridgeFundsAccount): JSX.Element => {
 
   return (
     <div
-      className="w-full md:w-3/4 rounded-lg shadow-md border-[1px] border-violet 
-      relative flex flex-col  justify-center items-start gap-3 px-5 pt-20 pb-10"
+      className="w-full rounded-lg shadow-md border-[1px] border-violet 
+      relative flex flex-col  justify-center items-start gap-5 px-5 pt-20 pb-10"
     >
       <span
-        className="w-[14rem] py-2 bg-gradient-to-r from-mediumBlue to-lightBlue text-white
+        className="w-[20rem] py-2 bg-gradient-to-r from-mediumBlue to-lightBlue text-white
         font-poppins font-extrabold text-center flex justify-center items-center absolute top-[-1rem]
         left-0 right-0 m-auto text-[16px] rounded-md px-3 uppercase"
       >

@@ -157,6 +157,7 @@ interface UserSyntheticAccount {
 }
 
 interface SyntheticsAccountCredentials {
+  id: number;
   username: string;
   email: string;
   login: string;

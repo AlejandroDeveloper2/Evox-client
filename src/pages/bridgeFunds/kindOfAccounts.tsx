@@ -23,7 +23,7 @@ const kindOfAccounts = (): JSX.Element => {
       {loading.visible ? (
         <Spinner color="text-darkBlue" />
       ) : (
-        <section className="flex flex-row flex-wrap gap-5 items-center justify-center">
+        <section className="grid md:grid-cols-2 gap-5 items-center justify-center grid-cols-1">
           {bridgeFundsAccounts.map((account, index) => (
             <AccountCard key={index} {...account} />
           ))}

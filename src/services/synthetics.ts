@@ -263,6 +263,33 @@ const getSyntheticsAccountCredentials = async (
   return response;
 };
 
+const checkSyntheticAccountCredentials = async (
+  token: string,
+  id: number
+): Promise<ServerResponseFail | ServerResponseFail> => {
+  const axiosClient = getAxiosClient("evoxAPI");
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  let response: ServerResponseFail | ServerResponseFail = {
+    message: "",
+    typeStatus: "Error",
+  };
+
+  try {
+    const { data } = await axiosClient.patch<
+      ServerResponseFail | ServerResponseFail
+    >(`/synthetic/stateAccount/${id}`, {}, config);
+    response = data;
+  } catch (error: any) {
+    throw new Error(error.response.data.message);
+  }
+  return response;
+};
+
 export {
   getUserSyntecticsAccounts,
   getAccountStatus,
@@ -274,4 +301,5 @@ export {
   verifyUserSyntheticAccount,
   getUserSyntheticAccount,
   getSyntheticsAccountCredentials,
+  checkSyntheticAccountCredentials,
 };
