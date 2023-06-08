@@ -51,7 +51,7 @@ const UserDashboard = (): JSX.Element => {
     }
   );
 
-  const timer = 10;
+  const timer = 0;
 
   return (
     <div className="w-full flex flex-col justify-center items-center py-10 h-full gap-10">
