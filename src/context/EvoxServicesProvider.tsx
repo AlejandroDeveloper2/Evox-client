@@ -8,16 +8,13 @@ import {
   Team,
   Transaction,
   UserAccountBridgeFunds,
-  UserSyntheticAccount,
 } from "../types";
 import {
   activeSynteticsAccount,
   checkSyntheticAccountCredentials,
-  getUserSyntheticAccount,
   invalidTransaction,
   registerSynteticAccount,
   saveTransaction,
-  verifyUserSyntheticAccount,
 } from "../services/synthetics";
 import { useApp } from "../hooks";
 import {
@@ -42,12 +39,6 @@ const EvoxServicesProvider = ({ children }: Props) => {
   const [bridgeFundsAccounts, setBridgeFundsAccounts] = React.useState<
     BridgeFundsAccount[]
   >([]);
-  const [hasAccount, setHasAccount] = React.useState<boolean>(false);
-  const [userSyntheticAccount, setUserSyntheticAccount] =
-    React.useState<UserSyntheticAccount>({
-      id: 0,
-      login: "",
-    });
   const [bridgeFundsAccountInfo, setBridgeFundsAccountInfo] = React.useState({
     id: 0,
     quantity: 0,
@@ -109,7 +100,6 @@ const EvoxServicesProvider = ({ children }: Props) => {
     if (token) {
       await registerSynteticAccount(token, login, password)
         .then((res) => {
-          checkUserSyntheticAccount();
           setToast({
             message: res.message,
             visible: true,
@@ -218,47 +208,6 @@ const EvoxServicesProvider = ({ children }: Props) => {
     }
   };
 
-  const checkUserSyntheticAccount = async (): Promise<void> => {
-    const token = localStorage.getItem("token");
-    setLoading({
-      message: "Cargando...",
-      visible: true,
-    });
-    if (token) {
-      await verifyUserSyntheticAccount(token)
-        .then((res) => {
-          setHasAccount(res);
-          console.log(res);
-        })
-        .finally(() => {
-          setLoading({
-            message: "",
-            visible: false,
-          });
-        });
-    }
-  };
-
-  const getSyntheticAccount = async (): Promise<void> => {
-    const token = localStorage.getItem("token");
-    setLoading({
-      message: "Cargando cuenta de usuario...",
-      visible: true,
-    });
-    if (token) {
-      await getUserSyntheticAccount(token)
-        .then((res) => {
-          setUserSyntheticAccount(res);
-        })
-        .finally(() => {
-          setLoading({
-            message: "",
-            visible: false,
-          });
-        });
-    }
-  };
-
   const checkSyntheticCredentials = async (id: number) => {
     const token = localStorage.getItem("token");
     setLoading({
@@ -274,7 +223,6 @@ const EvoxServicesProvider = ({ children }: Props) => {
             type: "success",
           });
           setIsChecking(true);
-          getSyntheticAccount();
         })
         .catch((error: Error) => {
           setToast({
@@ -485,8 +433,6 @@ const EvoxServicesProvider = ({ children }: Props) => {
         referrals,
         team,
         bridgeFundsAccounts,
-        hasAccount,
-        userSyntheticAccount,
         bridgeFundsAccountInfo,
         isChecking,
         getTeam,
@@ -499,8 +445,6 @@ const EvoxServicesProvider = ({ children }: Props) => {
         activeBridgeAccount,
         invalidBridgeAccount,
         sendBridgeTransaction,
-        checkUserSyntheticAccount,
-        getSyntheticAccount,
         getBridgeAccountFeatures,
         checkSyntheticCredentials,
         registerUserBridgeAccounts,

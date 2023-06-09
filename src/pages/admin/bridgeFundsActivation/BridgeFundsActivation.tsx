@@ -27,8 +27,12 @@ const BridgeFundsActivation = (): JSX.Element => {
   const screenSize = useScreen();
   const token = localStorage.getItem("token") ?? "";
   const { activeBridgeAccount, invalidBridgeAccount } = useEvoxServices();
-  const { data: accounts, isLoading } = useSWR("/bridgeFunds/list/users", () =>
-    getUsersBridgeFundsAccounts(token)
+  const { data: accounts, isLoading } = useSWR(
+    "/bridgeFunds/list/users",
+    () => getUsersBridgeFundsAccounts(token),
+    {
+      refreshInterval: 100,
+    }
   );
   const { Pagination, records } = usePagination(accounts ? accounts : []);
   const navigate = useNavigate();

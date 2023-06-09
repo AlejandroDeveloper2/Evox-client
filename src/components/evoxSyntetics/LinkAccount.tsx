@@ -1,14 +1,28 @@
+import useSWR from "swr";
+
 import { LinkAccountForm, Spinner, SyntheticAccountList } from "..";
-import { useApp, useEvoxServices, useFetchData } from "../../hooks";
+
+import {
+  getUserSyntheticAccount,
+  verifyUserSyntheticAccount,
+} from "../../services/synthetics";
 
 const LinkAccount = (): JSX.Element => {
-  const { checkUserSyntheticAccount, getSyntheticAccount, hasAccount } =
-    useEvoxServices();
-  const { loading } = useApp();
-  useFetchData([
-    { function: checkUserSyntheticAccount },
-    { function: getSyntheticAccount },
-  ]);
+  const token = localStorage.getItem("token") ?? "";
+  const { data: userAccount, isLoading } = useSWR(
+    "/users/account",
+    () => getUserSyntheticAccount(token),
+    {
+      refreshInterval: 100,
+    }
+  );
+  const { data: hasAccount } = useSWR(
+    "/users/syntheticsAccount",
+    () => verifyUserSyntheticAccount(token),
+    {
+      refreshInterval: 100,
+    }
+  );
 
   return (
     <section className="flex flex-col gap-3 items-center w-full">
@@ -23,7 +37,7 @@ const LinkAccount = (): JSX.Element => {
       </p>
       <div className="w-full flex flex-col gap-3 justify-center items-start mt-10">
         <div className="w-full border-b-[1px] border-gray flex justify-start items-center py-2">
-          {loading.visible ? (
+          {isLoading ? (
             <Spinner color="text-darkBlue" />
           ) : !hasAccount ? (
             <div className="w-full  flex flex-col justify-center items-center py-2">
@@ -32,9 +46,9 @@ const LinkAccount = (): JSX.Element => {
               </label>
               <LinkAccountForm />
             </div>
-          ) : (
-            <SyntheticAccountList />
-          )}
+          ) : userAccount ? (
+            <SyntheticAccountList {...userAccount} />
+          ) : null}
         </div>
       </div>
     </section>

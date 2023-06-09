@@ -1,10 +1,10 @@
 import { faCoins } from "@fortawesome/free-solid-svg-icons";
 
 import { CustomButton } from "..";
-import { useEvoxServices } from "../../hooks";
 
-const SyntheticAccountList = (): JSX.Element => {
-  const { userSyntheticAccount } = useEvoxServices();
+import { UserSyntheticAccount } from "../../types";
+
+const SyntheticAccountList = (props: UserSyntheticAccount): JSX.Element => {
   return (
     <div className="w-full flex flex-col gap-3 items-start justify-center">
       <div className="w-full border-b-[1px] border-gray py-3">
@@ -15,7 +15,7 @@ const SyntheticAccountList = (): JSX.Element => {
       </div>
       <div className="w-full flex flex-col gap-3 items-start justify-center py-4">
         <p className="md:text-[18px] text-[16px] text-darkGray font-bold text-left font-poppins">
-          #1 {userSyntheticAccount.login}
+          #1 {props.login}
         </p>
         <div className="grid grid-cols-1 gap-3 md:gap-0 md:grid-cols-2 place-items-center justify-items-start">
           <label className="md:text-[18px] text-[16px] text-darkBlue font-extrabold text-left font-poppins">

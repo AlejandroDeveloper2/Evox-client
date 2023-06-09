@@ -15,7 +15,6 @@ import {
   UserAccountBridgeFunds,
   UserAuth,
   UserIP,
-  UserSyntheticAccount,
 } from ".";
 
 interface AppContextType {
@@ -54,8 +53,6 @@ interface EvoxContextType {
   team: Team[];
   referrals: Referral[];
   bridgeFundsAccounts: BridgeFundsAccount[];
-  hasAccount: boolean;
-  userSyntheticAccount: UserSyntheticAccount;
   bridgeFundsAccountInfo: { id: number; quantity: number };
   isChecking: boolean;
   getTeam: (team: Team[]) => void;
@@ -68,8 +65,6 @@ interface EvoxContextType {
   activeBridgeAccount: (transaction: string) => Promise<void>;
   invalidBridgeAccount: (transaction: string) => Promise<void>;
   sendBridgeTransaction: (transaction: Transaction) => Promise<void>;
-  checkUserSyntheticAccount: () => Promise<void>;
-  getSyntheticAccount: () => Promise<void>;
   getBridgeAccountFeatures: (id: number, quantity: number) => void;
   checkSyntheticCredentials: (id: number) => void;
   registerUserBridgeAccounts: (

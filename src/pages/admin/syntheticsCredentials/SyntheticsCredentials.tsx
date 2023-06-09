@@ -25,10 +25,14 @@ import {
 const SyntheticsCredentials = (): JSX.Element => {
   const screenSize = useScreen();
   const token = localStorage.getItem("token") ?? "";
-  const { data: credentialList, isLoading } = useSWR("/synthetic/access", () =>
-    getSyntheticsAccountCredentials(token)
+  const { data: credentialList, isLoading } = useSWR(
+    "/synthetic/access",
+    () => getSyntheticsAccountCredentials(token),
+    {
+      refreshInterval: 100,
+    }
   );
-  const { isChecking, checkSyntheticCredentials } = useEvoxServices();
+  const { checkSyntheticCredentials } = useEvoxServices();
 
   const { Pagination, records } = usePagination(
     credentialList ? credentialList : []
@@ -79,9 +83,9 @@ const SyntheticsCredentials = (): JSX.Element => {
                         type="button"
                         label={""}
                         title=""
-                        icon={isChecking ? faCheck : faXmark}
+                        icon={account.state ? faCheck : faXmark}
                         theme={{
-                          bg: isChecking ? "bg-success" : "bg-error",
+                          bg: account.state ? "bg-success" : "bg-error",
                           color: "text-white",
                           aditionalStyles: "h-[3rem]",
                         }}
@@ -112,9 +116,9 @@ const SyntheticsCredentials = (): JSX.Element => {
                         type="button"
                         label={""}
                         title=""
-                        icon={isChecking ? faCheck : faXmark}
+                        icon={account.state ? faCheck : faXmark}
                         theme={{
-                          bg: isChecking ? "bg-success" : "bg-error",
+                          bg: account.state ? "bg-success" : "bg-error",
                           color: "text-white",
                           aditionalStyles: "h-[3rem]",
                         }}

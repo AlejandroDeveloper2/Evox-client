@@ -16,7 +16,10 @@ const RegistreBridgeFundsAccounts = (): JSX.Element => {
 
   const { data: isValid, isLoading } = useSWR(
     "/bridgeFunds/validateRegistration",
-    () => validateRegistration(token, id)
+    () => validateRegistration(token, id),
+    {
+      refreshInterval: 100,
+    }
   );
 
   return (

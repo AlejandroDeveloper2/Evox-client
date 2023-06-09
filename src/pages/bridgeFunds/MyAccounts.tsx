@@ -1,7 +1,7 @@
 import { faInfoCircle, faList } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import useSWR from "swr";
 import { Navigate } from "react-router-dom";
+import useSWR from "swr";
 
 import {
   getBridgeFundsAccountStatus,
@@ -16,10 +16,17 @@ const MyAccounts = (): JSX.Element => {
   const token = localStorage.getItem("token") ?? "";
   const { data: status, isLoading: isLoadingData } = useSWR(
     "/bridgeFunds/accountStatus",
-    () => getBridgeFundsAccountStatus(token)
+    () => getBridgeFundsAccountStatus(token),
+    {
+      refreshInterval: 100,
+    }
   );
-  const { data: accounts, isLoading } = useSWR("bridgeFunds/getAccounts", () =>
-    getUserBridgeFundsAccounts(token)
+  const { data: accounts, isLoading } = useSWR(
+    "bridgeFunds/getAccounts",
+    () => getUserBridgeFundsAccounts(token),
+    {
+      refreshInterval: 100,
+    }
   );
 
   return (

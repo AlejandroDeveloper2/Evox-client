@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import useSWR from "swr";
 
 import { useEvoxServices, useLoader } from "../../hooks";
 import { getUserReferrals, getUserTeam } from "../../services/userReferrals";
 import { sortReferralsRecords } from "../../utils";
-import useSWR from "swr";
 
 import {
   InvitationLink,
@@ -38,6 +38,7 @@ const UserDashboard = (): JSX.Element => {
         sortReferralsRecords(data);
         getDirectReferrals(data);
       },
+      refreshInterval: 100,
     }
   );
   const { data: team } = useSWR(
@@ -48,6 +49,7 @@ const UserDashboard = (): JSX.Element => {
         sortReferralsRecords(data);
         getTeam(data);
       },
+      refreshInterval: 100,
     }
   );
 

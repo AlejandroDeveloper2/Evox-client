@@ -24,12 +24,14 @@ import {
 const AccountsActivation = (): JSX.Element => {
   const screenSize = useScreen();
   const token = localStorage.getItem("token") ?? "";
+  const { data: accounts, isLoading } = useSWR(
+    "/synthetic/list",
+    () => getUserSyntecticsAccounts(token),
+    {
+      refreshInterval: 100,
+    }
+  );
   const { activeSyntheticAccount, invalidSyntheticAccount } = useEvoxServices();
-  const {
-    data: accounts,
-    isLoading,
-    mutate,
-  } = useSWR("/synthetic/list", () => getUserSyntecticsAccounts(token));
   const { Pagination, records } = usePagination(accounts ? accounts : []);
 
   return (
@@ -80,7 +82,6 @@ const AccountsActivation = (): JSX.Element => {
                         }}
                         onClick={() => {
                           activeSyntheticAccount(account.transaction);
-                          mutate(accounts);
                         }}
                         disabled={account.state}
                       />
@@ -96,7 +97,6 @@ const AccountsActivation = (): JSX.Element => {
                         }}
                         onClick={() => {
                           invalidSyntheticAccount(account.transaction);
-                          mutate(accounts);
                         }}
                         disabled={account.state}
                       />
@@ -130,7 +130,6 @@ const AccountsActivation = (): JSX.Element => {
                         }}
                         onClick={() => {
                           activeSyntheticAccount(account.transaction);
-                          mutate(accounts);
                         }}
                         disabled={account.state}
                       />
@@ -146,7 +145,6 @@ const AccountsActivation = (): JSX.Element => {
                         }}
                         onClick={() => {
                           invalidSyntheticAccount(account.transaction);
-                          mutate(accounts);
                         }}
                         disabled={account.state}
                       />
