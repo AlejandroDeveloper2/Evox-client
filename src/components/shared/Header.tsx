@@ -19,7 +19,7 @@ const Header = (): JSX.Element => {
         <img
           src={Logo}
           alt="Evox Logo"
-          className="object-cover w-full h-full"
+          className="object-contain w-full h-full"
         />
       </Link>
       <div
