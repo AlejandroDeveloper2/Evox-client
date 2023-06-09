@@ -16,11 +16,11 @@ const OptionsBar = (): JSX.Element => {
         <Dropdown />
       </div>
       {/* <Toggle /> */}
-      <div className="w-full h-[14rem]">
+      <div className="w-full h-[7rem] md:h-[14rem]">
         <img
           src={TopBanner}
           alt="Evox banner"
-          className=" object-fill md:object-cover w-full h-full"
+          className="object-contain md:object-fill w-full h-full"
         />
       </div>
     </div>

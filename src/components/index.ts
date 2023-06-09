@@ -40,6 +40,8 @@ export { default as EmptyTablet } from "./referrals/EmptyTablet";
 /*bridge funds components*/
 export { default as AccountCard } from "./bridgeFunds/AccountCard";
 export { default as MTPlatforms } from "./bridgeFunds/MTPlatforms";
+export { default as AccountList } from "./bridgeFunds/AccountList";
+export { default as Account } from "./bridgeFunds/Account";
 
 /*Syntetics components */
 export { default as LinkAccount } from "./evoxSyntetics/LinkAccount";

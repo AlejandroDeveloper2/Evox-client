@@ -6,8 +6,15 @@ import { useBridgeAccount, useEvoxServices } from "../../hooks";
 import { CustomButton } from "..";
 
 const AccountCard = (props: BridgeFundsAccount): JSX.Element => {
-  const { isChecked, accountQuantity, price, handleChange, handleClick } =
-    useBridgeAccount(props.price);
+  const {
+    isChecked,
+    accountQuantity,
+    price,
+    handleChange,
+    handleClick,
+    increseQuantity,
+    decreaseQuantity,
+  } = useBridgeAccount(props.price);
   const { getBridgeAccountFeatures } = useEvoxServices();
   const navigate = useNavigate();
   const features = props.description.split(",");
@@ -62,6 +69,16 @@ const AccountCard = (props: BridgeFundsAccount): JSX.Element => {
           min={1}
           max={99}
         />
+        <p className="flex flex-col items-center gap-1 text-darkGray text-[12px]">
+          <span onClick={increseQuantity} className="cursor-pointer">
+            {" "}
+            ▲{" "}
+          </span>
+          <span onClick={decreaseQuantity} className="cursor-pointer">
+            {" "}
+            ▼{" "}
+          </span>
+        </p>
         <span className="text-[18px] text-darkGray font-extrabold font-poppins">
           {price} {props.currency}
         </span>

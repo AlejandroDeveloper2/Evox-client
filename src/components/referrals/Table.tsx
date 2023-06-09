@@ -5,18 +5,20 @@ const Table = (props: TableProps): JSX.Element => {
   const { children, headers } = props;
   const screenSize = useScreen();
 
-  if (screenSize >= 768)
+  if (screenSize >= 1024)
     return (
       <table className="w-full text-sm text-left text-darkGray dark:text-white font-poppins  bg-white md:bg-lightGray">
         <thead
           className="text-[16px] text-blue capitalize dark:bg-mediumGray 
           dark:text-white font-poppins font-semibold border-b-[2px] border-gray"
         >
-          {headers.map((header, index) => (
-            <th className="px-6 py-3 whitespace-nowrap" key={index}>
-              {header.label}
-            </th>
-          ))}
+          <tr>
+            {headers.map((header, index) => (
+              <th key={index} className="px-6 py-3 whitespace-nowrap">
+                {header.label}
+              </th>
+            ))}
+          </tr>
         </thead>
         <tbody>{children}</tbody>
       </table>

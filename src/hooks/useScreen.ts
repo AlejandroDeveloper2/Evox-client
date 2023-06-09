@@ -1,13 +1,21 @@
 import React from "react";
 
+function getWindowDimensions() {
+  const { innerWidth: width } = window;
+  return width;
+}
+
 const useScreen = (): number => {
   const [screenSize, setScreenSize] = React.useState<number>(
-    window.screen.width
+    getWindowDimensions()
   );
-
-  window.addEventListener("resize", () => {
-    setScreenSize(window.screen.width);
-  });
+  React.useEffect(() => {
+    const handleResize = () => {
+      setScreenSize(getWindowDimensions());
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   return screenSize;
 };
 

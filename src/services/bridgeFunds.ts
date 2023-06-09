@@ -8,6 +8,7 @@ import {
   ServerResponseSuccess,
   Transaction,
   UserAccountBridgeFunds,
+  UserBridgeFundsAccounts,
 } from "../types";
 
 const getBridgeFundsAccounts = async (
@@ -245,9 +246,28 @@ const sendAccountsRegistration = async (
   return response;
 };
 
-// const getUserBridgeFundsAccounts = async() =>{
-
-// }
+const getUserBridgeFundsAccounts = async (
+  token: string
+): Promise<UserBridgeFundsAccounts[]> => {
+  const axiosClient = getAxiosClient("evoxAPI");
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  let response: UserBridgeFundsAccounts[] = [];
+  try {
+    const { data } = await axiosClient<UserBridgeFundsAccounts[]>(
+      "bridgeFunds/getAccounts",
+      config
+    );
+    response = data;
+  } catch (error: any) {
+    throw new Error(error.response.data.message);
+  }
+  return response;
+};
 
 export {
   getBridgeFundsAccounts,
@@ -259,4 +279,5 @@ export {
   getUsersBridgeFundsAccounts,
   validateRegistration,
   sendAccountsRegistration,
+  getUserBridgeFundsAccounts,
 };

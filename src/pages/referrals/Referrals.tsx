@@ -34,7 +34,7 @@ const Referrals = (): JSX.Element => {
         <Table headers={referralsTableHeaders}>
           {referrals && referrals.length > 0 ? (
             records.map((referral, index) =>
-              screenSize < 768 ? (
+              screenSize < 1024 ? (
                 <MobileTableRecord
                   key={index}
                   values={getReferralsCardValues()}

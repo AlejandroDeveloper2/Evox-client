@@ -4,7 +4,7 @@ import { EmptyTableProps } from "../../types";
 const EmptyTablet = (props: EmptyTableProps): JSX.Element => {
   const screenSize = useScreen();
   const { message, colspan } = props;
-  if (screenSize >= 768)
+  if (screenSize >= 1024)
     return (
       <tr
         className="bg-white md:bg-lightGray dark:bg-darkGray dark:border-mediumGray text-darkBlue 

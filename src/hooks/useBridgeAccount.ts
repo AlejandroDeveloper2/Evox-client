@@ -18,6 +18,22 @@ const useBridgeAccount = (accountPrice: number) => {
     if (window.parseInt(e.target.value) > 0) setAccountQuantity(e.target.value);
   };
 
+  const increseQuantity = (): void => {
+    setAccountQuantity((prevState) => {
+      const newState = parseInt(prevState) + 1;
+      return newState.toString();
+    });
+  };
+
+  const decreaseQuantity = (): void => {
+    if (parseInt(accountQuantity) > 1) {
+      setAccountQuantity((prevState) => {
+        const newState = parseInt(prevState) - 1;
+        return newState.toString();
+      });
+    }
+  };
+
   const handleClick = (): void => {
     setIsChecked(!isChecked);
   };
@@ -26,6 +42,8 @@ const useBridgeAccount = (accountPrice: number) => {
     isChecked,
     accountQuantity,
     price,
+    increseQuantity,
+    decreaseQuantity,
     handleChange,
     handleClick,
   };

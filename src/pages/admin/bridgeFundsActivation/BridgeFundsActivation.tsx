@@ -55,7 +55,7 @@ const BridgeFundsActivation = (): JSX.Element => {
           <Table headers={accountActivationsTableHeaders}>
             {accounts && accounts.length > 0 ? (
               records.map((account, index) =>
-                screenSize < 768 ? (
+                screenSize < 1024 ? (
                   <div key={index} className="flex flex-col gap-4">
                     <MobileTableRecord
                       values={getBridgeFundsAccountsCardValues()}
@@ -73,51 +73,55 @@ const BridgeFundsActivation = (): JSX.Element => {
                       ]}
                     />
                     <div className="flex gap-3 items-center justify-center">
-                      <CustomButton
-                        type="button"
-                        label={""}
-                        title="Activar cuenta"
-                        icon={faCheck}
-                        theme={{
-                          bg: "bg-blue",
-                          color: "text-white",
-                          aditionalStyles: "h-[3rem] w-[3rem]",
-                        }}
-                        onClick={() => activeBridgeAccount(account.transaction)}
-                        disabled={account.state}
-                      />
-                      <CustomButton
-                        type="button"
-                        label={""}
-                        title="Invalidar transacción"
-                        icon={faCircleXmark}
-                        theme={{
-                          bg: "bg-error",
-                          color: "text-white",
-                          aditionalStyles: "h-[3rem] w-[3rem]",
-                        }}
-                        onClick={() =>
-                          invalidBridgeAccount(account.transaction)
-                        }
-                        disabled={account.state}
-                      />
-                      <CustomButton
-                        type="button"
-                        label={""}
-                        title="Agregar usuarios"
-                        icon={faPlus}
-                        theme={{
-                          bg: "bg-blue",
-                          color: "text-white",
-                          aditionalStyles: "h-[3rem] w-[3rem]",
-                        }}
-                        onClick={() =>
-                          navigate(
-                            `/admin/registerBridgeFundsAccounts/${account.quantity}-${account.id}`
-                          )
-                        }
-                        disabled={account.state}
-                      />
+                      {account.state ? (
+                        <CustomButton
+                          type="button"
+                          label={""}
+                          title="Agregar usuarios"
+                          icon={faPlus}
+                          theme={{
+                            bg: "bg-blue",
+                            color: "text-white",
+                            aditionalStyles: "h-[3rem] w-[3rem]",
+                          }}
+                          onClick={() =>
+                            navigate(
+                              `/admin/registerBridgeFundsAccounts/${account.quantity}-${account.id}`
+                            )
+                          }
+                        />
+                      ) : (
+                        <>
+                          <CustomButton
+                            type="button"
+                            label={""}
+                            title="Activar cuenta"
+                            icon={faCheck}
+                            theme={{
+                              bg: "bg-blue",
+                              color: "text-white",
+                              aditionalStyles: "h-[3rem] w-[3rem]",
+                            }}
+                            onClick={() =>
+                              activeBridgeAccount(account.transaction)
+                            }
+                          />
+                          <CustomButton
+                            type="button"
+                            label={""}
+                            title="Invalidar transacción"
+                            icon={faCircleXmark}
+                            theme={{
+                              bg: "bg-error",
+                              color: "text-white",
+                              aditionalStyles: "h-[3rem] w-[3rem]",
+                            }}
+                            onClick={() =>
+                              invalidBridgeAccount(account.transaction)
+                            }
+                          />
+                        </>
+                      )}
                     </div>
                   </div>
                 ) : (
@@ -139,51 +143,58 @@ const BridgeFundsActivation = (): JSX.Element => {
                       {account.state ? "Activa" : "Inactiva"}
                     </td>
                     <td className="px-6 py-4 flex gap-2 items-center">
-                      <CustomButton
-                        type="button"
-                        label={""}
-                        title="Activar cuenta"
-                        icon={faCheck}
-                        theme={{
-                          bg: "bg-blue",
-                          color: "text-white",
-                          aditionalStyles: "h-[3rem] w-[3rem]",
-                        }}
-                        onClick={() => activeBridgeAccount(account.transaction)}
-                        disabled={account.state}
-                      />
-                      <CustomButton
-                        type="button"
-                        label={""}
-                        title="Invalidar transacción"
-                        icon={faCircleXmark}
-                        theme={{
-                          bg: "bg-error",
-                          color: "text-white",
-                          aditionalStyles: "h-[3rem] w-[3rem]",
-                        }}
-                        onClick={() =>
-                          invalidBridgeAccount(account.transaction)
-                        }
-                        disabled={account.state}
-                      />
-                      <CustomButton
-                        type="button"
-                        label={""}
-                        title="Agregar usuarios"
-                        icon={faPlus}
-                        theme={{
-                          bg: "bg-blue",
-                          color: "text-white",
-                          aditionalStyles: "h-[3rem] w-[3rem]",
-                        }}
-                        onClick={() =>
-                          navigate(
-                            `/admin/registerBridgeFundsAccounts/${account.quantity}-${account.id}`
-                          )
-                        }
-                        disabled={account.state}
-                      />
+                      {account.state ? (
+                        <CustomButton
+                          type="button"
+                          label={""}
+                          title="Agregar usuarios"
+                          icon={faPlus}
+                          theme={{
+                            bg: "bg-blue",
+                            color: "text-white",
+                            aditionalStyles: "h-[3rem] w-[3rem]",
+                          }}
+                          onClick={() =>
+                            navigate(
+                              `/admin/registerBridgeFundsAccounts/${account.quantity}-${account.id}`
+                            )
+                          }
+                          disabled={account.state}
+                        />
+                      ) : (
+                        <>
+                          <CustomButton
+                            type="button"
+                            label={""}
+                            title="Activar cuenta"
+                            icon={faCheck}
+                            theme={{
+                              bg: "bg-blue",
+                              color: "text-white",
+                              aditionalStyles: "h-[3rem] w-[3rem]",
+                            }}
+                            onClick={() =>
+                              activeBridgeAccount(account.transaction)
+                            }
+                            disabled={account.state}
+                          />
+                          <CustomButton
+                            type="button"
+                            label={""}
+                            title="Invalidar transacción"
+                            icon={faCircleXmark}
+                            theme={{
+                              bg: "bg-error",
+                              color: "text-white",
+                              aditionalStyles: "h-[3rem] w-[3rem]",
+                            }}
+                            onClick={() =>
+                              invalidBridgeAccount(account.transaction)
+                            }
+                            disabled={account.state}
+                          />
+                        </>
+                      )}
                     </td>
                   </tr>
                 )

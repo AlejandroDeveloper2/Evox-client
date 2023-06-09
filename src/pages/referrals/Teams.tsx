@@ -34,7 +34,7 @@ const Teams = (): JSX.Element => {
         <Table headers={teamTableHeaders}>
           {team && team.length > 0 ? (
             records.map((referral, index) =>
-              screenSize < 768 ? (
+              screenSize < 1024 ? (
                 <MobileTableRecord
                   key={index}
                   values={getTeamCardValues()}

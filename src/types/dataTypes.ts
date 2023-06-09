@@ -195,6 +195,13 @@ interface UserAccountBridgeFunds {
   bridgeFundsId: number;
 }
 
+interface UserBridgeFundsAccounts {
+  id: number;
+  title: string;
+  bridgeFundsAccounts: UserAccountBridgeFunds[];
+  state: boolean;
+}
+
 export type {
   FormType,
   RegisterFormValues,
@@ -223,4 +230,5 @@ export type {
   SyntheticsAccountCredentials,
   User,
   UserAccountBridgeFunds,
+  UserBridgeFundsAccounts,
 };

@@ -43,7 +43,7 @@ const Users = (): JSX.Element => {
           <Table headers={usersTableHeaders}>
             {users && users.length > 0 ? (
               records.map((user, index) =>
-                screenSize < 768 ? (
+                screenSize < 1024 ? (
                   <div key={index}>
                     <MobileTableRecord
                       values={getUsersCardValues()}

@@ -59,7 +59,7 @@ const SyntheticsCredentials = (): JSX.Element => {
           <Table headers={syntheticCredentialsTableHeaders}>
             {credentialList && credentialList.length > 0 ? (
               records.map((account, index) =>
-                screenSize < 768 ? (
+                screenSize < 1024 ? (
                   <>
                     <MobileTableRecord
                       key={index}

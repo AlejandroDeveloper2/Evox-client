@@ -54,12 +54,11 @@ const AccountsActivation = (): JSX.Element => {
           <Table headers={accountActivationsTableHeaders}>
             {accounts && accounts.length > 0 ? (
               records.map((account, index) =>
-                screenSize < 768 ? (
+                screenSize < 1024 ? (
                   <div key={index}>
                     <MobileTableRecord
                       values={getAccountsActivationsCardValues()}
                       records={[
-                        index + 1,
                         account.transaction,
                         account.currency,
                         account.price,
@@ -68,7 +67,7 @@ const AccountsActivation = (): JSX.Element => {
                         account.email,
                       ]}
                     />
-                    <div className="flex gap-3 items-center justify-center">
+                    <div className="flex gap-3 items-center justify-center mt-3">
                       <CustomButton
                         type="button"
                         label={""}
