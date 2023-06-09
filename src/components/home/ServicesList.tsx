@@ -69,7 +69,7 @@ const ServicesList = (): JSX.Element => {
           alt="Evox Markets"
         />
         <ServiceCard
-          to="#"
+          to="/dashboard/evoxSynthetics/copySynthetics"
           serviceImage={ImageEvoxSyntetics}
           alt="Evox Syntetics"
         />
