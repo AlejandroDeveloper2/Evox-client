@@ -189,6 +189,12 @@ interface User {
 type AccountStatus = "Verified" | "Shopping" | "Pending" | "Error";
 type TransactionType = "Synthetic" | "Bridge funds";
 
+interface UserAccountBridgeFunds {
+  login: string;
+  password: string;
+  bridgeFundsId: number;
+}
+
 export type {
   FormType,
   RegisterFormValues,
@@ -216,4 +222,5 @@ export type {
   UserSyntheticAccount,
   SyntheticsAccountCredentials,
   User,
+  UserAccountBridgeFunds,
 };

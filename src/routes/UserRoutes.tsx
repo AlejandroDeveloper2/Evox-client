@@ -16,6 +16,7 @@ import {
   BridgeMarkets,
   Academy,
   CopySynthetics,
+  StepsBridgeFunds,
 } from "../pages";
 
 const UserRoutes = (): JSX.Element => {
@@ -34,6 +35,10 @@ const UserRoutes = (): JSX.Element => {
         <Route
           path="/dashboard/automaticTrading/commissions"
           element={<Commissions />}
+        />
+        <Route
+          path="/dashboard/bridgeFunds/steps"
+          element={<StepsBridgeFunds />}
         />
         <Route
           path="/dashboard/bridgeFunds/kindOfAccounts"

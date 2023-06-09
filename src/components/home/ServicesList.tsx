@@ -30,7 +30,7 @@ const ServicesList = (): JSX.Element => {
           alt="Evox Marketing"
         />
         <ServiceCard
-          to="/dashboard/bridgeFunds/kindOfAccounts"
+          to="/dashboard/bridgeFunds/myAccounts"
           serviceImage={ImageEvoxFunds}
           alt="Evox Funds"
         />

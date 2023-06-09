@@ -38,7 +38,13 @@ const Referrals = (): JSX.Element => {
                 <MobileTableRecord
                   key={index}
                   values={getReferralsCardValues()}
-                  record={{ index: index + 1, ...referral }}
+                  records={[
+                    index + 1,
+                    referral.fullName,
+                    referral.phone,
+                    referral.userName,
+                    formatDate(referral.dateRegistered),
+                  ]}
                 />
               ) : (
                 <tr

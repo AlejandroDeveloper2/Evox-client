@@ -18,9 +18,11 @@ export { default as MyAccounts } from "./bridgeFunds/MyAccounts";
 export { default as BridgeMarkets } from "./bridgeMarkets/BridgeMarkets";
 export { default as Academy } from "./evoxSynthetics/Academy";
 export { default as CopySynthetics } from "./evoxSynthetics/CopySynthetics";
+export { default as StepsBridgeFunds } from "./bridgeFunds/StepsBridgeFunds";
 
 /*Admin pages */
 export { default as Users } from "./admin/users/Users";
 export { default as AccountsActvation } from "./admin/AccountsActivation";
 export { default as BridgeFundsActivation } from "./admin/bridgeFundsActivation/BridgeFundsActivation";
 export { default as SyntheticsCredentials } from "./admin/syntheticsCredentials/SyntheticsCredentials";
+export { default as RegisterBridgeFundsAccounts } from "./admin/registerBridgeFundsAccounts/RegistreBridgeFundsAccounts";

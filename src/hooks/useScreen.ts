@@ -4,12 +4,10 @@ const useScreen = (): number => {
   const [screenSize, setScreenSize] = React.useState<number>(
     window.screen.width
   );
-  React.useEffect(() => {
-    window.addEventListener("resize", () => {
-      setScreenSize(window.screen.width);
-    });
-  }, []);
 
+  window.addEventListener("resize", () => {
+    setScreenSize(window.screen.width);
+  });
   return screenSize;
 };
 

@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useAuth } from "../../hooks";
 
 import { MamAccountsLogo } from "../../assets";
+
 import { CustomButton } from "../../components";
 
 const MAMAccounts = (): JSX.Element => {

@@ -26,6 +26,7 @@ export type {
   UserSyntheticAccount,
   SyntheticsAccountCredentials,
   User,
+  UserAccountBridgeFunds,
 } from "./dataTypes";
 
 /* Component types Models */
@@ -35,7 +36,6 @@ export type {
   CustomFormProps,
   SpinnerProps,
   ToastProps,
-  HeaderProps,
   CustomInputProps,
   RenderInputProps,
   MenuItem,
@@ -49,6 +49,7 @@ export type {
   CopyLinkProps,
   MobileTableHeader,
   MobileTableRecordProps,
+  BridgeFundsFormProps,
 } from "./componentsTypes";
 
 /*Hook types model */

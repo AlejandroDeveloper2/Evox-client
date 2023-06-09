@@ -13,13 +13,7 @@ const getUserReferrals = async (token: string): Promise<Referral[]> => {
   let response: Referral[] = [];
   try {
     const { data } = await axiosClient("/users/referrals", config);
-    const newData = data.map((element: { level?: any }) => {
-      if (Object.keys(element).includes("level")) {
-        delete element.level;
-      }
-      return element;
-    });
-    response = newData;
+    response = data;
   } catch (error) {
     console.log(error);
   }
@@ -37,13 +31,7 @@ const getUserTeam = async (token: string): Promise<Team[]> => {
   let response: Team[] = [];
   try {
     const { data } = await axiosClient("/users/referrals/team", config);
-    const newData = data.map((element: { phone?: any }) => {
-      if (Object.keys(element).includes("phone")) {
-        delete element.phone;
-      }
-      return element;
-    });
-    response = newData;
+    response = data;
   } catch (error) {
     console.log(error);
   }

@@ -8,7 +8,7 @@ import useSWR from "swr";
 
 import { getBridgeFundsAccountStatus } from "../../services/bridgeFunds";
 
-import { CopyLink, MTPlatforms, PaymentNoDone } from "../../components";
+import { CopyLink, MTPlatforms } from "../../components";
 import { Navigate } from "react-router-dom";
 
 const MyAccounts = (): JSX.Element => {
@@ -20,11 +20,14 @@ const MyAccounts = (): JSX.Element => {
   return (
     <div className="relative flex flex-col pt-20 pb-10 items-center gap-20 px-5  md:px-20">
       {status === "Shopping" ? (
-        <PaymentNoDone
-          paymentLink="/dashboard/bridgeFunds/kindOfAccounts"
-          label="Realizar el pago de tu cuenta de fondeos"
-          type="brigeFunds"
-        />
+        <p className="text-[16px] text-darkGray font-poppins font-normal md:w-3/4 text-center flex flex-col gap-2">
+          <FontAwesomeIcon
+            icon={faInfoCircle}
+            className="text-[50px] text-success"
+          />
+          No has comprado cuentas de fondeo aún empieza comprando una de tu
+          preferencia!
+        </p>
       ) : status === "Pending" ? (
         <p className="text-[16px] text-darkGray font-poppins font-normal md:w-3/4 text-center flex flex-col gap-2">
           <FontAwesomeIcon
@@ -35,7 +38,7 @@ const MyAccounts = (): JSX.Element => {
           horas tu cuenta será activada!
         </p>
       ) : status === "Error" ? (
-        <Navigate to="/dashboard/bridgeFunds/bridgeFundsPayment" />
+        <Navigate to="/dashboard/bridgeFunds/bridgeFundsPayment/error" />
       ) : (
         <>
           <h1 className="text-[20px] md:text-[24px] text-darkBlue font-extrabold text-center font-poppins align-middle">

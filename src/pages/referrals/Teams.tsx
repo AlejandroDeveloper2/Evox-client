@@ -38,7 +38,13 @@ const Teams = (): JSX.Element => {
                 <MobileTableRecord
                   key={index}
                   values={getTeamCardValues()}
-                  record={{ index: index + 1, ...referral }}
+                  records={[
+                    index + 1,
+                    referral.fullName,
+                    referral.level,
+                    referral.userName,
+                    formatDate(referral.dateRegistered),
+                  ]}
                 />
               ) : (
                 <tr

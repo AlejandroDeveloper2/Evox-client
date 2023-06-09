@@ -7,6 +7,7 @@ import {
   Referral,
   Team,
   Transaction,
+  UserAccountBridgeFunds,
   UserSyntheticAccount,
 } from "../types";
 import {
@@ -24,6 +25,7 @@ import {
   getBridgeFundsAccounts,
   invalidBridgeFundsTransaction,
   saveBridgeFundsTransaction,
+  sendAccountsRegistration,
 } from "../services/bridgeFunds";
 
 const EvoxServicesContext = React.createContext<EvoxContextType>(
@@ -436,6 +438,47 @@ const EvoxServicesProvider = ({ children }: Props) => {
     setBridgeFundsAccountInfo({ id, quantity });
   };
 
+  const registerUserBridgeAccounts = async (
+    id: number,
+    dataAccounts: UserAccountBridgeFunds[]
+  ): Promise<void> => {
+    const token = localStorage.getItem("token");
+    setLoading({
+      message: "Enviando cuentas...",
+      visible: true,
+    });
+    if (token) {
+      await sendAccountsRegistration(token, id, dataAccounts)
+        .then((res) => {
+          setToast({
+            message: res.message,
+            visible: true,
+            type: "success",
+          });
+        })
+        .catch((error: Error) => {
+          setToast({
+            message: error.message,
+            visible: true,
+            type: "error",
+          });
+        })
+        .finally(() => {
+          setTimeout(() => {
+            setToast({
+              message: "",
+              visible: false,
+              type: "success",
+            });
+          }, 3000);
+          setLoading({
+            message: "",
+            visible: false,
+          });
+        });
+    }
+  };
+
   return (
     <EvoxServicesContext.Provider
       value={{
@@ -460,6 +503,7 @@ const EvoxServicesProvider = ({ children }: Props) => {
         getSyntheticAccount,
         getBridgeAccountFeatures,
         checkSyntheticCredentials,
+        registerUserBridgeAccounts,
       }}
     >
       {children}

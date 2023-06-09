@@ -1,10 +1,7 @@
-import React, { useEffect } from "react";
 import { faCreditCard } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { useEvoxServices } from "../../hooks";
-import { Transaction } from "../../types";
-import { getBridgeFundsTransactionStatus } from "../../services/bridgeFunds";
+import { useBridgeFundsPayment } from "../../hooks";
 
 import { QrBridgeFundsImage, TetherLogo } from "../../assets";
 import { CopyLink, CustomButton } from "../../components";
@@ -14,48 +11,8 @@ interface Props {
 }
 
 const BridgeFundsPayment = ({ error }: Props): JSX.Element => {
-  const token = localStorage.getItem("token") ?? "";
-  const { sendBridgeTransaction, bridgeFundsAccountInfo } = useEvoxServices();
-  const { id, quantity } = bridgeFundsAccountInfo;
-  const [transactionHash, setTransactionHash] = React.useState<Transaction>({
-    transaction: "",
-    bridgeAccountId: id,
-    quantity,
-  });
-
-  useEffect(() => {
-    const getTransaction = async () => {
-      if (error) {
-        const data = await getBridgeFundsTransactionStatus(token);
-        setTransactionHash(data);
-      }
-    };
-    getTransaction();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTransactionHash({
-      ...transactionHash,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const validateField = (): boolean => {
-    if (
-      Object.values(transactionHash).includes("") ||
-      transactionHash.transaction.length < 10
-    )
-      return true;
-    return false;
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
-    e.preventDefault();
-    console.log(transactionHash);
-    sendBridgeTransaction(transactionHash);
-    setTransactionHash({ transaction: "" });
-  };
+  const { transactionHash, onChange, validateField, handleSubmit } =
+    useBridgeFundsPayment(error);
 
   return (
     <div className="relative flex flex-col pt-20 pb-10 items-start gap-20 px-5  md:px-20">

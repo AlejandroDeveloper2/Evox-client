@@ -1,29 +1,27 @@
-import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
-import { CustomButton } from "..";
-import { HeaderProps } from "../../types";
+import { useAuth } from "../../hooks";
 
-const Header = (props: HeaderProps): JSX.Element => {
-  const { pageName } = props;
+import Logo from "../../assets/images/logo.png";
+
+const Header = (): JSX.Element => {
+  const { auth } = useAuth();
+
   return (
     <div
-      className="w-screen bg-white dark:bg-darkGray h-[5rem] flex justify-center items-center 
-      lg:justify-center lg:px-0 fixed z-20 gap-10 md:px-10 px-0"
+      className="w-screen bg-white dark:bg-darkGray h-[5rem] flex md:justify-start items-center justify-center
+      fixed z-20 gap-1 md:px-20 top-0 left-0"
     >
-      <CustomButton
-        type={"externalLink"}
-        label={"Home"}
-        theme={{
-          bg: "bg-white",
-          color: "text-darkGray",
-          aditionalStyles: "w-[7rem] h-[3rem] uppercase",
-        }}
-        icon={faHome}
-        externalLink="https://www.evox.com.co"
-      />
-      <h1 className="text-darkGray dark:text-white text-[20px] md:text-[22px] text-center font-poppins font-medium uppercase">
-        {pageName}
-      </h1>
+      <Link
+        to={auth?.roles[0].authority === "ROLE_USER" ? "/dashboard" : "/admin"}
+        className="w-auto h-[100%]"
+      >
+        <img
+          src={Logo}
+          alt="Evox Logo"
+          className="object-cover w-full h-full"
+        />
+      </Link>
       <div
         className="absolute bottom-0 w-full h-[6px] bg-gradient-to-r from-purple via-mediumBlue 
         to-lightBlue dark:to-mediumBlue dark:from-white left-0 right-0 m-auto"

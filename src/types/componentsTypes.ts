@@ -51,10 +51,6 @@ interface ToastProps extends SpinnerProps {
   type: "error" | "success" | "warning" | "info";
 }
 
-interface HeaderProps {
-  pageName: string;
-}
-
 interface CustomInputProps extends RenderInputProps {
   field: Field;
   passVisible?: boolean;
@@ -113,7 +109,7 @@ interface TableProps {
 
 interface MobileTableRecordProps {
   values: MobileTableHeader[];
-  record: any;
+  records: string | number[];
 }
 
 interface EmptyTableProps {
@@ -126,13 +122,17 @@ type CopyLinkProps = {
   width?: string;
 };
 
+interface BridgeFundsFormProps {
+  id: number;
+  quantity: number;
+}
+
 export type {
   Field,
   CustomButtonProps,
   CustomFormProps,
   SpinnerProps,
   ToastProps,
-  HeaderProps,
   CustomInputProps,
   RenderInputProps,
   MenuItem,
@@ -146,4 +146,5 @@ export type {
   CopyLinkProps,
   MobileTableHeader,
   MobileTableRecordProps,
+  BridgeFundsFormProps,
 };

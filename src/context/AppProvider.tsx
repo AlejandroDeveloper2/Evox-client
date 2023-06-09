@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useFetchData, usePage } from "../hooks";
+import { useFetchData } from "../hooks";
 import {
   AppContextType,
   City,
@@ -37,7 +37,6 @@ const AppProvider = ({ children }: Props) => {
     visible: false,
   });
   const [isMenuVisible, setIsMenuVisible] = React.useState<boolean>(false);
-  const page = usePage();
 
   const getCountriesData = async () => {
     const countriesData = await getAllCountries();
@@ -86,7 +85,6 @@ const AppProvider = ({ children }: Props) => {
         loading,
         toast,
         isMenuVisible,
-        page,
         setLoading,
         setToast,
         toggleLateralMenu,

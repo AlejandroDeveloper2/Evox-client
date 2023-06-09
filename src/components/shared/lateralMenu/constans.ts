@@ -70,6 +70,12 @@ const getMenuItems = (roleUser: Role): MenuItem[] => {
             to: "/dashboard/bridgeFunds/myAccounts",
             enabled: true,
           },
+          {
+            rightIcon: null,
+            label: "Ver tipos de cuentas",
+            to: "/dashboard/bridgeFunds/steps",
+            enabled: true,
+          },
         ],
       },
       {

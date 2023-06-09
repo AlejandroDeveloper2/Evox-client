@@ -1,4 +1,13 @@
-import { TableHeader } from "../../../types";
+import {
+  faAt,
+  faCalendar,
+  faIdCard,
+  faLock,
+  faToggleOn,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
+
+import { MobileTableHeader, TableHeader } from "../../../types";
 
 const syntheticCredentialsTableHeaders: TableHeader[] = [
   {
@@ -24,4 +33,31 @@ const syntheticCredentialsTableHeaders: TableHeader[] = [
   },
 ];
 
-export { syntheticCredentialsTableHeaders };
+const syntheticCredentialsCardValues = (): MobileTableHeader[] => [
+  {
+    label: "Nombre de usuario",
+    icon: faUser,
+  },
+  {
+    label: "Correo",
+    icon: faAt,
+  },
+  {
+    label: "Id de inicio de sesión",
+    icon: faIdCard,
+  },
+  {
+    label: "Contraseña",
+    icon: faLock,
+  },
+  {
+    label: "Registro de cuenta",
+    icon: faCalendar,
+  },
+  {
+    label: "Estado",
+    icon: faToggleOn,
+  },
+];
+
+export { syntheticCredentialsTableHeaders, syntheticCredentialsCardValues };

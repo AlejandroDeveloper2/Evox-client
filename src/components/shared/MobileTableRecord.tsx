@@ -4,9 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { MobileTableRecordProps } from "../../types";
 
 const MobileTableRecord = (props: MobileTableRecordProps): JSX.Element => {
-  const { values, record } = props;
-  const records: any[] = Object.values(record);
-
+  const { values, records } = props;
   return (
     <div
       className="w-full bg-white p-4 flex flex-col gap-2 shadow-md rounded-md items-start 
@@ -20,7 +18,7 @@ const MobileTableRecord = (props: MobileTableRecordProps): JSX.Element => {
         >
           <span className="text-darkGray font-poppins font-semibold  mr-2">
             {<FontAwesomeIcon icon={value.icon} className="mr-2" />}
-            {value.label}
+            {value.label} :
           </span>
           {records[index]}
         </div>

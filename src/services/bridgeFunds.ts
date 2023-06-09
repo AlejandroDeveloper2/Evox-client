@@ -7,6 +7,7 @@ import {
   ServerResponseFail,
   ServerResponseSuccess,
   Transaction,
+  UserAccountBridgeFunds,
 } from "../types";
 
 const getBridgeFundsAccounts = async (
@@ -189,6 +190,65 @@ const getUsersBridgeFundsAccounts = async (
   return response;
 };
 
+const validateRegistration = async (
+  token: string,
+  id: number
+): Promise<boolean> => {
+  const axiosClient = getAxiosClient("evoxAPI");
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  let response = false;
+  try {
+    const { data } = await axiosClient.get(
+      `bridgeFunds/validateRegistration/${id}`,
+      config
+    );
+    response = data;
+  } catch (error: any) {
+    throw new Error(error.response.data.message);
+  }
+  return response;
+};
+
+const sendAccountsRegistration = async (
+  token: string,
+  id: number,
+  dataAccounts: UserAccountBridgeFunds[]
+): Promise<ServerResponseFail | ServerResponseSuccess> => {
+  const axiosClient = getAxiosClient("evoxAPI");
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  let response: ServerResponseFail | ServerResponseSuccess = {
+    message: "",
+    typeStatus: "Success",
+  };
+
+  try {
+    const { data } = await axiosClient.post(
+      `bridgeFunds/linkAccounts/${id}`,
+      dataAccounts,
+      config
+    );
+    response = data;
+  } catch (error: any) {
+    throw new Error(error.response.data.message);
+  }
+  return response;
+};
+
+// const getUserBridgeFundsAccounts = async() =>{
+
+// }
+
 export {
   getBridgeFundsAccounts,
   getBridgeFundsAccountStatus,
@@ -197,4 +257,6 @@ export {
   invalidBridgeFundsTransaction,
   getBridgeFundsTransactionStatus,
   getUsersBridgeFundsAccounts,
+  validateRegistration,
+  sendAccountsRegistration,
 };

@@ -1,17 +1,18 @@
 import {
+  faAt,
   faCalendar,
-  faHashtag,
+  faLocation,
+  faMapLocation,
+  faPhone,
   faToggleOff,
   faUser,
   faUserAlt,
+  faUserCircle,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { MobileTableHeader, TableHeader } from "../../../types";
 
 const usersTableHeaders: TableHeader[] = [
-  {
-    label: "ID",
-  },
   {
     label: "Nombre",
   },
@@ -19,21 +20,32 @@ const usersTableHeaders: TableHeader[] = [
     label: "Nombre de usuario",
   },
   {
-    label: "Estado",
+    label: "Correo",
+  },
+  {
+    label: "Telefono",
+  },
+  {
+    label: "País",
+  },
+  {
+    label: "Ciudad",
+  },
+  {
+    label: "Fecha de verificación",
+  },
+  {
+    label: "Rol",
   },
   {
     label: "Estado",
   },
   {
-    label: "Fecha de registro",
+    label: "Acciones",
   },
 ];
 
 const getUsersCardValues = (): MobileTableHeader[] => [
-  {
-    label: "ID",
-    icon: faHashtag,
-  },
   {
     label: "Nombre",
     icon: faUser,
@@ -43,12 +55,32 @@ const getUsersCardValues = (): MobileTableHeader[] => [
     icon: faUserAlt,
   },
   {
-    label: "Estado",
-    icon: faToggleOff,
+    label: "Correo",
+    icon: faAt,
   },
   {
-    label: "Fecha de registro",
+    label: "Telefono",
+    icon: faPhone,
+  },
+  {
+    label: "País",
+    icon: faLocation,
+  },
+  {
+    label: "Ciudad",
+    icon: faMapLocation,
+  },
+  {
+    label: "Fecha de verificación",
     icon: faCalendar,
+  },
+  {
+    label: "Rol",
+    icon: faUserCircle,
+  },
+  {
+    label: "Estado",
+    icon: faToggleOff,
   },
 ];
 

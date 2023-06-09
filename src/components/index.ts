@@ -45,3 +45,6 @@ export { default as MTPlatforms } from "./bridgeFunds/MTPlatforms";
 export { default as LinkAccount } from "./evoxSyntetics/LinkAccount";
 export { default as LinkAccountForm } from "./evoxSyntetics/LinkAccountForm";
 export { default as SyntheticAccountList } from "./evoxSyntetics/SyntheticAccountList";
+
+/*Admin components */
+export { default as BridgeFundsAccountForm } from "./admin/BridgeFundsAccountForm";

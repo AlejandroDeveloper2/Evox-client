@@ -5,7 +5,11 @@ import { Avatar, MenuItem } from "../..";
 import Logo from "../../../assets/images/logo.png";
 import LogoDark from "../../../assets/images/logo-2.png";
 
-const LateralMenu = (): JSX.Element => {
+interface LateralmenuProps {
+  colspan: string;
+}
+
+const LateralMenu = (props: LateralmenuProps): JSX.Element => {
   const { isMenuVisible } = useApp();
   const { logOut, auth } = useAuth();
   const { theme } = useTheme();
@@ -17,13 +21,15 @@ const LateralMenu = (): JSX.Element => {
   return (
     <nav
       id="nav"
-      className={` w-[75%] lg:w-[25%] h-full flex flex-col justify-start items-center transition-transform 
+      className={`w-3/4 md:w-[40%] lg:w-full h-full flex flex-col justify-start items-center transition-transform ${
+        props.colspan
+      }
        ${
          isMenuVisible
-           ? "translate-x-0 xl:translate-x-0"
-           : "translate-x-[-100%] xl:translate-x-0"
+           ? "translate-x-0 lg:translate-x-0"
+           : "translate-x-[-100%] lg:translate-x-0"
        } 
-       bg-white dark:bg-mediumGray py-5 gap-0 lg:gap-5 xl:w-[30%] md:w-[40%] lg:w-1/4 fixed top-[0] left-0 xl:relative xl:top-0 z-20 xl:z-10`}
+       bg-white dark:bg-mediumGray py-5 gap-0 lg:gap-5 fixed top-[0] left-0 lg:relative lg:top-0 z-30 lg:z-10`}
     >
       <div className="w-full md:h-[5rem] h-[3rem] flex justify-center items-center">
         <img

@@ -1,36 +1,15 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import { calculateTotalToPay } from "../../utils";
 import { BridgeFundsAccount } from "../../types";
+import { useBridgeAccount, useEvoxServices } from "../../hooks";
 
 import { CustomButton } from "..";
-import { useEvoxServices } from "../../hooks";
 
 const AccountCard = (props: BridgeFundsAccount): JSX.Element => {
-  const [isChecked, setIsChecked] = React.useState<boolean>(false);
-  const [accountQuantity, setAccountQuantity] = React.useState<string>("1");
-  const [singlePrice] = React.useState<string>(props.price.toString());
-  const [price, setPrice] = React.useState<string>(singlePrice);
-
+  const { isChecked, accountQuantity, price, handleChange, handleClick } =
+    useBridgeAccount(props.price);
   const { getBridgeAccountFeatures } = useEvoxServices();
-
   const navigate = useNavigate();
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    if (window.parseInt(e.target.value) > 0) setAccountQuantity(e.target.value);
-  };
-
-  const handleClick = (): void => {
-    setIsChecked(!isChecked);
-  };
-
-  React.useEffect(() => {
-    const total = calculateTotalToPay(singlePrice, accountQuantity);
-    setPrice(total.toString());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [accountQuantity]);
-
   const features = props.description.split(",");
 
   return (
@@ -77,7 +56,9 @@ const AccountCard = (props: BridgeFundsAccount): JSX.Element => {
           name="accountQuantity"
           value={accountQuantity}
           onChange={handleChange}
-          className="text-[24px] text-darkGray font-extrabold font-poppins w-[3rem] outline-none bg-lightGray"
+          className="text-[24px] text-darkGray font-extrabold font-poppins w-[3rem] 
+          outline-none bg-lightGray [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none 
+          [&::-webkit-inner-spin-button]:appearance-none"
           min={1}
           max={99}
         />

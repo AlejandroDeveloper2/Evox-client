@@ -12,6 +12,7 @@ import {
   Team,
   ToastProps,
   Transaction,
+  UserAccountBridgeFunds,
   UserAuth,
   UserIP,
   UserSyntheticAccount,
@@ -25,7 +26,6 @@ interface AppContextType {
   loading: SpinnerProps;
   toast: ToastProps;
   isMenuVisible: boolean;
-  page: string;
   setLoading: React.Dispatch<React.SetStateAction<SpinnerProps>>;
   setToast: React.Dispatch<React.SetStateAction<ToastProps>>;
   toggleLateralMenu: () => void;
@@ -72,6 +72,10 @@ interface EvoxContextType {
   getSyntheticAccount: () => Promise<void>;
   getBridgeAccountFeatures: (id: number, quantity: number) => void;
   checkSyntheticCredentials: (id: number) => void;
+  registerUserBridgeAccounts: (
+    id: number,
+    dataAccounts: UserAccountBridgeFunds[]
+  ) => Promise<void>;
 }
 
 interface ThemeContextType {
