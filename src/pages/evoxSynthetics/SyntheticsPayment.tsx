@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
-
-import { useEvoxServices } from "../../hooks";
-import { Transaction } from "../../types";
-import { getTransactionStatus } from "../../services/synthetics";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCreditCard } from "@fortawesome/free-solid-svg-icons";
+
+import { useSyntheticPayment } from "../../hooks";
+
 import { QrImagen, TetherLogo } from "../../assets";
+
 import { CopyLink, CustomButton } from "../../components";
 
 interface Props {
@@ -13,40 +12,8 @@ interface Props {
 }
 
 const SyntheticsPayment = ({ error }: Props): JSX.Element => {
-  const token = localStorage.getItem("token") ?? "";
-  useEffect(() => {
-    const getTransaction = async () => {
-      if (error) {
-        const data = await getTransactionStatus(token);
-        setTransaction(data);
-      }
-    };
-    getTransaction();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const [transaction, setTransaction] = React.useState<Transaction>({
-    transaction: "",
-  });
-  const { sendTransaction } = useEvoxServices();
-
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTransaction({ ...transaction, [e.target.name]: e.target.value });
-  };
-
-  const validateField = (): boolean => {
-    if (transaction.transaction === "" || transaction.transaction.length < 10)
-      return true;
-    return false;
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
-    e.preventDefault();
-    sendTransaction(transaction);
-    setTransaction({
-      transaction: "",
-    });
-  };
+  const { transaction, onChange, validateField, handleSubmit } =
+    useSyntheticPayment(error);
 
   return (
     <div className="relative flex flex-col pt-20 pb-10 items-start gap-20 px-5  md:px-20">

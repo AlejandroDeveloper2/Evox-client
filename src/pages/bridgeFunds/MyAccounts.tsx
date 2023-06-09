@@ -14,8 +14,9 @@ import { BridgeFundsLogo } from "../../assets";
 
 const MyAccounts = (): JSX.Element => {
   const token = localStorage.getItem("token") ?? "";
-  const { data: status } = useSWR("/bridgeFunds/accountStatus", () =>
-    getBridgeFundsAccountStatus(token)
+  const { data: status, isLoading: isLoadingData } = useSWR(
+    "/bridgeFunds/accountStatus",
+    () => getBridgeFundsAccountStatus(token)
   );
   const { data: accounts, isLoading } = useSWR("bridgeFunds/getAccounts", () =>
     getUserBridgeFundsAccounts(token)
@@ -27,7 +28,9 @@ const MyAccounts = (): JSX.Element => {
         <img src={BridgeFundsLogo} alt="Bridge funds logo" />
         Bridge Funds
       </h1>
-      {status === "Shopping" ? (
+      {isLoadingData ? (
+        <Spinner message="Cargango..." color="text-darkBlue" />
+      ) : status === "Shopping" ? (
         <p className="text-[16px] text-darkGray font-poppins font-normal md:w-3/4 text-center flex flex-col gap-2">
           <FontAwesomeIcon
             icon={faInfoCircle}

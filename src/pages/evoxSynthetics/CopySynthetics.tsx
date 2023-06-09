@@ -4,21 +4,22 @@ import { Navigate } from "react-router-dom";
 
 import useSWR from "swr";
 import { getAccountStatus } from "../../services/synthetics";
-// import { useAuth } from "../../hooks";
 
-import { LinkAccount, PaymentNoDone } from "../../components";
+import { LinkAccount, PaymentNoDone, Spinner } from "../../components";
 import { EvoxSynteticsLogo } from "../../assets";
 
 const CopySynthetics = (): JSX.Element => {
   const token = localStorage.getItem("token") ?? "";
-  const { data: status } = useSWR("/synthetic/accountStatus", () =>
+  const { data: status, isLoading } = useSWR("/synthetic/accountStatus", () =>
     getAccountStatus(token)
   );
-  // const { auth } = useAuth();
+
   return (
     <div className="relative flex flex-col pt-20 pb-10 items-center gap-10 px-5  md:px-20">
       <img src={EvoxSynteticsLogo} alt="Evox syntetics logo" />
-      {status === "Shopping" ? (
+      {isLoading ? (
+        <Spinner message="Cargando..." color="text-darkBlue" />
+      ) : status === "Shopping" ? (
         <PaymentNoDone
           paymentLink="/dashboard/evoxSynthetics/syntheticsPayment"
           label="Realizar el pago de tu cuenta de sintéticos"

@@ -12,7 +12,7 @@ const MTPlatforms = (): JSX.Element => {
           theme={{
             bg: "bg-blue",
             color: "text-white",
-            aditionalStyles: "h-[3rem]",
+            aditionalStyles: "h-[3rem] w-full md:w-auto",
           }}
           type="externalLink"
           externalLink="https://www.metatrader4.com/es/download"
@@ -22,7 +22,7 @@ const MTPlatforms = (): JSX.Element => {
           theme={{
             bg: "bg-blue",
             color: "text-white",
-            aditionalStyles: "h-[3rem]",
+            aditionalStyles: "h-[3rem] w-full md:w-auto",
           }}
           type="externalLink"
           externalLink="https://www.metatrader5.com/es/download"
