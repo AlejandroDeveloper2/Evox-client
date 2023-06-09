@@ -6,7 +6,7 @@ const MTPlatforms = (): JSX.Element => {
       <h1 className="text-[18px] text-darkBlue font-extrabold text-center font-poppins align-middle">
         Plataformas:
       </h1>
-      <div className="w-full flex justify-start items-center gap-20">
+      <div className="w-full flex justify-start items-center gap-5 md:gap-20 flex-col md:flex-row">
         <CustomButton
           label="Descargar MT4"
           theme={{

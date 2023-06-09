@@ -18,9 +18,11 @@ const AccountList = (props: UserBridgeFundsAccounts): JSX.Element => {
         </label>
       </div>
       <div className="w-full grid grid-cols-2 py-3 place-items-start justify-items-center">
-        {bridgeFundsAccounts.map((account, index) => (
-          <Account key={index} {...account} />
-        ))}
+        <div className="flex flex-col items-start justify-center gap-5">
+          {bridgeFundsAccounts.map((account, index) => (
+            <Account key={index} {...account} />
+          ))}
+        </div>
         <label
           className="md:text-[18px] text-[16px] text-darkGray font-extrabold text-left 
             font-poppins flex gap-3 items-center justify-start"

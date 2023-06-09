@@ -159,7 +159,6 @@ const BridgeFundsActivation = (): JSX.Element => {
                               `/admin/registerBridgeFundsAccounts/${account.quantity}-${account.id}`
                             )
                           }
-                          disabled={account.state}
                         />
                       ) : (
                         <>
@@ -176,7 +175,6 @@ const BridgeFundsActivation = (): JSX.Element => {
                             onClick={() =>
                               activeBridgeAccount(account.transaction)
                             }
-                            disabled={account.state}
                           />
                           <CustomButton
                             type="button"
@@ -191,7 +189,6 @@ const BridgeFundsActivation = (): JSX.Element => {
                             onClick={() =>
                               invalidBridgeAccount(account.transaction)
                             }
-                            disabled={account.state}
                           />
                         </>
                       )}

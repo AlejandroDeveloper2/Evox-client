@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import { UserAccountBridgeFunds } from "../types";
 import { useEvoxServices } from ".";
@@ -12,6 +13,7 @@ const useBridgeFundsForm = (bridgeFundsId: number, quantity: number) => {
     })
   );
   const { registerUserBridgeAccounts } = useEvoxServices();
+  const navigate = useNavigate();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -50,6 +52,7 @@ const useBridgeFundsForm = (bridgeFundsId: number, quantity: number) => {
   const sendAccounts = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     registerUserBridgeAccounts(bridgeFundsId, data);
+    navigate("/admin/bridgeFundsAccounts");
   };
 
   return {
