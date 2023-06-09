@@ -9,10 +9,10 @@ import { LateralMenu, Footer, Toast, OptionsBar, Header } from "../components";
 const ProtectedLayout = (): JSX.Element => {
   const { toggleLateralMenu, isMenuVisible } = useApp();
   return (
-    <main className="bg-white dark:bg-mediumGray w-screen h-screen overflow-x-hidden relative">
+    <main className="bg-white dark:bg-mediumGray w-screen h-screen overflow-x-hidden relative flex flex-col items-center">
       <Toast />
       <Header />
-      <div className="grid grid-cols-12 h-auto relative w-full lg:w-full xl:w-3/4  mt-[5rem] mb-[1rem] mx-auto ">
+      <div className="grid grid-cols-12 h-auto relative w-full lg:w-full xl:w-3/4  mt-[5rem] mb-[1rem]">
         <LateralMenu colspan="col-span-4 lg:col-span-3" />
         <div className="bg-lightGray dark:bg-darkGray col-span-12 lg:col-span-9 xl:col-span-8 w-full flex-col items-center">
           <OptionsBar />
