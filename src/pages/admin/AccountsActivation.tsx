@@ -12,6 +12,7 @@ import {
   accountActivationsTableHeaders,
   getAccountsActivationsCardValues,
 } from "./constans";
+import { getToken } from "../../utils";
 
 import {
   CustomButton,
@@ -23,7 +24,7 @@ import {
 
 const AccountsActivation = (): JSX.Element => {
   const screenSize = useScreen();
-  const token = localStorage.getItem("token") ?? "";
+  const token = getToken();
   const { data: accounts, isLoading } = useSWR(
     "/synthetic/list",
     () => getUserSyntecticsAccounts(token),

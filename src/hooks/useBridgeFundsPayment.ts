@@ -1,19 +1,30 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
 
 import { useEvoxServices } from ".";
 import { getBridgeFundsTransactionStatus } from "../services/bridgeFunds";
-import { Transaction } from "../types";
+import { BridgeFundsTransaction } from "../types";
+import { getToken } from "../utils";
 
 const useBridgeFundsPayments = (error: boolean) => {
-  const token = localStorage.getItem("token") ?? "";
+  const token = getToken();
   const { sendBridgeTransaction, bridgeFundsAccountInfo } = useEvoxServices();
   const { id, quantity } = bridgeFundsAccountInfo;
-  const [transactionHash, setTransactionHash] = React.useState<Transaction>({
-    transaction: "",
-    bridgeAccountId: id,
-    quantity,
-  });
+  const [transactionHash, setTransactionHash] =
+    React.useState<BridgeFundsTransaction>({
+      transaction: "",
+      bridgeAccountId: id,
+      quantity,
+    });
+  const [isButtonDisable, setIsButtonDisable] = React.useState<boolean>(false);
 
+  useEffect(() => {
+    if (validateField()) {
+      setIsButtonDisable(true);
+      return;
+    }
+    setIsButtonDisable(false);
+  }, [transactionHash]);
   useEffect(() => {
     const getTransaction = async () => {
       if (error) {
@@ -35,7 +46,7 @@ const useBridgeFundsPayments = (error: boolean) => {
   const validateField = (): boolean => {
     if (
       Object.values(transactionHash).includes("") ||
-      transactionHash.transaction.length < 10
+      transactionHash?.transaction?.length < 10
     )
       return true;
     return false;
@@ -44,13 +55,12 @@ const useBridgeFundsPayments = (error: boolean) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     sendBridgeTransaction(transactionHash);
-    setTransactionHash({ transaction: "" });
   };
 
   return {
     transactionHash,
+    isButtonDisable,
     onChange,
-    validateField,
     handleSubmit,
   };
 };

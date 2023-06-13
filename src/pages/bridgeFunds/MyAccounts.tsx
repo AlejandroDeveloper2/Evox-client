@@ -7,13 +7,14 @@ import {
   getBridgeFundsAccountStatus,
   getUserBridgeFundsAccounts,
 } from "../../services/bridgeFunds";
+import { getToken } from "../../utils";
 
 import { AccountList, MTPlatforms, Spinner } from "../../components";
 
 import { BridgeFundsLogo } from "../../assets";
 
 const MyAccounts = (): JSX.Element => {
-  const token = localStorage.getItem("token") ?? "";
+  const token = getToken();
   const { data: status, isLoading: isLoadingData } = useSWR(
     "/bridgeFunds/accountStatus",
     () => getBridgeFundsAccountStatus(token),

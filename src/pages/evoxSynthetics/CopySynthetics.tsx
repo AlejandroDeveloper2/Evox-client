@@ -1,15 +1,16 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { Navigate } from "react-router-dom";
+import useSWR from "swr";
 
+import { getToken } from "../../utils";
 import { getAccountStatus } from "../../services/synthetics";
 
 import { LinkAccount, PaymentNoDone, Spinner } from "../../components";
 import { EvoxSynteticsLogo } from "../../assets";
-import useSWR from "swr";
 
 const CopySynthetics = (): JSX.Element => {
-  const token = localStorage.getItem("token") ?? "";
+  const token = getToken();
   const { data: status, isLoading } = useSWR(
     "/synthetic/accountStatus",
     () => getAccountStatus(token),

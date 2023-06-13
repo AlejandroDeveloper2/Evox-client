@@ -28,6 +28,7 @@ export type {
   User,
   UserAccountBridgeFunds,
   UserBridgeFundsAccounts,
+  BridgeFundsTransaction,
 } from "./dataTypes";
 
 /* Component types Models */

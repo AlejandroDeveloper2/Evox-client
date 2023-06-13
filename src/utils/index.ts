@@ -168,6 +168,19 @@ const calculateTotalToPay = (price: string, quantity: string): number => {
   return totalToPay;
 };
 
+const getToken = (): string => {
+  const token = localStorage.getItem("token");
+  if (token) return token;
+  return "";
+};
+
+const getQuantityAndIdBridgeFunds = (location: Location): number[] => {
+  const accountData: string = location.pathname.split("/")[3];
+  const quantity = parseInt(accountData.split("-")[0]);
+  const id = parseInt(accountData.split("-")[1]);
+  return [quantity, id];
+};
+
 export {
   toggleButton,
   setFormValues,
@@ -179,4 +192,6 @@ export {
   setInputType,
   sortReferralsRecords,
   calculateTotalToPay,
+  getToken,
+  getQuantityAndIdBridgeFunds,
 };

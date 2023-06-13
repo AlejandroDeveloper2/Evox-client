@@ -4,6 +4,7 @@ import {
   AccountStatus,
   BridgeAccount,
   BridgeFundsAccount,
+  BridgeFundsTransaction,
   ServerResponseFail,
   ServerResponseSuccess,
   Transaction,
@@ -107,7 +108,7 @@ const saveBridgeFundsTransaction = async (
   };
   try {
     const { data } = await axiosClient.post(
-      `/bridgeFunds/transaction`,
+      `/bridgeFunds/saveTransaction`,
       transaction,
       config
     );
@@ -148,7 +149,7 @@ const invalidBridgeFundsTransaction = async (
 
 const getBridgeFundsTransactionStatus = async (
   token: string
-): Promise<Transaction> => {
+): Promise<BridgeFundsTransaction> => {
   const axiosClient = getAxiosClient("evoxAPI");
   const config = {
     headers: {
@@ -162,7 +163,10 @@ const getBridgeFundsTransactionStatus = async (
   };
 
   try {
-    const { data } = await axiosClient.get(`/bridgeFunds/transaction`, config);
+    const { data } = await axiosClient.get<BridgeFundsTransaction>(
+      `/bridgeFunds/transaction`,
+      config
+    );
     response = data;
   } catch (error: any) {
     throw new Error(error.response.data.message);
