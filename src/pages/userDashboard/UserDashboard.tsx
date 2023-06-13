@@ -5,7 +5,7 @@ import useSWR from "swr";
 
 import { useEvoxServices, useLoader } from "../../hooks";
 import { getUserReferrals, getUserTeam } from "../../services/userReferrals";
-import { sortReferralsRecords } from "../../utils";
+import { getToken, sortReferralsRecords } from "../../utils";
 
 import {
   InvitationLink,
@@ -26,10 +26,9 @@ import {
 } from "../../assets";
 
 const UserDashboard = (): JSX.Element => {
-  // const { isCountdownFinished } = useCountdown();
   const isLoading = useLoader("Cargando...");
   const { getTeam, getDirectReferrals } = useEvoxServices();
-  const token = localStorage.getItem("token") ?? "";
+  const token = getToken();
   const { data: referrals } = useSWR(
     "/users/referrals",
     () => getUserReferrals(token),

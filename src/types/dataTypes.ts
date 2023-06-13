@@ -143,6 +143,12 @@ interface Transaction {
   quantity?: number;
 }
 
+interface BridgeFundsTransaction extends Transaction {
+  title?: string;
+  total?: number;
+  bridgeFundsState?: boolean;
+}
+
 interface BridgeFundsAccount {
   id: number;
   title: string;
@@ -231,4 +237,5 @@ export type {
   User,
   UserAccountBridgeFunds,
   UserBridgeFundsAccounts,
+  BridgeFundsTransaction,
 };

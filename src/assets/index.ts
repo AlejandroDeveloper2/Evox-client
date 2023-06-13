@@ -28,3 +28,11 @@ export { default as SpreadsIcon } from "./icons/spreadsicon.png";
 export { default as SupportIcon } from "./icons/supporticon.png";
 export { default as TrophyIcon } from "./icons/trophyicon.png";
 export { default as VpsIcon } from "./icons/vpsicon.png";
+
+/*Banners */
+export { default as Banner1PC } from "./banners/BANNER-1-PC.png";
+export { default as Banner1Mobile } from "./banners/BANNER-1-MOVIL.png";
+export { default as Banner2PC } from "./banners/BANNER-2-PC.png";
+export { default as Banner2Mobile } from "./banners/BANNER-2-MOVIL.png";
+export { default as Banner3PC } from "./banners/BANNER-3-PC.png";
+export { default as Banner3Mobile } from "./banners/BANNER-4-MOVIL.png";

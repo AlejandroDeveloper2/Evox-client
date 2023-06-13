@@ -14,6 +14,7 @@ import {
   accountActivationsTableHeaders,
   getBridgeFundsAccountsCardValues,
 } from "./constans";
+import { getToken } from "../../../utils";
 
 import {
   CustomButton,
@@ -25,7 +26,7 @@ import {
 
 const BridgeFundsActivation = (): JSX.Element => {
   const screenSize = useScreen();
-  const token = localStorage.getItem("token") ?? "";
+  const token = getToken();
   const { activeBridgeAccount, invalidBridgeAccount } = useEvoxServices();
   const { data: accounts, isLoading } = useSWR(
     "/bridgeFunds/list/users",
@@ -64,7 +65,6 @@ const BridgeFundsActivation = (): JSX.Element => {
                     <MobileTableRecord
                       values={getBridgeFundsAccountsCardValues()}
                       records={[
-                        index + 1,
                         account.transaction,
                         account.title,
                         account.price,

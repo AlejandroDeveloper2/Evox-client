@@ -12,7 +12,7 @@ import {
   syntheticCredentialsCardValues,
 } from "./constans";
 import { getSyntheticsAccountCredentials } from "../../../services/synthetics";
-import { formatDate } from "../../../utils";
+import { formatDate, getToken } from "../../../utils";
 
 import {
   CustomButton,
@@ -24,7 +24,7 @@ import {
 
 const SyntheticsCredentials = (): JSX.Element => {
   const screenSize = useScreen();
-  const token = localStorage.getItem("token") ?? "";
+  const token = getToken();
   const { data: credentialList, isLoading } = useSWR(
     "/synthetic/access",
     () => getSyntheticsAccountCredentials(token),
@@ -69,7 +69,6 @@ const SyntheticsCredentials = (): JSX.Element => {
                       key={index}
                       values={syntheticCredentialsCardValues()}
                       records={[
-                        index + 1,
                         account.username,
                         account.email,
                         account.login,
@@ -82,7 +81,11 @@ const SyntheticsCredentials = (): JSX.Element => {
                       <CustomButton
                         type="button"
                         label={""}
-                        title=""
+                        title={
+                          !account.state
+                            ? "Marcar como revisado"
+                            : "Marcar como no revisado"
+                        }
                         icon={account.state ? faCheck : faXmark}
                         theme={{
                           bg: account.state ? "bg-success" : "bg-error",

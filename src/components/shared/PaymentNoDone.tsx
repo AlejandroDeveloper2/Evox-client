@@ -1,7 +1,7 @@
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 
-import { CopyLink, CustomButton } from "..";
+import { CustomButton } from "..";
 import { BridgeFundsLogo } from "../../assets";
 
 interface PaymentNoDaneProps {
@@ -90,8 +90,11 @@ const BrigeFundsPresentation = (props: PaymentNoDaneProps): JSX.Element => {
         Paso#1
       </h1>
       <p className="text-[18px] text-darkGray font-poppins font-normal md:w-3/4 text-center">
-        Crea tu cuenta con el siguiente link en nuestro Broker recomendado,
-        Bridge Markets 👇.
+        {/* Crea tu cuenta con el siguiente link en nuestro Broker recomendado,
+        Bridge Markets 👇. */}
+        Registrate en <span className="font-bold">bridgemarkets</span> con tu
+        mismo correo de{" "}
+        <span className="font-bold">inicio de sesión que utilizas en Evox</span>
       </p>
       <CustomButton
         label={"Ir a bridgefunds.eu"}
@@ -107,14 +110,15 @@ const BrigeFundsPresentation = (props: PaymentNoDaneProps): JSX.Element => {
         Paso#2
       </h1>
       <p className="text-[18px] text-darkGray font-poppins font-normal text-center">
-        Ahora has tu depósito y activa tu cuenta de fondeo. Es sencillo y lo
+        {/* Ahora has tu depósito y activa tu cuenta de fondeo. Es sencillo y lo
         único que necesitas es: Hacer tu deposito y en el correo que envías para
         activación de tu deposito escribe:{" "}
         <span className="font-bold">
           Quiero activar una cuenta de fondeo de (pones el valor)
-        </span>
+        </span> */}
+        Selecciona la cuenta de tu preferencia
       </p>
-      <CopyLink link="finance@bridgemarkets.eu" />
+      {/* <CopyLink link="finance@bridgemarkets.eu" /> */}
       <CustomButton
         label={"Tipos de cuentas"}
         theme={{

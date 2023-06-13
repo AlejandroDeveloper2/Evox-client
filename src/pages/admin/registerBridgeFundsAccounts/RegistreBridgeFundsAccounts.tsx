@@ -4,15 +4,14 @@ import { useLocation } from "react-router-dom";
 import useSWR from "swr";
 
 import { validateRegistration } from "../../../services/bridgeFunds";
+import { getQuantityAndIdBridgeFunds, getToken } from "../../../utils";
 
 import { BridgeFundsAccountForm, Spinner } from "../../../components";
 
 const RegistreBridgeFundsAccounts = (): JSX.Element => {
-  const token = localStorage.getItem("token") ?? "";
+  const token = getToken();
   const location = useLocation();
-  const accountData: string = location.pathname.split("/")[3];
-  const quantity = parseInt(accountData.split("-")[0]);
-  const id = parseInt(accountData.split("-")[1]);
+  const [quantity, id] = getQuantityAndIdBridgeFunds(location);
 
   const { data: isValid, isLoading } = useSWR(
     "/bridgeFunds/validateRegistration",
