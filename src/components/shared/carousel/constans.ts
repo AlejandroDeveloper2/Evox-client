@@ -5,6 +5,7 @@ import {
   Banner2PC,
   Banner3Mobile,
   Banner3PC,
+  Banner4Mobile,
   Banner4PC,
 } from "../../../assets";
 
@@ -43,7 +44,7 @@ const mobileImages: CarouselImage[] = [
     alt: "Evox banner bridge markets",
   },
   {
-    src: Banner4PC,
+    src: Banner4Mobile,
     alt: "Evox banner bridge funds",
   },
 ];

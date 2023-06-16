@@ -38,7 +38,7 @@ const useCarousel = (images: CarouselImage[]) => {
   React.useEffect(() => {
     const interval = setInterval(() => {
       next();
-    }, 3000);
+    }, 5000);
     return () => {
       clearInterval(interval);
     };

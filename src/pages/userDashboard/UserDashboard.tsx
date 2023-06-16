@@ -134,7 +134,7 @@ const UserDashboard = (): JSX.Element => {
                     0 USDT
                   </span>
                   <h2 className="text-white font-medium font-montserrat md:text-[24px] text-[20px]">
-                    +150 Esta semana
+                    +0 Esta semana
                   </h2>
                 </div>
                 <img
