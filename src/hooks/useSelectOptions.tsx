@@ -4,7 +4,7 @@ import { useApp } from ".";
 import { SelectOptionsHook } from "../types";
 
 const useSelectOptions = (
-  selectName: "countries" | "cities" | undefined,
+  selectName: "countries" | "cities" | "ticketOptions" | undefined,
   country: string
 ): SelectOptionsHook => {
   const { countries, cities, getCities } = useApp();
