@@ -167,7 +167,7 @@ const getMenuItems = (roleUser: Role): MenuItem[] => {
         rightIcon: faChevronRight,
         label: "Ticket de soporte",
         to: "#",
-        enabled: true,
+        enabled: false,
         subItems: [
           {
             rightIcon: null,
