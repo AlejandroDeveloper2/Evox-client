@@ -194,19 +194,19 @@ const getQuantityAndIdBridgeFunds = (location: Location): number[] => {
 const getBannerImg = (screenSize: number, path: string): string => {
   const banner =
     path === "bridgeMarkets"
-      ? screenSize > 768
+      ? screenSize >= 768
         ? Banner1PC
         : Banner1Mobile
       : path === "evoxSynthetics"
-      ? screenSize > 768
+      ? screenSize >= 768
         ? Banner2PC
         : Banner2Mobile
       : path === "automaticTrading"
-      ? screenSize > 768
+      ? screenSize >= 768
         ? Banner3PC
         : Banner3Mobile
       : path === "bridgeFunds"
-      ? screenSize > 768
+      ? screenSize >= 768
         ? Banner4PC
         : Banner4Mobile
       : "";

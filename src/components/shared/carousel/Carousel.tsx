@@ -18,7 +18,7 @@ const Carousel = (): JSX.Element => {
         src={selectedImage.src}
         alt={selectedImage.alt}
         loading="lazy"
-        className="transition-all object-contain"
+        className="transition-all object-cover w-full"
       />
       <div className="w-full flex justify-between px-0 md:px-1 items-center absolute top-0 md:bottom-0 md:top-0 md:m-auto ">
         <CustomButton

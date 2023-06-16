@@ -29,12 +29,12 @@ const OptionsBar = (): JSX.Element => {
         <Dropdown />
       </div>
       {/* <Toggle /> */}
-      <div className="w-full h-[13.125rem] relative">
+      <div className="w-full h-auto relative">
         {condition ? (
           <img
             src={banner}
             alt={`Evox banner ${path}`}
-            className="object-contain md:object-fill w-full h-full"
+            className="object-cover"
             loading="lazy"
           />
         ) : (
