@@ -26,13 +26,23 @@ const useSelectOptions = (
               {option.name}
             </option>
           ))
-        : cities.map((option, i) => (
+        : selectName === "cities"
+        ? cities.map((option, i) => (
             <option
               key={i}
               value={option.name}
               className="text-darkGray dark:text-white font-poppins"
             >
               {option.name}
+            </option>
+          ))
+        : ["Categoria 1", "Categoria 2", "Categoria 3"].map((option, i) => (
+            <option
+              key={i}
+              value={option}
+              className="text-darkGray dark:text-white font-poppins"
+            >
+              {option}
             </option>
           ));
 

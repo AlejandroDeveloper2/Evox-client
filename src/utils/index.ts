@@ -2,6 +2,16 @@ import { FormikErrors, FormikValues } from "formik";
 import { Location } from "react-router-dom";
 
 import { FormType, Referral, Team, ToastProps, UserIP } from "../types";
+import {
+  Banner1Mobile,
+  Banner1PC,
+  Banner2Mobile,
+  Banner2PC,
+  Banner3Mobile,
+  Banner3PC,
+  Banner4Mobile,
+  Banner4PC,
+} from "../assets";
 
 interface FormConfig {
   location: Location;
@@ -181,6 +191,28 @@ const getQuantityAndIdBridgeFunds = (location: Location): number[] => {
   return [quantity, id];
 };
 
+const getBannerImg = (screenSize: number, path: string): string => {
+  const banner =
+    path === "bridgeMarkets"
+      ? screenSize > 768
+        ? Banner1PC
+        : Banner1Mobile
+      : path === "evoxSynthetics"
+      ? screenSize > 768
+        ? Banner2PC
+        : Banner2Mobile
+      : path === "automaticTrading"
+      ? screenSize > 768
+        ? Banner3PC
+        : Banner3Mobile
+      : path === "bridgeFunds"
+      ? screenSize > 768
+        ? Banner4PC
+        : Banner4Mobile
+      : "";
+  return banner;
+};
+
 export {
   toggleButton,
   setFormValues,
@@ -194,4 +226,5 @@ export {
   calculateTotalToPay,
   getToken,
   getQuantityAndIdBridgeFunds,
+  getBannerImg,
 };

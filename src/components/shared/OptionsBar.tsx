@@ -1,11 +1,24 @@
 import { faBell } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useLocation } from "react-router-dom";
 
-import { Dropdown } from "..";
+import { getBannerImg } from "../../utils";
+import { useScreen } from "../../hooks";
 
-import { TopBanner } from "../../assets";
+import { Carousel, Dropdown } from "..";
 
 const OptionsBar = (): JSX.Element => {
+  const location = useLocation();
+  const screenSize = useScreen();
+  const path = location.pathname.split("/")[2];
+  const condition =
+    path === "bridgeMarkets" ||
+    path === "evoxSynthetics" ||
+    path === "automaticTrading" ||
+    path === "bridgeFunds";
+
+  const banner = getBannerImg(screenSize, path);
+
   return (
     <div className="flex flex-col w-full pt-5 bg-white gap-4">
       <div className="inline-flex justify-end items-center gap-4 md:gap-10 w-full">
@@ -16,12 +29,17 @@ const OptionsBar = (): JSX.Element => {
         <Dropdown />
       </div>
       {/* <Toggle /> */}
-      <div className="w-full h-[7rem] md:h-[14rem]">
-        <img
-          src={TopBanner}
-          alt="Evox banner"
-          className="object-contain md:object-fill w-full h-full"
-        />
+      <div className="w-full h-[13.125rem] relative">
+        {condition ? (
+          <img
+            src={banner}
+            alt={`Evox banner ${path}`}
+            className="object-contain md:object-fill w-full h-full"
+            loading="lazy"
+          />
+        ) : (
+          <Carousel />
+        )}
       </div>
     </div>
   );

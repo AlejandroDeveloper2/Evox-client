@@ -16,3 +16,4 @@ export { default as useBridgeAccount } from "./useBridgeAccount";
 export { default as useBridgeFundsPayment } from "./useBridgeFundsPayment";
 export { default as useBridgeFundsForm } from "./useBridgeFundsForm";
 export { default as useSyntheticPayment } from "./useSyntheticPayment";
+export { default as useCarousel } from "./useCarousel";

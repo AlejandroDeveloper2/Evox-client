@@ -1,4 +1,10 @@
-type FormType = "login" | "recover" | "register" | "profile" | "transactionId";
+type FormType =
+  | "login"
+  | "recover"
+  | "register"
+  | "profile"
+  | "transactionId"
+  | "ticketRequest";
 
 interface RegisterFormValues {
   fullName: string;
@@ -10,6 +16,12 @@ interface RegisterFormValues {
   country: string;
   city: string;
   invitationLink?: string;
+}
+
+interface TicketSupportFormValues {
+  category: string;
+  message: string;
+  image?: string;
 }
 
 interface LoginFormValues {
@@ -208,6 +220,11 @@ interface UserBridgeFundsAccounts {
   state: boolean;
 }
 
+interface CarouselImage {
+  src: string;
+  alt: string;
+}
+
 export type {
   FormType,
   RegisterFormValues,
@@ -238,4 +255,6 @@ export type {
   UserAccountBridgeFunds,
   UserBridgeFundsAccounts,
   BridgeFundsTransaction,
+  TicketSupportFormValues,
+  CarouselImage,
 };

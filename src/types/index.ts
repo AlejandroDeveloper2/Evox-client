@@ -29,6 +29,8 @@ export type {
   UserAccountBridgeFunds,
   UserBridgeFundsAccounts,
   BridgeFundsTransaction,
+  TicketSupportFormValues,
+  CarouselImage,
 } from "./dataTypes";
 
 /* Component types Models */

@@ -56,7 +56,7 @@ const Button = ({
         lg:dark:hover:bg-opacity-80 transition-all ${theme.bg}
         ${theme.aditionalStyles}
         ${disabled ? "bg-opacity-40" : ""}
-        focus:ring-4 focus:ring-blue-300 font-medium 
+        font-medium 
         rounded-lg text-sm px-5 py-5
         focus:outline-none text-[18px] font-poppins cursor-pointer
         lg:rounded-xl lg:text-[20px] flex justify-center items-center gap-3

@@ -12,7 +12,7 @@ interface Field {
   icon: IconDefinition;
   disabled?: boolean;
   as: "input" | "textarea" | "select";
-  selectName?: "countries" | "cities";
+  selectName?: "countries" | "cities" | "ticketOptions";
 }
 
 interface CustomButtonProps {

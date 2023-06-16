@@ -19,6 +19,8 @@ export { default as BridgeMarkets } from "./bridgeMarkets/BridgeMarkets";
 export { default as Academy } from "./evoxSynthetics/Academy";
 export { default as CopySynthetics } from "./evoxSynthetics/CopySynthetics";
 export { default as StepsBridgeFunds } from "./bridgeFunds/StepsBridgeFunds";
+export { default as History } from "./supportTicket/History";
+export { default as TicketRequest } from "./supportTicket/TicketRequest";
 
 /*Admin pages */
 export { default as Users } from "./admin/users/Users";

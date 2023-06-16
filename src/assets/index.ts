@@ -35,4 +35,6 @@ export { default as Banner1Mobile } from "./banners/BANNER-1-MOVIL.png";
 export { default as Banner2PC } from "./banners/BANNER-2-PC.png";
 export { default as Banner2Mobile } from "./banners/BANNER-2-MOVIL.png";
 export { default as Banner3PC } from "./banners/BANNER-3-PC.png";
-export { default as Banner3Mobile } from "./banners/BANNER-4-MOVIL.png";
+export { default as Banner3Mobile } from "./banners/BANNER-3-MOVIL.png";
+export { default as Banner4PC } from "./banners/BANNER-4-PC.png";
+export { default as Banner4Mobile } from "./banners/BANNER-4-MOVIL.png";

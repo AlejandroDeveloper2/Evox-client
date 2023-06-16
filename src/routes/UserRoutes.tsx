@@ -17,6 +17,8 @@ import {
   Academy,
   CopySynthetics,
   StepsBridgeFunds,
+  TicketRequest,
+  History,
 } from "../pages";
 
 const UserRoutes = (): JSX.Element => {
@@ -70,6 +72,12 @@ const UserRoutes = (): JSX.Element => {
           path="/dashboard/evoxSynthetics/copySynthetics"
           element={<CopySynthetics />}
         />
+
+        <Route
+          path="/dashboard/supportTicket/request"
+          element={<TicketRequest />}
+        />
+        <Route path="/dashboard/supportTicket/history" element={<History />} />
       </Route>
     </Routes>
   );
