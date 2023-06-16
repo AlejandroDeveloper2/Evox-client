@@ -34,7 +34,7 @@ const OptionsBar = (): JSX.Element => {
           <img
             src={banner}
             alt={`Evox banner ${path}`}
-            className="object-cover"
+            className="object-cover w-full"
             loading="lazy"
           />
         ) : (
